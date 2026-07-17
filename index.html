@@ -45,6 +45,7 @@
     .dor-card::before{animation:none!important}
     .hoverzoom{transition:none!important}
     .hoverzoom:hover{transform:none!important}
+    .btn::after,.btn-primary::before{display:none!important}
     html{scroll-behavior:auto}
   }
   @media (max-width:960px){
@@ -80,7 +81,8 @@
 
   /* Brilho sutil percorrendo a borda dos cards de "O que trava sua marca" */
   .dor-card{position:relative}
-  .dor-card::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1.5px;background:linear-gradient(115deg,transparent 24%,rgba(2,69,242,.55) 50%,transparent 76%);background-size:260% 100%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borderShine 5s linear infinite;pointer-events:none}
+  .dor-card::before{content:"";position:absolute;inset:0;border-radius:22px;padding:2px;background:linear-gradient(115deg,transparent 16%,rgba(2,69,242,.9) 43%,rgba(160,190,255,1) 50%,rgba(2,69,242,.9) 57%,transparent 84%);background-size:260% 100%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borderShine 3.8s linear infinite;pointer-events:none}
+  .dor-card::after{content:"";position:absolute;inset:0;border-radius:22px;box-shadow:0 0 18px -4px rgba(2,69,242,.35);opacity:.9;pointer-events:none}
   .dor-card:nth-child(2)::before{animation-delay:1.25s}
   .dor-card:nth-child(3)::before{animation-delay:2.5s}
   .dor-card:nth-child(4)::before{animation-delay:3.75s}
@@ -91,6 +93,15 @@
     .hoverzoom{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
     .hoverzoom:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 50px -26px rgba(0,0,0,.5);position:relative;z-index:2}
   }
+  /* pausa o carrossel do topo ao passar o mouse (pra o zoom funcionar bem) */
+  .mq-track:hover{animation-play-state:paused}
+
+  /* Botões: reflexo futurista (varredura no hover + brilho leve contínuo nos preenchidos) */
+  .btn{position:relative;overflow:hidden;isolation:isolate}
+  .btn::after{content:"";position:absolute;top:0;left:-85%;width:55%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .6s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1}
+  .btn:hover::after{left:135%}
+  .btn-primary::before{content:"";position:absolute;top:0;left:-85%;width:45%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-18deg);pointer-events:none;z-index:1;animation:btnGleam 4.5s ease-in-out infinite}
+  @keyframes btnGleam{0%,58%{left:-85%}100%{left:135%}}
 </style>
 </head>
 <body>
@@ -112,7 +123,7 @@
         </ul>
       </nav>
       <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-        <a class="hdr-cta" href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Vim%20do%20seu%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(260deg,#0245f2,#0736ae); color: var(--off); padding: 11px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; white-space: nowrap">Fale comigo agora</a>
+        <a class="hdr-cta btn btn-primary" href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Vim%20do%20seu%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(260deg,#0245f2,#0736ae); color: var(--off); padding: 11px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; white-space: nowrap">Fale comigo agora</a>
         <button data-menu-btn="" aria-label="Menu" aria-expanded="false" style="display:none;flex-direction:column;gap:5px;padding:9px;background:transparent;border:none;cursor:pointer">
           <span style="display:block;width:20px;height:2px;background:var(--off)"></span>
           <span style="display:block;width:20px;height:2px;background:var(--off)"></span>
@@ -126,7 +137,7 @@
       <a href="#processo" data-menu-link style="font-size:15px;font-weight:500;opacity:.85">Processo</a>
       <a href="#portfolio" data-menu-link style="font-size:15px;font-weight:500;opacity:.85">Portfólio</a>
       <a href="#sobre" data-menu-link style="font-size:15px;font-weight:500;opacity:.85">Sobre</a>
-      <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Vim%20do%20seu%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" data-menu-link style="margin-top:4px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(260deg,#0245f2,#0736ae);color:var(--off);padding:14px 18px;border-radius:12px;font-size:15px;font-weight:600">Fale comigo agora</a>
+      <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Vim%20do%20seu%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" data-menu-link class="btn btn-primary" style="margin-top:4px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(260deg,#0245f2,#0736ae);color:var(--off);padding:14px 18px;border-radius:10px;font-size:15px;font-weight:600">Fale comigo agora</a>
     </div>
   </header>
 
@@ -144,8 +155,8 @@
         <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;letter-spacing:.03em;line-height:1.05;font-size:clamp(34px,8vw,62px);margin:26px auto 26px;max-width:14ch;color:#0A0A0A">Sua marca está sendo <em style="font-style: normal; color: #0245f2;">ignorada</em> porque parece <em style="font-style: normal; color: #0245f2;">amadora</em>. Vamos mudar isso.</h1>
         <p style="font-size:clamp(16px,2vw,21px);color:#000000B3;max-width:600px;margin:0 auto;line-height:1.65">Identidade visual profissional que gera reconhecimento, autoridade e vendas. Da criação da marca ao criativo que converte no anúncio.</p>
         <div class="cta-row" style="margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-          <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Quero%20uma%20marca%20profissional." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(260deg,#0245f2,#0736ae); color: var(--off); padding: 18px 30px; border-radius: 10px; font-size: 17px; font-weight: 600">Quero uma marca profissional <span aria-hidden="true">→</span></a>
-          <a href="#portfolio" style="display: inline-flex; align-items: center; gap: 10px; color: #000000; padding: 17px 30px; border-radius: 10px; border: 1px solid var(--line); font-size: 15px; font-weight: 600; opacity: 1; background-color: #FFFFFF">Ver portfólio</a>
+          <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Quero%20uma%20marca%20profissional." target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(260deg,#0245f2,#0736ae); color: var(--off); padding: 18px 30px; border-radius: 10px; font-size: 17px; font-weight: 600">Quero uma marca profissional <span aria-hidden="true">→</span></a>
+          <a href="#portfolio" class="btn" style="display: inline-flex; align-items: center; gap: 10px; color: #000000; padding: 17px 30px; border-radius: 10px; border: 1px solid var(--line); font-size: 15px; font-weight: 600; opacity: 1; background-color: #FFFFFF">Ver portfólio</a>
         </div>
       </div>
 
@@ -252,8 +263,8 @@
         <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;letter-spacing:-.03em;line-height:1.03;font-size:clamp(32px,5vw,64px);margin:22px 0 20px">Sua marca merece ser <span style="color:var(--blue2)">lembrada</span> em todos os momentos.</h2>
         <p style="color:rgba(249,245,242,.7);font-size:17px;margin-bottom:36px;line-height:1.6">Me chame no WhatsApp que montamos um plano sob medida pro seu momento.</p>
         <div class="cta-row" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-          <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(260deg,#0245f2,#0736ae);color:var(--off);padding:19px 34px;border-radius:100px;font-size:16px;font-weight:600">Quero um orçamento <span aria-hidden="true">→</span></a>
-          <a href="mailto:devikisonads@gmail.com" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--off);padding:18px 34px;border-radius:100px;border:1px solid var(--line);font-size:16px;font-weight:600">Enviar e-mail</a>
+          <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Quero%20um%20or%C3%A7amento." target="_blank" rel="noopener" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(260deg,#0245f2,#0736ae);color:var(--off);padding:19px 34px;border-radius:10px;font-size:16px;font-weight:600">Quero um orçamento <span aria-hidden="true">→</span></a>
+          <a href="mailto:devikisonads@gmail.com" class="btn" style="display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--off);padding:18px 34px;border-radius:10px;border:1px solid var(--line);font-size:16px;font-weight:600">Enviar e-mail</a>
         </div>
       </div>
     </section>
@@ -362,7 +373,7 @@
   // Marquee (duplicated x2 for a seamless -50% loop)
   (function(){
     var tile = function(m){
-      return '<div style="width:clamp(150px,42vw,210px);aspect-ratio:3/4;flex:none;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 40px -10px rgba(0,0,0,.4)">'+imgTile(m.src, m.placeholder)+'</div>';
+      return '<div class="hoverzoom" style="width:clamp(150px,42vw,210px);aspect-ratio:3/4;flex:none;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 40px -10px rgba(0,0,0,.4)">'+imgTile(m.src, m.placeholder)+'</div>';
     };
     var one = marquee.map(tile).join('');
     setHTML('[data-marquee-tiles]', one + one);
