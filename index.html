@@ -45,7 +45,7 @@
     .dor-card::before{animation:none!important}
     .hoverzoom{transition:none!important}
     .hoverzoom:hover{transform:none!important}
-    .btn::after,.btn-primary::before{display:none!important}
+    .btn::after,.btn::before{display:none!important}
     html{scroll-behavior:auto}
   }
   @media (max-width:960px){
@@ -81,8 +81,8 @@
 
   /* Brilho sutil percorrendo a borda dos cards de "O que trava sua marca" */
   .dor-card{position:relative}
-  .dor-card::before{content:"";position:absolute;inset:0;border-radius:22px;padding:2px;background:linear-gradient(115deg,transparent 16%,rgba(2,69,242,.9) 43%,rgba(160,190,255,1) 50%,rgba(2,69,242,.9) 57%,transparent 84%);background-size:260% 100%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borderShine 3.8s linear infinite;pointer-events:none}
-  .dor-card::after{content:"";position:absolute;inset:0;border-radius:22px;box-shadow:0 0 18px -4px rgba(2,69,242,.35);opacity:.9;pointer-events:none}
+  .dor-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;background:linear-gradient(115deg,transparent 16%,rgba(2,69,242,.9) 43%,rgba(160,190,255,1) 50%,rgba(2,69,242,.9) 57%,transparent 84%);background-size:260% 100%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borderShine 6s linear infinite;pointer-events:none}
+  .dor-card::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 18px -4px rgba(2,69,242,.35);opacity:.9;pointer-events:none}
   .dor-card:nth-child(2)::before{animation-delay:1.25s}
   .dor-card:nth-child(3)::before{animation-delay:2.5s}
   .dor-card:nth-child(4)::before{animation-delay:3.75s}
@@ -90,18 +90,19 @@
 
   /* Zoom levíssimo e luxuoso ao passar o mouse (só em dispositivos com mouse) */
   @media (hover:hover){
-    .hoverzoom{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease}
+    .hoverzoom{transition:transform .8s cubic-bezier(.2,.7,.2,1),box-shadow .8s ease}
     .hoverzoom:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 50px -26px rgba(0,0,0,.5);position:relative;z-index:2}
   }
   /* pausa o carrossel do topo ao passar o mouse (pra o zoom funcionar bem) */
   .mq-track:hover{animation-play-state:paused}
 
-  /* Botões: reflexo futurista (varredura no hover + brilho leve contínuo nos preenchidos) */
+  /* Botões: reflexo passando sozinho a cada 3s em TODOS os botões + varredura extra no hover */
   .btn{position:relative;overflow:hidden;isolation:isolate}
-  .btn::after{content:"";position:absolute;top:0;left:-85%;width:55%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .6s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1}
-  .btn:hover::after{left:135%}
-  .btn-primary::before{content:"";position:absolute;top:0;left:-85%;width:45%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-18deg);pointer-events:none;z-index:1;animation:btnGleam 4.5s ease-in-out infinite}
-  @keyframes btnGleam{0%,58%{left:-85%}100%{left:135%}}
+  .btn::before{content:"";position:absolute;top:0;left:-90%;width:48%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.42),transparent);transform:skewX(-18deg);pointer-events:none;z-index:1;animation:btnGleam 3s ease-in-out infinite}
+  .btn-light::before{background:linear-gradient(115deg,transparent,rgba(2,69,242,.22),transparent)}
+  .btn::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .6s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1}
+  .btn:hover::after{left:140%}
+  @keyframes btnGleam{0%{left:-90%}22%{left:140%}100%{left:140%}}
 </style>
 </head>
 <body>
@@ -156,7 +157,7 @@
         <p style="font-size:clamp(16px,2vw,21px);color:#000000B3;max-width:600px;margin:0 auto;line-height:1.65">Identidade visual profissional que gera reconhecimento, autoridade e vendas. Da criação da marca ao criativo que converte no anúncio.</p>
         <div class="cta-row" style="margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
           <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Quero%20uma%20marca%20profissional." target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(260deg,#0245f2,#0736ae); color: var(--off); padding: 18px 30px; border-radius: 10px; font-size: 17px; font-weight: 600">Quero uma marca profissional <span aria-hidden="true">→</span></a>
-          <a href="#portfolio" class="btn" style="display: inline-flex; align-items: center; gap: 10px; color: #000000; padding: 17px 30px; border-radius: 10px; border: 1px solid var(--line); font-size: 15px; font-weight: 600; opacity: 1; background-color: #FFFFFF">Ver portfólio</a>
+          <a href="#portfolio" class="btn btn-light" style="display: inline-flex; align-items: center; gap: 10px; color: #000000; padding: 17px 30px; border-radius: 10px; border: 1px solid var(--line); font-size: 15px; font-weight: 600; opacity: 1; background-color: #FFFFFF">Ver portfólio</a>
         </div>
       </div>
 
@@ -408,7 +409,7 @@
 
   // Processo
   setHTML('[data-render="steps"]', steps.map(function(st){
-    return '<div class="reveal hoverzoom" style="background:#fff;border:1px solid var(--line-l);border-radius:20px;padding:32px">'+
+    return '<div class="reveal dor-card hoverzoom" style="position:relative;background:#fff;border:1px solid var(--line-l);border-radius:20px;padding:32px">'+
       '<div style="font-family:\'Bricolage Grotesque\',sans-serif;font-weight:800;font-size:60px;color:var(--blue);line-height:1;margin-bottom:18px;font-variant-numeric:tabular-nums">'+esc(st.num)+'</div>'+
       '<h3 style="font-family:\'Bricolage Grotesque\',sans-serif;font-weight:700;letter-spacing:-.01em;font-size:21px;margin-bottom:10px;color:var(--ink)">'+esc(st.title)+'</h3>'+
       '<p style="color: #000000AD; font-size: 14.5px; line-height: 1.55; font-weight: 500">'+esc(st.desc)+'</p>'+
