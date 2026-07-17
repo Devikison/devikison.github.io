@@ -63,11 +63,11 @@
     [data-grid="pains"]{grid-template-columns:1fr!important}
     [data-grid="steps"]{grid-template-columns:1fr!important}
     [data-grid="portfolio"]{grid-template-columns:1fr!important}
-    .pf-card{aspect-ratio:4/5!important}
+    .pf-card{aspect-ratio:3/4!important}
     .cta-row{flex-direction:column}
     .cta-row a{width:100%;text-align:center;justify-content:center}
     section{padding-left:16px!important;padding-right:16px!important}
-    .mq-track > div{height:220px!important;width:165px!important}
+    /* marquee tiles escalam via clamp()+aspect-ratio (sem tamanho fixo) */
   }
   @media (max-width:400px){
     .hdr-bar > a:first-child{font-size:0!important}
@@ -292,7 +292,7 @@
   // ---- Data ----
   var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
 
-  var gallery = ['gallery/g01.jpg','gallery/g02.png','gallery/g03.png','gallery/g04.png','gallery/g05.png','gallery/g06.png','gallery/g07.png','gallery/g08.png','gallery/g09.png','gallery/g10.png','gallery/g11.png','gallery/g12.png','gallery/g13.png','gallery/g14.png'];
+  var gallery = ['gallery/carousel-01.jpg','gallery/carousel-02.jpg','gallery/carousel-03.jpg','gallery/carousel-04.jpg','gallery/carousel-05.jpg','gallery/carousel-06.jpg','gallery/carousel-07.jpg','gallery/carousel-08.jpg','gallery/carousel-09.jpg','gallery/carousel-10.jpg','gallery/carousel-11.jpg','gallery/carousel-12.jpg','gallery/carousel-13.jpg','gallery/carousel-14.jpg'];
   var marquee = gallery.map(function(src, i){ return { id:'creative-'+(i+1), placeholder:'Sua arte '+(i+1), src:src }; });
 
   var pains = [
@@ -323,22 +323,8 @@
     { num: '04', title: 'Aplicações & Materiais', desc: 'Cartão, social media, embalagem a marca aplicada onde você precisar.' },
     { num: '05', title: 'Entrega & Suporte', desc: 'Arquivos organizados e prontos pra uso, mais suporte pós-projeto.' }
   ];
-  var portfolio = [
-    { tag: 'Fitness', title: 'CrossFit', sub: 'Campanha de captação', src: 'gallery/g01.jpg' },
-    { tag: 'Saúde', title: 'Drª Poliane Cardoso', sub: 'Apresentação institucional', src: 'gallery/g02.png' },
-    { tag: 'Publicidade', title: 'Drogaria São Paulo', sub: 'Campanha de descontos', src: 'gallery/g03.png' },
-    { tag: 'Branding', title: 'MCT Industrial', sub: 'Paleta e aplicações da marca', src: 'gallery/g04.png' },
-    { tag: 'Criativo', title: 'Dallas Pub', sub: 'Campanha sazonal', src: 'gallery/g05.png' },
-    { tag: 'Criativo', title: 'Emagrecimento Sem Culpa', sub: 'Campanha de lançamento', src: 'gallery/g06.png' },
-    { tag: 'Criativo', title: 'Emagrecimento Sem Culpa', sub: 'Peça de campanha', src: 'gallery/g07.png' },
-    { tag: 'Criativo', title: 'Emagrecimento Sem Culpa', sub: 'Peça de campanha', src: 'gallery/g08.png' },
-    { tag: 'Criativo', title: 'Emagrecimento Sem Culpa', sub: 'Peça institucional', src: 'gallery/g09.png' },
-    { tag: 'Criativo', title: 'Dallas Pub — iFood', sub: 'Peça de campanha', src: 'gallery/g10.png' },
-    { tag: 'Saúde', title: 'Drª Poliane Cardoso', sub: 'Trajetória profissional', src: 'gallery/g11.png' },
-    { tag: 'Suplemento', title: 'WeRed — Red Redux', sub: 'Peça comercial', src: 'gallery/g12.png' },
-    { tag: 'Branding', title: 'MCT Industrial', sub: 'Excelência em cada solda', src: 'gallery/g13.png' },
-    { tag: 'Suplemento', title: 'WeRed — Red Redux', sub: 'Controle real da fome', src: 'gallery/g14.png' }
-  ];
+  // Portfólio usa as mesmas artes (elas já têm texto próprio, então cards ficam limpos)
+  var portfolio = gallery.slice();
 
   // ---- Small render helpers ----
   function imgTile(src, placeholder){
@@ -351,7 +337,7 @@
   // Marquee (duplicated x2 for a seamless -50% loop)
   (function(){
     var tile = function(m){
-      return '<div style="height:280px;width:210px;flex:none;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 40px -10px rgba(0,0,0,.4)">'+imgTile(m.src, m.placeholder)+'</div>';
+      return '<div style="width:clamp(150px,42vw,210px);aspect-ratio:3/4;flex:none;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 40px -10px rgba(0,0,0,.4)">'+imgTile(m.src, m.placeholder)+'</div>';
     };
     var one = marquee.map(tile).join('');
     setHTML('[data-marquee-tiles]', one + one);
@@ -395,15 +381,9 @@
 
   // Portfólio marquee (duplicated x2 for seamless loop)
   (function(){
-    var card = function(item){
-      return '<div class="pf-card" style="position:relative;flex:none;width:300px;aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid var(--line)">'+
-        '<div class="pf-img" style="position:absolute;inset:0">'+imgTile(item.src, item.title)+'</div>'+
-        '<div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(15,14,13,.85) 100%);pointer-events:none"></div>'+
-        '<div style="position:absolute;left:16px;right:16px;bottom:16px;pointer-events:none">'+
-          '<span style="display:inline-block;background:rgba(2,69,242,.9);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:8px">'+esc(item.tag)+'</span>'+
-          '<div style="font-family:\'Bricolage Grotesque\',sans-serif;font-weight:700;font-size:18px;letter-spacing:-.01em;color:#fff;line-height:1.15">'+esc(item.title)+'</div>'+
-          '<div style="font-size:12.5px;color:rgba(249,245,242,.72);margin-top:3px">'+esc(item.sub)+'</div>'+
-        '</div>'+
+    var card = function(src){
+      return '<div class="pf-card" style="position:relative;flex:none;width:clamp(190px,58vw,290px);aspect-ratio:3/4;border-radius:18px;overflow:hidden;border:1px solid var(--line)">'+
+        '<div class="pf-img" style="position:absolute;inset:0">'+imgTile(src, '')+'</div>'+
       '</div>';
     };
     var one = portfolio.map(card).join('');
