@@ -46,7 +46,9 @@
   }
   @media (max-width:960px){
     [data-nav]{display:none!important}
+    .hdr-cta{display:none!important}
     [data-menu-btn]{display:flex!important;min-width:44px;min-height:44px;align-items:center;justify-content:center}
+    .hdr-bar{padding:8px 8px 8px 16px!important}
     [data-grid="services"]{grid-template-columns:1fr!important}
     [data-grid="pains"]{grid-template-columns:repeat(2,1fr)!important}
     [data-grid="portfolio"]{grid-template-columns:repeat(2,1fr)!important}
@@ -69,9 +71,8 @@
     section{padding-left:16px!important;padding-right:16px!important}
     /* marquee tiles escalam via clamp()+aspect-ratio (sem tamanho fixo) */
   }
-  @media (max-width:400px){
-    .hdr-bar > a:first-child{font-size:0!important}
-    .hdr-bar > a:first-child span{font-size:13px!important;width:26px!important;height:26px!important}
+  @media (max-width:480px){
+    .brand-tail{display:none}
   }
 </style>
 </head>
@@ -83,7 +84,7 @@
     <div class="hdr-bar" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--line); border-radius: 10px; padding: 11px 11px 11px 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; background-color: rgba(56,56,56,.72)">
       <a href="#top" style="font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:9px;color:var(--off);white-space:nowrap">
         <span class="logo-mark">D</span>
-        Devikison | Design Gráfico</a>
+        <span>Devikison<span class="brand-tail"> | Design Gráfico</span></span></a>
       <nav data-nav="" style="display:flex;min-width:0">
         <ul style="list-style:none;display:flex;gap:26px">
           <li><a href="#dores" style="font-size:14px;font-weight:500;opacity:.75">Dores</a></li>
@@ -94,7 +95,7 @@
         </ul>
       </nav>
       <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-        <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Vim%20do%20seu%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(260deg,#0245f2,#0736ae); color: var(--off); padding: 11px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; white-space: nowrap">Fale comigo agora</a>
+        <a class="hdr-cta" href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Vim%20do%20seu%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(260deg,#0245f2,#0736ae); color: var(--off); padding: 11px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; white-space: nowrap">Fale comigo agora</a>
         <button data-menu-btn="" aria-label="Menu" aria-expanded="false" style="display:none;flex-direction:column;gap:5px;padding:9px;background:transparent;border:none;cursor:pointer">
           <span style="display:block;width:20px;height:2px;background:var(--off)"></span>
           <span style="display:block;width:20px;height:2px;background:var(--off)"></span>
@@ -108,6 +109,7 @@
       <a href="#processo" data-menu-link style="font-size:15px;font-weight:500;opacity:.85">Processo</a>
       <a href="#portfolio" data-menu-link style="font-size:15px;font-weight:500;opacity:.85">Portfólio</a>
       <a href="#sobre" data-menu-link style="font-size:15px;font-weight:500;opacity:.85">Sobre</a>
+      <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Vim%20do%20seu%20site%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener" data-menu-link style="margin-top:4px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(260deg,#0245f2,#0736ae);color:var(--off);padding:14px 18px;border-radius:12px;font-size:15px;font-weight:600">Fale comigo agora</a>
     </div>
   </header>
 
