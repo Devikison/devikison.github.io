@@ -90,7 +90,7 @@
 
   /* Zoom levíssimo e luxuoso ao passar o mouse (só em dispositivos com mouse) */
   @media (hover:hover){
-    .hoverzoom{transition:transform .8s cubic-bezier(.2,.7,.2,1),box-shadow .8s ease}
+    .hoverzoom{transition:transform 1.1s cubic-bezier(.2,.7,.2,1),box-shadow 1.1s ease}
     .hoverzoom:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 26px 50px -26px rgba(0,0,0,.5);position:relative;z-index:2}
   }
   /* pausa o carrossel do topo ao passar o mouse (pra o zoom funcionar bem) */
@@ -100,9 +100,9 @@
   .btn{position:relative;overflow:hidden;isolation:isolate}
   .btn::before{content:"";position:absolute;top:0;left:-90%;width:48%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.42),transparent);transform:skewX(-18deg);pointer-events:none;z-index:1;animation:btnGleam 3s ease-in-out infinite}
   .btn-light::before{background:linear-gradient(115deg,transparent,rgba(2,69,242,.22),transparent)}
-  .btn::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .6s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1}
+  .btn::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(115deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left 1s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1}
   .btn:hover::after{left:140%}
-  @keyframes btnGleam{0%{left:-90%}22%{left:140%}100%{left:140%}}
+  @keyframes btnGleam{0%{left:-90%}60%{left:140%}100%{left:140%}}
 </style>
 </head>
 <body>
