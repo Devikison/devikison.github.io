@@ -1,0 +1,16 @@
+---
+deployment:
+  tasks:
+    # Destino: pasta pública da conta cPanel
+    - export DEPLOYPATH=$HOME/public_html/
+    - /bin/mkdir -p $DEPLOYPATH
+    # Somente arquivos públicos da raiz
+    - /bin/cp -f index.html $DEPLOYPATH
+    - if ls *.css   >/dev/null 2>&1; then /bin/cp -f  *.css   $DEPLOYPATH; fi
+    - if ls *.js    >/dev/null 2>&1; then /bin/cp -f  *.js    $DEPLOYPATH; fi
+    # Pastas de assets públicos (este projeto usa gallery/; assets/ é copiada se existir)
+    - if [ -d gallery ]; then /bin/cp -Rf gallery $DEPLOYPATH; fi
+    - if [ -d assets  ]; then /bin/cp -Rf assets  $DEPLOYPATH; fi
+    # .htaccess apenas se existir
+    - if [ -f .htaccess ]; then /bin/cp -f .htaccess $DEPLOYPATH; fi
+    # NUNCA copiamos: node_modules, src, components, lib, .git, .cpanel.yml, .gitignore, chaves

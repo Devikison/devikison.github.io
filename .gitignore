@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+package-lock.json.bak
+
+# Build output (if a build is ever added)
+dist/
+build/
+.cache/
+
+# Secrets — NEVER commit deploy keys / credentials
+*.pem
+*_deploy
+*_deploy.pub
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+.env
+.env.*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
