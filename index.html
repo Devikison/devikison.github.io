@@ -77,6 +77,33 @@
     .hoverlift:hover{transform:translateY(-6px);border-color:var(--blue-brd);box-shadow:0 30px 60px -30px rgba(2,69,242,.5),inset 0 1px 0 rgba(255,255,255,.1)}
   }
 
+  /* ------- BORDA COM GLOW AZUL EM SLOW MOTION ------- */
+  @property --bd-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+  @keyframes bd-rotate{to{--bd-angle:360deg}}
+  .glow-border::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;z-index:2;pointer-events:none;
+    background:conic-gradient(from var(--bd-angle),
+      rgba(61,107,255,0) 0deg,
+      rgba(61,107,255,0) 190deg,
+      rgba(126,160,255,.85) 270deg,
+      #e0eaff 315deg,
+      rgba(126,160,255,.85) 345deg,
+      rgba(61,107,255,0) 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+    filter:drop-shadow(0 0 5px rgba(61,107,255,.7));
+    animation:bd-rotate 8s linear infinite}
+
+  /* ------- NÚCLEO DE ENERGIA PULSANTE (hero) ------- */
+  .hero-pulse{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);width:min(780px,92vw);aspect-ratio:1;border-radius:50%;z-index:0;pointer-events:none;mix-blend-mode:screen;
+    background:radial-gradient(circle,rgba(61,107,255,.30),rgba(2,69,242,.12) 46%,transparent 70%);
+    animation:energy-pulse 5.5s ease-in-out infinite}
+  @keyframes energy-pulse{
+    0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.5}
+    50%{transform:translate(-50%,-50%) scale(1.12);opacity:.95}}
+  .plasma{animation:plasma-breathe 6.5s ease-in-out infinite}
+  @keyframes plasma-breathe{0%,100%{opacity:.85}50%{opacity:1}}
+
   /* eyebrow + títulos */
   .eyebrow{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue3);display:inline-flex;align-items:center;gap:9px;margin-bottom:18px}
   .eyebrow::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,var(--blue2))}
@@ -114,6 +141,7 @@
     .mq-track{animation:none!important}
     .reveal{opacity:1;transform:none;transition:none}
     .blob{animation:none!important}
+    .glow-border::before,.hero-pulse,.plasma{animation:none!important}
     html{scroll-behavior:auto}
   }
 
@@ -185,6 +213,7 @@
       <div class="plasma" aria-hidden="true">
         <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
       </div>
+      <div class="hero-pulse" aria-hidden="true"></div>
       <div class="hero-sphere" aria-hidden="true"></div>
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-veil" aria-hidden="true"></div>
@@ -254,7 +283,7 @@
           <h2 class="h2">Tudo que sua marca precisa pra <span class="accent">vender mais</span>, num só lugar.</h2>
         </div>
         <div data-grid="services" style="display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start">
-          <div class="reveal glass hoverlift" style="padding:44px">
+          <div class="reveal glass hoverlift glow-border" style="padding:44px">
             <span style="display:inline-block;background:var(--blue);color:#fff;padding:6px 14px;border-radius:100px;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:22px">Serviço principal</span>
             <h3 style="font-weight:700;letter-spacing:-.01em;font-size:clamp(24px,3vw,34px);line-height:1.06;margin-bottom:16px">Identidade Visual profissional</h3>
             <p style="color:var(--muted);font-size:15px;line-height:1.65;margin-bottom:28px">A base que faz sua marca ser reconhecida em qualquer lugar, do perfil no Instagram ao adesivo do carro. É aqui que ela ganha personalidade e para de parecer amadora.</p>
@@ -427,7 +456,7 @@
 
   // Dores (glass)
   setHTML('[data-render="pains"]', pains.map(function(p){
-    return '<div class="reveal glass hoverlift" style="padding:30px 28px;display:flex;flex-direction:column;gap:20px">'+
+    return '<div class="reveal glass hoverlift glow-border" style="padding:30px 28px;display:flex;flex-direction:column;gap:20px">'+
       '<span style="width:48px;height:48px;border-radius:14px;border:1px solid var(--blue-brd);display:inline-flex;align-items:center;justify-content:center;background:rgba(61,107,255,.10)">'+p.icon+'</span>'+
       '<p style="font-family:\'Space Grotesk\',sans-serif;font-weight:600;font-size:18px;line-height:1.3;letter-spacing:-.01em;color:#fff">'+esc(p.text)+'</p>'+
       '<span style="margin-top:auto;font-size:14px;font-weight:600;color:var(--blue3)">→ Resolvo isso pra você</span>'+
@@ -444,7 +473,7 @@
 
   // Serviços — cards
   setHTML('[data-render="services"]', services.map(function(s){
-    return '<div class="reveal glass hoverlift" style="padding:24px 26px">'+
+    return '<div class="reveal glass hoverlift glow-border" style="padding:24px 26px">'+
       '<h4 style="font-weight:600;letter-spacing:-.01em;font-size:19px;margin-bottom:7px;color:#fff">'+esc(s.title)+'</h4>'+
       '<p style="font-size:14px;color:var(--muted);line-height:1.6">'+esc(s.desc)+'</p>'+
     '</div>';
