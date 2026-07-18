@@ -34,30 +34,36 @@
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
   .reveal.in{opacity:1;transform:none}
 
-  /* ------- PLASMA VIVO (hero background) ------- */
-  .plasma{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-  .plasma .blob{position:absolute;border-radius:50%;filter:blur(70px);mix-blend-mode:screen;opacity:.9;will-change:transform}
-  .blob.b1{width:60vw;height:60vw;left:-8vw;top:-14vw;background:radial-gradient(circle at 50% 50%,rgba(2,69,242,.85),transparent 66%);animation:drift1 18s ease-in-out infinite alternate}
-  .blob.b2{width:52vw;height:52vw;right:-10vw;top:-6vw;background:radial-gradient(circle at 50% 50%,rgba(61,107,255,.75),transparent 66%);animation:drift2 22s ease-in-out infinite alternate}
-  .blob.b3{width:46vw;height:46vw;left:22vw;top:8vw;background:radial-gradient(circle at 50% 50%,rgba(126,160,255,.55),transparent 64%);animation:drift3 26s ease-in-out infinite alternate}
-  .blob.b4{width:40vw;height:40vw;right:14vw;top:18vw;background:radial-gradient(circle at 50% 50%,rgba(2,69,242,.6),transparent 64%);animation:drift4 20s ease-in-out infinite alternate}
-  @keyframes drift1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(8vw,6vw) scale(1.18)}100%{transform:translate(-4vw,10vw) scale(1.05)}}
-  @keyframes drift2{0%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-9vw,7vw) scale(1.22)}100%{transform:translate(5vw,2vw) scale(1)}}
-  @keyframes drift3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(6vw,-5vw) scale(1.2)}100%{transform:translate(-7vw,4vw) scale(1.08)}}
-  @keyframes drift4{0%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-6vw,6vw) scale(.9)}100%{transform:translate(4vw,-4vw) scale(1.15)}}
-  /* esfera com glow (topo do hero) */
-  .hero-sphere{position:absolute;left:50%;top:-46%;transform:translateX(-50%);width:min(1080px,150vw);aspect-ratio:1;border-radius:50%;z-index:0;pointer-events:none;
-    background:radial-gradient(circle at 50% 58%,rgba(2,69,242,.22) 0%,rgba(2,69,242,.08) 40%,transparent 60%);
-    box-shadow:inset 0 0 140px 30px rgba(61,107,255,.30),0 0 200px 40px rgba(2,69,242,.22)}
-  .hero-sphere::before{content:"";position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(140,170,255,.30);box-shadow:0 0 70px rgba(61,107,255,.55),inset 0 0 40px rgba(126,160,255,.25)}
-  /* grid mask sutil */
-  .hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;
-    background-image:linear-gradient(rgba(126,160,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(126,160,255,.06) 1px,transparent 1px);
-    background-size:46px 46px;
-    -webkit-mask-image:radial-gradient(120% 100% at 50% 30%,#000 0%,transparent 68%);
-    mask-image:radial-gradient(120% 100% at 50% 30%,#000 0%,transparent 68%)}
-  /* leve véu escuro pra legibilidade */
-  .hero-veil{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 12%,transparent 40%,rgba(5,7,14,.55) 100%)}
+  /* ======= TÚNEL DE ARCOS (hero background) ======= */
+  .arch-scene{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+    background:radial-gradient(120% 78% at 50% 122%,rgba(2,69,242,.16),transparent 60%)}
+  /* brilho ambiente atrás dos arcos (piso) */
+  .arch-glow-back{position:absolute;left:50%;bottom:-16%;transform:translateX(-50%);width:min(1200px,150vw);height:72%;border-radius:50%;
+    background:radial-gradient(circle at 50% 100%,rgba(61,107,255,.55),rgba(2,69,242,.30) 32%,transparent 66%);
+    filter:blur(42px);animation:archBreath 6s ease-in-out infinite}
+  /* SVG com os arcos concêntricos */
+  .arch-tunnel{position:absolute;inset:0;width:100%;height:100%}
+  .arch{fill:none;stroke:url(#archGrad);stroke-width:2.4;stroke-linecap:round;opacity:.85;
+    filter:drop-shadow(0 0 6px rgba(61,107,255,.5));
+    animation:archPulse 4.6s ease-in-out infinite;
+    animation-delay:calc((8 - var(--i)) * -.5s)}
+  @keyframes archPulse{
+    0%,100%{opacity:.42;stroke-width:1.8;filter:drop-shadow(0 0 3px rgba(61,107,255,.30))}
+    50%{opacity:1;stroke-width:3;filter:drop-shadow(0 0 13px rgba(126,160,255,.85))}}
+  /* poça de luz brilhante no piso (na frente, relumia as bases) */
+  .arch-glow-front{position:absolute;left:50%;bottom:-8%;transform:translateX(-50%);width:min(760px,92vw);height:42%;border-radius:50%;mix-blend-mode:screen;
+    background:radial-gradient(circle at 50% 100%,rgba(214,228,255,.9),rgba(126,160,255,.55) 26%,rgba(61,107,255,.22) 48%,transparent 68%);
+    filter:blur(26px);animation:archBreath 6s ease-in-out infinite}
+  @keyframes archBreath{0%,100%{opacity:.72;transform:translateX(-50%) scale(.96)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
+  /* véu escuro pra legibilidade do texto */
+  .hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(92% 72% at 50% 42%,rgba(5,7,14,.72) 0%,rgba(5,7,14,.34) 46%,transparent 74%)}
+  /* HOVER: a energia pulsa mais rápido e intensa (tecnologia viva) */
+  @media (hover:hover){
+    .hero-fold:hover .arch{animation-duration:2.1s}
+    .hero-fold:hover .arch-glow-front{animation-duration:2.1s;filter:blur(30px) brightness(1.3)}
+    .hero-fold:hover .arch-glow-back{animation-duration:2.1s;filter:blur(42px) brightness(1.2)}
+  }
 
   /* ------- BOTÕES ------- */
   .btn{position:relative;overflow:hidden;isolation:isolate;transition:transform .25s ease,box-shadow .25s ease}
@@ -93,16 +99,6 @@
     -webkit-mask-composite:xor;mask-composite:exclude;
     filter:drop-shadow(0 0 5px rgba(61,107,255,.7));
     animation:bd-rotate 8s linear infinite}
-
-  /* ------- NÚCLEO DE ENERGIA PULSANTE (hero) ------- */
-  .hero-pulse{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);width:min(780px,92vw);aspect-ratio:1;border-radius:50%;z-index:0;pointer-events:none;mix-blend-mode:screen;
-    background:radial-gradient(circle,rgba(61,107,255,.30),rgba(2,69,242,.12) 46%,transparent 70%);
-    animation:energy-pulse 5.5s ease-in-out infinite}
-  @keyframes energy-pulse{
-    0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.5}
-    50%{transform:translate(-50%,-50%) scale(1.12);opacity:.95}}
-  .plasma{animation:plasma-breathe 6.5s ease-in-out infinite}
-  @keyframes plasma-breathe{0%,100%{opacity:.85}50%{opacity:1}}
 
   /* eyebrow + títulos */
   .eyebrow{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue3);display:inline-flex;align-items:center;gap:9px;margin-bottom:18px}
@@ -140,8 +136,8 @@
   @media (prefers-reduced-motion:reduce){
     .mq-track{animation:none!important}
     .reveal{opacity:1;transform:none;transition:none}
-    .blob{animation:none!important}
-    .glow-border::before,.hero-pulse,.plasma{animation:none!important}
+    .arch,.arch-glow-back,.arch-glow-front{animation:none!important}
+    .glow-border::before{animation:none!important}
     html{scroll-behavior:auto}
   }
 
@@ -209,13 +205,34 @@
   <main id="top">
 
     <!-- HERO -->
-    <section style="position:relative;overflow:hidden;padding:190px 20px 80px;min-height:100vh;display:flex;align-items:center">
-      <div class="plasma" aria-hidden="true">
-        <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+    <section class="hero-fold" style="position:relative;overflow:hidden;padding:190px 20px 80px;min-height:100vh;display:flex;align-items:center">
+      <div class="arch-scene" aria-hidden="true">
+        <div class="arch-glow-back"></div>
+        <svg class="arch-tunnel" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+          <defs>
+            <linearGradient id="archGrad" gradientUnits="userSpaceOnUse" x1="720" y1="150" x2="720" y2="880">
+              <stop offset="0" stop-color="#e6f0ff"></stop>
+              <stop offset=".12" stop-color="#9db9ff"></stop>
+              <stop offset=".3" stop-color="#3d6bff"></stop>
+              <stop offset=".52" stop-color="#0245f2" stop-opacity=".55"></stop>
+              <stop offset=".74" stop-color="#3d6bff" stop-opacity=".5"></stop>
+              <stop offset=".9" stop-color="#7ea0ff" stop-opacity=".78"></stop>
+              <stop offset="1" stop-color="#dbe8ff"></stop>
+            </linearGradient>
+          </defs>
+          <g>
+            <path class="arch" style="--i:0" d="M 630 880 L 630 740 A 90 180 0 0 1 810 740 L 810 880"></path>
+            <path class="arch" style="--i:1" d="M 480 880 L 480 662 A 240 180 0 0 1 960 662 L 960 880"></path>
+            <path class="arch" style="--i:2" d="M 330 880 L 330 584 A 390 180 0 0 1 1110 584 L 1110 880"></path>
+            <path class="arch" style="--i:3" d="M 180 880 L 180 506 A 540 180 0 0 1 1260 506 L 1260 880"></path>
+            <path class="arch" style="--i:4" d="M 30 880 L 30 428 A 690 180 0 0 1 1410 428 L 1410 880"></path>
+            <path class="arch" style="--i:5" d="M -120 880 L -120 350 A 840 180 0 0 1 1560 350 L 1560 880"></path>
+            <path class="arch" style="--i:6" d="M -270 880 L -270 272 A 990 180 0 0 1 1710 272 L 1710 880"></path>
+            <path class="arch" style="--i:7" d="M -420 880 L -420 194 A 1140 180 0 0 1 1860 194 L 1860 880"></path>
+          </g>
+        </svg>
+        <div class="arch-glow-front"></div>
       </div>
-      <div class="hero-pulse" aria-hidden="true"></div>
-      <div class="hero-sphere" aria-hidden="true"></div>
-      <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-veil" aria-hidden="true"></div>
 
       <div style="max-width:1000px;margin:0 auto;position:relative;z-index:2;text-align:center;width:100%">
