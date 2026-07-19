@@ -190,7 +190,16 @@
   .sec-light .glass{background:#fff;border:1px solid rgba(15,27,51,.09);
     box-shadow:0 18px 42px -30px rgba(15,27,51,.55);backdrop-filter:none;-webkit-backdrop-filter:none}
   .sec-light .glass::after{background:none}
-  .sec-light .glow-border::before{display:none}
+  /* mesma luz correndo na borda dos outros cards, so que em azul da marca pra aparecer no branco */
+  .sec-light .glow-border::before{
+    background:conic-gradient(from var(--bd-angle),
+      rgba(2,69,242,0) 0deg,
+      rgba(2,69,242,0) 190deg,
+      rgba(2,69,242,.5) 270deg,
+      #0245f2 315deg,
+      rgba(61,107,255,.5) 345deg,
+      rgba(2,69,242,0) 360deg);
+    filter:drop-shadow(0 0 4px rgba(2,69,242,.42))}
   @media (hover:hover){
     .sec-light .hoverlift:hover{border-color:rgba(2,69,242,.35);box-shadow:0 28px 54px -30px rgba(2,69,242,.42)}
     .sec-light .glass.hoverlift:hover::after{background:radial-gradient(120% 95% at 50% 0%,rgba(2,69,242,.07),transparent 70%)}
@@ -541,7 +550,7 @@
   setHTML('[data-render="services"]', services.map(function(s){
     var badges = s.badges ? '<div class="svc-badges"><em>Trabalho com</em>'+
       s.badges.map(function(b){ return '<span>'+esc(b)+'</span>'; }).join('')+'</div>' : '';
-    return '<div class="reveal glass hoverlift" style="padding:34px 32px;display:flex;flex-direction:column">'+
+    return '<div class="reveal glass hoverlift glow-border" style="padding:34px 32px;display:flex;flex-direction:column">'+
       '<img class="svc-icon" src="'+esc(s.icon)+'" alt="" aria-hidden="true" loading="lazy" onerror="this.hidden=true">'+
       '<h3 style="font-weight:700;letter-spacing:-.01em;font-size:clamp(21px,2.4vw,26px);line-height:1.15;margin-bottom:10px">'+esc(s.title)+'</h3>'+
       '<p style="font-size:15.5px;line-height:1.65;color:var(--muted)">'+esc(s.desc)+'</p>'+
