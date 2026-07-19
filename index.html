@@ -89,10 +89,19 @@
 
   /* ------- GLASS CARDS (Apple style) ------- */
   .glass{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--glass-brd);border-radius:var(--radius);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 20px 50px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08)}
-  .glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 80% at 20% 0%,rgba(126,160,255,.12),transparent 55%)}
+  .glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 80% at 20% 0%,rgba(126,160,255,.12),transparent 55%);transition:background .55s ease,opacity .55s ease}
+
+  /* ponto verde "ao vivo": pulso contínuo com glow */
+  @keyframes dotPulse{
+    0%{transform:scale(1);box-shadow:0 0 6px rgba(31,188,18,.9),0 0 0 0 rgba(31,188,18,.55)}
+    70%{transform:scale(1.18);box-shadow:0 0 10px rgba(31,188,18,1),0 0 0 9px rgba(31,188,18,0)}
+    100%{transform:scale(1);box-shadow:0 0 6px rgba(31,188,18,.9),0 0 0 0 rgba(31,188,18,0)}}
+  .pulse-dot{box-shadow:0 0 6px rgba(31,188,18,.9);animation:dotPulse 2.1s ease-out infinite}
   @media (hover:hover){
     .hoverlift{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s ease,border-color .5s ease}
-    .hoverlift:hover{transform:translateY(-6px);border-color:var(--blue-brd);box-shadow:0 30px 60px -30px rgba(2,69,242,.5),inset 0 1px 0 rgba(255,255,255,.1)}
+    .hoverlift:hover{transform:translateY(-6px);border-color:var(--blue-brd);box-shadow:0 30px 60px -30px rgba(2,69,242,.5),inset 0 1px 0 rgba(255,255,255,.14),inset 0 1px 26px -8px rgba(150,180,255,.5)}
+    /* glow de topo: o card "acende" de cima ao passar o mouse (aspecto de luxo) */
+    .glass.hoverlift:hover::after{background:radial-gradient(120% 95% at 50% 0%,rgba(150,180,255,.32),rgba(61,107,255,.12) 42%,transparent 72%)}
   }
 
   /* ------- BORDA COM GLOW AZUL EM SLOW MOTION ------- */
@@ -162,6 +171,7 @@
     .reveal{opacity:1;transform:none;transition:none}
     .arch,.arch-glow-back,.arch-glow-front{animation:none!important}
     .glow-border::before{animation:none!important}
+    .pulse-dot{animation:none!important}
     html{scroll-behavior:auto}
   }
 
@@ -266,7 +276,7 @@
 
       <div style="max-width:1000px;margin:0 auto;position:relative;z-index:2;text-align:center;width:100%">
         <span class="glass" style="display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue3);padding:9px 18px;border-radius:100px">
-          <span style="width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(31,188,18,.2)"></span>
+          <span class="pulse-dot" style="width:7px;height:7px;border-radius:50%;background:var(--green)"></span>
           Design Gráfico &amp; Social Media
         </span>
         <h1 style="font-weight:700;letter-spacing:-.02em;line-height:1.04;font-size:clamp(36px,7vw,72px);margin:26px auto 24px;max-width:16ch">Transformo marcas comuns em <span class="accent">referências visuais</span> que <span class="accent">vendem</span>.</h1>
