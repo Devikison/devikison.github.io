@@ -18,7 +18,7 @@
     --glass-brd:rgba(255,255,255,.10);
     --blue-brd:rgba(61,107,255,.42);
     --text:#ffffff; --muted:#ffffff; --muted2:#ffffff;
-    --radius:18px; --mq:44s;
+    --radius:18px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -42,7 +42,6 @@
     filter:drop-shadow(0 0 18px rgba(61,107,255,.35));
   }
 
-  @keyframes lp-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
   .reveal.in{opacity:1;transform:none}
 
@@ -167,13 +166,45 @@
     100%{transform:translate3d(var(--dx,24px),calc(-100vh - 120px),0) scale(1);opacity:0}}
 
   @media (prefers-reduced-motion:reduce){
-    .mq-track{animation:none!important}
     .reveal{opacity:1;transform:none;transition:none}
     .arch,.arch-glow-back,.arch-glow-front{animation:none!important}
     .glow-border::before{animation:none!important}
     .pulse-dot{animation:none!important}
     html{scroll-behavior:auto}
   }
+
+  /* ===== SEÇÕES CLARAS (ritmo dark <-> claro) ===== */
+  .sec-light{
+    --text:#0F1B33; --muted:#3E4E68; --muted2:#5D6C85;
+    --blue3:#0245f2; --glass-brd:rgba(15,27,51,.10); --blue-brd:rgba(2,69,242,.35);
+    background:#F5F7FA!important;color:#0F1B33}
+  .sec-light h2,.sec-light .h2,.sec-light h3,.sec-light h4,.sec-light h5{color:#0F1B33;-webkit-text-fill-color:#0F1B33}
+  .sec-light .accent{
+    background:linear-gradient(180deg,#2f66ff 0%,var(--blue) 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;filter:none}
+  .sec-light .eyebrow{color:var(--blue)}
+  .sec-light .eyebrow::before{background:linear-gradient(90deg,transparent,var(--blue))}
+  .sec-light .eyebrow.center::before{background:linear-gradient(90deg,var(--blue),transparent)}
+  .sec-light .eyebrow.center::after{background:linear-gradient(90deg,var(--blue),transparent)}
+  .sec-light .glass{background:#fff;border:1px solid rgba(15,27,51,.09);
+    box-shadow:0 18px 42px -30px rgba(15,27,51,.55);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .sec-light .glass::after{background:none}
+  .sec-light .glow-border::before{display:none}
+  @media (hover:hover){
+    .sec-light .hoverlift:hover{border-color:rgba(2,69,242,.35);box-shadow:0 28px 54px -30px rgba(2,69,242,.42)}
+    .sec-light .glass.hoverlift:hover::after{background:radial-gradient(120% 95% at 50% 0%,rgba(2,69,242,.07),transparent 70%)}
+  }
+
+  /* ===== CARDS DE SERVIÇO ===== */
+  .svc-icon{width:62px;height:62px;flex:none;margin-bottom:20px}
+  .svc-line{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.6;color:var(--muted)}
+  .svc-line b{font-family:'Space Grotesk',sans-serif;font-weight:600;color:var(--text);white-space:nowrap}
+  .svc-sep{height:1px;background:rgba(15,27,51,.10);margin:20px 0 16px}
+  .svc-badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:22px;align-items:center}
+  .svc-badges span{font-size:11px;font-weight:600;letter-spacing:.04em;padding:5px 11px;border-radius:100px;
+    border:1px solid rgba(2,69,242,.24);color:var(--blue);background:rgba(2,69,242,.05)}
+  .svc-badges em{font-style:normal;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);margin-right:2px}
 
   /* ------- RESPONSIVO ------- */
   @media (max-width:960px){
@@ -198,6 +229,10 @@
     /* entrelinha mais confortavel para leitura no mobile */
     h1{line-height:1.12!important}
     .h2{line-height:1.16!important}
+    /* cards de servico mais compactos e leitura em bloco */
+    #servicos .glass{padding:28px 24px!important}
+    .svc-icon{width:54px;height:54px;margin-bottom:16px}
+    .svc-line{flex-direction:column;gap:3px}
   }
 </style>
 </head>
@@ -279,8 +314,8 @@
           <span class="pulse-dot" style="width:7px;height:7px;border-radius:50%;background:var(--green)"></span>
           Design Gráfico &amp; Social Media
         </span>
-        <h1 style="font-weight:700;letter-spacing:-.02em;line-height:1.04;font-size:clamp(36px,7vw,72px);margin:26px auto 24px;max-width:16ch">Transformo marcas comuns em <span class="accent">referências visuais</span> que <span class="accent">vendem</span>.</h1>
-        <p style="font-size:clamp(16px,2vw,20px);color:#ffffff;max-width:640px;margin:0 auto;line-height:1.65">Do conceito à arte que converte: identidade visual, social media e criativos de anúncio feitos pra dar autoridade, reconhecimento e clientes pra sua marca.</p>
+        <h1 style="font-weight:700;letter-spacing:-.02em;line-height:1.04;font-size:clamp(33px,6vw,64px);margin:26px auto 24px;max-width:20ch">Existe marca que vende no grito. E existe marca que vende <span class="accent">só de existir</span>.</h1>
+        <p style="font-size:clamp(16px,2vw,20px);color:#ffffff;max-width:660px;margin:0 auto;line-height:1.65">Eu construo a segunda: identidade e conteúdo que dão status, autoridade e desejo pra sua marca.</p>
         <div class="cta-row" style="margin-top:40px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
           <a href="https://wa.me/5547992476541?text=Ol%C3%A1%20Devikison!%20Quero%20uma%20marca%20profissional." target="_blank" rel="noopener" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:10px;padding:18px 32px;border-radius:13px;font-size:16px;font-weight:600">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.1h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.08 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.47-.01a.9.9 0 0 0-.65.31c-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
@@ -311,15 +346,6 @@
       </div>
     </section>
 
-    <!-- MARQUEE -->
-    <section style="padding:10px 0 40px;position:relative">
-      <div aria-hidden="true" style="overflow:hidden;padding:16px 0;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)">
-        <div class="mq-track" style="display:flex;gap:20px;width:max-content;animation:lp-scroll var(--mq) linear infinite">
-          <div data-marquee-tiles style="display:contents"></div>
-        </div>
-      </div>
-    </section>
-
     <!-- 01 DORES -->
     <section id="dores" style="padding:clamp(72px,10vw,120px) 20px;position:relative">
       <div style="max-width:1240px;margin:0 auto">
@@ -332,21 +358,13 @@
     </section>
 
     <!-- 02 SERVIÇOS -->
-    <section id="servicos" style="padding:clamp(72px,10vw,120px) 20px;position:relative;background:rgba(8,11,22,.68)">
+    <section id="servicos" class="sec-light" style="padding:clamp(72px,10vw,120px) 20px;position:relative">
       <div style="max-width:1240px;margin:0 auto">
         <div class="reveal" style="text-align:center;max-width:820px;margin:0 auto 60px">
           <span class="eyebrow center">A solução completa</span>
           <h2 class="h2">Tudo que sua marca precisa pra <span class="accent">vender mais</span>, num só lugar.</h2>
         </div>
-        <div data-grid="services" style="display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start">
-          <div class="reveal glass hoverlift glow-border" style="padding:44px">
-            <span style="display:inline-block;background:var(--blue);color:#fff;padding:6px 14px;border-radius:100px;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:22px">Serviço principal</span>
-            <h3 style="font-weight:700;letter-spacing:-.01em;font-size:clamp(24px,3vw,34px);line-height:1.06;margin-bottom:16px">Identidade Visual profissional</h3>
-            <p style="color:var(--muted);font-size:15px;line-height:1.65;margin-bottom:28px">A base que faz sua marca ser reconhecida em qualquer lugar, do perfil no Instagram ao adesivo do carro. É aqui que ela ganha personalidade e para de parecer amadora.</p>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:13px" data-render="mainPoints"></ul>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:14px" data-render="services"></div>
-        </div>
+        <div data-grid="services" style="display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:stretch" data-render="services"></div>
       </div>
     </section>
 
@@ -365,7 +383,7 @@
     </section>
 
     <!-- 04 PORTFÓLIO -->
-    <section id="portfolio" style="padding:clamp(72px,10vw,120px) 20px;position:relative;background:rgba(8,11,22,.68)">
+    <section id="portfolio" class="sec-light" style="padding:clamp(72px,10vw,120px) 20px;position:relative">
       <div style="max-width:1240px;margin:0 auto 44px">
         <div class="reveal" style="text-align:center;max-width:840px;margin:0 auto">
           <span class="eyebrow center">Portfólio</span>
@@ -393,8 +411,9 @@
         </div>
         <div class="reveal">
           <span class="eyebrow">Quem está por trás</span>
-          <h2 class="h2" style="margin-bottom:24px">Um designer que pensa em <span class="accent">marca</span> além do criativo.</h2>
+          <h2 class="h2" style="margin-bottom:24px">Um designer que pensa em <span class="accent">marca</span> do conceito à venda.</h2>
           <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:16px">Sou o Devikison e há <strong style="color:#fff;font-weight:600">mais de 7 anos</strong> ajudo empresas e marcas pessoais a construírem uma presença visual forte, profissional e que gera reconhecimento no mercado.</p>
+          <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:16px">Só que marca bonita não basta se ela não chega em quem importa. Por isso vou além do design: <strong style="color:#fff;font-weight:600">cuido também da gestão de tráfego pago</strong> (Meta Ads, Google Ads e TikTok). Como sou eu quem cria os criativos, você tem o ciclo completo na mão de uma pessoa só — da identidade ao anúncio que vende.</p>
           <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:16px">O atendimento é <strong style="color:#fff;font-weight:600">direto e humano</strong>: você fala comigo do começo ao fim, sem intermediário. Nada de esperar dias por uma resposta.</p>
           <p style="color:var(--muted);font-size:16px;line-height:1.7">Meu foco é <strong style="color:#fff;font-weight:600">resultado real</strong>, não só estética bonita: uma marca que vende, é lembrada e passa a credibilidade que o seu negócio merece.</p>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;padding-top:30px;border-top:1px solid rgba(255,255,255,.1)">
@@ -468,47 +487,46 @@
 
   var painIcon = function(paths){ return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7ea0ff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">'+paths+'</svg>'; };
   var pains = [
-    { icon: painIcon('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'), text: 'Minha marca parece amadora e não passa credibilidade.' },
-    { icon: painIcon('<polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line>'), text: 'Meus posts não têm identidade e parecem feitos por gente diferente todo dia.' },
-    { icon: painIcon('<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline>'), text: 'Meus anúncios não convertem porque o criativo é fraco.' },
-    { icon: painIcon('<circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line>'), text: 'Não sei por onde começar para profissionalizar minha marca.' }
-  ];
-  var mainPoints = [
-    { text: 'Logomarca principal e variações' },
-    { text: 'Paleta de cores e tipografia oficial' },
-    { text: 'Manual de aplicação da marca' },
-    { text: 'Mockups profissionais para apresentação' },
-    { text: 'Suporte pós-entrega' }
+    { icon: painIcon('<rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="4" rx="1.5"></rect><rect x="3" y="14" width="5" height="7" rx="1.5"></rect><rect x="12" y="11" width="9" height="10" rx="1.5"></rect>'), text: 'Seu feed parece improviso e o concorrente parece empresa grande.' },
+    { icon: painIcon('<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline>'), text: 'Você posta, posta, e não gera cliente.' },
+    { icon: painIcon('<polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line>'), text: 'Cada arte é diferente da outra — ninguém reconhece sua marca.' },
+    { icon: painIcon('<circle cx="12" cy="12" r="9.5"></circle><polyline points="12 6.5 12 12 15.8 14.2"></polyline>'), text: 'Você perde tempo fazendo o que não é sua função.' }
   ];
   var services = [
-    { title: 'Social Media', desc: 'Feed, posts e stories com identidade própria pra sua marca ser reconhecida em segundos no scroll.' },
-    { title: 'Criativos para Anúncios', desc: 'Artes de tráfego pago pensadas em conversão: chamam atenção, comunicam a oferta e levam à ação.' },
-    { title: 'Mockups profissionais', desc: 'Apresentações de produto e marca que valorizam cada entrega e passam alto padrão.' },
-    { title: 'Embalagens & Rótulos', desc: 'Rótulos e caixas com apelo visual pra sua marca vender já na prateleira e no anúncio.' },
-    { title: 'Conteúdo Visual', desc: 'Carrosséis, artes institucionais e peças que mantêm sua marca ativa e coerente.' },
-    { title: 'Papelaria & Material Gráfico', desc: 'Cartão, uniforme e fachada com sua marca aplicada de forma consistente em cada ponto físico.' }
+    { icon: 'assets/icons/icon-identidade-visual.svg',
+      title: 'Identidade Visual',
+      desc: 'A base que faz sua marca ser reconhecida em qualquer lugar, do perfil ao anúncio.',
+      solves: 'marca amadora, sem personalidade, com cada arte parecendo de uma empresa diferente.',
+      delivers: 'logotipo + versões, paleta de cores, tipografia e manual de uso da marca.' },
+    { icon: 'assets/icons/icon-social-media.svg',
+      title: 'Social Media',
+      desc: 'Presença nas redes com identidade, constância e estratégia — não post aleatório.',
+      solves: 'feed bagunçado, sem linha visual, que não gera reconhecimento nem cliente.',
+      delivers: 'linha visual definida, conteúdos e um feed coeso que passa autoridade.' },
+    { icon: 'assets/icons/icon-criativos-anuncio.svg',
+      title: 'Criativos de Anúncio',
+      desc: 'Artes feitas pra parar o dedo e converter — não só pra ficar bonito.',
+      solves: 'anúncio que passa despercebido e queima verba sem retorno.',
+      delivers: 'criativos pensados pra conversão, com variações pra testar e escalar.' },
+    { icon: 'assets/icons/icon-trafego-pago.svg',
+      title: 'Gestão de Tráfego Pago',
+      desc: 'Levo sua marca pra frente das pessoas certas — do criativo à campanha no ar.',
+      solves: 'impulsionar post sem saber pra quem, gastando sem previsibilidade de resultado.',
+      delivers: 'campanhas segmentadas e otimizadas em Meta Ads, Google Ads e TikTok, com os criativos já feitos por mim.',
+      badges: ['Meta Ads','Google Ads','TikTok'] }
   ];
   var steps = [
-    { num: 'Etapa 01', title: 'Briefing estratégico', desc: 'Entendo seu negócio, seu público e seus objetivos antes de qualquer coisa.' },
-    { num: 'Etapa 02', title: 'Pesquisa & Direção criativa', desc: 'Referências, moodboard e posicionamento pra definir o rumo visual.' },
-    { num: 'Etapa 03', title: 'Criação da identidade', desc: 'Logo, paleta, tipografia e o sistema visual completo da sua marca.' },
-    { num: 'Etapa 04', title: 'Aplicações & Materiais', desc: 'Cartão, social media e embalagem com a marca aplicada onde você precisar.' },
-    { num: 'Etapa 05', title: 'Entrega & Suporte', desc: 'Arquivos organizados e prontos pra uso, mais suporte pós-projeto.' }
+    { num: 'Etapa 01', title: 'Briefing', desc: 'Entendo seu negócio, seu público e seus objetivos antes de qualquer coisa.' },
+    { num: 'Etapa 02', title: 'Conceito', desc: 'Referências, moodboard e posicionamento pra definir o rumo visual da marca.' },
+    { num: 'Etapa 03', title: 'Criação', desc: 'Logo, paleta, tipografia e as peças que dão vida ao sistema visual.' },
+    { num: 'Etapa 04', title: 'Ajustes', desc: 'Refino junto com você até cada detalhe ficar do jeito certo.' },
+    { num: 'Etapa 05', title: 'Entrega', desc: 'Arquivos organizados e prontos pra uso, mais suporte pós-projeto.' }
   ];
 
   function imgTile(src, alt){
     return '<div class="img-tile">'+(src ? '<img alt="'+esc(alt||'')+'" src="'+esc(src)+'" loading="lazy" onerror="this.hidden=true">' : '')+'</div>';
   }
   function setHTML(sel, html){ var el = document.querySelector(sel); if (el) el.innerHTML = html; }
-
-  // Marquee (x2 seamless)
-  (function(){
-    var tile = function(src,i){
-      return '<div style="width:clamp(150px,42vw,206px);aspect-ratio:3/4;flex:none;border-radius:var(--radius);overflow:hidden;border:1px solid var(--glass-brd);box-shadow:0 20px 40px -18px rgba(0,0,0,.6)">'+imgTile(src,'Arte '+(i+1))+'</div>';
-    };
-    var one = gallery.map(tile).join('');
-    setHTML('[data-marquee-tiles]', one + one);
-  })();
 
   // Dores (glass)
   setHTML('[data-render="pains"]', pains.map(function(p){
@@ -519,19 +537,19 @@
     '</div>';
   }).join(''));
 
-  // Serviços — pontos
-  setHTML('[data-render="mainPoints"]', mainPoints.map(function(pt){
-    return '<li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text)">'+
-      '<span style="flex-shrink:0;width:22px;height:22px;margin-top:1px;border-radius:50%;background:var(--blue);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(2,69,242,.5)">'+
-        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'+
-      '</span>'+esc(pt.text)+'</li>';
-  }).join(''));
-
-  // Serviços — cards
+  // Serviços — 4 cards com ícone 3D
   setHTML('[data-render="services"]', services.map(function(s){
-    return '<div class="reveal glass hoverlift glow-border" style="padding:24px 26px">'+
-      '<h4 style="font-weight:600;letter-spacing:-.01em;font-size:19px;margin-bottom:7px;color:#fff">'+esc(s.title)+'</h4>'+
-      '<p style="font-size:14px;color:var(--muted);line-height:1.6">'+esc(s.desc)+'</p>'+
+    var badges = s.badges ? '<div class="svc-badges"><em>Trabalho com</em>'+
+      s.badges.map(function(b){ return '<span>'+esc(b)+'</span>'; }).join('')+'</div>' : '';
+    return '<div class="reveal glass hoverlift" style="padding:34px 32px;display:flex;flex-direction:column">'+
+      '<img class="svc-icon" src="'+esc(s.icon)+'" alt="" aria-hidden="true" loading="lazy" onerror="this.hidden=true">'+
+      '<h3 style="font-weight:700;letter-spacing:-.01em;font-size:clamp(21px,2.4vw,26px);line-height:1.15;margin-bottom:10px">'+esc(s.title)+'</h3>'+
+      '<p style="font-size:15.5px;line-height:1.65;color:var(--muted)">'+esc(s.desc)+'</p>'+
+      '<div class="svc-sep"></div>'+
+      '<div style="display:flex;flex-direction:column;gap:11px">'+
+        '<p class="svc-line"><b>Resolve:</b><span>'+esc(s.solves)+'</span></p>'+
+        '<p class="svc-line"><b>Você leva:</b><span>'+esc(s.delivers)+'</span></p>'+
+      '</div>'+badges+
     '</div>';
   }).join(''));
 

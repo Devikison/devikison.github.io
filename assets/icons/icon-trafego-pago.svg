@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="tiletrafegopago" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C84FF"/>
+      <stop offset="0.55" stop-color="#2354D9"/>
+      <stop offset="1" stop-color="#0E2172"/>
+    </linearGradient>
+    <linearGradient id="glosstrafegopago" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glyphtrafegopago" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#CFE0FF"/>
+    </linearGradient>
+    <radialGradient id="glowtrafegopago" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3E7BFF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#3E7BFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="cliptrafegopago"><rect x="20" y="16" width="160" height="160" rx="44"/></clipPath>
+    <filter id="dstrafegopago" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#081235" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <ellipse cx="100" cy="104" rx="92" ry="92" fill="url(#glowtrafegopago)"/>
+  <rect x="20" y="16" width="160" height="160" rx="44" fill="url(#tiletrafegopago)"/>
+  <g clip-path="url(#cliptrafegopago)">
+    <ellipse cx="100" cy="26" rx="120" ry="72" fill="url(#glosstrafegopago)"/>
+  </g>
+  <rect x="21" y="17" width="158" height="158" rx="43" fill="none" stroke="#9FC0FF" stroke-opacity="0.5" stroke-width="1.5"/>
+  <rect x="20.75" y="16.75" width="158.5" height="158.5" rx="43.25" fill="none" stroke="#0A1A55" stroke-opacity="0.6" stroke-width="1.5"/>
+  <g filter="url(#dstrafegopago)">
+    <path d="M100 54 C114 68 121 88 118 112 L82 112 C79 88 86 68 100 54 Z"
+          fill="url(#glyphtrafegopago)" stroke="#0A2A8A" stroke-opacity="0.2" stroke-width="1"/>
+    <circle cx="100" cy="86" r="10" fill="#12328F"/>
+    <circle cx="100" cy="86" r="10" fill="url(#tiletrafegopago)" opacity="0.5"/>
+    <path d="M82 104 L68 124 L84 116 Z" fill="#2E63E6"/>
+    <path d="M118 104 L132 124 L116 116 Z" fill="#2E63E6"/>
+    <path d="M90 112 L100 140 L110 112 Z" fill="#67C7F9"/>
+    <path d="M95 112 L100 130 L105 112 Z" fill="#EAF7FF"/></g>
+</svg>

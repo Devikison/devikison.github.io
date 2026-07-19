@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="tileidentidadevisual" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C84FF"/>
+      <stop offset="0.55" stop-color="#2354D9"/>
+      <stop offset="1" stop-color="#0E2172"/>
+    </linearGradient>
+    <linearGradient id="glossidentidadevisual" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glyphidentidadevisual" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#CFE0FF"/>
+    </linearGradient>
+    <radialGradient id="glowidentidadevisual" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3E7BFF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#3E7BFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clipidentidadevisual"><rect x="20" y="16" width="160" height="160" rx="44"/></clipPath>
+    <filter id="dsidentidadevisual" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#081235" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <ellipse cx="100" cy="104" rx="92" ry="92" fill="url(#glowidentidadevisual)"/>
+  <rect x="20" y="16" width="160" height="160" rx="44" fill="url(#tileidentidadevisual)"/>
+  <g clip-path="url(#clipidentidadevisual)">
+    <ellipse cx="100" cy="26" rx="120" ry="72" fill="url(#glossidentidadevisual)"/>
+  </g>
+  <rect x="21" y="17" width="158" height="158" rx="43" fill="none" stroke="#9FC0FF" stroke-opacity="0.5" stroke-width="1.5"/>
+  <rect x="20.75" y="16.75" width="158.5" height="158.5" rx="43.25" fill="none" stroke="#0A1A55" stroke-opacity="0.6" stroke-width="1.5"/>
+  <g filter="url(#dsidentidadevisual)">
+    <g fill="url(#glyphidentidadevisual)" stroke="#0A2A8A" stroke-opacity="0.25" stroke-width="1" stroke-linejoin="round">
+      <path d="M76 74 L124 74 L140 90 L100 142 L60 90 Z"/>
+    </g>
+    <g stroke="#2A5AD8" stroke-opacity="0.55" stroke-width="2" fill="none" stroke-linejoin="round">
+      <path d="M60 90 L140 90"/>
+      <path d="M76 74 L92 90 L100 142"/>
+      <path d="M124 74 L108 90 L100 142"/>
+      <path d="M92 90 L108 90"/>
+    </g>
+    <path d="M82 78 L96 78 L90 88 Z" fill="#EAF2FF" opacity="0.9"/></g>
+</svg>

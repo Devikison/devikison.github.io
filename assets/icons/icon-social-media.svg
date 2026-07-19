@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="tilesocialmedia" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C84FF"/>
+      <stop offset="0.55" stop-color="#2354D9"/>
+      <stop offset="1" stop-color="#0E2172"/>
+    </linearGradient>
+    <linearGradient id="glosssocialmedia" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glyphsocialmedia" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#CFE0FF"/>
+    </linearGradient>
+    <radialGradient id="glowsocialmedia" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3E7BFF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#3E7BFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clipsocialmedia"><rect x="20" y="16" width="160" height="160" rx="44"/></clipPath>
+    <filter id="dssocialmedia" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#081235" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <ellipse cx="100" cy="104" rx="92" ry="92" fill="url(#glowsocialmedia)"/>
+  <rect x="20" y="16" width="160" height="160" rx="44" fill="url(#tilesocialmedia)"/>
+  <g clip-path="url(#clipsocialmedia)">
+    <ellipse cx="100" cy="26" rx="120" ry="72" fill="url(#glosssocialmedia)"/>
+  </g>
+  <rect x="21" y="17" width="158" height="158" rx="43" fill="none" stroke="#9FC0FF" stroke-opacity="0.5" stroke-width="1.5"/>
+  <rect x="20.75" y="16.75" width="158.5" height="158.5" rx="43.25" fill="none" stroke="#0A1A55" stroke-opacity="0.6" stroke-width="1.5"/>
+  <g filter="url(#dssocialmedia)">
+    <path d="M64 66 h72 a16 16 0 0 1 16 16 v34 a16 16 0 0 1 -16 16 h-40 l-18 16 v-16 h-14 a16 16 0 0 1 -16 -16 v-34 a16 16 0 0 1 16 -16 Z"
+          fill="url(#glyphsocialmedia)" stroke="#0A2A8A" stroke-opacity="0.2" stroke-width="1"/>
+    <path d="M100 116 C86 106 74 98 74 86 C74 78 80 73 87 73 C92 73 97 76 100 81 C103 76 108 73 113 73 C120 73 126 78 126 86 C126 98 114 106 100 116 Z"
+          fill="#2E63E6"/>
+    <path d="M100 116 C86 106 74 98 74 86 C74 78 80 73 87 73 C92 73 97 76 100 81 C103 76 108 73 113 73 C120 73 126 78 126 86 C126 98 114 106 100 116 Z"
+          fill="url(#tilesocialmedia)" opacity="0.35"/></g>
+</svg>

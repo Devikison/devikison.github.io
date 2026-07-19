@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="tilecriativosanuncio" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C84FF"/>
+      <stop offset="0.55" stop-color="#2354D9"/>
+      <stop offset="1" stop-color="#0E2172"/>
+    </linearGradient>
+    <linearGradient id="glosscriativosanuncio" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glyphcriativosanuncio" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#CFE0FF"/>
+    </linearGradient>
+    <radialGradient id="glowcriativosanuncio" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3E7BFF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#3E7BFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="clipcriativosanuncio"><rect x="20" y="16" width="160" height="160" rx="44"/></clipPath>
+    <filter id="dscriativosanuncio" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#081235" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <ellipse cx="100" cy="104" rx="92" ry="92" fill="url(#glowcriativosanuncio)"/>
+  <rect x="20" y="16" width="160" height="160" rx="44" fill="url(#tilecriativosanuncio)"/>
+  <g clip-path="url(#clipcriativosanuncio)">
+    <ellipse cx="100" cy="26" rx="120" ry="72" fill="url(#glosscriativosanuncio)"/>
+  </g>
+  <rect x="21" y="17" width="158" height="158" rx="43" fill="none" stroke="#9FC0FF" stroke-opacity="0.5" stroke-width="1.5"/>
+  <rect x="20.75" y="16.75" width="158.5" height="158.5" rx="43.25" fill="none" stroke="#0A1A55" stroke-opacity="0.6" stroke-width="1.5"/>
+  <g filter="url(#dscriativosanuncio)">
+    <rect x="58" y="72" width="76" height="66" rx="14" fill="url(#glyphcriativosanuncio)" stroke="#0A2A8A" stroke-opacity="0.2" stroke-width="1"/>
+    <circle cx="80" cy="92" r="8" fill="#3E7BFF"/>
+    <path d="M62 132 L86 108 L102 124 L118 106 L130 118 L130 130 a4 4 0 0 1 -4 4 H62 Z" fill="#2E63E6" opacity="0.9"/>
+    <g fill="#EAF2FF">
+      <path d="M132 56 L137 70 L151 75 L137 80 L132 94 L127 80 L113 75 L127 70 Z"/>
+    </g>
+    <path d="M150 96 L153 104 L161 107 L153 110 L150 118 L147 110 L139 107 L147 104 Z" fill="#BBD3FF"/></g>
+</svg>
