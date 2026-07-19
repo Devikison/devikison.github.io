@@ -150,7 +150,7 @@
   #fx-bubbles{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
   .bubble{position:absolute;bottom:-26px;border-radius:50%;
     background:radial-gradient(circle at 32% 28%,rgba(224,236,255,.95),rgba(126,160,255,.5) 45%,rgba(61,107,255,.18) 70%,transparent 78%);
-    box-shadow:0 0 8px rgba(126,160,255,.55),inset 0 0 4px rgba(255,255,255,.4);
+    box-shadow:0 0 3px rgba(126,160,255,.5),inset 0 0 1.5px rgba(255,255,255,.55);
     opacity:0;animation:bubbleRise var(--dur,14s) linear infinite;animation-delay:var(--delay,0s);will-change:transform,opacity}
   @keyframes bubbleRise{
     0%{transform:translate3d(0,0,0) scale(.5);opacity:0}
@@ -158,14 +158,7 @@
     85%{opacity:var(--op,.5)}
     100%{transform:translate3d(var(--dx,24px),calc(-100vh - 120px),0) scale(1);opacity:0}}
 
-  /* ===== GRÃO / TEXTURA (película fina sobre tudo) ===== */
-  .grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.15;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size:200px 200px;animation:grainShift 3.2s steps(4) infinite}
-  @keyframes grainShift{0%{background-position:0 0}25%{background-position:-40px 20px}50%{background-position:30px -30px}75%{background-position:-20px -10px}100%{background-position:0 0}}
-
   @media (prefers-reduced-motion:reduce){
-    .grain{animation:none!important}
     .mq-track{animation:none!important}
     .reveal{opacity:1;transform:none;transition:none}
     .arch,.arch-glow-back,.arch-glow-front{animation:none!important}
@@ -199,7 +192,6 @@
 <body>
 
 <div id="fx-bubbles" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
 
 <div id="dev-lp" style="position:relative;z-index:1;width:100%;overflow-x:hidden">
 
@@ -639,17 +631,17 @@
   (function(){
     var host = document.getElementById('fx-bubbles');
     if (!host) return;
-    var N = window.innerWidth < 700 ? 34 : 60;
+    var N = window.innerWidth < 700 ? 48 : 85;
     var frag = document.createDocumentFragment();
     for (var i = 0; i < N; i++){
       var b = document.createElement('span');
       b.className = 'bubble';
-      var size = Math.random() * 10 + 3;       // 3–13px
+      var size = Math.random() * 2.5 + 1;      // 1–3.5px (bem miudinhas)
       var dur = Math.random() * 13 + 8;        // 8–21s
       var delay = -(Math.random() * dur);      // já espalhadas na tela
       var x = Math.random() * 100;             // posição horizontal (vw)
-      var dx = Math.random() * 90 - 45;        // deriva lateral
-      var op = Math.random() * 0.4 + 0.4;      // 0.4–0.8
+      var dx = Math.random() * 70 - 35;        // deriva lateral suave
+      var op = Math.random() * 0.35 + 0.35;    // 0.35–0.7
       b.style.left = x + 'vw';
       b.style.width = size + 'px';
       b.style.height = size + 'px';
