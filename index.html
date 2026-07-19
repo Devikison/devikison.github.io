@@ -17,7 +17,7 @@
     --surface2:rgba(255,255,255,.025);
     --glass-brd:rgba(255,255,255,.10);
     --blue-brd:rgba(61,107,255,.42);
-    --text:#eef1fb; --muted:rgba(238,241,251,.62); --muted2:rgba(238,241,251,.40);
+    --text:#ffffff; --muted:#ffffff; --muted2:#ffffff;
     --radius:18px; --mq:44s;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -31,9 +31,7 @@
 
   /* ===== TEXTO BRANCO COM LEVE DEGRADÊ (estilo dos prints) ===== */
   h1,h2,.h2,h3,h4,.tl-card h3{
-    background:linear-gradient(180deg,#ffffff 0%,#dfe6f5 40%,#93a4c9 100%);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;color:transparent;
+    color:#ffffff;-webkit-text-fill-color:#ffffff;
   }
   /* acento: no lugar do verde, o AZUL da marca em degradê + brilho */
   .accent{
