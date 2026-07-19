@@ -32,7 +32,7 @@
   /* ===== TEXTO BRANCO COM LEVE DEGRADÊ (estilo dos prints) ===== */
   h1,h2,.h2,h3,h4,.tl-card h3{
     color:#ffffff;-webkit-text-fill-color:#ffffff;
-    text-wrap:balance;
+    text-wrap:balance;overflow-wrap:break-word;
   }
   /* acento: no lugar do verde, o AZUL da marca em degradê + brilho */
   .accent{
@@ -185,6 +185,9 @@
     .cta-row a{width:100%;justify-content:center}
     section{padding-left:16px!important;padding-right:16px!important}
     .stats{grid-template-columns:repeat(2,1fr)!important}
+    /* entrelinha mais confortavel para leitura no mobile */
+    h1{line-height:1.12!important}
+    .h2{line-height:1.16!important}
   }
 </style>
 </head>
