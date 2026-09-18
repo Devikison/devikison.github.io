@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="tilelandingpages" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4C84FF"/>
+      <stop offset="0.55" stop-color="#2354D9"/>
+      <stop offset="1" stop-color="#0E2172"/>
+    </linearGradient>
+    <linearGradient id="glosslandingpages" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glyphlandingpages" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#CFE0FF"/>
+    </linearGradient>
+    <radialGradient id="glowlandingpages" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3E7BFF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#3E7BFF" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="cliplandingpages"><rect x="20" y="16" width="160" height="160" rx="44"/></clipPath>
+    <filter id="dslandingpages" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#081235" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <ellipse cx="100" cy="104" rx="92" ry="92" fill="url(#glowlandingpages)"/>
+  <rect x="20" y="16" width="160" height="160" rx="44" fill="url(#tilelandingpages)"/>
+  <g clip-path="url(#cliplandingpages)">
+    <ellipse cx="100" cy="26" rx="120" ry="72" fill="url(#glosslandingpages)"/>
+  </g>
+  <rect x="21" y="17" width="158" height="158" rx="43" fill="none" stroke="#9FC0FF" stroke-opacity="0.5" stroke-width="1.5"/>
+  <rect x="20.75" y="16.75" width="158.5" height="158.5" rx="43.25" fill="none" stroke="#0A1A55" stroke-opacity="0.6" stroke-width="1.5"/>
+  <g filter="url(#dslandingpages)">
+    <!-- janela do navegador -->
+    <rect x="52" y="58" width="96" height="84" rx="12" fill="url(#glyphlandingpages)" stroke="#0A2A8A" stroke-opacity="0.25" stroke-width="1"/>
+    <rect x="52" y="58" width="96" height="18" rx="12" fill="#2E63E6" opacity="0.9"/>
+    <rect x="52" y="66" width="96" height="10" fill="#2E63E6" opacity="0.9"/>
+    <circle cx="63" cy="67" r="3" fill="#EAF7FF"/>
+    <circle cx="72" cy="67" r="3" fill="#EAF7FF" opacity="0.7"/>
+    <circle cx="81" cy="67" r="3" fill="#EAF7FF" opacity="0.5"/>
+    <!-- titulo e texto -->
+    <rect x="64" y="86" width="52" height="7" rx="3.5" fill="#12328F"/>
+    <rect x="64" y="98" width="72" height="4" rx="2" fill="#2E63E6" opacity="0.6"/>
+    <rect x="64" y="106" width="60" height="4" rx="2" fill="#2E63E6" opacity="0.6"/>
+    <!-- botao de conversao -->
+    <rect x="64" y="118" width="40" height="14" rx="6" fill="#2E63E6"/>
+    <rect x="64" y="118" width="40" height="7" rx="6" fill="#67C7F9" opacity="0.55"/>
+    <!-- cursor -->
+    <path d="M110 112 L134 124 L123 127 L129 139 L124 141 L118 129 L110 136 Z" fill="#EAF7FF" stroke="#0A2A8A" stroke-opacity="0.4" stroke-width="1.2" stroke-linejoin="round"/>
+  </g>
+</svg>
