@@ -65,9 +65,10 @@
     background:linear-gradient(180deg,var(--blue4) 0%,var(--blue2) 55%,var(--blue) 100%);
     -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
     }
-  .eyebrow{font-family:var(--font-d);font-weight:600;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue3);display:inline-flex;align-items:center;gap:10px;margin-bottom:18px}
-  .eyebrow::before,.eyebrow::after{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,var(--blue2))}
-  .eyebrow::after{background:linear-gradient(90deg,var(--blue2),transparent)}
+  /* eyebrow em formato de pilula (tag) com ponto luminoso */
+  .eyebrow{font-family:var(--font-d);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue4);display:inline-flex;align-items:center;gap:9px;margin-bottom:20px;padding:8px 16px 8px 12px;border-radius:100px;
+    background:linear-gradient(180deg,rgba(61,107,255,.20),rgba(61,107,255,.08));border:1px solid rgba(126,160,255,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 24px -14px rgba(2,69,242,.8)}
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:linear-gradient(180deg,#cfdcff,var(--blue2));box-shadow:0 0 8px rgba(126,160,255,.95),0 0 0 3px rgba(61,107,255,.18)}
   .h2{font-weight:700;letter-spacing:-.025em;line-height:1.08;font-size:clamp(30px,4.6vw,54px)}
   .lead{color:var(--muted);font-size:clamp(15.5px,1.6vw,18px);line-height:1.7;max-width:640px;margin:18px auto 0}
   .sec{position:relative;padding:clamp(80px,10vw,128px) 0}
@@ -235,9 +236,8 @@
     background:radial-gradient(60% 40% at 50% 0%,rgba(2,69,242,.06),transparent 62%),radial-gradient(44% 34% at 90% 100%,rgba(61,107,255,.10),transparent 64%),radial-gradient(40% 30% at 6% 70%,rgba(126,160,255,.08),transparent 62%)}
   .sec-light h2,.sec-light h3,.sec-light h4{color:#0F1B33}
   .sec-light .accent{background:linear-gradient(180deg,#2f66ff 0%,var(--blue) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:none}
-  .sec-light .eyebrow{color:var(--blue)}
-  .sec-light .eyebrow::before{background:linear-gradient(90deg,transparent,var(--blue))}
-  .sec-light .eyebrow::after{background:linear-gradient(90deg,var(--blue),transparent)}
+  .sec-light .eyebrow{color:var(--blue);background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(2,69,242,.06));border-color:rgba(2,69,242,.24);box-shadow:inset 0 1px 0 #fff,0 8px 22px -14px rgba(2,69,242,.45)}
+  .sec-light .eyebrow::before{background:linear-gradient(180deg,#5e86ff,var(--blue));box-shadow:0 0 8px rgba(2,69,242,.6),0 0 0 3px rgba(2,69,242,.12)}
   .sec-light .card{background:linear-gradient(160deg,rgba(255,255,255,.86),rgba(255,255,255,.55));border:1px solid rgba(255,255,255,.85);
     box-shadow:0 18px 44px -28px rgba(15,27,51,.45),inset 0 1px 0 #fff}
   .sec-light .card::after{background:radial-gradient(320px circle at var(--mx) var(--my),rgba(2,69,242,.10),transparent 62%)}
