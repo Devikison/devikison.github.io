@@ -235,10 +235,13 @@
   /* =========================================================
      DIVISÓRIAS ENTRE SEÇÕES (curva + linha de luz correndo)
      ========================================================= */
-  /* a divisoria sobrepoe o final da secao anterior (fundo transparente): so a curva da proxima secao e pintada, entao nao ha emenda de cor */
-  .divider{--dh:clamp(54px,7vw,96px);position:relative;height:var(--dh);width:100%;overflow:hidden;line-height:0;z-index:3;margin-top:calc(-1 * var(--dh));margin-bottom:-1px;pointer-events:none}
-  .divider svg{position:absolute;inset:0;width:100%;height:calc(100% + 2px);overflow:visible}
-  .divider .fill{fill:var(--to)}
+  /* a curva e recortada na propria secao clara (mask), entao o degrade dela vai ate a ponta e nao existe emenda de cor.
+     a divisoria e transparente: so desenha a linha de luz por cima da borda recortada */
+  :root{--dh:clamp(54px,7vw,96px)}
+  .divider{position:relative;height:var(--dh);width:100%;line-height:0;z-index:3;pointer-events:none}
+  .divider.dv-in{margin-bottom:calc(-1 * var(--dh))}
+  .divider.dv-out{margin-top:calc(-1 * var(--dh))}
+  .divider svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
   .divider .glowline{fill:none;stroke:rgba(61,107,255,.35);stroke-width:9;opacity:.9}
   .divider .line{fill:none;stroke:url(#dvGrad);stroke-width:2.2;opacity:.95}
   .divider .spark{fill:none;stroke:#cfdcff;stroke-width:2.4;opacity:.9;stroke-linecap:round;stroke-dasharray:90 1600;animation:spark 5s linear infinite;animation-delay:var(--sd,0s);will-change:stroke-dashoffset}
@@ -248,7 +251,14 @@
      SEÇÕES CLARAS
      ========================================================= */
   .sec-light{--text:#0F1B33;--muted:#3E4E68;--muted2:#5F6E88;--blue3:#0245f2;--glass-brd:rgba(15,27,51,.10);--blue-brd:rgba(2,69,242,.35);
-    background:linear-gradient(180deg,var(--light) 0%,var(--light2) 40%,var(--light3) 100%);color:#0F1B33}
+    background:linear-gradient(180deg,var(--light) 0%,var(--light2) 40%,var(--light3) 100%);color:#0F1B33;
+    padding-top:calc(clamp(80px,10vw,128px) + var(--dh));padding-bottom:calc(clamp(80px,10vw,128px) + var(--dh));
+    --mk-top:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0,60 C360,100 1080,0 1440,50 L1440,90 L0,90 Z' fill='%23000'/%3E%3C/svg%3E");
+    --mk-bot:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L1440,0 L1440,30 C960,100 480,0 0,40 Z' fill='%23000'/%3E%3C/svg%3E");
+    -webkit-mask-image:var(--mk-top),var(--mk-bot),linear-gradient(#000 0 0);mask-image:var(--mk-top),var(--mk-bot),linear-gradient(#000 0 0);
+    -webkit-mask-size:100% var(--dh),100% var(--dh),100% calc(100% - 2 * var(--dh) + 2px);mask-size:100% var(--dh),100% var(--dh),100% calc(100% - 2 * var(--dh) + 2px);
+    -webkit-mask-position:top,bottom,50% 50%;mask-position:top,bottom,50% 50%;
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
   .sec-light::before{content:"";position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(60% 40% at 50% 0%,rgba(2,69,242,.06),transparent 62%),radial-gradient(44% 34% at 90% 100%,rgba(61,107,255,.10),transparent 64%),radial-gradient(40% 30% at 6% 70%,rgba(126,160,255,.08),transparent 62%)}
   .sec-light h2,.sec-light h3,.sec-light h4{color:#0F1B33}
@@ -359,21 +369,43 @@
   .cmp-toggle button.on{color:#fff}
   .cmp-toggle i{position:absolute;top:5px;bottom:5px;left:5px;width:calc(50% - 5px);border-radius:10px;background:linear-gradient(180deg,#4a78ff,#0245f2);box-shadow:0 6px 16px -6px rgba(2,69,242,.8);transition:transform .35s var(--ease)}
   .cmp-toggle.b i{transform:translateX(100%)}
-  .cmp{border-radius:24px;overflow:hidden;padding:0}
-  .cmp-row{display:grid;grid-template-columns:1fr 1.5fr 1.5fr;align-items:stretch;border-top:1px solid rgba(15,27,51,.08)}
-  .cmp-row:first-child{border-top:0}
-  .cmp-row>div{padding:18px 22px;font-size:15px;line-height:1.55}
-  .cmp-row .k{font-family:var(--font-d);font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted2);display:flex;align-items:center}
-  .cmp-row .no{color:#5a3a3a;display:flex;gap:10px;align-items:flex-start}
-  .cmp-row .yes{color:#0F1B33;display:flex;gap:10px;align-items:flex-start;background:linear-gradient(90deg,rgba(2,69,242,.07),rgba(2,69,242,.02));font-weight:500;position:relative}
-  .cmp-row .yes::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--blue2),var(--blue));opacity:0;transition:opacity .4s}
-  .cmp-row.in .yes::before{opacity:1}
-  .cmp-row svg{width:20px;height:20px;flex:none;margin-top:2px;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
-  .cmp-row .no svg{stroke:#d33}
-  .cmp-row .yes svg{stroke:var(--blue)}
-  .cmp-head{background:rgba(15,27,51,.04)}
-  .cmp-head>div{font-family:var(--font-d);font-weight:700;font-size:15px;color:#0F1B33;padding:18px 22px}
-  .cmp-head .yes{color:var(--blue);background:linear-gradient(90deg,rgba(2,69,242,.12),rgba(2,69,242,.04))}
+  /* VERSUS: improviso x estrategia, duas colunas com medalha VS no meio */
+  .vs{display:grid;grid-template-columns:1fr 72px 1fr;align-items:stretch}
+  .vs-col{padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;border-radius:26px}
+  .vs-no{background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,.25));border:1px solid rgba(15,27,51,.08);box-shadow:0 14px 34px -28px rgba(15,27,51,.35)}
+  .vs-yes{background:linear-gradient(160deg,#ffffff 0%,#eef3ff 100%);border:1px solid rgba(2,69,242,.28);box-shadow:0 30px 70px -34px rgba(2,69,242,.55),inset 0 1px 0 #fff}
+  .vs-head{padding-bottom:18px;margin-bottom:6px;border-bottom:1px solid rgba(15,27,51,.08)}
+  .vs-tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:100px;margin-bottom:12px}
+  .vs-no .vs-tag{background:rgba(15,27,51,.06);color:var(--muted2)}
+  .vs-yes .vs-tag{background:linear-gradient(180deg,#4a78ff,#0245f2);color:#fff;box-shadow:0 8px 18px -8px rgba(2,69,242,.9)}
+  .vs-head h3{font-size:clamp(22px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:6px}
+  .vs-no .vs-head h3{color:#5F6E88}
+  .vs-head p{font-size:14px;color:var(--muted2);line-height:1.5}
+  .vs-item{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px dashed rgba(15,27,51,.10)}
+  .vs-item:last-of-type{border-bottom:0}
+  .vs-tile{width:46px;height:46px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;position:relative}
+  .vs-tile>svg{width:22px;height:22px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .vs-no .vs-tile{background:rgba(15,27,51,.06);border:1px solid rgba(15,27,51,.08)}
+  .vs-no .vs-tile>svg{stroke:#8A97AE}
+  .vs-yes .vs-tile{background:linear-gradient(180deg,#4a78ff,#0245f2);box-shadow:0 10px 20px -10px rgba(2,69,242,.9),inset 0 1px 0 rgba(255,255,255,.35)}
+  .vs-yes .vs-tile>svg{stroke:#fff}
+  .vs-mark{position:absolute;right:-7px;bottom:-7px;width:21px;height:21px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+  .vs-mark svg{width:10px;height:10px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .vs-no .vs-mark{background:#e5484d}
+  .vs-yes .vs-mark{background:#1fbc12}
+  .vs-item small{display:block;font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:3px}
+  .vs-item b{display:block;font-weight:600;font-size:15.5px;line-height:1.35;color:#0F1B33}
+  .vs-no .vs-item b{color:#5F6E88;font-weight:500;text-decoration:line-through;text-decoration-color:rgba(229,72,77,.5);text-decoration-thickness:1.5px}
+  .vs-cta{margin-top:auto;padding-top:22px}
+  .vs-mid{display:flex;align-items:center;justify-content:center;position:relative}
+  .vs-mid::before{content:"";position:absolute;top:6%;bottom:6%;left:50%;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,transparent,rgba(2,69,242,.4),transparent)}
+  .vs-mid span{position:relative;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--blue);background:#fff;border:1px solid rgba(2,69,242,.3);box-shadow:0 12px 30px -12px rgba(2,69,242,.7)}
+  @media (max-width:760px){
+    .cmp-toggle{display:grid}
+    .vs{grid-template-columns:1fr}
+    .vs-mid,.vs-col{display:none}
+    .vs.a .vs-no,.vs.b .vs-yes{display:flex}
+  }
 
   /* =========================================================
      DIAGNÓSTICO (quiz)
@@ -537,7 +569,7 @@
 
   @media (prefers-reduced-motion:reduce){
     *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-    .reveal,.cmp-row{opacity:1;transform:none}
+    .reveal,.reveal[data-rv] .no,.reveal[data-rv] .yes{opacity:1;transform:none}
     html{scroll-behavior:auto}
   }
 
@@ -594,14 +626,6 @@
     .j-node .n svg{width:22px;height:22px}
     .j-node .lb{font-size:11px}
     .j-panel{padding:20px 18px;border-radius:20px}
-    .cmp-toggle{display:grid}
-    .cmp-row{grid-template-columns:1fr}
-    .cmp-row .k{padding-bottom:6px}
-    .cmp-row>div{padding:14px 18px}
-    .cmp-row .no,.cmp-row .yes{display:none}
-    .cmp.a .cmp-row .no{display:flex}
-    .cmp.b .cmp-row .yes{display:flex}
-    .cmp-head{display:none}
     .q-opt{padding:14px 14px;font-size:15px}
     .about-pts{grid-template-columns:repeat(3,1fr);gap:8px}
     .about-pts b{font-size:24px}
@@ -720,7 +744,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#05070e;--to:#fbfcfe" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,60 C360,100 1080,0 1440,50 L1440,140 L0,140 Z"/><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
+<div class="divider dv-in" style="--sd:-0.7s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
 <!-- ===================== 02 CAMINHO DO CLIENTE ===================== -->
 <section id="caminho" class="sec sec-light">
@@ -739,7 +763,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-2s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,40 C480,0 960,100 1440,30 L1440,140 L0,140 Z"/><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
+<div class="divider dv-out" style="--sd:-1.4s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
 
 <!-- ===================== 03 SERVIÇOS ===================== -->
 <section id="servicos" class="sec">
@@ -753,7 +777,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-1s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,30 C240,90 720,90 1440,20 L1440,140 L0,140 Z"/><path class="glowline" d="M0,30 C240,90 720,90 1440,20"/><path class="line" d="M0,30 C240,90 720,90 1440,20"/><path class="spark" d="M0,30 C240,90 720,90 1440,20"/></svg></div>
+<div class="divider dv-in" style="--sd:-2.1s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
 <!-- ===================== 04 COMPARAÇÃO ===================== -->
 <section id="comparacao" class="sec sec-light">
@@ -762,15 +786,12 @@
       <span class="eyebrow">Improviso vs estratégia</span>
       <h2 class="h2">A diferença entre <span class="accent">postar</span> e <span class="accent">vender.</span></h2>
     </div>
-    <div class="cmp-toggle a" data-cmp-toggle><i></i><button class="on" data-cmp="a">No improviso</button><button data-cmp="b">Com estratégia</button></div>
-    <div class="cmp card a" data-cmp-table>
-      <div class="cmp-row cmp-head in"><div></div><div>No improviso</div><div class="yes">Com a estratégia certa</div></div>
-      <div data-render="compare"></div>
-    </div>
+    <div class="cmp-toggle a reveal" data-cmp-toggle><i></i><button class="on" data-cmp="a">No improviso</button><button data-cmp="b">Com estratégia</button></div>
+    <div class="vs a" data-cmp-table data-render="compare"></div>
   </div>
 </section>
 
-<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-3s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,50 C360,0 1080,100 1440,40 L1440,140 L0,140 Z"/><path class="glowline" d="M0,50 C360,0 1080,100 1440,40"/><path class="line" d="M0,50 C360,0 1080,100 1440,40"/><path class="spark" d="M0,50 C360,0 1080,100 1440,40"/></svg></div>
+<div class="divider dv-out" style="--sd:-2.8s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
 
 <!-- ===================== 05 DIAGNÓSTICO ===================== -->
 <section id="diagnostico" class="sec" style="overflow:hidden">
@@ -785,7 +806,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-4s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,60 C480,100 960,0 1440,60 L1440,140 L0,140 Z"/><path class="glowline" d="M0,60 C480,100 960,0 1440,60"/><path class="line" d="M0,60 C480,100 960,0 1440,60"/><path class="spark" d="M0,60 C480,100 960,0 1440,60"/></svg></div>
+<div class="divider dv-in" style="--sd:-3.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
 <!-- ===================== 06 PROCESSO ===================== -->
 <section id="processo" class="sec sec-light">
@@ -802,7 +823,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-1.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,30 C360,90 1080,0 1440,60 L1440,140 L0,140 Z"/><path class="glowline" d="M0,30 C360,90 1080,0 1440,60"/><path class="line" d="M0,30 C360,90 1080,0 1440,60"/><path class="spark" d="M0,30 C360,90 1080,0 1440,60"/></svg></div>
+<div class="divider dv-out" style="--sd:-4.2s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
 <!-- ===================== 07 PORTFÓLIO ===================== -->
 <section id="portfolio" class="sec" style="padding-left:0;padding-right:0">
   <div class="wrap">
@@ -818,7 +839,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-2.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,50 C360,100 1080,0 1440,50 L1440,140 L0,140 Z"/><path class="glowline" d="M0,50 C360,100 1080,0 1440,50"/><path class="line" d="M0,50 C360,100 1080,0 1440,50"/><path class="spark" d="M0,50 C360,100 1080,0 1440,50"/></svg></div>
+<div class="divider dv-in" style="--sd:-4.9s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
 <!-- ===================== 08 FAQ ===================== -->
 <section id="faq" class="sec sec-light">
@@ -832,7 +853,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,40 C480,0 960,100 1440,40 L1440,140 L0,140 Z"/><path class="glowline" d="M0,40 C480,0 960,100 1440,40"/><path class="line" d="M0,40 C480,0 960,100 1440,40"/><path class="spark" d="M0,40 C480,0 960,100 1440,40"/></svg></div>
+<div class="divider dv-out" style="--sd:-5.6s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
 
 <!-- ===================== 09 SOBRE ===================== -->
 <section id="sobre" class="sec">
@@ -1022,11 +1043,32 @@
       '<div class="svc-lines"><p class="svc-line"><b>Resolve:</b><span>' + esc(s.solves) + '</span></p><p class="svc-line"><b>Você leva:</b><span>' + esc(s.delivers) + '</span></p></div>' + badges + '</div>';
   }).join(''));
 
-  setHTML('[data-render="compare"]', compare.map(function(c, i){
-    return '<div class="cmp-row" style="--d:' + (i * .09) + 's"><div class="k">' + esc(c.k) + '</div>' +
-      '<div class="no"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><span>' + esc(c.no) + '</span></div>' +
-      '<div class="yes"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span>' + esc(c.yes) + '</span></div></div>';
-  }).join(''));
+  // Versus: duas colunas (improviso x estrategia)
+  (function(){
+    var aspIco = [
+      ico('<path d="m12 3 2.6 5.3L20 9l-4 4 1 5.9L12 16l-5 2.9L8 13 4 9l5.4-.7z"/>'),
+      ico('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'),
+      ico('<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a3 3 0 0 1 0 6"/><path d="M18 6a7 7 0 0 1 0 12"/>'),
+      ico('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><path d="M8 14h5"/><path d="M8 17h8"/>'),
+      ico('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'),
+      ico('<path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-8"/>')
+    ];
+    var X = '<svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>', V = '<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
+    var col = function(kind){
+      var yes = kind === 'yes';
+      return '<div class="vs-col vs-' + kind + (yes ? ' card glow-border' : '') + ' reveal" data-rv="' + (yes ? 'right' : 'left') + '">' +
+        '<div class="vs-head"><span class="vs-tag">' + (yes ? '✦ Com a Devikison' : 'Hoje, no improviso') + '</span>' +
+        '<h3>' + (yes ? 'Marca com estratégia' : 'Marca no improviso') + '</h3>' +
+        '<p>' + (yes ? 'Cada peça conversa com a outra e leva o cliente até o sim.' : 'Cada peça feita na correria, sem conversar com a outra.') + '</p></div>' +
+        compare.map(function(c, i){
+          return '<div class="vs-item"><span class="vs-tile">' + aspIco[i] + '<span class="vs-mark">' + (yes ? V : X) + '</span></span>' +
+            '<div><small>' + esc(c.k) + '</small><b>' + esc(yes ? c.yes : c.no) + '</b></div></div>';
+        }).join('') +
+        (yes ? '<div class="vs-cta"><a class="btn btn-primary btn-sm btn-block" href="' + waLink('Olá Devikison! Quero minha marca do lado da estratégia. Podemos conversar?') + '" target="_blank" rel="noopener">Quero esse lado <span aria-hidden="true">→</span></a></div>' : '') +
+      '</div>';
+    };
+    setHTML('[data-render="compare"]', col('no') + '<div class="vs-mid" aria-hidden="true"><span>VS</span></div>' + col('yes'));
+  })();
 
   setHTML('[data-render="steps"]', steps.map(function(s){
     return '<div class="tl-step" data-step><div class="tl-card card"><span class="tl-num">' + esc(s.n) + '</span><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p><span class="t">' + esc(s.tag) + '</span></div>' +
@@ -1091,7 +1133,7 @@
   (function(){
     var tg = $('[data-cmp-toggle]'), tb = $('[data-cmp-table]');
     if (tg && tb) $$('[data-cmp]', tg).forEach(function(b){ b.addEventListener('click', function(){
-      var v = b.getAttribute('data-cmp'); tg.className = 'cmp-toggle ' + v; tb.className = 'cmp card ' + v;
+      var v = b.getAttribute('data-cmp'); tg.className = 'cmp-toggle ' + v; tb.className = 'vs ' + v;
       $$('[data-cmp]', tg).forEach(function(x){ x.classList.toggle('on', x === b); });
     }); });
   })();
@@ -1262,7 +1304,6 @@
     // direcoes estrategicas: pares chegam pelos lados e se juntam; listas alternam
     $$('.pain').forEach(function(e, i){ e.setAttribute('data-rv', ['left','up','right'][i % 3]); });
     $$('.svc').forEach(function(e, i){ e.setAttribute('data-rv', i === 4 ? 'zoom' : (i % 2 ? 'right' : 'left')); });
-    $$('.cmp-row:not(.cmp-head)').forEach(function(e, i){ e.classList.add('reveal'); e.setAttribute('data-rv', 'join'); e.style.setProperty('--d', (i * .1) + 's'); });
     $$('.faq details').forEach(function(e, i){ e.setAttribute('data-rv', i % 2 ? 'right' : 'left'); });
     var set = function(sel, v){ var e = $(sel); if (e) e.setAttribute('data-rv', v); };
     set('[data-pain-meter]', 'zoom'); set('.journey', 'zoom'); set('[data-quiz]', 'zoom'); set('.about-photo', 'left'); set('.about-txt', 'right'); set('#contato .reveal', 'zoom');
