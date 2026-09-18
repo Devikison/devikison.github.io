@@ -217,13 +217,13 @@
   /* =========================================================
      DIVISÓRIAS ENTRE SEÇÕES (curva + linha de luz correndo)
      ========================================================= */
-  .divider{position:relative;height:clamp(54px,7vw,96px);width:100%;overflow:hidden;line-height:0;z-index:3;margin-top:-1px;margin-bottom:-1px}
-  .divider svg{position:absolute;inset:0;width:100%;height:100%}
+  /* a divisoria sobrepoe o final da secao anterior (fundo transparente): so a curva da proxima secao e pintada, entao nao ha emenda de cor */
+  .divider{--dh:clamp(54px,7vw,96px);position:relative;height:var(--dh);width:100%;overflow:hidden;line-height:0;z-index:3;margin-top:calc(-1 * var(--dh));margin-bottom:-1px;pointer-events:none}
+  .divider svg{position:absolute;inset:0;width:100%;height:calc(100% + 2px);overflow:visible}
   .divider .fill{fill:var(--to)}
-  .divider .base{fill:var(--from)}
   .divider .glowline{fill:none;stroke:rgba(61,107,255,.35);stroke-width:9;opacity:.9}
   .divider .line{fill:none;stroke:url(#dvGrad);stroke-width:2.2;opacity:.95}
-  .divider .spark{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-dasharray:90 1600;animation:spark 5s linear infinite;animation-delay:var(--sd,0s);will-change:stroke-dashoffset}
+  .divider .spark{fill:none;stroke:#cfdcff;stroke-width:2.4;opacity:.9;stroke-linecap:round;stroke-dasharray:90 1600;animation:spark 5s linear infinite;animation-delay:var(--sd,0s);will-change:stroke-dashoffset}
   @keyframes spark{to{stroke-dashoffset:-1690}}
 
   /* =========================================================
@@ -563,6 +563,8 @@
     /* scroll stacking: cada card gruda no topo e o proximo desliza por cima */
     .svc{padding:26px 22px;position:sticky;top:calc(var(--hdr-h) + 18px + var(--si,0) * 10px);transform-origin:50% 0;will-change:transform;transition:opacity .8s var(--ease),border-color .55s ease,box-shadow .55s ease}
     .svcs .svc.reveal.in{transition:opacity .8s var(--ease),border-color .55s ease,box-shadow .55s ease}
+    /* na pilha o card precisa ser opaco, senao o texto do card de baixo vaza */
+    .svcs .svc{background:linear-gradient(160deg,#161c31 0%,#0d1222 100%)}
     .svc.stacked{box-shadow:0 -10px 30px -18px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.09)}
     .svc-line{flex-direction:column;gap:3px}
     .j-nodes{gap:4px}
@@ -697,7 +699,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#05070e;--to:#fbfcfe" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><rect class="base" width="1440" height="90"/><path class="fill" d="M0,60 C360,100 1080,0 1440,50 L1440,90 L0,90 Z"/><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
+<div class="divider" style="--from:#05070e;--to:#fbfcfe" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,60 C360,100 1080,0 1440,50 L1440,140 L0,140 Z"/><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
 <!-- ===================== 02 CAMINHO DO CLIENTE ===================== -->
 <section id="caminho" class="sec sec-light">
@@ -716,7 +718,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-2s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><rect class="base" width="1440" height="90"/><path class="fill" d="M0,40 C480,0 960,100 1440,30 L1440,90 L0,90 Z"/><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
+<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-2s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,40 C480,0 960,100 1440,30 L1440,140 L0,140 Z"/><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
 
 <!-- ===================== 03 SERVIÇOS ===================== -->
 <section id="servicos" class="sec">
@@ -730,7 +732,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-1s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><rect class="base" width="1440" height="90"/><path class="fill" d="M0,30 C240,90 720,90 1440,20 L1440,90 L0,90 Z"/><path class="glowline" d="M0,30 C240,90 720,90 1440,20"/><path class="line" d="M0,30 C240,90 720,90 1440,20"/><path class="spark" d="M0,30 C240,90 720,90 1440,20"/></svg></div>
+<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-1s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,30 C240,90 720,90 1440,20 L1440,140 L0,140 Z"/><path class="glowline" d="M0,30 C240,90 720,90 1440,20"/><path class="line" d="M0,30 C240,90 720,90 1440,20"/><path class="spark" d="M0,30 C240,90 720,90 1440,20"/></svg></div>
 
 <!-- ===================== 04 COMPARAÇÃO ===================== -->
 <section id="comparacao" class="sec sec-light">
@@ -747,7 +749,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-3s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><rect class="base" width="1440" height="90"/><path class="fill" d="M0,50 C360,0 1080,100 1440,40 L1440,90 L0,90 Z"/><path class="glowline" d="M0,50 C360,0 1080,100 1440,40"/><path class="line" d="M0,50 C360,0 1080,100 1440,40"/><path class="spark" d="M0,50 C360,0 1080,100 1440,40"/></svg></div>
+<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-3s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,50 C360,0 1080,100 1440,40 L1440,140 L0,140 Z"/><path class="glowline" d="M0,50 C360,0 1080,100 1440,40"/><path class="line" d="M0,50 C360,0 1080,100 1440,40"/><path class="spark" d="M0,50 C360,0 1080,100 1440,40"/></svg></div>
 
 <!-- ===================== 05 DIAGNÓSTICO ===================== -->
 <section id="diagnostico" class="sec" style="overflow:hidden">
@@ -762,7 +764,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-4s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><rect class="base" width="1440" height="90"/><path class="fill" d="M0,60 C480,100 960,0 1440,60 L1440,90 L0,90 Z"/><path class="glowline" d="M0,60 C480,100 960,0 1440,60"/><path class="line" d="M0,60 C480,100 960,0 1440,60"/><path class="spark" d="M0,60 C480,100 960,0 1440,60"/></svg></div>
+<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-4s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,60 C480,100 960,0 1440,60 L1440,140 L0,140 Z"/><path class="glowline" d="M0,60 C480,100 960,0 1440,60"/><path class="line" d="M0,60 C480,100 960,0 1440,60"/><path class="spark" d="M0,60 C480,100 960,0 1440,60"/></svg></div>
 
 <!-- ===================== 06 PROCESSO ===================== -->
 <section id="processo" class="sec sec-light">
@@ -779,7 +781,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-1.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><rect class="base" width="1440" height="90"/><path class="fill" d="M0,30 C360,90 1080,0 1440,60 L1440,90 L0,90 Z"/><path class="glowline" d="M0,30 C360,90 1080,0 1440,60"/><path class="line" d="M0,30 C360,90 1080,0 1440,60"/><path class="spark" d="M0,30 C360,90 1080,0 1440,60"/></svg></div>
+<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-1.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,30 C360,90 1080,0 1440,60 L1440,140 L0,140 Z"/><path class="glowline" d="M0,30 C360,90 1080,0 1440,60"/><path class="line" d="M0,30 C360,90 1080,0 1440,60"/><path class="spark" d="M0,30 C360,90 1080,0 1440,60"/></svg></div>
 <!-- ===================== 07 PORTFÓLIO ===================== -->
 <section id="portfolio" class="sec" style="padding-left:0;padding-right:0">
   <div class="wrap">
@@ -795,7 +797,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-2.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><rect class="base" width="1440" height="90"/><path class="fill" d="M0,50 C360,100 1080,0 1440,50 L1440,90 L0,90 Z"/><path class="glowline" d="M0,50 C360,100 1080,0 1440,50"/><path class="line" d="M0,50 C360,100 1080,0 1440,50"/><path class="spark" d="M0,50 C360,100 1080,0 1440,50"/></svg></div>
+<div class="divider" style="--from:#05070e;--to:#fbfcfe;--sd:-2.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,50 C360,100 1080,0 1440,50 L1440,140 L0,140 Z"/><path class="glowline" d="M0,50 C360,100 1080,0 1440,50"/><path class="line" d="M0,50 C360,100 1080,0 1440,50"/><path class="spark" d="M0,50 C360,100 1080,0 1440,50"/></svg></div>
 
 <!-- ===================== 08 FAQ ===================== -->
 <section id="faq" class="sec sec-light">
@@ -809,7 +811,7 @@
   </div>
 </section>
 
-<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><rect class="base" width="1440" height="90"/><path class="fill" d="M0,40 C480,0 960,100 1440,40 L1440,90 L0,90 Z"/><path class="glowline" d="M0,40 C480,0 960,100 1440,40"/><path class="line" d="M0,40 C480,0 960,100 1440,40"/><path class="spark" d="M0,40 C480,0 960,100 1440,40"/></svg></div>
+<div class="divider" style="--from:#dfe8fa;--to:#05070e;--sd:-.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="fill" d="M0,40 C480,0 960,100 1440,40 L1440,140 L0,140 Z"/><path class="glowline" d="M0,40 C480,0 960,100 1440,40"/><path class="line" d="M0,40 C480,0 960,100 1440,40"/><path class="spark" d="M0,40 C480,0 960,100 1440,40"/></svg></div>
 
 <!-- ===================== 09 SOBRE ===================== -->
 <section id="sobre" class="sec">
