@@ -481,21 +481,23 @@
      ========================================================= */
   /* carrossel infinito: a trilha anda por transform (JS), o dedo/mouse arrasta e ele volta a girar sozinho.
      touch-action:pan-y = o dedo na vertical rola a pagina normalmente; na horizontal, arrasta a trilha */
-  #pf-wrap{overflow:hidden;overflow:clip;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+  #pf-wrap,#lp-wrap{overflow:hidden;overflow:clip;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;
     -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%)}
-  #pf-wrap.dragging{cursor:grabbing}
-  #pf-track{display:flex;gap:16px;width:max-content;padding:10px 20px;will-change:transform;transform:translate3d(0,0,0)}
+  #pf-wrap.dragging,#lp-wrap.dragging{cursor:grabbing}
+  #lp-wrap{margin-bottom:8px}
+  #pf-track,#lp-track{display:flex;gap:16px;width:max-content;padding:10px 20px;will-change:transform;transform:translate3d(0,0,0)}
   .pf{position:relative;flex:none;width:clamp(200px,56vw,280px);aspect-ratio:3/4;border-radius:20px;overflow:hidden;border:1px solid var(--glass-brd);background:#0b0f1c;transition:transform .6s var(--ease),box-shadow .6s ease;cursor:pointer;padding:0}
-  .pf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease);pointer-events:none;-webkit-user-drag:none}
-  .pf::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,7,14,.7));opacity:0;transition:opacity .4s}
+  .lps{position:relative;flex:none;width:clamp(260px,62vw,420px);aspect-ratio:1.91/1;border-radius:20px;overflow:hidden;border:1px solid var(--glass-brd);background:#0b0f1c;transition:transform .6s var(--ease),box-shadow .6s ease;padding:0}
+  .pf img,.lps img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1s var(--ease);pointer-events:none;-webkit-user-drag:none}
+  .pf::after,.lps::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,7,14,.7));opacity:0;transition:opacity .4s}
   .pf .zoom{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(8px);transition:all .4s var(--ease)}
   .pf .zoom svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round}
   @media (hover:hover){
-    .pf:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 30px 60px -24px rgba(2,69,242,.6)}
-    .pf:hover img{transform:scale(1.07)}
-    .pf:hover::after,.pf:hover .zoom{opacity:1;transform:none}
+    .pf:hover,.lps:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 30px 60px -24px rgba(2,69,242,.6)}
+    .pf:hover img,.lps:hover img{transform:scale(1.07)}
+    .pf:hover::after,.pf:hover .zoom,.lps:hover::after{opacity:1;transform:none}
   }
-  .pf:active{transform:scale(.97)}
+  .pf:active,.lps:active{transform:scale(.97)}
   .lb{position:fixed;inset:0;z-index:300;background:rgba(3,5,12,.96);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s .3s;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));touch-action:none;overscroll-behavior:contain}
   .lb.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .3s ease}
   .lb img{max-width:min(92vw,560px);max-height:82vh;border-radius:18px;box-shadow:0 40px 100px -30px rgba(2,69,242,.6);transform:scale(.94);transition:transform .35s var(--ease);-webkit-user-drag:none;user-select:none}
@@ -857,6 +859,7 @@
       <p class="lead">Identidades, criativos e campanhas reais. Toque numa arte pra ampliar, arraste pra explorar.</p>
     </div>
   </div>
+  <div id="lp-wrap"><div id="lp-track"></div></div>
   <div id="pf-wrap"><div id="pf-track"></div></div>
   <div class="center reveal" style="margin-top:36px;padding:0 20px">
     <a class="btn btn-ghost" data-wa="Olá Devikison! Vi seu portfólio e quero algo nesse nível pra minha marca." href="#" target="_blank" rel="noopener">Quero algo nesse nível <span aria-hidden="true">→</span></a>
@@ -971,6 +974,7 @@
   var PILL_TEXTS = ['Empreendedores','Negócios locais','Infoprodutores','Marcas pessoais'];
   var TICKER = ['Identidade visual','Social media','Criativos de anúncio','Landing pages','Sites','Tráfego pago','Meta Ads','Google Ads','TikTok Ads'];
   var gallery = []; for (var g = 1; g <= 14; g++) gallery.push('gallery/carousel-' + (g < 10 ? '0' + g : g) + '.jpg');
+  var lpShots = []; for (var lp = 1; lp <= 5; lp++) lpShots.push('gallery/lp/lp-' + (lp < 10 ? '0' + lp : lp) + '.webp');
 
   var ico = function(p){ return '<svg viewBox="0 0 24 24">' + p + '</svg>'; };
   var pains = [
@@ -1104,6 +1108,12 @@
     return '<button type="button" class="pf" data-pf="' + i + '" aria-label="Ampliar arte ' + (i + 1) + '"><img src="' + esc(src) + '" alt="Arte do portfólio ' + (i + 1) + '" loading="lazy" width="1080" height="1440"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></span></button>';
   }).join('') + gallery.map(function(src, i){
     return '<button type="button" class="pf" data-pf="' + i + '" tabindex="-1" aria-hidden="true"><img src="' + esc(src) + '" alt="" loading="lazy" width="1080" height="1440"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></span></button>';
+  }).join(''));
+
+  setHTML('#lp-track', lpShots.map(function(src, i){
+    return '<div class="lps"><img src="' + esc(src) + '" alt="Landing page ' + (i + 1) + ' criada por Devikison Aguiar" loading="lazy" width="1200" height="628"></div>';
+  }).join('') + lpShots.map(function(src, i){
+    return '<div class="lps" aria-hidden="true"><img src="' + esc(src) + '" alt="" loading="lazy" width="1200" height="628"></div>';
   }).join(''));
 
   // ===================== DORES: checklist =====================
@@ -1316,7 +1326,7 @@
     }
     window.addEventListener("wheel", function(e){
       if (e.ctrlKey || e.metaKey || document.body.style.overflow === "hidden") return;
-      if (e.target.closest && e.target.closest("#pf-wrap") && Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      if (e.target.closest && e.target.closest("#pf-wrap, #lp-wrap") && Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
       e.preventDefault();
       var d = e.deltaY; if (e.deltaMode === 1) d *= 16; else if (e.deltaMode === 2) d *= window.innerHeight;
       if (!animating){ current = window.scrollY; target = current; }
@@ -1337,6 +1347,7 @@
     var set = function(sel, v){ var e = $(sel); if (e) e.setAttribute('data-rv', v); };
     set('[data-pain-meter]', 'zoom'); set('.journey', 'zoom'); set('[data-quiz]', 'zoom'); set('.about-photo', 'left'); set('.about-txt', 'right'); set('#contato .reveal', 'zoom');
     var pf = $('#pf-wrap'); if (pf){ pf.classList.add('reveal'); pf.setAttribute('data-rv', 'right'); }
+    var lpw = $('#lp-wrap'); if (lpw){ lpw.classList.add('reveal'); lpw.setAttribute('data-rv', 'left'); }
     $$('.hero-in > *').forEach(function(e, i){ e.style.setProperty('--hi', i); });
     var els = $$('.reveal');
     if (reduced || !('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in'); }); $$('[data-count]').forEach(function(b){ b.textContent = b.getAttribute('data-count') + (b.getAttribute('data-suffix') || ''); }); return; }
@@ -1446,6 +1457,58 @@
     document.addEventListener('keydown', function(e){ if (!lb.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') open(cur - 1); if (e.key === 'ArrowRight') open(cur + 1); });
     lb.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, { passive: true });
     lb.addEventListener('touchend', function(e){ var d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) open(cur + (d < 0 ? 1 : -1)); }, { passive: true });
+  })();
+
+  // ===================== VITRINE DE LPs: mesmo motor do carrossel de portfólio, girando no sentido oposto =====================
+  (function(){
+    var w = $('#lp-wrap'), track = $('#lp-track'); if (!w || !track) return;
+    var items = $$('.lps', track), N = lpShots.length;
+    var SPEED = 36, HOLD = 2200, FRICTION = .03;
+    var pos = 0, vel = 0, period = 0, dragging = false, moved = false, pid = null, sx = 0, sp = 0, lastX = 0, lastT = 0, idleUntil = 0, hover = false, last = 0;
+    function measure(){ period = items.length > N ? items[N].offsetLeft - items[0].offsetLeft : track.scrollWidth / 2; }
+    function wrap(p){ return period ? ((p % period) + period) % period : 0; }
+    function apply(){ track.style.transform = 'translate3d(' + (-pos).toFixed(2) + 'px,0,0)'; }
+    function frame(ts){
+      if (!last) last = ts;
+      var dt = Math.min(48, ts - last) / 1000; last = ts;
+      if (!dragging){
+        if (Math.abs(vel) > 8){ pos += vel * dt; vel *= Math.pow(FRICTION, dt); }
+        else { vel = 0; if (!reduced && ts > idleUntil) pos -= SPEED * (hover ? .35 : 1) * dt; }   // sinal invertido: gira para o lado oposto do #pf-track
+        pos = wrap(pos); apply();
+      }
+      requestAnimationFrame(frame);
+    }
+    measure(); apply(); requestAnimationFrame(frame);
+    window.addEventListener('load', function(){ measure(); pos = wrap(pos); apply(); });
+    window.addEventListener('resize', function(){ measure(); pos = wrap(pos); apply(); }, { passive: true });
+    w.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (e.pointerType === 'mouse') e.preventDefault();
+      dragging = true; moved = false; pid = e.pointerId; sx = lastX = e.clientX; sp = pos; lastT = e.timeStamp; vel = 0;
+      w.classList.add('dragging'); try { w.setPointerCapture(pid); } catch(_){ }
+    });
+    w.addEventListener('pointermove', function(e){
+      if (!dragging || e.pointerId !== pid) return;
+      var dx = e.clientX - sx; if (Math.abs(dx) > 5) moved = true;
+      pos = wrap(sp - dx); apply();
+      var dt = e.timeStamp - lastT; if (dt > 0){ vel = vel * .5 + (-(e.clientX - lastX) / dt * 1000) * .5; }
+      lastX = e.clientX; lastT = e.timeStamp;
+    });
+    function end(e, cancel){
+      if (!dragging || (e && e.pointerId !== pid)) return;
+      dragging = false; w.classList.remove('dragging'); try { w.releasePointerCapture(pid); } catch(_){ }
+      if (cancel || (e && e.timeStamp - lastT > 90)) vel = 0;
+      vel = Math.max(-2800, Math.min(2800, vel));
+      idleUntil = performance.now() + HOLD;
+    }
+    w.addEventListener('pointerup', function(e){ end(e, false); });
+    w.addEventListener('pointercancel', function(e){ end(e, true); });
+    w.addEventListener('lostpointercapture', function(){ if (dragging) end(null, true); });
+    w.addEventListener('wheel', function(e){
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault(); pos = wrap(pos + e.deltaX); apply(); vel = 0; idleUntil = performance.now() + HOLD;
+    }, { passive: false });
+    if (fine){ w.addEventListener('mouseenter', function(){ hover = true; }); w.addEventListener('mouseleave', function(){ hover = false; }); }
   })();
 
   // ===================== FAQ: fecha os outros ao abrir =====================
