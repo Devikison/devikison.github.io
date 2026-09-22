@@ -260,6 +260,41 @@
   @keyframes ticker{to{transform:translateX(-50%)}}
 
   /* =========================================================
+     TEXTO EM FOCO: preenchimento de cor controlado pelo scroll
+     (a secao fica "grudada" na tela — position:sticky — enquanto
+     o JS acende um caractere por vez conforme o progresso do
+     scroll dentro da secao; reversivel, funciona pra frente e
+     pra tras). Cor de destaque ciano: mesma familia usada no
+     brilho holografico dos botoes, aqui como o "feixe de busca"
+     que revela o texto — combinando com a identidade da marca.
+     ========================================================= */
+  :root{--fill-dim:rgba(255,255,255,.16);--fill-flash:#7ee8ff;--fill-final:#fff}
+  .sec-fill{position:relative;height:230vh;background:var(--bg)}
+  .sec-fill-in{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .sec-fill-glow{position:absolute;left:50%;top:50%;width:min(70vh,900px);height:min(70vh,900px);transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle,rgba(126,232,255,.16),rgba(2,69,242,.10) 45%,transparent 72%);filter:blur(6px)}
+  .sec-fill-tag{position:absolute;font-family:var(--font-d);font-weight:600;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted2)}
+  .sec-fill-tag.tl{left:5vw;top:calc(var(--hdr-h) + 30px)}
+  .sec-fill-tag.tr{right:5vw;top:calc(var(--hdr-h) + 30px);text-align:right}
+  .sec-fill-hint{position:absolute;left:50%;bottom:6vh;transform:translateX(-50%);font-family:var(--font-d);font-weight:600;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted2);
+    display:flex;align-items:center;gap:8px;opacity:1;transition:opacity .4s ease}
+  .sec-fill-hint svg{width:13px;height:13px;stroke:var(--blue3);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;animation:fillHintBounce 1.8s ease-in-out infinite}
+  .sec-fill.scrolled .sec-fill-hint{opacity:0}
+  @keyframes fillHintBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+  .sec-fill-wrap{position:relative;z-index:1;max-width:min(920px,86vw);margin:0 auto;text-align:center}
+  .sec-fill-text{font-family:var(--font-d);font-weight:700;letter-spacing:-.02em;line-height:1.28;font-size:clamp(26px,4.3vw,54px);color:var(--fill-final)}
+  .sec-fill-text .fc{color:var(--fill-dim);transition:color .4s ease}
+  @keyframes fillSweep{0%{color:var(--fill-dim)}35%{color:var(--fill-flash);text-shadow:0 0 18px rgba(126,232,255,.85),0 0 40px rgba(2,69,242,.4)}100%{color:var(--fill-final);text-shadow:none}}
+  .sec-fill-text .fc.show{animation:fillSweep .55s ease-out both;color:var(--fill-final)}
+  @media (max-width:700px){ .sec-fill-tag{display:none} }
+  @media (prefers-reduced-motion:reduce){
+    .sec-fill{height:auto;padding:clamp(64px,10vw,96px) 0}
+    .sec-fill-in{position:static;height:auto}
+    .sec-fill-hint{display:none}
+    .sec-fill-text .fc{color:var(--fill-final)}
+  }
+
+  /* =========================================================
      DIVISÓRIAS ENTRE SEÇÕES (curva + linha de luz correndo)
      ========================================================= */
   /* a curva e recortada na propria secao clara (mask), entao o degrade dela vai ate a ponta e nao existe emenda de cor.
@@ -888,6 +923,19 @@
 </section>
 
 <div class="ticker" aria-hidden="true"><div class="ticker-track" data-ticker></div></div>
+
+<!-- ===================== TEXTO EM FOCO (preenchimento no scroll) ===================== -->
+<section class="sec-fill" data-fill aria-label="Frase de efeito">
+  <div class="sec-fill-in">
+    <div class="sec-fill-glow" aria-hidden="true"></div>
+    <span class="sec-fill-tag tl" aria-hidden="true">Antes de continuar</span>
+    <span class="sec-fill-tag tr" aria-hidden="true">Role ↓</span>
+    <div class="sec-fill-wrap">
+      <p class="sec-fill-text" data-fill-text>Todo dia, alguém pesquisa o que você vende. A pergunta é: essa resposta vai ser você, ou o seu concorrente?</p>
+    </div>
+    <span class="sec-fill-hint" data-fill-hint aria-hidden="true">Role para revelar<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></span>
+  </div>
+</section>
 
 <!-- ===================== 01 A REALIDADE (ATENÇÃO) ===================== -->
 <section id="realidade" class="sec">
@@ -1725,6 +1773,26 @@
       (function tick(ts){ if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1400); k = 1 - Math.pow(1 - k, 3); b.textContent = Math.round(to * k) + suf; if (k < 1) requestAnimationFrame(tick); })(performance.now());
     }); }, { threshold: .5 });
     $$('[data-count]').forEach(function(b){ io2.observe(b); });
+  })();
+
+  // ===================== TEXTO EM FOCO: preenchimento de cor no scroll =====================
+  (function(){
+    var sec = $('[data-fill]'); if (!sec) return;
+    var textEl = $('[data-fill-text]', sec), hint = $('[data-fill-hint]', sec); if (!textEl) return;
+    var raw = textEl.textContent;
+    textEl.innerHTML = raw.replace(/(\S)/g, '<span class="fc">$1</span>');
+    var chars = $$('.fc', textEl), n = chars.length, ticking = false;
+    if (reduced || !n){ chars.forEach(function(c){ c.classList.add('show'); }); if (hint) hint.style.display = 'none'; return; }
+    function on(){
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight, span = r.height - vh;
+      var prog = span > 0 ? Math.max(0, Math.min(1, -r.top / span)) : (r.top < vh ? 1 : 0);
+      var reveal = Math.round(prog * n);
+      chars.forEach(function(c, i){ c.classList.toggle('show', i < reveal); });
+      sec.classList.toggle('scrolled', prog > .04);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(on); } }, { passive: true });
+    window.addEventListener('resize', on, { passive: true }); on();
   })();
 
   // ===================== TIMELINE: luz acende no scroll =====================
