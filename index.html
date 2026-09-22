@@ -1959,11 +1959,13 @@
     var chars = $$('.fc', textEl), n = chars.length, ticking = false;
     if (reduced || !n){ chars.forEach(function(c){ c.classList.add('show'); }); if (hint) hint.style.display = 'none'; return; }
     function on(){
-      // progresso de 0 a 1 conforme a secao atravessa a tela inteira: 0 quando o topo
-      // dela encosta na base da viewport (comecando a entrar), 1 quando ela ja saiu
-      // por cima — sem prender o scroll, so acompanhando a posicao normal da pagina
+      // progresso de 0 a 1 conforme a secao entra pela base da viewport — mas termina
+      // de preencher logo antes do texto passar por baixo do header fixo (nao no fim
+      // da secao inteira), senao o texto some da tela com letra ainda apagada
       var r = sec.getBoundingClientRect(), vh = window.innerHeight;
-      var prog = Math.max(0, Math.min(1, (vh - r.top) / (r.height + vh)));
+      var hh = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hdr-h')) || 70;
+      var target = hh + 24, span = vh - target;
+      var prog = span > 0 ? Math.max(0, Math.min(1, (vh - r.top) / span)) : (r.top < target ? 1 : 0);
       var reveal = Math.round(prog * n);
       chars.forEach(function(c, i){ c.classList.toggle('show', i < reveal); });
       sec.classList.toggle('scrolled', prog > .04);
