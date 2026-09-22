@@ -260,15 +260,23 @@
   @keyframes ticker{to{transform:translateX(-50%)}}
 
   /* =========================================================
-     TEXTO EM FOCO: preenchimento de cor controlado pelo scroll
-     (a secao fica "grudada" na tela — position:sticky — enquanto
-     o JS acende um caractere por vez conforme o progresso do
-     scroll dentro da secao; reversivel, funciona pra frente e
-     pra tras). Cor de destaque ciano: mesma familia usada no
-     brilho holografico dos botoes, aqui como o "feixe de busca"
-     que revela o texto — combinando com a identidade da marca.
+     TEXTO EM FOCO: preenchimento de cor caractere a caractere
+     (classes .fc/.fc.show + @keyframes fillSweep) — reaproveitado
+     em dois lugares: 1) a secao cinematografica logo apos o hero,
+     onde o scroll "gruda" a tela (position:sticky) e o JS acende
+     um caractere por vez conforme o progresso; 2) titulos marcados
+     com .fill-title — curadoria de 3-4 momentos de maior impacto
+     (nao todos, senao fica repetitivo e pesado), que fazem o mesmo
+     aceso-por-caractere disparado ao entrar na tela. Cor de destaque
+     ciano/azul: mesma familia do brilho holografico dos botoes.
      ========================================================= */
   :root{--fill-dim:rgba(255,255,255,.16);--fill-flash:#7ee8ff;--fill-final:#fff}
+  .sec-light{--fill-dim:rgba(15,27,51,.20);--fill-flash:#0245f2;--fill-final:#0F1B33}
+  .fc{color:var(--fill-dim);transition:color .4s ease}
+  @keyframes fillSweep{0%{color:var(--fill-dim)}35%{color:var(--fill-flash);text-shadow:0 0 18px rgba(126,232,255,.85),0 0 40px rgba(2,69,242,.4)}100%{color:var(--fill-final);text-shadow:none}}
+  .fc.show{animation:fillSweep .55s ease-out both;animation-delay:calc(var(--i,0) * 16ms);color:var(--fill-final)}
+  .sec-light .fc.show{text-shadow:none}
+  .fill-title .fc{color:var(--fill-dim)}
   .sec-fill{position:relative;height:230vh;background:var(--bg)}
   .sec-fill-in{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .sec-fill-glow{position:absolute;left:50%;top:50%;width:min(70vh,900px);height:min(70vh,900px);transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
@@ -283,15 +291,12 @@
   @keyframes fillHintBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
   .sec-fill-wrap{position:relative;z-index:1;max-width:min(920px,86vw);margin:0 auto;text-align:center}
   .sec-fill-text{font-family:var(--font-d);font-weight:700;letter-spacing:-.02em;line-height:1.28;font-size:clamp(26px,4.3vw,54px);color:var(--fill-final)}
-  .sec-fill-text .fc{color:var(--fill-dim);transition:color .4s ease}
-  @keyframes fillSweep{0%{color:var(--fill-dim)}35%{color:var(--fill-flash);text-shadow:0 0 18px rgba(126,232,255,.85),0 0 40px rgba(2,69,242,.4)}100%{color:var(--fill-final);text-shadow:none}}
-  .sec-fill-text .fc.show{animation:fillSweep .55s ease-out both;color:var(--fill-final)}
   @media (max-width:700px){ .sec-fill-tag{display:none} }
   @media (prefers-reduced-motion:reduce){
     .sec-fill{height:auto;padding:clamp(64px,10vw,96px) 0}
     .sec-fill-in{position:static;height:auto}
     .sec-fill-hint{display:none}
-    .sec-fill-text .fc{color:var(--fill-final)}
+    .fc{color:var(--fill-final)}
   }
 
   /* =========================================================
@@ -947,7 +952,7 @@
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow">A realidade de quem ainda não tem site</span>
-      <h2 class="h2">Sem uma página, seu negócio é <span class="accent">invisível para quem está pronto para comprar.</span></h2>
+      <h2 class="h2 fill-title">Sem uma página, seu negócio é <span class="accent">invisível para quem está pronto para comprar.</span></h2>
       <p class="lead">Marque o que acontece com você hoje. Cada item é um cliente indo para o concorrente sem nem saber que você existe.</p>
     </div>
     <div class="pains" data-render="pains"></div>
@@ -1066,7 +1071,7 @@
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow">Sem site vs com site</span>
-      <h2 class="h2">A diferença entre <span class="accent">ser procurado</span> e <span class="accent">ser encontrado.</span></h2>
+      <h2 class="h2 fill-title">A diferença entre <span class="accent">ser procurado</span> e <span class="accent">ser encontrado.</span></h2>
     </div>
     <div class="cmp-toggle a reveal" data-cmp-toggle><i></i><button class="on" data-cmp="a">Sem site</button><button data-cmp="b">Com a DA STUDIO</button></div>
     <div class="vs a" data-cmp-table data-render="compare"></div>
@@ -1116,7 +1121,7 @@
   <div class="wrap" style="position:relative">
     <div class="sec-head center reveal">
       <span class="eyebrow">Diagnóstico gratuito</span>
-      <h2 class="h2">Descubra em 40 segundos <span class="accent">o quanto seu negócio está invisível</span> no Google.</h2>
+      <h2 class="h2 fill-title">Descubra em 40 segundos <span class="accent">o quanto seu negócio está invisível</span> no Google.</h2>
       <p class="lead">Cinco perguntas rápidas. No final, a DA STUDIO mostra o que está faltando e você pode pedir uma proposta personalizada na hora.</p>
     </div>
     <div class="quiz card glow-border reveal" data-quiz></div>
@@ -1170,7 +1175,7 @@
   <div class="wrap" style="position:relative;max-width:860px">
     <div class="reveal">
       <span class="eyebrow">Próximo passo</span>
-      <h2 class="h2">Seu concorrente já está no Google. <span class="accent">Hora de você aparecer também.</span></h2>
+      <h2 class="h2 fill-title">Seu concorrente já está no Google. <span class="accent">Hora de você aparecer também.</span></h2>
       <p class="lead" style="margin-bottom:34px">Fale com a DA STUDIO no WhatsApp. Em uma conversa você recebe uma proposta com valor e prazo fechados, sem compromisso.</p>
       <div class="cta-row" style="margin-top:0">
         <a class="btn btn-primary" data-wa="Olá, DA STUDIO! Quero um orçamento para colocar meu negócio no Google." href="#" target="_blank" rel="noopener" style="padding:18px 34px"><svg class="wa-ico"><use href="#i-wa"/></svg>Pedir orçamento no WhatsApp</a>
@@ -1778,6 +1783,41 @@
       (function tick(ts){ if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1400); k = 1 - Math.pow(1 - k, 3); b.textContent = Math.round(to * k) + suf; if (k < 1) requestAnimationFrame(tick); })(performance.now());
     }); }, { threshold: .5 });
     $$('[data-count]').forEach(function(b){ io2.observe(b); });
+  })();
+
+  // ===================== TÍTULOS DE SEÇÃO: preenchimento de cor ao entrar na tela =====================
+  // mesma assinatura visual da secao "texto em foco" do hero (classes .fc/.fc.show,
+  // ja definidas no CSS), so que disparada uma vez ao entrar na tela em vez de presa
+  // ao scroll. So nos titulos marcados com .fill-title (curadoria: os momentos de
+  // maior impacto) — em todo titulo do site ficaria repetitivo e pesado.
+  (function(){
+    var heads = $$('.fill-title');
+    if (!heads.length) return;
+    function splitChars(el){
+      var i = 0;
+      Array.prototype.slice.call(el.childNodes).forEach(function(node){
+        if (node.nodeType !== 3) return; // elementos (ex: <span class="accent">) ficam intactos
+        var frag = document.createDocumentFragment(), text = node.textContent;
+        for (var k = 0; k < text.length; k++){
+          var ch = text[k];
+          if (/\S/.test(ch)){
+            var s = document.createElement('span');
+            s.className = 'fc'; s.style.setProperty('--i', i++); s.textContent = ch;
+            frag.appendChild(s);
+          } else {
+            frag.appendChild(document.createTextNode(ch));
+          }
+        }
+        el.replaceChild(frag, node);
+      });
+    }
+    heads.forEach(splitChars);
+    if (reduced || !('IntersectionObserver' in window)) return; // CSS ja mostra a cor final direto
+    var io = new IntersectionObserver(function(en){ en.forEach(function(e){
+      var chars = $$('.fc', e.target);
+      chars.forEach(function(c){ c.classList.toggle('show', e.isIntersecting); });
+    }); }, { threshold: .12, rootMargin: '8% 0px -10% 0px' });
+    heads.forEach(function(h){ io.observe(h); });
   })();
 
   // ===================== TEXTO EM FOCO: preenchimento de cor no scroll =====================
