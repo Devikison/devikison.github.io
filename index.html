@@ -1238,7 +1238,7 @@
   var FORM_ENDPOINT = 'https://formsubmit.co/ajax/devikisonads@gmail.com';
   var PILL_TEXTS = ['Negócios locais','Clínicas e consultórios','Prestadores de serviço','Lojas e e-commerces','Profissionais liberais'];
   var TICKER = ['Landing pages','Sites institucionais','Página de links na bio','Google Meu Negócio','SEO','GEO (busca com IA)','Tráfego pago','Meta Ads','Google Ads'];
-  var SERP_TERMS = ['dentista perto de mim','loja de roupas em joinville','advogado trabalhista','pizzaria delivery aberta agora','clínica de estética','contador para mei','encanador 24 horas','arquiteto residencial'];
+  var SERP_TERMS = ['dentista perto de mim','loja de roupas em são paulo','advogado trabalhista','pizzaria delivery aberta agora','clínica de estética','contador para mei','encanador 24 horas','arquiteto residencial'];
   var gallery = []; for (var g = 1; g <= 14; g++) gallery.push('gallery/carousel-' + (g < 10 ? '0' + g : g) + '.jpg');
   var lpShots = []; for (var lp = 1; lp <= 7; lp++) lpShots.push('gallery/lp/lp-' + (lp < 10 ? '0' + lp : lp) + '.webp');
 
@@ -1572,7 +1572,7 @@
             field('nome', 'Seu nome', '<input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Como você se chama?" required>') +
             field('zap', 'Seu WhatsApp', '<input id="f-zap" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(47) 99999-9999" required>') +
             field('negocio', 'Nome do negócio', '<input id="f-negocio" name="negocio" type="text" autocomplete="organization" placeholder="Ex.: Clínica Sorriso">') +
-            field('cidade', 'Cidade', '<input id="f-cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Joinville, SC">') +
+            field('cidade', 'Cidade', '<input id="f-cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: São Paulo, SP">') +
           '</div>' +
           field('link', 'Instagram ou site atual', '<input id="f-link" name="link" type="text" autocomplete="url" placeholder="@seunegocio ou seusite.com.br">', true) +
           field('quero', 'O que você quer primeiro?', '<select id="f-quero" name="quero">' + wants.map(function(w){ return '<option' + (w === R.seg.want ? ' selected' : '') + '>' + esc(w) + '</option>'; }).join('') + '</select>') +
