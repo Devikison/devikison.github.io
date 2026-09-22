@@ -35,6 +35,12 @@
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{background:var(--bg);color:var(--text);font-family:var(--font-b);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6;-webkit-tap-highlight-color:transparent}
   img{max-width:100%;display:block}
+  /* protecao de conteudo: sem selecionar texto, sem menu de segurar-e-arrastar no
+     mobile (save da imagem), sem arrastar imagem pra salvar. campos de formulario
+     ficam de fora, senao a pessoa nao consegue nem preencher o proprio nome */
+  body{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-touch-callout:none}
+  input,textarea,select,[contenteditable]{-webkit-user-select:text;-moz-user-select:text;user-select:text;-webkit-touch-callout:default}
+  img,svg{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none}
   /* nada pode estourar a largura da tela: no celular, qualquer estouro lateral faz o dedo arrastar a pagina pro lado.
      overflow:clip (e nao hidden) porque nao cria contexto de rolagem, entao os cards sticky continuam funcionando */
   @supports (overflow:clip){ html,body{overflow-x:clip} }
@@ -868,6 +874,14 @@
     /* card coberto pela pilha nao precisa animar a borda */
     .svc.stacked::before{animation-play-state:paused}
     .svc-line{flex-direction:column;gap:3px}
+    /* mesmo scroll stacking dos cards de servico, agora nos cards de "o que vem na pagina" */
+    .feats{grid-template-columns:1fr;gap:14px;padding-bottom:8px}
+    .feat{padding:22px 20px;position:sticky;top:calc(var(--hdr-h) + 18px + var(--si,0) * 10px);transform-origin:50% 0;will-change:transform;flex-direction:row;align-items:flex-start;gap:16px}
+    .feats .feat.reveal,.feats .feat.reveal[data-rv],html.scroll-up .feats .feat.reveal:not(.in)[data-rv]{transform:none}
+    .feats .feat.reveal.in{transition:opacity .7s var(--ease),border-color .55s ease,box-shadow .55s ease;transition-delay:var(--d,0s),0s,0s}
+    .feats .feat{background:linear-gradient(160deg,#161c31 0%,#0d1222 100%)}
+    .feat.stacked{box-shadow:0 -10px 30px -18px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.09)}
+    .feat.stacked::before{animation-play-state:paused}
     .j-nodes{gap:4px}
     .j-nodes::before,.j-nodes .j-line{top:26px}
     .j-node .n{width:52px;height:52px;border-radius:15px}
@@ -972,7 +986,7 @@
     <p class="hero-sub">A DA STUDIO cria landing pages e sites profissionais que colocam seu negócio nas buscas, passam autoridade em segundos e transformam pesquisa em conversa no WhatsApp.</p>
     <div class="cta-row">
       <a class="btn btn-primary" data-wa="Olá, DA STUDIO! Quero colocar meu negócio no Google com uma página profissional. Podemos conversar?" href="#" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#i-wa"/></svg>Quero minha página no ar</a>
-      <a class="btn btn-ghost" href="#diagnostico">Ver o que meu negócio precisa <span aria-hidden="true">↓</span></a>
+      <a class="btn btn-ghost" href="#diagnostico">Ver o que meu negócio precisa</a>
     </div>
     <div class="trust">
       <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Otimizada para o Google (SEO) e buscas com IA (GEO)</span>
@@ -1016,7 +1030,7 @@
       <b data-pain-msg>Marque os cartões acima.</b>
       <div class="bar"><i data-pain-bar></i></div>
       <span class="cnt"><span data-pain-count>0</span>/6 marcados</span>
-      <a class="btn btn-primary btn-sm" href="#google" style="flex:none">Ver o que o cliente vê <span aria-hidden="true">→</span></a>
+      <a class="btn btn-primary btn-sm" href="#google" style="flex:none">Ver o que o cliente vê</a>
     </div>
   </div>
 </section>
@@ -1054,7 +1068,7 @@
             <div class="res ghost">
               <span class="fav"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
               <div><small>seunegocio.com.br</small><b>Seu negócio</b><p>Não encontrado. Sem site e sem perfil no Google, esta posição é do concorrente. Todo dia.</p></div>
-              <a class="btn btn-primary btn-sm" data-wa="Olá, DA STUDIO! Meu negócio não aparece no Google e quero corrigir isso com uma página profissional." href="#" target="_blank" rel="noopener">Corrigir isso <span aria-hidden="true">→</span></a>
+              <a class="btn btn-primary btn-sm" data-wa="Olá, DA STUDIO! Meu negócio não aparece no Google e quero corrigir isso com uma página profissional." href="#" target="_blank" rel="noopener">Quero corrigir isso agora</a>
             </div>
           </div>
         </div>
@@ -1116,7 +1130,7 @@
   <div id="lp-wrap"><div id="lp-track"></div></div>
   <div id="pf-wrap"><div id="pf-track"></div></div>
   <div class="center reveal" style="margin-top:36px;padding:0 20px">
-    <a class="btn btn-ghost" data-wa="Olá, DA STUDIO! Vi os projetos no site e quero uma página nesse nível para o meu negócio." href="#" target="_blank" rel="noopener">Quero um projeto nesse nível <span aria-hidden="true">→</span></a>
+    <a class="btn btn-ghost" data-wa="Olá, DA STUDIO! Vi os projetos no site e quero uma página nesse nível para o meu negócio." href="#" target="_blank" rel="noopener">Quero um projeto nesse nível</a>
   </div>
 </section>
 
@@ -1285,6 +1299,18 @@
   var $$ = function(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // ===================== PROTEÇÃO DE CONTEÚDO =====================
+  // sem menu de botão direito (salvar imagem, inspecionar fica de fora, F12 sempre funciona),
+  // sem arrastar imagem pra fora, sem copiar texto selecionado. Campos de formulário ficam
+  // de fora pra pessoa continuar conseguindo preencher nome/whatsapp normalmente
+  (function(){
+    function isFormField(el){ return el && el.closest && el.closest('input,textarea,select,[contenteditable]'); }
+    document.addEventListener('contextmenu', function(e){ if (!isFormField(e.target)) e.preventDefault(); });
+    document.addEventListener('dragstart', function(e){ if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('copy', function(e){ if (!isFormField(e.target)) e.preventDefault(); });
+    document.addEventListener('selectstart', function(e){ if (!isFormField(e.target)) e.preventDefault(); });
+  })();
   // a rolagem suave (mais abaixo) sobrescreve isso com a versao real; chamado sempre que
   // um bloco troca de altura de forma abrupta (o quiz re-renderiza), pra nao deixar a
   // inercia terminar de rolar rumo a um alvo em pixels que ja nao corresponde a secao certa
@@ -1472,7 +1498,7 @@
           return '<div class="vs-item"><span class="vs-tile">' + ico(c.i) + '<span class="vs-mark">' + (yes ? V : X) + '</span></span>' +
             '<div><small>' + esc(c.k) + '</small><b>' + esc(yes ? c.yes : c.no) + '</b></div></div>';
         }).join('') +
-        (yes ? '<div class="vs-cta"><a class="btn btn-primary btn-sm btn-block" href="' + waLink('Olá, DA STUDIO! Quero meu negócio do lado de quem é encontrado no Google. Podemos conversar?') + '" target="_blank" rel="noopener">Quero estar desse lado <span aria-hidden="true">→</span></a></div>' : '') +
+        (yes ? '<div class="vs-cta"><a class="btn btn-primary btn-sm btn-block" href="' + waLink('Olá, DA STUDIO! Quero meu negócio do lado de quem é encontrado no Google. Podemos conversar?') + '" target="_blank" rel="noopener">Quero estar desse lado</a></div>' : '') +
       '</div>';
     };
     setHTML('[data-render="compare"]', col('no') + '<div class="vs-mid" aria-hidden="true"><span>VS</span></div>' + col('yes'));
@@ -1582,7 +1608,7 @@
       var q = QUIZ[step];
       box.innerHTML = prog() + '<div class="q-step ' + (dir === 'back' ? 'back' : '') + '"><h3 class="q-title">' + esc(q.q) + '</h3><p class="q-sub">' + esc(q.sub) + '</p>' +
         '<div class="q-opts">' + q.opts.map(function(o, i){ return '<button type="button" class="q-opt' + (ans[step] === i ? ' sel' : '') + '" data-opt="' + i + '"><span class="k">' + String.fromCharCode(65 + i) + '</span><span>' + esc(o.t) + '</span></button>'; }).join('') + '</div>' +
-        '<div class="q-nav">' + (step > 0 ? '<button type="button" class="q-back" data-qback>← Voltar</button>' : '<span></span>') + '<span class="q-hint" style="margin:0">Toque numa opção pra avançar</span></div></div>';
+        '<div class="q-nav">' + (step > 0 ? '<button type="button" class="q-back" data-qback>Voltar</button>' : '<span></span>') + '<span class="q-hint" style="margin:0">Toque numa opção pra avançar</span></div></div>';
       $$('[data-opt]', box).forEach(function(b){ b.addEventListener('click', function(){
         $$('[data-opt]', box).forEach(function(x){ x.classList.remove('sel'); }); b.classList.add('sel');
         ans[step] = +b.getAttribute('data-opt');
@@ -1650,7 +1676,7 @@
           '</div>' +
           field('link', 'Instagram ou site atual', '<input id="f-link" name="link" type="text" autocomplete="url" placeholder="@seunegocio ou seusite.com.br">', true) +
           field('quero', 'O que você quer primeiro?', '<select id="f-quero" name="quero">' + wants.map(function(w){ return '<option' + (w === R.seg.want ? ' selected' : '') + '>' + esc(w) + '</option>'; }).join('') + '</select>') +
-          '<div class="cta-row" style="margin-top:8px"><button type="submit" class="btn btn-primary"><svg class="wa-ico"><use href="#i-wa"/></svg>Enviar e receber proposta</button><button type="button" class="btn btn-ghost" data-qback-res>← Ver resultado</button></div>' +
+          '<div class="cta-row" style="margin-top:8px"><button type="submit" class="btn btn-primary"><svg class="wa-ico"><use href="#i-wa"/></svg>Enviar e receber proposta</button><button type="button" class="btn btn-ghost" data-qback-res>Ver resultado</button></div>' +
           '<p class="f-foot">Seus dados vão só para a DA STUDIO, junto com o diagnóstico. Nada de lista, nada de spam.</p>' +
         '</form></div>';
       $('[data-qback-res]', box).addEventListener('click', renderResult);
@@ -1776,9 +1802,11 @@
     c.addEventListener('pointerleave', function(){ c.classList.remove('tilt'); c.style.transform = ''; });
   });
 
-  // ===================== SERVICOS: scroll stacking no mobile =====================
-  (function(){
-    var mq = window.matchMedia("(max-width:640px)"), cards = $$(".svc"); if (!cards.length) return;
+  // ===================== SCROLL STACKING no mobile (servicos + o que vem na pagina) =====================
+  // cada card gruda no topo (position:sticky) e o proximo desliza por cima, encolhendo
+  // e escurecendo um pouco o de baixo — mesmo efeito nos dois grupos de cards
+  function initStack(selector){
+    var mq = window.matchMedia("(max-width:640px)"), cards = $$(selector); if (!cards.length) return;
     cards.forEach(function(c, i){ c.style.setProperty("--si", i); });
     function reset(){ cards.forEach(function(c){ c.style.minHeight = ""; c.style.transform = ""; c.style.filter = ""; c.classList.remove("stacked"); }); }
     function equalize(){ reset(); if (!mq.matches) return; var h = 0; cards.forEach(function(c){ h = Math.max(h, c.offsetHeight); }); cards.forEach(function(c){ c.style.minHeight = h + "px"; }); onScroll(); }
@@ -1798,7 +1826,9 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(equalize);
     window.addEventListener("load", equalize);
     equalize();
-  })();
+  }
+  initStack(".svc");
+  initStack(".feat");
 
   // ===================== ROLAGEM SUAVE (desktop, roda do mouse): inercia lenta e fluida =====================
   (function(){
