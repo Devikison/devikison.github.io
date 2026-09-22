@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Devikison | Marca, Página e Tráfego que vendem</title>
-<meta name="description" content="Identidade visual, social media, criativos, landing pages e tráfego pago com uma pessoa só cuidando de tudo. Sua marca vendendo até quando você está offline.">
+<title>DA STUDIO | Landing Pages e Sites que colocam seu negócio no Google</title>
+<meta name="description" content="A DA STUDIO cria landing pages, sites e páginas de link na bio que posicionam seu negócio no Google e transformam pesquisa em cliente. Google Meu Negócio, SEO, GEO e tráfego pago na mesma estratégia.">
 <meta name="theme-color" content="#05070e">
-<meta property="og:title" content="Devikison | Marca, Página e Tráfego que vendem">
-<meta property="og:description" content="Identidade visual, social media, criativos, landing pages e tráfego pago. Do primeiro traço ao anúncio no ar, com a mesma pessoa.">
+<meta property="og:title" content="DA STUDIO | Landing Pages e Sites que colocam seu negócio no Google">
+<meta property="og:description" content="Seu concorrente já está no Google. A DA STUDIO cria a página profissional que coloca seu negócio nas buscas e transforma pesquisa em conversa no WhatsApp.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="gallery/portrait.jpg">
 <link rel="icon" href="gallery/avatar.jpg">
@@ -157,7 +157,7 @@
   header.shrunk .hdr{padding:7px 8px 7px 18px;background:linear-gradient(160deg,rgba(9,12,24,.97),rgba(9,12,24,.92))}
   .brand{font-family:var(--font-d);font-size:17px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;white-space:nowrap}
   .brand small{color:var(--muted2);font-weight:500;font-size:15px}
-  .logo-mark{width:34px;height:34px;border-radius:50%;flex:none;font-size:0;background:url('gallery/avatar.jpg') center/cover no-repeat,var(--bg3);box-shadow:0 0 0 2px rgba(126,160,255,.45),0 0 18px rgba(61,107,255,.4)}
+  .logo-mark{width:36px;height:36px;border-radius:11px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:12.5px;font-weight:700;letter-spacing:.04em;color:#fff;background:linear-gradient(180deg,#4a78ff,#0245f2);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 18px -8px rgba(2,69,242,.9),0 0 0 1px rgba(126,160,255,.25)}
   .nav ul{list-style:none;display:flex;gap:4px}
   .nav a{display:block;padding:9px 13px;border-radius:10px;font-size:14px;font-weight:500;color:var(--muted);position:relative;transition:color .25s,background .25s}
   .nav a:hover{color:#fff;background:rgba(255,255,255,.06)}
@@ -348,9 +348,9 @@
      ========================================================= */
   .svcs{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
   .svc{grid-column:span 2;padding:32px 30px;display:flex;flex-direction:column}
-  .svc:nth-child(4),.svc:nth-child(5){grid-column:span 3}
+  .svc:nth-child(1),.svc:nth-child(2){grid-column:span 3}
   .svc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-  .svc-icon{width:64px;height:64px;flex:none;transition:transform .5s var(--ease)}
+  .svc-icon{display:none}
   @media (hover:hover){ .svc:hover .svc-icon{transform:translateY(-4px) rotate(-5deg) scale(1.06)} }
   .svc .num{font-family:var(--font-d);font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--blue3);opacity:.8}
   .svc h3{font-weight:700;letter-spacing:-.015em;font-size:clamp(21px,2.2vw,25px);line-height:1.15;margin-bottom:10px}
@@ -579,6 +579,119 @@
   }
 
   /* =========================================================
+     SERVIÇOS: ícone em tile (inline, mesmo traço em todos)
+     ========================================================= */
+  .svc-ico{width:60px;height:60px;border-radius:18px;flex:none;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(180deg,#4a78ff,#0245f2);box-shadow:0 14px 28px -12px rgba(2,69,242,.9),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .5s var(--ease)}
+  .svc-ico svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .svc:hover .svc-ico{transform:translateY(-3px) rotate(-4deg)}
+
+  /* =========================================================
+     O QUE O CLIENTE VÊ (simulação de busca)
+     ========================================================= */
+  .serp-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,3vw,36px);align-items:start;max-width:1120px;margin:0 auto}
+  .serp{padding:16px;border-radius:24px;overflow:hidden}
+  .serp-bar{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 18px;border-radius:100px;background:#fff;border:1px solid rgba(15,27,51,.12);box-shadow:0 10px 26px -16px rgba(15,27,51,.4)}
+  .serp-bar>svg{width:20px;height:20px;flex:none;stroke:#5F6E88;fill:none;stroke-width:2.2;stroke-linecap:round}
+  .serp-q{flex:1;min-width:0;font-size:15.5px;color:#0F1B33;font-weight:500;display:flex;align-items:center;min-height:22px;white-space:nowrap;overflow:hidden}
+  .serp-q .caret{display:inline-block;width:2px;height:18px;background:var(--blue);margin-left:2px;flex:none;animation:caret 1s steps(1) infinite}
+  @keyframes caret{50%{opacity:0}}
+  .serp-go{flex:none;font-family:var(--font-d);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:linear-gradient(180deg,#4a78ff,#0245f2);padding:8px 14px;border-radius:100px}
+  .serp-body{padding:16px 4px 2px;display:grid;gap:16px}
+  .serp-sec .lbl{display:block;font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#5F6E88;margin-bottom:10px;padding-left:6px}
+  .serp-map{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .biz{padding:12px 12px 11px;border-radius:14px;background:#fff;border:1px solid rgba(15,27,51,.10);display:grid;gap:4px;box-shadow:0 8px 20px -16px rgba(15,27,51,.4)}
+  .biz b{font-size:13.5px;color:#0F1B33;font-weight:600;line-height:1.2}
+  .biz span{font-size:12px;color:#5F6E88;white-space:nowrap}
+  .biz span i{color:#f5a623;font-style:normal}
+  .biz em{font-style:normal;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:rgba(2,69,242,.08);border-radius:6px;padding:3px 7px;justify-self:start;margin-top:2px}
+  .res{display:flex;gap:12px;align-items:flex-start;padding:12px 10px;border-radius:14px;transition:background .25s}
+  .res:hover{background:rgba(255,255,255,.6)}
+  .res .fav{width:28px;height:28px;border-radius:50%;flex:none;background:#fff;border:1px solid rgba(15,27,51,.10);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:11px;font-weight:700;color:#3E4E68;margin-top:2px}
+  .res>div{min-width:0;flex:1}
+  .res small{display:block;font-size:12px;color:#5F6E88;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .res b{display:block;font-size:15.5px;color:var(--blue);font-weight:600;line-height:1.3}
+  .res p{font-size:13px;color:#3E4E68;line-height:1.45;margin-top:3px}
+  .res.ghost{border:1.5px dashed rgba(229,72,77,.5);background:rgba(229,72,77,.045);flex-wrap:wrap;margin-top:4px}
+  .res.ghost:hover{background:rgba(229,72,77,.07)}
+  .res.ghost .fav{background:rgba(229,72,77,.1);border-color:rgba(229,72,77,.3)}
+  .res.ghost .fav svg{width:13px;height:13px;stroke:#c81e1e;fill:none;stroke-width:2.6;stroke-linecap:round}
+  .res.ghost b{color:#c81e1e;text-decoration:line-through;text-decoration-color:rgba(200,30,30,.45);text-decoration-thickness:1.5px}
+  .res.ghost .btn{margin:4px 0 2px 40px}
+  .serp-pts{display:grid;gap:12px}
+  .serp-pts .pt{display:flex;gap:16px;padding:20px 22px;border-radius:20px;align-items:flex-start}
+  .serp-pts .n{font-family:var(--font-d);font-weight:700;font-size:13px;letter-spacing:.08em;color:#fff;width:40px;height:40px;border-radius:12px;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#4a78ff,#0245f2);box-shadow:0 10px 20px -10px rgba(2,69,242,.9),inset 0 1px 0 rgba(255,255,255,.35)}
+  .serp-pts b{display:block;font-family:var(--font-d);font-size:18px;font-weight:700;letter-spacing:-.01em;color:#0F1B33;margin-bottom:5px}
+  .serp-pts p{font-size:14.5px;color:var(--muted);line-height:1.6}
+  .serp-note{font-size:15px;color:var(--muted);padding:8px 6px 0;line-height:1.6}
+  .serp-note strong{color:var(--blue);font-weight:600}
+  @media (max-width:900px){
+    .serp-grid{grid-template-columns:1fr}
+    .serp-map{grid-template-columns:1fr;gap:6px}
+    .biz{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:10px 12px}
+    .biz b{flex-basis:100%}
+    .biz em{margin:0}
+  }
+  @media (max-width:640px){
+    .serp{padding:12px}
+    .serp-bar{padding:10px 10px 10px 14px}
+    .serp-q{font-size:14px}
+    .serp-go{display:none}
+    .res.ghost .btn{margin-left:0;width:100%}
+  }
+
+  /* =========================================================
+     O QUE VEM NA PÁGINA (grade de entregas) + faixa de orçamento
+     ========================================================= */
+  .feats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .feat{padding:24px 22px;display:flex;flex-direction:column;gap:16px}
+  .feat .ico{width:50px;height:50px;border-radius:15px;border:1px solid var(--blue-brd);background:rgba(61,107,255,.12);display:flex;align-items:center;justify-content:center;flex:none;transition:background .3s,transform .3s}
+  .feat .ico svg{width:23px;height:23px;stroke:var(--blue3);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .feat:hover .ico{background:rgba(61,107,255,.26);transform:rotate(-6deg) scale(1.06)}
+  .feat b{font-family:var(--font-d);font-size:17.5px;font-weight:700;letter-spacing:-.01em;color:#fff;display:block;margin-bottom:6px;line-height:1.2}
+  .feat p{font-size:14.5px;color:var(--muted);line-height:1.6}
+  .band{margin:30px auto 0;max-width:920px;padding:26px 30px;border-radius:22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .band b{font-family:var(--font-d);font-size:clamp(19px,2.2vw,25px);font-weight:700;letter-spacing:-.015em;display:block;line-height:1.2}
+  .band span{display:block;color:var(--muted);font-size:14.5px;margin-top:6px;line-height:1.5}
+  @media (max-width:1000px){ .feats{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:560px){
+    .feats{grid-template-columns:1fr;gap:12px}
+    .feat{flex-direction:row;align-items:flex-start;padding:18px 16px;gap:14px}
+    .feat .ico{width:44px;height:44px}
+    .band{padding:22px 20px}
+    .band .btn{width:100%}
+  }
+
+  /* =========================================================
+     DIAGNÓSTICO: recomendação + formulário
+     ========================================================= */
+  .q-rec{margin:20px auto 0;max-width:560px;text-align:left;padding:18px 20px;border-radius:18px;background:linear-gradient(160deg,rgba(61,107,255,.22),rgba(61,107,255,.06));border:1px solid var(--blue-brd);animation:qIn .5s var(--ease) both;animation-delay:.15s}
+  .q-rec .k{display:block;font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue3);margin-bottom:6px}
+  .q-rec b{display:block;font-family:var(--font-d);font-size:19px;font-weight:700;letter-spacing:-.01em;color:#fff;line-height:1.2}
+  .q-rec p{font-size:14.5px;color:var(--muted);line-height:1.6;margin-top:8px}
+  .q-form{text-align:left;display:grid;gap:14px;margin-top:4px}
+  .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .f-field{display:grid;gap:6px}
+  .f-field label{font-family:var(--font-d);font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--blue4)}
+  .f-field label em{font-style:normal;color:var(--muted2);font-weight:500;letter-spacing:0}
+  .f-field input,.f-field select{width:100%;min-height:52px;padding:14px 16px;border-radius:14px;border:1px solid var(--glass-brd);background:rgba(255,255,255,.05);color:#fff;font:inherit;font-size:15.5px;transition:border-color .25s,box-shadow .25s,background .25s;-webkit-appearance:none;appearance:none}
+  .f-field select{cursor:pointer;padding-right:44px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237ea0ff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:18px}
+  .f-field select option{background:#0b0f1c;color:#fff}
+  .f-field input::placeholder{color:rgba(255,255,255,.35)}
+  .f-field input:focus,.f-field select:focus{outline:none;border-color:var(--blue2);box-shadow:0 0 0 4px rgba(61,107,255,.18);background:rgba(61,107,255,.08)}
+  .f-field.err input,.f-field.err select{border-color:#e5484d;box-shadow:0 0 0 4px rgba(229,72,77,.15)}
+  .f-field .msg{font-size:12.5px;color:#ff8a8e;display:none}
+  .f-field.err .msg{display:block}
+  .f-summary{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 18px}
+  .f-summary span{font-size:12.5px;font-weight:600;color:var(--blue4);background:rgba(61,107,255,.12);border:1px solid rgba(61,107,255,.3);padding:6px 11px;border-radius:100px}
+  .f-foot{font-size:12.5px;color:var(--muted2);line-height:1.5}
+  .q-sent{text-align:center}
+  .q-sent .ok{width:76px;height:76px;border-radius:50%;margin:6px auto 18px;background:linear-gradient(180deg,#34c759,#1fbc12);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 40px -16px rgba(31,188,18,.8),inset 0 1px 0 rgba(255,255,255,.4);animation:qIn .5s var(--ease) both}
+  .q-sent .ok svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .q-sent .cta-row{margin-top:22px}
+  @media (max-width:560px){ .f-grid{grid-template-columns:1fr} }
+
+  /* =========================================================
      RESPONSIVO
      ========================================================= */
   @media (max-width:1100px){ .pains{grid-template-columns:repeat(2,1fr)} }
@@ -590,7 +703,7 @@
   @media (max-width:960px){
     :root{--hdr-h:62px}
     .svcs{grid-template-columns:1fr 1fr}
-    .svc,.svc:nth-child(4),.svc:nth-child(5){grid-column:span 1}
+    .svc,.svc:nth-child(1),.svc:nth-child(2){grid-column:span 1}
     .j-panel{grid-template-columns:1fr}
     .about{grid-template-columns:1fr;text-align:center}
     .about-txt p{text-align:left}
@@ -679,41 +792,42 @@
 <!-- HEADER -->
 <header id="hdr">
   <div class="hdr">
-    <a href="#top" class="brand"><span class="logo-mark">D</span><span>Devikison <small>| Marca &amp; Tráfego</small></span></a>
+    <a href="#top" class="brand"><span class="logo-mark">DA</span><span>DA STUDIO <small>| Sites &amp; Landing Pages</small></span></a>
     <nav class="nav" aria-label="Seções">
       <ul>
-        <li><a href="#dores" data-nav>Dores</a></li>
-        <li><a href="#caminho" data-nav>Caminho</a></li>
+        <li><a href="#realidade" data-nav>Realidade</a></li>
         <li><a href="#servicos" data-nav>Serviços</a></li>
-        <li><a href="#diagnostico" data-nav>Diagnóstico</a></li>
+        <li><a href="#entregas" data-nav>Entregas</a></li>
+        <li><a href="#portfolio" data-nav>Projetos</a></li>
         <li><a href="#processo" data-nav>Processo</a></li>
-        <li><a href="#portfolio" data-nav>Portfólio</a></li>
+        <li><a href="#diagnostico" data-nav>Diagnóstico</a></li>
         <li><a href="#faq" data-nav>FAQ</a></li>
       </ul>
     </nav>
     <div class="hdr-right">
-      <a class="hdr-cta btn btn-primary btn-sm" data-wa="Olá Devikison! Vim do seu site e quero um orçamento." href="#" target="_blank" rel="noopener"><svg class="wa-ico" style="width:16px;height:16px"><use href="#i-wa"/></svg>Falar no WhatsApp</a>
+      <a class="hdr-cta btn btn-primary btn-sm" data-wa="Olá, DA STUDIO! Vim pelo site e quero um orçamento de landing page ou site." href="#" target="_blank" rel="noopener"><svg class="wa-ico" style="width:16px;height:16px"><use href="#i-wa"/></svg>Pedir orçamento</a>
       <button class="burger" data-menu-btn aria-label="Abrir menu" aria-expanded="false" aria-controls="sheet"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 <div class="sheet" id="sheet" data-sheet>
   <div class="sheet-panel" role="dialog" aria-label="Menu">
-    <a class="item" href="#dores" data-menu-link>Dores <span>01</span></a>
-    <a class="item" href="#caminho" data-menu-link>Caminho do cliente <span>02</span></a>
+    <a class="item" href="#realidade" data-menu-link>A realidade <span>01</span></a>
+    <a class="item" href="#google" data-menu-link>O que o cliente vê <span>02</span></a>
     <a class="item" href="#servicos" data-menu-link>Serviços <span>03</span></a>
-    <a class="item" href="#diagnostico" data-menu-link>Diagnóstico grátis <span>04</span></a>
-    <a class="item" href="#processo" data-menu-link>Processo <span>05</span></a>
-    <a class="item" href="#portfolio" data-menu-link>Portfólio <span>06</span></a>
-    <a class="item" href="#faq" data-menu-link>Dúvidas <span>07</span></a>
-    <a class="item" href="#sobre" data-menu-link>Sobre <span>08</span></a>
-    <a class="btn btn-primary btn-block" data-wa="Olá Devikison! Vim do seu site e quero um orçamento." href="#" target="_blank" rel="noopener" data-menu-link><svg class="wa-ico"><use href="#i-wa"/></svg>Falar no WhatsApp</a>
+    <a class="item" href="#entregas" data-menu-link>O que vem na página <span>04</span></a>
+    <a class="item" href="#portfolio" data-menu-link>Projetos <span>05</span></a>
+    <a class="item" href="#processo" data-menu-link>Processo <span>06</span></a>
+    <a class="item" href="#diagnostico" data-menu-link>Diagnóstico grátis <span>07</span></a>
+    <a class="item" href="#faq" data-menu-link>Dúvidas <span>08</span></a>
+    <a class="item" href="#sobre" data-menu-link>Sobre a DA STUDIO <span>09</span></a>
+    <a class="btn btn-primary btn-block" data-wa="Olá, DA STUDIO! Vim pelo site e quero um orçamento de landing page ou site." href="#" target="_blank" rel="noopener" data-menu-link><svg class="wa-ico"><use href="#i-wa"/></svg>Pedir orçamento no WhatsApp</a>
   </div>
 </div>
 
 <main id="top">
 
-<!-- ===================== HERO ===================== -->
+<!-- ===================== HERO (ATENÇÃO) ===================== -->
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true">
     <div class="orb"></div>
@@ -722,29 +836,29 @@
   <div class="hero-veil" aria-hidden="true"></div>
   <div class="spot" data-spot aria-hidden="true"></div>
   <div class="chips" aria-hidden="true">
-    <span class="chip" style="left:6%;top:24%;--t:7s"><i></i>Identidade visual</span>
-    <span class="chip" style="right:7%;top:22%;--t:8s;--dl:-2s"><i></i>Tráfego pago</span>
-    <span class="chip" style="left:9%;top:62%;--t:9s;--dl:-4s"><i></i>Landing page</span>
-    <span class="chip" style="right:9%;top:60%;--t:7.5s;--dl:-1s"><i></i>Social media</span>
-    <span class="chip" style="right:4%;top:42%;--t:8.5s;--dl:-3s"><i></i>Criativos que convertem</span>
+    <span class="chip" style="left:6%;top:24%;--t:7s"><i></i>Landing page</span>
+    <span class="chip" style="right:7%;top:22%;--t:8s;--dl:-2s"><i></i>Site institucional</span>
+    <span class="chip" style="left:9%;top:62%;--t:9s;--dl:-4s"><i></i>Google Meu Negócio</span>
+    <span class="chip" style="right:9%;top:60%;--t:7.5s;--dl:-1s"><i></i>SEO &amp; GEO</span>
+    <span class="chip" style="right:4%;top:42%;--t:8.5s;--dl:-3s"><i></i>Página de links na bio</span>
   </div>
   <div class="wrap hero-in">
-    <span class="pill"><span class="dot"></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Para empreendedores, negócios locais, infoprodutores e marcas pessoais</span><span aria-hidden="true">Feito para</span><span class="pill-swap" data-pill-swap aria-hidden="true"><span data-pill-text>Empreendedores</span></span></span>
-    <h1>Sua marca vendendo <span class="accent">até quando você está offline.</span></h1>
-    <p class="hero-sub">Identidade visual, conteúdo, criativos, landing page e tráfego pago com uma pessoa só cuidando de tudo. Você foca no negócio, eu faço o cliente chegar.</p>
+    <span class="pill"><span class="dot"></span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Para negócios locais, clínicas, prestadores de serviço, lojas e profissionais liberais</span><span aria-hidden="true">Feito para</span><span class="pill-swap" data-pill-swap aria-hidden="true"><span data-pill-text>Negócios locais</span></span></span>
+    <h1>Seu concorrente já está no Google. <span class="accent">E o seu negócio?</span></h1>
+    <p class="hero-sub">A DA STUDIO cria landing pages e sites profissionais que colocam seu negócio nas buscas, passam autoridade em segundos e transformam pesquisa em conversa no WhatsApp.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" data-wa="Olá Devikison! Quero minha marca vendendo. Podemos conversar?" href="#" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#i-wa"/></svg>Quero minha marca vendendo</a>
-      <a class="btn btn-ghost" href="#diagnostico">Fazer diagnóstico grátis <span aria-hidden="true">↓</span></a>
+      <a class="btn btn-primary" data-wa="Olá, DA STUDIO! Quero colocar meu negócio no Google com uma página profissional. Podemos conversar?" href="#" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#i-wa"/></svg>Quero minha página no ar</a>
+      <a class="btn btn-ghost" href="#diagnostico">Ver o que meu negócio precisa <span aria-hidden="true">↓</span></a>
     </div>
     <div class="trust">
-      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Atendimento direto com quem cria</span>
-      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Meta, Google e TikTok Ads</span>
-      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Do logo ao anúncio no ar</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Otimizada para o Google (SEO) e buscas com IA (GEO)</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Mobile first e carregamento rápido</span>
+      <span><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp integrado</span>
     </div>
     <div class="stats card reveal">
-      <div class="stat"><b data-count="7" data-suffix="+">0</b><span>Anos no mercado</span></div>
-      <div class="stat"><b data-count="70" data-suffix="+">0</b><span>Marcas atendidas</span></div>
-      <div class="stat"><b data-count="5">0</b><span>Frentes num só lugar</span></div>
+      <div class="stat"><b data-count="7" data-suffix="+">0</b><span>Anos de mercado</span></div>
+      <div class="stat"><b data-count="70" data-suffix="+">0</b><span>Projetos entregues</span></div>
+      <div class="stat"><b data-count="24" data-suffix="h">0</b><span>Sua página trabalhando</span></div>
       <div class="stat"><b data-count="100" data-suffix="%">0</b><span>Atendimento direto</span></div>
     </div>
   </div>
@@ -752,52 +866,81 @@
 
 <div class="ticker" aria-hidden="true"><div class="ticker-track" data-ticker></div></div>
 
-<!-- ===================== 01 DORES ===================== -->
-<section id="dores" class="sec">
+<!-- ===================== 01 A REALIDADE (ATENÇÃO) ===================== -->
+<section id="realidade" class="sec">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="eyebrow">Reconhece algum destes?</span>
-      <h2 class="h2">Marca no improviso <span class="accent">perde cliente todo dia</span> e você nem vê.</h2>
-      <p class="lead">Toque nos cartões que descrevem sua realidade hoje. Sem julgamento, é só pra você enxergar onde está o vazamento.</p>
+      <span class="eyebrow">A realidade de quem ainda não tem site</span>
+      <h2 class="h2">Sem uma página, seu negócio é <span class="accent">invisível para quem está pronto para comprar.</span></h2>
+      <p class="lead">Marque o que acontece com você hoje. Cada item é um cliente indo para o concorrente sem nem saber que você existe.</p>
     </div>
     <div class="pains" data-render="pains"></div>
     <div class="pain-meter card reveal" data-pain-meter>
-      <b data-pain-msg>Toque nos cartões acima pra começar.</b>
+      <b data-pain-msg>Marque os cartões acima.</b>
       <div class="bar"><i data-pain-bar></i></div>
       <span class="cnt"><span data-pain-count>0</span>/6 marcados</span>
-      <a class="btn btn-primary btn-sm" href="#caminho" style="flex:none">Ver a solução <span aria-hidden="true">→</span></a>
+      <a class="btn btn-primary btn-sm" href="#google" style="flex:none">Ver o que o cliente vê <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
 
 <div class="divider dv-in" style="--sd:-0.7s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
-<!-- ===================== 02 CAMINHO DO CLIENTE ===================== -->
-<section id="caminho" class="sec sec-light">
+<!-- ===================== 02 O QUE O CLIENTE VÊ (INTERESSE) ===================== -->
+<section id="google" class="sec sec-light">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="eyebrow">O caminho do cliente</span>
-      <h2 class="h2">Ninguém compra de quem não conhece. <span class="accent">Esse é o caminho até o sim.</span></h2>
-      <p class="lead">Cinco etapas entre um estranho e um cliente. Se uma falha, ele some. Toque em cada uma pra ver o que acontece com e sem ela.</p>
+      <span class="eyebrow">O que o seu cliente vê</span>
+      <h2 class="h2">Toda pesquisa no Google <span class="accent">termina em alguém.</span> Hoje, não termina em você.</h2>
+      <p class="lead">Simulação do que aparece quando alguém procura pelo que você vende. Repare em quem está lá. E em quem não está.</p>
     </div>
-    <div class="journey reveal">
-      <div class="j-nodes" data-jnodes><div class="j-line" data-jline></div></div>
-      <div class="j-progress" data-jprog></div>
-      <div class="j-panel card" data-jpanel></div>
+    <div class="serp-grid">
+      <div class="serp card reveal" data-rv="left" aria-label="Simulação de uma busca no Google">
+        <div class="serp-bar">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="serp-q"><span data-serp-q>dentista perto de mim</span><i class="caret"></i></span>
+          <span class="serp-go">Buscar</span>
+        </div>
+        <div class="serp-body">
+          <div class="serp-sec">
+            <small class="lbl">Empresas · Google Maps</small>
+            <div class="serp-map">
+              <div class="biz"><b>Concorrente A</b><span><i>★</i> 4,9 (128) · Aberto agora</span><em>Perfil completo</em></div>
+              <div class="biz"><b>Concorrente B</b><span><i>★</i> 4,7 (86) · Aberto agora</span><em>Perfil completo</em></div>
+              <div class="biz"><b>Concorrente C</b><span><i>★</i> 4,8 (203) · Aberto agora</span><em>Perfil completo</em></div>
+            </div>
+          </div>
+          <div class="serp-sec">
+            <small class="lbl">Resultados da busca</small>
+            <div class="res"><span class="fav">A</span><div><small>concorrentea.com.br</small><b>Concorrente A | Atendimento na sua cidade</b><p>Site profissional, serviços explicados, avaliações e agendamento pelo WhatsApp.</p></div></div>
+            <div class="res"><span class="fav">B</span><div><small>concorrenteb.com.br</small><b>Concorrente B | Orçamento rápido</b><p>Landing page com oferta clara, prova social e botão de contato em um toque.</p></div></div>
+            <div class="res ghost">
+              <span class="fav"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+              <div><small>seunegocio.com.br</small><b>Seu negócio</b><p>Não encontrado. Sem site e sem perfil no Google, esta posição é do concorrente. Todo dia.</p></div>
+              <a class="btn btn-primary btn-sm" data-wa="Olá, DA STUDIO! Meu negócio não aparece no Google e quero corrigir isso com uma página profissional." href="#" target="_blank" rel="noopener">Corrigir isso <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="serp-pts reveal" data-rv="right">
+        <div class="pt card"><span class="n">01</span><div><b>No mapa</b><p>O Google Meu Negócio coloca você no bloco local e no Maps, com avaliações, horário e botão de ligar. É onde a busca “perto de mim” termina.</p></div></div>
+        <div class="pt card"><span class="n">02</span><div><b>Na busca</b><p>Um site ou landing page com SEO aparece para “seu serviço + sua cidade” todos os dias, sem pagar por clique.</p></div></div>
+        <div class="pt card"><span class="n">03</span><div><b>Nas respostas de IA</b><p>GEO: conteúdo estruturado para o ChatGPT, o Gemini e o modo IA do Google recomendarem o seu negócio quando alguém pergunta.</p></div></div>
+        <p class="serp-note">Quem ocupa esses três lugares recebe o cliente. <strong>A DA STUDIO coloca o seu negócio nos três.</strong></p>
+      </div>
     </div>
-    <p class="center reveal" style="margin-top:28px;color:var(--muted);font-size:15px">Por isso eu não vendo peça solta. <strong style="color:var(--blue);font-weight:600">Eu cuido do ciclo inteiro.</strong></p>
   </div>
 </section>
 
 <div class="divider dv-out" style="--sd:-1.4s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
 
-<!-- ===================== 03 SERVIÇOS ===================== -->
+<!-- ===================== 03 SERVIÇOS (INTERESSE → DESEJO) ===================== -->
 <section id="servicos" class="sec">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="eyebrow">O que eu faço</span>
-      <h2 class="h2">Cinco frentes. <span class="accent">Um só responsável.</span></h2>
-      <p class="lead">Do primeiro traço do logo até o relatório da campanha, você fala com a mesma pessoa. Sem fila, sem telefone sem fio.</p>
+      <span class="eyebrow">O que a DA STUDIO faz</span>
+      <h2 class="h2">Presença digital completa, <span class="accent">começando pelo que mais importa:</span> a sua página.</h2>
+      <p class="lead">Cada serviço existe para uma coisa: colocar seu negócio na frente de quem procura e transformar essa busca em cliente.</p>
     </div>
     <div class="svcs" data-render="services"></div>
   </div>
@@ -805,42 +948,82 @@
 
 <div class="divider dv-in" style="--sd:-2.1s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
-<!-- ===================== 04 COMPARAÇÃO ===================== -->
-<section id="comparacao" class="sec sec-light">
+<!-- ===================== 04 CAMINHO DO CLIENTE (INTERESSE) ===================== -->
+<section id="caminho" class="sec sec-light">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="eyebrow">Improviso vs estratégia</span>
-      <h2 class="h2">A diferença entre <span class="accent">postar</span> e <span class="accent">vender.</span></h2>
+      <span class="eyebrow">Como a página trabalha por você</span>
+      <h2 class="h2">Do Google ao WhatsApp: <span class="accent">o caminho que o cliente faz</span> quando você tem uma página.</h2>
+      <p class="lead">Cinco passos entre uma pesquisa e um cliente. Toque em cada um para ver o que acontece com e sem a sua página.</p>
     </div>
-    <div class="cmp-toggle a reveal" data-cmp-toggle><i></i><button class="on" data-cmp="a">No improviso</button><button data-cmp="b">Com estratégia</button></div>
-    <div class="vs a" data-cmp-table data-render="compare"></div>
+    <div class="journey reveal">
+      <div class="j-nodes" data-jnodes><div class="j-line" data-jline></div></div>
+      <div class="j-progress" data-jprog></div>
+      <div class="j-panel card" data-jpanel></div>
+    </div>
+    <p class="center reveal" style="margin-top:28px;color:var(--muted);font-size:15px">Por isso a DA STUDIO não entrega “só um site”. <strong style="color:var(--blue);font-weight:600">Entrega o caminho inteiro, da pesquisa ao cliente.</strong></p>
   </div>
 </section>
 
 <div class="divider dv-out" style="--sd:-2.8s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
 
-<!-- ===================== 05 DIAGNÓSTICO ===================== -->
-<section id="diagnostico" class="sec" style="overflow:hidden">
-  <div aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;max-width:150vw;background:radial-gradient(circle,rgba(2,69,242,.22) 0%,transparent 60%);pointer-events:none"></div>
-  <div class="wrap" style="position:relative">
+<!-- ===================== 05 O QUE VEM NA PÁGINA (DESEJO) ===================== -->
+<section id="entregas" class="sec">
+  <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="eyebrow">Diagnóstico gratuito</span>
-      <h2 class="h2">Descubra em 30 segundos <span class="accent">o que sua marca precisa</span> pra vender mais.</h2>
-      <p class="lead">Quatro perguntas rápidas. No final você recebe um plano e pode me chamar já com tudo pronto.</p>
+      <span class="eyebrow">O que vem em cada projeto</span>
+      <h2 class="h2">Não é “um site bonito”. <span class="accent">É uma máquina de ser encontrado.</span></h2>
+      <p class="lead">Tudo o que a DA STUDIO entrega em cada landing page ou site. Sem letra miúda, sem “isso é à parte”.</p>
     </div>
-    <div class="quiz card glow-border reveal" data-quiz></div>
+    <div class="feats" data-render="feats"></div>
+    <div class="band card glow-border reveal" data-rv="zoom">
+      <div><b>Quer saber quanto custa para o seu caso?</b><span>Briefing gratuito. A DA STUDIO responde com valor e prazo fechados.</span></div>
+      <a class="btn btn-primary" data-wa="Olá, DA STUDIO! Quero um orçamento de landing page ou site para o meu negócio." href="#" target="_blank" rel="noopener" style="flex:none"><svg class="wa-ico"><use href="#i-wa"/></svg>Pedir orçamento</a>
+    </div>
   </div>
 </section>
 
 <div class="divider dv-in" style="--sd:-3.5s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
-<!-- ===================== 06 PROCESSO ===================== -->
+<!-- ===================== 06 COMPARAÇÃO (DESEJO) ===================== -->
+<section id="comparacao" class="sec sec-light">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Sem site vs com site</span>
+      <h2 class="h2">A diferença entre <span class="accent">ser procurado</span> e <span class="accent">ser encontrado.</span></h2>
+    </div>
+    <div class="cmp-toggle a reveal" data-cmp-toggle><i></i><button class="on" data-cmp="a">Sem site</button><button data-cmp="b">Com a DA STUDIO</button></div>
+    <div class="vs a" data-cmp-table data-render="compare"></div>
+  </div>
+</section>
+
+<div class="divider dv-out" style="--sd:-4.2s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
+
+<!-- ===================== 07 PROJETOS (DESEJO / PROVA) ===================== -->
+<section id="portfolio" class="sec" style="padding-left:0;padding-right:0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Projetos</span>
+      <h2 class="h2">Trabalhos que <span class="accent">colocaram negócios no mapa.</span></h2>
+      <p class="lead">Landing pages, identidades e campanhas criadas pela DA STUDIO. Arraste para explorar e toque numa arte para ampliar.</p>
+    </div>
+  </div>
+  <div id="lp-wrap"><div id="lp-track"></div></div>
+  <div id="pf-wrap"><div id="pf-track"></div></div>
+  <div class="center reveal" style="margin-top:36px;padding:0 20px">
+    <a class="btn btn-ghost" data-wa="Olá, DA STUDIO! Vi os projetos no site e quero uma página nesse nível para o meu negócio." href="#" target="_blank" rel="noopener">Quero um projeto nesse nível <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<div class="divider dv-in" style="--sd:-4.9s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
+
+<!-- ===================== 08 PROCESSO (DESEJO / SEGURANÇA) ===================== -->
 <section id="processo" class="sec sec-light">
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow">Como funciona</span>
-      <h2 class="h2">Do briefing à entrega, <span class="accent">sem sumiço e sem surpresa.</span></h2>
-      <p class="lead">Você sabe em que etapa o projeto está, o que vem depois e quando recebe. Role a página e veja a luz acender cada passo.</p>
+      <h2 class="h2">Do briefing à página no ar, <span class="accent">em etapas claras e sem surpresa.</span></h2>
+      <p class="lead">Você sabe o que acontece em cada fase, aprova antes de avançar e recebe tudo pronto para usar. Role e veja a luz acender cada passo.</p>
     </div>
     <div class="timeline" data-timeline>
       <div class="tl-rail"><div class="tl-fill" data-tl-fill></div></div>
@@ -849,26 +1032,24 @@
   </div>
 </section>
 
-<div class="divider dv-out" style="--sd:-4.2s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
-<!-- ===================== 07 PORTFÓLIO ===================== -->
-<section id="portfolio" class="sec" style="padding-left:0;padding-right:0">
-  <div class="wrap">
+<div class="divider dv-out" style="--sd:-5.6s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
+
+<!-- ===================== 09 DIAGNÓSTICO (AÇÃO) ===================== -->
+<section id="diagnostico" class="sec" style="overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;max-width:150vw;background:radial-gradient(circle,rgba(2,69,242,.22) 0%,transparent 60%);pointer-events:none"></div>
+  <div class="wrap" style="position:relative">
     <div class="sec-head center reveal">
-      <span class="eyebrow">Portfólio</span>
-      <h2 class="h2">Marcas que <span class="accent">deixaram o amador pra trás.</span></h2>
-      <p class="lead">Identidades, criativos e campanhas reais. Toque numa arte pra ampliar, arraste pra explorar.</p>
+      <span class="eyebrow">Diagnóstico gratuito</span>
+      <h2 class="h2">Descubra em 40 segundos <span class="accent">o quanto seu negócio está invisível</span> no Google.</h2>
+      <p class="lead">Cinco perguntas rápidas. No final, a DA STUDIO mostra o que está faltando e você pode pedir uma proposta personalizada na hora.</p>
     </div>
-  </div>
-  <div id="lp-wrap"><div id="lp-track"></div></div>
-  <div id="pf-wrap"><div id="pf-track"></div></div>
-  <div class="center reveal" style="margin-top:36px;padding:0 20px">
-    <a class="btn btn-ghost" data-wa="Olá Devikison! Vi seu portfólio e quero algo nesse nível pra minha marca." href="#" target="_blank" rel="noopener">Quero algo nesse nível <span aria-hidden="true">→</span></a>
+    <div class="quiz card glow-border reveal" data-quiz></div>
   </div>
 </section>
 
-<div class="divider dv-in" style="--sd:-4.9s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
+<div class="divider dv-in" style="--sd:-6.3s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,60 C360,100 1080,0 1440,50"/><path class="line" d="M0,60 C360,100 1080,0 1440,50"/><path class="spark" d="M0,60 C360,100 1080,0 1440,50"/></svg></div>
 
-<!-- ===================== 08 FAQ ===================== -->
+<!-- ===================== 10 FAQ (AÇÃO / OBJEÇÕES) ===================== -->
 <section id="faq" class="sec sec-light">
   <div class="wrap">
     <div class="sec-head center reveal">
@@ -876,48 +1057,48 @@
       <h2 class="h2">O que todo mundo pergunta <span class="accent">antes de fechar.</span></h2>
     </div>
     <div class="faq" data-render="faq"></div>
-    <p class="center reveal" style="margin-top:28px;color:var(--muted);font-size:15px">Ficou outra dúvida? <a data-wa="Olá Devikison! Tenho uma dúvida sobre seus serviços." href="#" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;border-bottom:1.5px solid rgba(2,69,242,.3)">Me chama no WhatsApp</a>, respondo eu mesmo.</p>
+    <p class="center reveal" style="margin-top:28px;color:var(--muted);font-size:15px">Ficou outra dúvida? <a data-wa="Olá, DA STUDIO! Tenho uma dúvida sobre landing pages e sites." href="#" target="_blank" rel="noopener" style="color:var(--blue);font-weight:600;border-bottom:1.5px solid rgba(2,69,242,.3)">Fale com a DA STUDIO no WhatsApp</a>.</p>
   </div>
 </section>
 
-<div class="divider dv-out" style="--sd:-5.6s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
+<div class="divider dv-out" style="--sd:-7s" aria-hidden="true"><svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path class="glowline" d="M0,40 C480,0 960,100 1440,30"/><path class="line" d="M0,40 C480,0 960,100 1440,30"/><path class="spark" d="M0,40 C480,0 960,100 1440,30"/></svg></div>
 
-<!-- ===================== 09 SOBRE ===================== -->
+<!-- ===================== 11 SOBRE (CONFIANÇA) ===================== -->
 <section id="sobre" class="sec">
   <div class="wrap">
     <div class="about">
       <div class="about-photo card reveal">
         <span class="ring" aria-hidden="true"></span>
-        <img alt="Foto do Devikison Aguiar" src="gallery/portrait.jpg" loading="lazy" width="1000" height="1333">
-        <div class="about-badge card"><div><b>Devikison Aguiar</b><small>Designer, Social Media &amp; Gestor de Tráfego</small></div><span class="yrs">7+ anos</span></div>
+        <img alt="Devikison Aguiar, fundador da DA STUDIO" src="gallery/portrait.jpg" loading="lazy" width="1000" height="1333">
+        <div class="about-badge card"><div><b>Devikison Aguiar</b><small>Fundador e designer da DA STUDIO</small></div><span class="yrs">7+ anos</span></div>
       </div>
       <div class="about-txt reveal" style="--d:.15s">
         <span class="eyebrow">Quem está por trás</span>
-        <h2 class="h2" style="margin-bottom:22px">Um designer que pensa em <span class="accent">marca</span> do conceito à venda.</h2>
-        <p>Sou o Devikison e há <strong>mais de 7 anos</strong> ajudo empresas e marcas pessoais a construírem uma presença visual forte, profissional e que gera reconhecimento no mercado.</p>
-        <p>Marca bonita não basta se ela não chega em quem importa. Por isso vou além do design: <strong>crio a landing page e cuido do tráfego pago</strong> em Meta Ads, Google Ads e TikTok. Como sou eu quem cria os criativos, você tem o ciclo completo na mão de uma pessoa só.</p>
-        <p>O atendimento é <strong>direto e humano</strong>: você fala comigo do começo ao fim, sem intermediário. Meu foco é <strong>resultado real</strong>, não só estética bonita.</p>
+        <h2 class="h2" style="margin-bottom:22px">DA STUDIO: <span class="accent">design que posiciona</span> e página que vende.</h2>
+        <p>A DA STUDIO é um estúdio de design e presença digital fundado por <strong>Devikison Aguiar</strong>, designer com mais de 7 anos de mercado e mais de 70 marcas atendidas em todo o Brasil.</p>
+        <p>O estúdio nasceu de uma constatação simples: existe negócio bom demais para continuar invisível. Por isso a DA STUDIO une <strong>design, copy, SEO e tráfego</strong> num só projeto. A página fica bonita, aparece no Google e transforma pesquisa em conversa.</p>
+        <p>O atendimento é <strong>direto com quem cria</strong>, do briefing ao pós-entrega. Sem intermediário, sem fila e sem projeto entregue e esquecido.</p>
         <div class="about-pts">
-          <div class="card"><b>7+</b><span>Anos de estrada</span></div>
+          <div class="card"><b>7+</b><span>Anos de mercado</span></div>
           <div class="card"><b>70+</b><span>Marcas atendidas</span></div>
-          <div class="card"><b>1</b><span>Pessoa cuidando de tudo</span></div>
+          <div class="card"><b>100%</b><span>Atendimento direto</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== CTA FINAL ===================== -->
+<!-- ===================== CTA FINAL (AÇÃO) ===================== -->
 <section id="contato" class="sec final">
   <div class="glow" aria-hidden="true"></div>
   <div class="wrap" style="position:relative;max-width:860px">
     <div class="reveal">
-      <span class="eyebrow">Vamos conversar</span>
-      <h2 class="h2">Sua marca merece ser <span class="accent">lembrada e escolhida.</span></h2>
-      <p class="lead" style="margin-bottom:34px">Me chame no WhatsApp. Em uma conversa a gente define o plano certo pro seu momento, sem compromisso.</p>
+      <span class="eyebrow">Próximo passo</span>
+      <h2 class="h2">Seu concorrente já está no Google. <span class="accent">Hora de você aparecer também.</span></h2>
+      <p class="lead" style="margin-bottom:34px">Fale com a DA STUDIO no WhatsApp. Em uma conversa você recebe uma proposta com valor e prazo fechados, sem compromisso.</p>
       <div class="cta-row" style="margin-top:0">
-        <a class="btn btn-primary" data-wa="Olá Devikison! Quero um orçamento." href="#" target="_blank" rel="noopener" style="padding:18px 34px"><svg class="wa-ico"><use href="#i-wa"/></svg>Quero um orçamento</a>
-        <a class="btn btn-ghost" href="mailto:devikisonads@gmail.com">Enviar e-mail</a>
+        <a class="btn btn-primary" data-wa="Olá, DA STUDIO! Quero um orçamento para colocar meu negócio no Google." href="#" target="_blank" rel="noopener" style="padding:18px 34px"><svg class="wa-ico"><use href="#i-wa"/></svg>Pedir orçamento no WhatsApp</a>
+        <a class="btn btn-ghost" href="#diagnostico">Fazer o diagnóstico grátis</a>
       </div>
     </div>
   </div>
@@ -929,27 +1110,27 @@
   <div class="wrap">
     <div class="ft-grid">
       <div>
-        <a href="#top" class="brand"><span class="logo-mark">D</span>Devikison Aguiar</a>
-        <p>Designer gráfico, social media e gestor de tráfego há mais de 7 anos. Identidade, conteúdo, página e anúncio com uma pessoa só.</p>
+        <a href="#top" class="brand"><span class="logo-mark">DA</span>DA STUDIO</a>
+        <p>Estúdio de design e presença digital. Landing pages, sites, página de links na bio, Google Meu Negócio e tráfego pago para negócios que querem ser encontrados.</p>
       </div>
       <div>
         <h5>Navegue</h5>
-        <a class="l" href="#dores">Dores</a><a class="l" href="#caminho">Caminho do cliente</a><a class="l" href="#servicos">Serviços</a><a class="l" href="#diagnostico">Diagnóstico</a><a class="l" href="#processo">Processo</a><a class="l" href="#portfolio">Portfólio</a><a class="l" href="#faq">Dúvidas</a><a class="l" href="#sobre">Sobre</a>
+        <a class="l" href="#realidade">A realidade</a><a class="l" href="#google">O que o cliente vê</a><a class="l" href="#servicos">Serviços</a><a class="l" href="#entregas">O que vem na página</a><a class="l" href="#portfolio">Projetos</a><a class="l" href="#processo">Processo</a><a class="l" href="#diagnostico">Diagnóstico</a><a class="l" href="#faq">Dúvidas</a><a class="l" href="#sobre">Sobre</a>
       </div>
       <div>
         <h5>Contato</h5>
-        <a class="l" data-wa="Olá Devikison!" href="#" target="_blank" rel="noopener">(47) 99247-6541</a>
+        <a class="l" data-wa="Olá, DA STUDIO!" href="#" target="_blank" rel="noopener">(47) 99247-6541</a>
         <a class="l" href="mailto:devikisonads@gmail.com">devikisonads@gmail.com</a>
       </div>
     </div>
-    <div class="ft-bottom"><span>© <span data-year>2026</span> Devikison Aguiar. Todos os direitos reservados.</span><span>Marca, Página &amp; Tráfego</span></div>
+    <div class="ft-bottom"><span>© <span data-year>2026</span> DA STUDIO · Devikison Aguiar. Todos os direitos reservados.</span><span>Landing Pages, Sites &amp; Presença Digital</span></div>
   </div>
 </footer>
 
 <button id="to-top" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <!-- lightbox -->
-<div class="lb" data-lb role="dialog" aria-modal="true" aria-label="Arte ampliada">
+<div class="lb" data-lb role="dialog" aria-modal="true" aria-label="Projeto ampliado">
   <button class="x" data-lb-close aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
   <img alt="" data-lb-img draggable="false">
   <div class="lb-ctl">
@@ -971,84 +1152,149 @@
   $$('[data-wa]').forEach(function(a){ a.href = waLink(a.getAttribute('data-wa')); });
 
   // ===================== CONTEÚDO (edite aqui) =====================
-  var PILL_TEXTS = ['Empreendedores','Negócios locais','Infoprodutores','Marcas pessoais'];
-  var TICKER = ['Identidade visual','Social media','Criativos de anúncio','Landing pages','Sites','Tráfego pago','Meta Ads','Google Ads','TikTok Ads'];
+  // Backup do formulário por e-mail (além do WhatsApp). FormSubmit: no 1º envio chega um e-mail pedindo para ativar.
+  // Deixe vazio ('') para desligar o backup por e-mail.
+  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/devikisonads@gmail.com';
+  var PILL_TEXTS = ['Negócios locais','Clínicas e consultórios','Prestadores de serviço','Lojas e e-commerces','Profissionais liberais'];
+  var TICKER = ['Landing pages','Sites institucionais','Página de links na bio','Google Meu Negócio','SEO','GEO (busca com IA)','Tráfego pago','Meta Ads','Google Ads'];
+  var SERP_TERMS = ['dentista perto de mim','loja de roupas em joinville','advogado trabalhista','pizzaria delivery aberta agora','clínica de estética','contador para mei','encanador 24 horas','arquiteto residencial'];
   var gallery = []; for (var g = 1; g <= 14; g++) gallery.push('gallery/carousel-' + (g < 10 ? '0' + g : g) + '.jpg');
   var lpShots = []; for (var lp = 1; lp <= 7; lp++) lpShots.push('gallery/lp/lp-' + (lp < 10 ? '0' + lp : lp) + '.webp');
 
   var ico = function(p){ return '<svg viewBox="0 0 24 24">' + p + '</svg>'; };
+  var I = {
+    search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+    searchX: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="m8.5 8.5 5 5M13.5 8.5l-5 5"/>',
+    insta: '<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="1"/>',
+    chat: '<path d="M21 12a8 8 0 0 1-8 8H6l-3 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/>',
+    pin: '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+    mega: '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a3 3 0 0 1 0 6"/><path d="M18 6a7 7 0 0 1 0 12"/>',
+    building: '<path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5"/><path d="M9 10h.01M15 10h.01M9 13h.01M15 13h.01"/>',
+    layout: '<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><path d="M8 14h5"/><path d="M8 17h8"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+    link: '<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>',
+    shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+    chart: '<path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-8"/>',
+    zap: '<path d="M13 2 3 14h8l-1 8 10-12h-8z"/>',
+    phone: '<rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M11 18h2"/>',
+    ai: '<path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>',
+    pen: '<path d="M12 20h9"/><path d="m16.5 3.5 4 4L7 21H3v-4z"/>',
+    lock: '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+    bars: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    star: '<path d="m12 3 2.6 5.3L20 9l-4 4 1 5.9L12 16l-5 2.9L8 13 4 9l5.4-.7z"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    cursor: '<path d="m4 4 7.5 16 2.3-6.2L20 11.5z"/>',
+    eyeOff: '<path d="M3 3l18 18"/><path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.1A10 10 0 0 1 12 5c5 0 9 4.5 10 7-.4.9-1.1 2-2.1 3.1M6.6 6.6C4.3 8 2.7 10.2 2 12c1 2.5 5 7 10 7 1.6 0 3.1-.4 4.4-1"/>'
+  };
+
+  // 01 — A realidade (cartões de dor)
   var pains = [
-    { i: ico('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="4" rx="1.5"/><rect x="3" y="14" width="5" height="7" rx="1.5"/><rect x="12" y="11" width="9" height="10" rx="1.5"/>'), t: 'Seu feed parece improviso. O do concorrente parece empresa grande.' },
-    { i: ico('<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>'), t: 'Você posta todo dia e não chega cliente.' },
-    { i: ico('<polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/>'), t: 'Cada arte sai de um jeito. Ninguém lembra da sua marca.' },
-    { i: ico('<circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3 2"/>'), t: 'Você perde horas no Canva fazendo o que não é sua função.' },
-    { i: ico('<path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-8"/><path d="M14 4h6v6"/>'), t: 'Impulsiona post, gasta, e não sabe se o dinheiro voltou.' },
-    { i: ico('<rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M9 18h6"/><path d="m9 9 2 2 4-4"/>'), t: 'O cliente clica no anúncio e cai num perfil bagunçado.' }
+    { i: ico(I.searchX), t: 'Alguém pesquisa o seu serviço no Google e o resultado é só concorrente.' },
+    { i: ico(I.insta), t: 'Seu “site” é o link do Instagram. O cliente cai num feed e vai embora.' },
+    { i: ico(I.chat), t: 'O cliente pede “o site de vocês” e você manda o WhatsApp. A confiança cai ali.' },
+    { i: ico(I.pin), t: 'Sem Google Meu Negócio, você não aparece nem no mapa, nem no “perto de mim”.' },
+    { i: ico(I.mega), t: 'Você paga anúncio e manda o clique pro perfil. Metade some antes de falar com você.' },
+    { i: ico(I.building), t: 'O concorrente parece maior do que é. Não porque é melhor: porque tem site.' }
   ];
+
+  // 03 — Serviços (o 1º e o 2º são os carros-chefe e ocupam metade da linha cada)
   var services = [
-    { icon: 'assets/icons/icon-identidade-visual.svg', title: 'Identidade Visual', flag: 'Comece por aqui',
-      desc: 'A base que faz sua marca ser reconhecida em qualquer lugar, do perfil ao anúncio.',
-      solves: 'marca amadora, sem personalidade, com cada arte parecendo de uma empresa diferente.',
-      delivers: 'logotipo e versões, paleta de cores, tipografia e manual de uso da marca.' },
-    { icon: 'assets/icons/icon-social-media.svg', title: 'Social Media',
-      desc: 'Presença nas redes com identidade, constância e estratégia. Não post aleatório.',
-      solves: 'feed bagunçado, sem linha visual, que não gera reconhecimento nem cliente.',
-      delivers: 'linha visual definida, conteúdos e um feed coeso que passa autoridade.' },
-    { icon: 'assets/icons/icon-criativos-anuncio.svg', title: 'Criativos de Anúncio',
-      desc: 'Artes feitas pra parar o dedo e converter. Não só pra ficar bonito.',
-      solves: 'anúncio que passa despercebido e queima verba sem retorno.',
-      delivers: 'criativos pensados pra conversão, com variações pra testar e escalar.' },
-    { icon: 'assets/icons/icon-landing-pages.svg', title: 'Landing Pages & Sites', flag: 'Novo',
-      desc: 'A página que transforma clique em conversa. Rápida, clara e com o botão certo no lugar certo.',
-      solves: 'anúncio que manda o cliente pra um perfil bagunçado ou pra um site lento que não converte.',
-      delivers: 'landing page ou site responsivo, com copy de venda, carregamento rápido e WhatsApp integrado.',
-      badges: ['Mobile first','Carrega rápido','Pronta pra anúncio'] },
-    { icon: 'assets/icons/icon-trafego-pago.svg', title: 'Gestão de Tráfego Pago',
-      desc: 'Sua marca na frente das pessoas certas, todo dia, com verba que faz sentido.',
-      solves: 'impulsionar post sem saber pra quem, gastando sem previsibilidade de resultado.',
-      delivers: 'campanhas segmentadas e otimizadas, com os criativos e a página já feitos por mim.',
-      badges: ['Meta Ads','Google Ads','TikTok Ads'] }
+    { svg: I.layout, title: 'Landing Page de alta conversão', flag: 'Carro-chefe',
+      desc: 'Uma página, um objetivo: transformar quem chega em conversa no WhatsApp. Feita para o Google, para o link da bio e para receber anúncio.',
+      solves: 'clique que morre no Instagram, oferta mal explicada e cliente que some antes de falar com você.',
+      delivers: 'página completa com copy de venda, design profissional, SEO on-page, WhatsApp integrado e domínio no ar.',
+      badges: ['Copy de venda','SEO & GEO','WhatsApp integrado','Mobile first'] },
+    { svg: I.globe, title: 'Site institucional', flag: 'Autoridade',
+      desc: 'A casa oficial do seu negócio no Google. Serviços, sobre, contato e provas em um endereço próprio que passa credibilidade.',
+      solves: 'negócio invisível na pesquisa e cliente que desconfia porque “não achou o site”.',
+      delivers: 'site com várias páginas, estrutura de SEO, formulários, blog opcional e conexão com o Google Meu Negócio.',
+      badges: ['SEO técnico','Google Analytics','Rápido e seguro (HTTPS)'] },
+    { svg: I.link, title: 'Página de links na bio',
+      desc: 'Chega de link genérico igual ao de todo mundo. Uma página com a sua marca, seus canais e um caminho claro pro cliente.',
+      solves: 'Linktree sem identidade, que não direciona pra venda e não é seu.',
+      delivers: 'página de links personalizada, com sua identidade, botões priorizados e métricas de clique.' },
+    { svg: I.pin, title: 'Google Meu Negócio', flag: 'Apareça no mapa',
+      desc: 'O perfil que coloca seu negócio no Google Maps e no topo da busca local, com fotos, horários, avaliações e botão de contato.',
+      solves: 'não aparecer quando alguém pesquisa “perto de mim” ou o seu serviço na sua cidade.',
+      delivers: 'perfil criado ou otimizado, categorias certas, fotos, descrição com palavras-chave e conexão com o site.' },
+    { svg: I.mega, title: 'Tráfego pago', flag: 'Acelerador',
+      desc: 'Com a página pronta, o anúncio vira combustível. A DA STUDIO cria os criativos e gerencia as campanhas que levam o público certo até ela.',
+      solves: 'impulsionar post sem estratégia e mandar o clique pra um perfil que não converte.',
+      delivers: 'campanhas no Meta e Google Ads com criativos, segmentação e relatório claro do que voltou.',
+      badges: ['Meta Ads','Google Ads','Criativos inclusos'] }
   ];
+
+  // 04 — Caminho do cliente
   var journey = [
-    { l: 'Marca', i: ico('<path d="m12 3 2.6 5.3L20 9l-4 4 1 5.9L12 16l-5 2.9L8 13 4 9l5.4-.7z"/>'), h: 'Ele te vê pela primeira vez.', no: 'Sem identidade, você vira mais um no feed. Ele passa direto e nem registra seu nome.', yes: 'Uma marca coerente gera reconhecimento e confiança em segundos. Ele para, olha e lembra.', s: 'Identidade Visual' },
-    { l: 'Conteúdo', i: ico('<rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="1"/>'), h: 'Ele começa a te acompanhar.', no: 'Feed sem linha visual não gera desejo, só ruído. Ele segue, mas esquece que você existe.', yes: 'Conteúdo com estratégia constrói autoridade e mantém você na cabeça dele até a hora de comprar.', s: 'Social Media' },
-    { l: 'Anúncio', i: ico('<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a3 3 0 0 1 0 6"/><path d="M18 6a7 7 0 0 1 0 12"/>'), h: 'Ele vê sua oferta na hora certa.', no: 'Post impulsionado sem criativo e sem público certo queima verba e traz curioso, não cliente.', yes: 'Criativo pensado pra converter, entregue pra quem tem intenção de comprar, com verba controlada.', s: 'Criativos + Tráfego Pago' },
-    { l: 'Página', i: ico('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><path d="M8 14h5"/><path d="M8 17h8"/>'), h: 'Ele clica e decide.', no: 'Cair num perfil bagunçado ou num link quebrado mata a venda no último passo. Ele desiste.', yes: 'Uma landing page clara mostra a oferta, tira a dúvida e leva direto pro WhatsApp ou pra compra.', s: 'Landing Pages & Sites' },
-    { l: 'Cliente', i: ico('<path d="M20 6 9 17l-5-5"/>'), h: 'Ele compra. E volta.', no: 'Sem marca e sem tráfego contínuo, a venda depende de sorte e de indicação. Um mês bom, outro ruim.', yes: 'Com o ciclo inteiro rodando, a marca vende com previsibilidade e você cresce com controle.', s: 'O ciclo completo' }
+    { l: 'Busca', i: ico(I.search), h: 'Ele pesquisa o que você vende.', no: 'Sem site e sem perfil no Google, você não está na lista. A pesquisa termina no concorrente.', yes: 'Seu site e seu perfil no Google Meu Negócio aparecem para quem procura na sua região.', s: 'Site + Google Meu Negócio' },
+    { l: 'Clique', i: ico(I.cursor), h: 'Ele clica no seu resultado.', no: 'Sem página, o clique cai num Instagram que não explica nada. Ele volta pra busca.', yes: 'Uma página rápida e profissional abre em segundos, no celular, com a oferta clara.', s: 'Landing page ou site' },
+    { l: 'Confiança', i: ico(I.shield), h: 'Ele decide se confia em você.', no: 'Feed bagunçado, sem endereço, sem prova. Parece amador. Ele desconfia.', yes: 'Design profissional, depoimentos, serviços explicados e um endereço próprio. Parece empresa séria. Porque é.', s: 'Design + copy' },
+    { l: 'Contato', i: ico(I.chat), h: 'Ele fala com você.', no: 'Precisa procurar o número, sair do app, copiar. Metade desiste no caminho.', yes: 'Um toque no botão e a conversa abre no WhatsApp com a mensagem pronta.', s: 'WhatsApp integrado' },
+    { l: 'Cliente', i: ico(I.check), h: 'Ele compra. E indica.', no: 'Sem página, cada venda depende de sorte e de indicação. Um mês bom, outro ruim.', yes: 'A página trabalha 24h, o Google traz gente nova todo dia e o anúncio acelera quando você quiser.', s: 'Página + Google + Tráfego' }
   ];
+
+  // 05 — O que vem em cada projeto
+  var feats = [
+    { i: I.search, t: 'SEO on-page', d: 'Títulos, descrições e estrutura pensados para o Google entender e ranquear sua página.' },
+    { i: I.ai, t: 'GEO (busca com IA)', d: 'Conteúdo estruturado para aparecer nas respostas do ChatGPT, do Gemini e do modo IA do Google.' },
+    { i: I.pen, t: 'Copy de venda', d: 'Texto que explica a oferta, quebra objeções e conduz ao contato. Nada de “lorem ipsum”.' },
+    { i: I.phone, t: 'Mobile first', d: 'Desenhada primeiro para o celular, onde a maior parte dos seus clientes está.' },
+    { i: I.zap, t: 'Carregamento rápido', d: 'Página leve, sem plugin pesado. Abre antes do cliente pensar em voltar.' },
+    { i: I.chat, t: 'WhatsApp integrado', d: 'Botão fixo, mensagem pronta e link rastreável. Do clique à conversa em um toque.' },
+    { i: I.lock, t: 'Domínio e segurança', d: 'Endereço próprio (seunegocio.com.br), certificado HTTPS e publicação incluídos.' },
+    { i: I.bars, t: 'Pixel e Analytics', d: 'Meta Pixel e Google Analytics configurados. Pronta para anunciar e medir desde o dia 1.' }
+  ];
+
+  // 06 — Comparação
   var compare = [
-    { k: 'Identidade', no: 'Logo do Canva, cada arte de um jeito', yes: 'Sistema visual que se reconhece de longe' },
-    { k: 'Conteúdo', no: 'Posta quando lembra, sem objetivo', yes: 'Linha editorial com constância e meta' },
-    { k: 'Anúncio', no: 'Botão impulsionar e torcer', yes: 'Criativo testado, público definido, verba otimizada' },
-    { k: 'Página', no: 'Link na bio pro Instagram', yes: 'Landing page que leva direto pro WhatsApp' },
-    { k: 'Atendimento', no: 'Freelancer some depois da entrega', yes: 'Uma pessoa só, do briefing ao pós-projeto' },
-    { k: 'Resultado', no: 'Depende de sorte e indicação', yes: 'Previsibilidade e marca que vende sozinha' }
+    { k: 'Google', no: 'Não aparece na busca nem no mapa', yes: 'No mapa, na busca e nas respostas de IA', i: I.search },
+    { k: 'Primeira impressão', no: 'Link do Instagram, feed bagunçado', yes: 'Página profissional com a sua marca', i: I.insta },
+    { k: 'Confiança', no: '“Eles nem têm site...”', yes: 'Endereço próprio, provas e serviços claros', i: I.shield },
+    { k: 'Contato', no: 'Cliente procura o número e desiste', yes: 'Um toque e a conversa abre no WhatsApp', i: I.chat },
+    { k: 'Anúncio', no: 'Clique caro caindo no perfil', yes: 'Clique caindo numa página feita pra converter', i: I.mega },
+    { k: 'Resultado', no: 'Depende de indicação e sorte', yes: 'Cliente novo chegando pelo Google todo dia', i: I.chart }
   ];
+
+  // 08 — Processo
   var steps = [
-    { n: 'Etapa 01', t: 'Briefing', d: 'Entendo seu negócio, seu público e seu objetivo. Você recebe prazo e valor claros antes de começar.', tag: 'Você aprova o escopo' },
-    { n: 'Etapa 02', t: 'Conceito', d: 'Referências, moodboard e posicionamento. Você aprova o rumo antes da mão na massa.', tag: 'Sem surpresa depois' },
-    { n: 'Etapa 03', t: 'Criação', d: 'Logo, peças, página ou campanha ganhando forma, com prévias no caminho.', tag: 'Prévias durante o processo' },
-    { n: 'Etapa 04', t: 'Ajustes', d: 'Refino junto com você até cada detalhe ficar do jeito certo.', tag: 'Você participa' },
-    { n: 'Etapa 05', t: 'Entrega', d: 'Arquivos organizados, página no ar ou campanha rodando, mais suporte depois.', tag: 'Suporte pós-projeto' }
+    { n: 'Etapa 01', t: 'Briefing', d: 'A DA STUDIO entende seu negócio, seu cliente e seu objetivo. Você recebe escopo, prazo e valor fechados antes de começar.', tag: 'Gratuito e sem compromisso' },
+    { n: 'Etapa 02', t: 'Estratégia e copy', d: 'Estrutura da página, palavras-chave que seu cliente pesquisa e o texto que vai vender. Você aprova antes do design.', tag: 'SEO desde o rascunho' },
+    { n: 'Etapa 03', t: 'Design', d: 'Layout com a sua identidade, pensado primeiro para o celular. Prévia navegável para você testar no seu próprio aparelho.', tag: 'Você vê antes de aprovar' },
+    { n: 'Etapa 04', t: 'Desenvolvimento e SEO', d: 'Página construída leve e rápida, com SEO técnico, GEO, WhatsApp, Pixel e Analytics configurados.', tag: 'Pronta para anunciar' },
+    { n: 'Etapa 05', t: 'Publicação e Google', d: 'Domínio no ar, Google Meu Negócio conectado, indexação solicitada e suporte depois da entrega.', tag: 'Suporte pós-entrega' }
   ];
+
+  // 10 — FAQ
   var faq = [
-    { q: 'Preciso ter identidade visual antes de anunciar?', a: 'Não é obrigatório, mas faz muita diferença. Anúncio com marca inconsistente até gera clique, mas o cliente não confia na hora de fechar. Se você ainda não tem identidade, a gente resolve isso primeiro ou em paralelo, sem travar a campanha.' },
-    { q: 'Posso contratar só uma coisa, tipo só o tráfego ou só a landing page?', a: 'Pode. Cada frente funciona sozinha. Só que eu sempre mostro no briefing o que está faltando no ciclo, pra você decidir com clareza. Muita gente começa com uma frente e vai encaixando as outras conforme vê resultado.' },
-    { q: 'Quanto tempo leva e quanto custa?', a: 'Depende do escopo. Uma landing page é diferente de uma identidade completa com campanha. Por isso o primeiro passo é o briefing: em uma conversa rápida eu entendo seu momento e te passo prazo e valor fechados, sem enrolação.' },
-    { q: 'Você faz o site inteiro ou só a landing page?', a: 'Os dois. Landing page é uma página única focada em converter, ideal pra anúncio. Site institucional tem várias páginas e serve pra apresentar o negócio completo. No briefing eu te indico qual faz mais sentido pro seu objetivo agora.' },
-    { q: 'Como funciona o tráfego pago? Eu preciso ter verba alta?', a: 'Não. A verba de mídia é sua e a gente define juntos um valor que caiba no seu momento. Meu trabalho é fazer esse valor render: público certo, criativo certo e página certa. Você acompanha os resultados e decide quando escalar.' },
-    { q: 'Atende clientes de outras cidades?', a: 'Sim. Todo o processo é online: briefing por chamada ou WhatsApp, prévias por link e entrega organizada em nuvem. Já atendi marcas de vários lugares do Brasil.' }
+    { q: 'Landing page ou site: qual eu preciso?', a: 'Landing page é uma página única com um objetivo, ideal para anúncios, para o link da bio e para uma oferta específica. Site institucional tem várias páginas e é a casa do negócio no Google, ideal para quem quer aparecer para vários serviços. No briefing a DA STUDIO indica o que faz mais sentido para o seu momento. Muitos projetos começam pela landing page e evoluem para o site.' },
+    { q: 'Já tenho Instagram. Preciso mesmo de um site?', a: 'O Instagram é ótimo para relacionamento, mas ele não aparece no Google quando alguém pesquisa “seu serviço + sua cidade”. Quem tem site e Google Meu Negócio aparece. Quem não tem, entrega essa pesquisa para o concorrente. O site não substitui o Instagram: ele recebe quem o Instagram e o Google mandam e transforma em contato.' },
+    { q: 'Quanto custa e quanto tempo leva?', a: 'Depende do escopo: uma página de links é diferente de um site com dez páginas. Por isso o primeiro passo é o briefing gratuito. Em uma conversa a DA STUDIO entende o seu caso e envia uma proposta com valor e prazo fechados, sem surpresa no meio do caminho.' },
+    { q: 'O que é SEO e GEO, e por que isso importa?', a: 'SEO é a otimização para o seu site aparecer bem nas buscas do Google. GEO é a otimização para aparecer nas respostas de ferramentas de IA, como o ChatGPT, o Gemini e o modo IA do Google, que cada vez mais gente usa para escolher onde comprar. A DA STUDIO estrutura toda página pensando nos dois.' },
+    { q: 'A DA STUDIO faz o Google Meu Negócio também?', a: 'Sim. O estúdio cria ou otimiza o perfil (hoje chamado de Perfil da Empresa no Google), define categorias, fotos, descrição com palavras-chave e conecta ao site. É o que coloca seu negócio no Google Maps e no bloco local da busca.' },
+    { q: 'Domínio, hospedagem e manutenção: como funciona?', a: 'A DA STUDIO registra o domínio (ou usa o que você já tem), publica a página e configura o certificado de segurança. Após a entrega você recebe suporte e pode contratar manutenção contínua para atualizações e novas páginas.' },
+    { q: 'E o tráfego pago, entra quando?', a: 'Depois que a página está pronta. Anunciar sem uma página que converte é queimar verba. Com ela no ar, a DA STUDIO cria os criativos e gerencia as campanhas no Meta e no Google Ads, com verba de mídia definida junto com você.' },
+    { q: 'Atende negócios de qualquer cidade?', a: 'Sim. Todo o processo é online: briefing por chamada ou WhatsApp, prévias por link e entrega em nuvem. A DA STUDIO atende negócios de todo o Brasil.' }
   ];
+
+  // 09 — Diagnóstico (pontuação máxima: 30 + 30 + 20 + 20 = 100)
   var QUIZ = [
-    { q: 'Qual é o seu momento hoje?', sub: 'Isso ajuda a personalizar o plano.', key: 'persona', opts: [
-      { t: 'Sou empreendedor(a) e vendo produto ou serviço' }, { t: 'Tenho um negócio local (loja, clínica, restaurante...)' }, { t: 'Sou infoprodutor(a) ou vendo online' }, { t: 'Construo uma marca pessoal' } ] },
-    { q: 'Como está a sua marca hoje?', sub: 'Logo, cores, padrão visual.', key: 'marca', opts: [
-      { t: 'Não tenho logo nem identidade definida', s: 0 }, { t: 'Tenho logo, mas cada arte sai de um jeito', s: 15 }, { t: 'Tenho identidade definida e uso com consistência', s: 35 } ] },
-    { q: 'Onde o cliente chega quando te procura?', sub: 'O destino do clique.', key: 'pagina', opts: [
-      { t: 'Só no Instagram ou direto no WhatsApp', s: 0 }, { t: 'Tenho site, mas ele não converte', s: 12 }, { t: 'Tenho uma landing page que converte bem', s: 30 } ] },
-    { q: 'Como você atrai clientes hoje?', sub: 'De onde vem a maior parte da demanda.', key: 'trafego', opts: [
-      { t: 'Indicação e conteúdo orgânico', s: 0 }, { t: 'Impulsiono posts sem muita estratégia', s: 15 }, { t: 'Rodo campanhas estruturadas', s: 35 } ] }
+    { q: 'Qual é o seu tipo de negócio?', sub: 'Para personalizar a análise.', key: 'segmento', opts: [
+      { t: 'Negócio local (loja, clínica, restaurante, salão...)', seg: 'local' }, { t: 'Prestador de serviço ou profissional liberal', seg: 'servico' }, { t: 'Loja online ou venda de produto', seg: 'loja' }, { t: 'Infoproduto, curso ou mentoria', seg: 'info' } ] },
+    { q: 'Hoje, quando alguém quer conhecer o seu negócio, onde chega?', sub: 'O destino de quem te procura.', key: 'pagina', opts: [
+      { t: 'No meu Instagram ou direto no WhatsApp', s: 0 }, { t: 'Num link na bio genérico (Linktree e similares)', s: 8 }, { t: 'Tenho um site, mas está velho ou não traz cliente', s: 15 }, { t: 'Tenho uma página profissional que converte bem', s: 30 } ] },
+    { q: 'Se alguém pesquisar o seu serviço no Google agora, o que aparece?', sub: 'Seja sincero: é isso que o cliente vê.', key: 'google', opts: [
+      { t: 'Nada meu. Só concorrente', s: 0 }, { t: 'Só o meu Instagram', s: 8 }, { t: 'Meu site aparece, mas lá embaixo', s: 18 }, { t: 'Meu site aparece entre os primeiros', s: 30 } ] },
+    { q: 'Seu negócio tem perfil no Google Meu Negócio (aparece no Maps)?', sub: 'O bloco com mapa, estrelas e horário.', key: 'gmn', opts: [
+      { t: 'Não tenho', s: 0 }, { t: 'Tenho, mas está incompleto ou abandonado', s: 10 }, { t: 'Tenho, completo e com avaliações', s: 20 } ] },
+    { q: 'Como os clientes chegam até você hoje?', sub: 'De onde vem a maior parte da demanda.', key: 'trafego', opts: [
+      { t: 'Indicação e boca a boca', s: 0 }, { t: 'Redes sociais, no orgânico', s: 6 }, { t: 'Impulsiono posts de vez em quando', s: 10 }, { t: 'Campanhas de anúncio estruturadas', s: 20 } ] }
   ];
+  var SEG = {
+    local:   { n: 'negócio local',          rec: 'Site institucional + Google Meu Negócio', want: 'Site institucional', why: 'Negócio local vive da busca “perto de mim”. Site com SEO local e perfil no Google Maps é o que coloca você na frente de quem está a poucos quilômetros, pronto para comprar.' },
+    servico: { n: 'prestador de serviço',   rec: 'Landing page + Google Meu Negócio', want: 'Landing page', why: 'Quem contrata serviço pesquisa, compara e chama quem parece mais profissional. Uma landing page com prova e WhatsApp em um toque fecha esse ciclo, e o perfil no Google traz a busca local.' },
+    loja:    { n: 'loja ou produto',        rec: 'Landing page de oferta + Tráfego pago', want: 'Landing page', why: 'Produto vende com página de oferta clara e anúncio bem direcionado. A landing page recebe o clique, o tráfego pago traz volume e o Google garante quem já procura pela marca.' },
+    info:    { n: 'infoproduto ou mentoria', rec: 'Landing page de conversão + Tráfego pago', want: 'Landing page', why: 'Infoproduto depende de uma página que convence em segundos. Copy forte, prova social e botão certo, com campanhas levando o público certo até ela.' }
+  };
 
   // ===================== RENDER =====================
   function setHTML(sel, html){ var el = $(sel); if (el) el.innerHTML = html; }
@@ -1061,35 +1307,31 @@
   }).join(''));
 
   setHTML('[data-render="services"]', services.map(function(s, i){
-    var badges = s.badges ? '<div class="badges"><em>' + (i === 4 ? 'Trabalho com' : 'Entrega') + '</em>' + s.badges.map(function(b){ return '<span>' + esc(b) + '</span>'; }).join('') + '</div>' : '';
+    var badges = s.badges ? '<div class="badges"><em>' + (i === 4 ? 'Trabalha com' : 'Inclui') + '</em>' + s.badges.map(function(b){ return '<span>' + esc(b) + '</span>'; }).join('') + '</div>' : '';
     return '<div class="svc card glow-border reveal" style="--d:' + (i * .08) + 's">' +
-      '<div class="svc-top"><img class="svc-icon" src="' + esc(s.icon) + '" alt="" aria-hidden="true" loading="lazy" width="64" height="64"><span class="right">' + (s.flag ? '<span class="flag">' + esc(s.flag) + '</span>' : '') + '<span class="num">0' + (i + 1) + '</span></span></div>' +
+      '<div class="svc-top"><span class="svc-ico" aria-hidden="true">' + ico(s.svg) + '</span><span class="right">' + (s.flag ? '<span class="flag">' + esc(s.flag) + '</span>' : '') + '<span class="num">0' + (i + 1) + '</span></span></div>' +
       '<h3>' + esc(s.title) + '</h3><p>' + esc(s.desc) + '</p><div class="svc-sep"></div>' +
       '<div class="svc-lines"><p class="svc-line"><b>Resolve:</b><span>' + esc(s.solves) + '</span></p><p class="svc-line"><b>Você leva:</b><span>' + esc(s.delivers) + '</span></p></div>' + badges + '</div>';
   }).join(''));
 
-  // Versus: duas colunas (improviso x estrategia)
+  setHTML('[data-render="feats"]', feats.map(function(f, i){
+    return '<div class="feat card reveal" style="--d:' + ((i % 4) * .07) + 's" data-rv="' + (i % 2 ? 'right' : 'left') + '"><span class="ico">' + ico(f.i) + '</span><div><b>' + esc(f.t) + '</b><p>' + esc(f.d) + '</p></div></div>';
+  }).join(''));
+
+  // Versus: duas colunas (sem site x com a DA STUDIO)
   (function(){
-    var aspIco = [
-      ico('<path d="m12 3 2.6 5.3L20 9l-4 4 1 5.9L12 16l-5 2.9L8 13 4 9l5.4-.7z"/>'),
-      ico('<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>'),
-      ico('<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 9a3 3 0 0 1 0 6"/><path d="M18 6a7 7 0 0 1 0 12"/>'),
-      ico('<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18"/><path d="M8 14h5"/><path d="M8 17h8"/>'),
-      ico('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'),
-      ico('<path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-8"/>')
-    ];
     var X = '<svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>', V = '<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
     var col = function(kind){
       var yes = kind === 'yes';
       return '<div class="vs-col vs-' + kind + (yes ? ' card glow-border' : '') + ' reveal" data-rv="' + (yes ? 'right' : 'left') + '">' +
-        '<div class="vs-head"><span class="vs-tag">' + (yes ? '✦ Com a Devikison' : 'Hoje, no improviso') + '</span>' +
-        '<h3>' + (yes ? 'Marca com estratégia' : 'Marca no improviso') + '</h3>' +
-        '<p>' + (yes ? 'Cada peça conversa com a outra e leva o cliente até o sim.' : 'Cada peça feita na correria, sem conversar com a outra.') + '</p></div>' +
-        compare.map(function(c, i){
-          return '<div class="vs-item"><span class="vs-tile">' + aspIco[i] + '<span class="vs-mark">' + (yes ? V : X) + '</span></span>' +
+        '<div class="vs-head"><span class="vs-tag">' + (yes ? '✦ Com a DA STUDIO' : 'Hoje, sem site') + '</span>' +
+        '<h3>' + (yes ? 'Negócio encontrado' : 'Negócio invisível') + '</h3>' +
+        '<p>' + (yes ? 'Quem procura, encontra você. E fala com você.' : 'Você depende de quem já te conhece.') + '</p></div>' +
+        compare.map(function(c){
+          return '<div class="vs-item"><span class="vs-tile">' + ico(c.i) + '<span class="vs-mark">' + (yes ? V : X) + '</span></span>' +
             '<div><small>' + esc(c.k) + '</small><b>' + esc(yes ? c.yes : c.no) + '</b></div></div>';
         }).join('') +
-        (yes ? '<div class="vs-cta"><a class="btn btn-primary btn-sm btn-block" href="' + waLink('Olá Devikison! Quero minha marca do lado da estratégia. Podemos conversar?') + '" target="_blank" rel="noopener">Quero esse lado <span aria-hidden="true">→</span></a></div>' : '') +
+        (yes ? '<div class="vs-cta"><a class="btn btn-primary btn-sm btn-block" href="' + waLink('Olá, DA STUDIO! Quero meu negócio do lado de quem é encontrado no Google. Podemos conversar?') + '" target="_blank" rel="noopener">Quero estar desse lado <span aria-hidden="true">→</span></a></div>' : '') +
       '</div>';
     };
     setHTML('[data-render="compare"]', col('no') + '<div class="vs-mid" aria-hidden="true"><span>VS</span></div>' + col('yes'));
@@ -1105,20 +1347,20 @@
   }).join(''));
 
   setHTML('#pf-track', gallery.map(function(src, i){
-    return '<button type="button" class="pf" data-pf="' + i + '" aria-label="Ampliar arte ' + (i + 1) + '"><img src="' + esc(src) + '" alt="Arte do portfólio ' + (i + 1) + '" loading="lazy" width="1080" height="1440"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></span></button>';
+    return '<button type="button" class="pf" data-pf="' + i + '" aria-label="Ampliar projeto ' + (i + 1) + '"><img src="' + esc(src) + '" alt="Projeto da DA STUDIO ' + (i + 1) + '" loading="lazy" width="1080" height="1440"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></span></button>';
   }).join('') + gallery.map(function(src, i){
     return '<button type="button" class="pf" data-pf="' + i + '" tabindex="-1" aria-hidden="true"><img src="' + esc(src) + '" alt="" loading="lazy" width="1080" height="1440"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg></span></button>';
   }).join(''));
 
   setHTML('#lp-track', lpShots.map(function(src, i){
-    return '<div class="lps"><img src="' + esc(src) + '" alt="Landing page ' + (i + 1) + ' criada por Devikison Aguiar" loading="lazy" width="1200" height="628"></div>';
+    return '<div class="lps"><img src="' + esc(src) + '" alt="Landing page ' + (i + 1) + ' criada pela DA STUDIO" loading="lazy" width="1200" height="628"></div>';
   }).join('') + lpShots.map(function(src, i){
     return '<div class="lps" aria-hidden="true"><img src="' + esc(src) + '" alt="" loading="lazy" width="1200" height="628"></div>';
   }).join(''));
 
-  // ===================== DORES: checklist =====================
+  // ===================== REALIDADE: checklist =====================
   (function(){
-    var msgs = ['Toque nos cartões acima pra começar.','Já dá pra resolver rápido. Veja como.','Dois pontos de vazamento. Dá pra fechar os dois.','Sua marca está deixando dinheiro na mesa.','Quatro sinais claros. Hora de parar o improviso.','Você está trabalhando muito e vendendo pouco. Eu cuido disso.','Não é você, é o processo. Bora resolver tudo de uma vez.'];
+    var msgs = ['Marque os cartões acima.','Um ponto já é cliente indo embora. Dá pra resolver rápido.','Dois vazamentos. Sua concorrência agradece.','Três sinais. Seu negócio está invisível onde importa.','Quatro. Você trabalha bem e ninguém te encontra.','Cinco. Cada pesquisa hoje é uma venda perdida.','Todos os seis. Não é falta de qualidade. É falta de presença. A DA STUDIO resolve.'];
     var bar = $('[data-pain-bar]'), cnt = $('[data-pain-count]'), msg = $('[data-pain-msg]');
     var pn = $$('[data-pain]');
     function update(){
@@ -1128,6 +1370,23 @@
       if (msg) msg.textContent = msgs[Math.min(n, msgs.length - 1)];
     }
     pn.forEach(function(b){ b.addEventListener('click', function(){ b.classList.toggle('on'); b.setAttribute('aria-pressed', b.classList.contains('on') ? 'true' : 'false'); update(); }); });
+  })();
+
+  // ===================== GOOGLE: busca digitando sozinha =====================
+  (function(){
+    var el = $('[data-serp-q]'); if (!el) return;
+    if (reduced){ el.textContent = SERP_TERMS[0]; return; }
+    var ti = 0, ci = 0, del = false, timer = null, running = false;
+    function tick(){
+      var t = SERP_TERMS[ti];
+      if (!del){ ci++; el.textContent = t.slice(0, ci); if (ci === t.length){ del = true; timer = setTimeout(tick, 2200); return; } timer = setTimeout(tick, 55 + Math.random() * 60); }
+      else { ci--; el.textContent = t.slice(0, ci); if (ci === 0){ del = false; ti = (ti + 1) % SERP_TERMS.length; timer = setTimeout(tick, 380); return; } timer = setTimeout(tick, 28); }
+    }
+    function start(){ if (running) return; running = true; tick(); }
+    function stop(){ running = false; clearTimeout(timer); }
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){ en.forEach(function(e){ e.isIntersecting ? start() : stop(); }); }, { threshold: .2 }).observe(el.closest('.serp'));
+    } else start();
   })();
 
   // ===================== CAMINHO: jornada interativa =====================
@@ -1146,9 +1405,9 @@
       bars.forEach(function(b, k){ b.className = k < i ? 'done' : (k === i ? 'on' : ''); });
       if (line) line.style.width = (80 * i / (journey.length - 1)) + '%';
       var j = journey[i];
-      panel.innerHTML = '<div class="' + (anim ? 'j-anim' : '') + '"><span class="tag"><i></i>Etapa ' + (i + 1) + ' de 5</span><h3>' + esc(j.h) + '</h3><p class="j-svc">Quem resolve: <strong>' + esc(j.s) + '</strong></p></div>' +
-        '<div class="j-box no ' + (anim ? 'j-anim-l' : '') + '"><b>✕ Sem isso</b>' + esc(j.no) + '</div>' +
-        '<div class="j-box yes ' + (anim ? 'j-anim-r' : '') + '"><b>✓ Com isso</b>' + esc(j.yes) + '</div>';
+      panel.innerHTML = '<div class="' + (anim ? 'j-anim' : '') + '"><span class="tag"><i></i>Passo ' + (i + 1) + ' de 5</span><h3>' + esc(j.h) + '</h3><p class="j-svc">O que resolve: <strong>' + esc(j.s) + '</strong></p></div>' +
+        '<div class="j-box no ' + (anim ? 'j-anim-l' : '') + '"><b>✕ Sem página</b>' + esc(j.no) + '</div>' +
+        '<div class="j-box yes ' + (anim ? 'j-anim-r' : '') + '"><b>✓ Com a DA STUDIO</b>' + esc(j.yes) + '</div>';
       prog.style.setProperty('--jt', (AUTO / 1000) + 's');
     }
     function auto(){ clearTimeout(timer); if (reduced || userTouched) return; timer = setTimeout(function(){ show((cur + 1) % journey.length, true); auto(); }, AUTO); }
@@ -1160,7 +1419,7 @@
     } else auto();
   })();
 
-  // ===================== COMPARAÇÃO: toggle mobile + reveal por linha =====================
+  // ===================== COMPARAÇÃO: toggle mobile =====================
   (function(){
     var tg = $('[data-cmp-toggle]'), tb = $('[data-cmp-table]');
     if (tg && tb) $$('[data-cmp]', tg).forEach(function(b){ b.addEventListener('click', function(){
@@ -1168,13 +1427,14 @@
       $$('[data-cmp]', tg).forEach(function(x){ x.classList.toggle('on', x === b); });
     }); });
   })();
-  // ===================== DIAGNÓSTICO (quiz) =====================
+
+  // ===================== DIAGNÓSTICO (quiz + formulário) =====================
   (function(){
     var box = $('[data-quiz]'); if (!box) return;
-    var step = 0, ans = [], dir = 'fwd';
+    var step = 0, ans = [], dir = 'fwd', R = null;
     var chk = '<svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>';
-    function prog(){
-      return '<div class="q-prog">' + QUIZ.map(function(_, i){ return '<i class="' + (i < step ? 'done' : '') + '"></i>'; }).join('') + '<span>' + Math.min(step + 1, QUIZ.length) + '/' + QUIZ.length + '</span></div>';
+    function prog(all){
+      return '<div class="q-prog">' + QUIZ.map(function(_, i){ return '<i class="' + (all || i < step ? 'done' : '') + '"></i>'; }).join('') + '<span>' + (all ? 'Resultado' : Math.min(step + 1, QUIZ.length) + '/' + QUIZ.length) + '</span></div>';
     }
     function renderQ(){
       var q = QUIZ[step];
@@ -1188,29 +1448,99 @@
       }); });
       var bk = $('[data-qback]', box); if (bk) bk.addEventListener('click', function(){ dir = 'back'; step--; renderQ(); });
     }
-    function renderResult(){
-      var score = 0, gaps = [];
-      var m = QUIZ[1].opts[ans[1]].s, p = QUIZ[2].opts[ans[2]].s, t = QUIZ[3].opts[ans[3]].s; score = m + p + t;
-      var persona = QUIZ[0].opts[ans[0]].t;
-      if (m < 35) gaps.push({ k: m, t: 'Identidade Visual', d: m === 0 ? 'Sem base visual, todo o resto perde força. Começamos por aqui.' : 'Padronizar o que você já tem pra sua marca ser reconhecida em qualquer peça.' });
-      if (m < 35) gaps.push({ k: m + 1, t: 'Social Media', d: 'Um feed coeso que transforma seguidor em cliente, com constância.' });
-      if (p < 30) gaps.push({ k: p, t: 'Landing Page', d: p === 0 ? 'Hoje o clique morre no Instagram. Uma página clara leva direto pro WhatsApp.' : 'Reestruturar sua página com copy de venda e botão no lugar certo.' });
-      if (t < 35) gaps.push({ k: t, t: 'Tráfego Pago + Criativos', d: t === 0 ? 'Parar de depender de indicação. Campanha com público certo e criativo que converte.' : 'Trocar o impulsionar por campanha estruturada, com verba otimizada.' });
-      if (!gaps.length) gaps.push({ k: 0, t: 'Criativos e conteúdo contínuos', d: 'Sua base está pronta. O próximo nível é escala: mais criativos, mais testes, mais volume.' });
+    function compute(){
+      var seg = SEG[QUIZ[0].opts[ans[0]].seg];
+      var p = QUIZ[1].opts[ans[1]].s, gq = QUIZ[2].opts[ans[2]].s, gm = QUIZ[3].opts[ans[3]].s, t = QUIZ[4].opts[ans[4]].s;
+      var score = p + gq + gm + t, gaps = [];
+      if (p < 30) gaps.push({ k: p, t: p === 0 ? (seg.want === 'Site institucional' ? 'Site profissional' : 'Landing page profissional') : p === 8 ? 'Página própria no lugar do link genérico' : 'Reestruturar o site atual',
+        d: p === 0 ? 'Hoje o clique morre no Instagram. Uma página com a sua marca recebe quem procura e leva direto pro WhatsApp.' : p === 8 ? 'Trocar o link igual ao de todo mundo por uma página sua, com identidade, prova e direcionamento pra venda.' : 'Copy de venda, SEO, velocidade e WhatsApp em um toque. O site que você tem vira o site que traz cliente.' });
+      if (gq < 30) gaps.push({ k: gq + 1, t: 'SEO & GEO', d: gq <= 8 ? 'Estruturar a página para aparecer na busca e nas respostas de IA quando alguém pesquisa o que você vende.' : 'Subir posições: conteúdo, estrutura técnica e sinais locais para chegar entre os primeiros.' });
+      if (gm < 20) gaps.push({ k: gm + 2, t: 'Google Meu Negócio', d: gm === 0 ? 'Criar o perfil para seu negócio aparecer no Google Maps e no bloco local da busca, com avaliações e botão de contato.' : 'Completar e otimizar o perfil: categorias, fotos, descrição com palavras-chave e conexão com o site.' });
+      if (t < 20) gaps.push({ k: t + 40, t: 'Tráfego pago (depois da página)', d: 'Com a página no ar, campanhas no Meta e Google Ads levam o público certo até ela, com verba controlada.' });
+      if (!gaps.length) gaps.push({ k: 0, t: 'Escala', d: 'Base sólida. O próximo passo é mais páginas por serviço, mais tráfego e testes contínuos.' });
       gaps.sort(function(a, b){ return a.k - b.k; });
-      var title = score < 40 ? 'Marca em construção' : score < 75 ? 'Potencial travado' : 'Pronta pra escalar';
-      var txt = score < 40 ? 'Você está vendendo apesar da marca, não por causa dela. A boa notícia: cada frente que a gente fecha aqui vira resultado rápido.' : score < 75 ? 'Tem estrutura, mas o ciclo está com furo. Fechar o gargalo abaixo é o que mais vai destravar suas vendas.' : 'Sua base é sólida. Agora é escalar com previsibilidade, mais criativos e mais volume de tráfego.';
-      var msg = 'Olá Devikison! Fiz o diagnóstico no seu site.\n• Momento: ' + persona + '\n• Marca: ' + QUIZ[1].opts[ans[1]].t + '\n• Página: ' + QUIZ[2].opts[ans[2]].t + '\n• Tráfego: ' + QUIZ[3].opts[ans[3]].t + '\n• Nível da marca: ' + score + '/100\nPrioridade sugerida: ' + gaps.map(function(g){ return g.t; }).join(', ') + '.\nQuero uma proposta!';
-      box.innerHTML = prog().replace(/<i class="[^"]*">/g, '<i class="done">') + '<div class="q-step q-res">' +
-        '<div class="gauge"><svg viewBox="0 0 160 160"><circle class="bg" cx="80" cy="80" r="70"/><circle class="fg" cx="80" cy="80" r="70" data-gauge/></svg><b><span data-score>0</span><small>Nível da marca</small></b></div>' +
-        '<h3>' + esc(title) + '</h3><p>' + esc(txt) + '</p>' +
-        '<div class="q-plan">' + gaps.map(function(g, i){ return '<div style="--d:' + (.25 + i * .12) + 's">' + chk + '<div><b>' + (i === 0 ? 'Prioridade: ' : '') + esc(g.t) + '</b>' + esc(g.d) + '</div></div>'; }).join('') + '</div>' +
-        '<div class="cta-row"><a class="btn btn-primary" href="' + waLink(msg) + '" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#i-wa"/></svg>Enviar meu diagnóstico no WhatsApp</a><button type="button" class="btn btn-ghost" data-qreset>Refazer</button></div>' +
-        '<p class="q-hint">Seu diagnóstico vai preenchido na mensagem. Eu respondo com um plano pro seu momento.</p></div>';
+      var title = score < 35 ? 'Invisível no Google' : score < 70 ? 'Presença incompleta' : 'Bem posicionado';
+      var txt = score < 35 ? 'Seu negócio existe, mas quem pesquisa não encontra. Cada busca hoje termina no concorrente. A boa notícia: isso se resolve com uma página e um perfil bem feitos.' : score < 70 ? 'Tem alguma presença, mas o caminho está com furo. Fechar os pontos abaixo é o que mais vai destravar cliente novo.' : 'Você já aparece. Agora é converter mais e escalar: página melhor, mais tráfego e mais alcance.';
+      return { seg: seg, score: score, gaps: gaps, title: title, txt: txt };
+    }
+    function renderResult(){
+      R = compute();
+      box.innerHTML = prog(true) + '<div class="q-step q-res">' +
+        '<div class="gauge"><svg viewBox="0 0 160 160"><circle class="bg" cx="80" cy="80" r="70"/><circle class="fg" cx="80" cy="80" r="70" data-gauge/></svg><b><span data-score>0</span><small>Presença digital</small></b></div>' +
+        '<h3>' + esc(R.title) + '</h3><p>' + esc(R.txt) + '</p>' +
+        '<div class="q-rec"><span class="k">Indicado para ' + esc(R.seg.n) + '</span><b>' + esc(R.seg.rec) + '</b><p>' + esc(R.seg.why) + '</p></div>' +
+        '<div class="q-plan">' + R.gaps.map(function(g, i){ return '<div style="--d:' + (.25 + i * .12) + 's">' + chk + '<div><b>' + (i === 0 ? 'Prioridade: ' : '') + esc(g.t) + '</b>' + esc(g.d) + '</div></div>'; }).join('') + '</div>' +
+        '<div class="cta-row"><button type="button" class="btn btn-primary" data-qform><svg class="wa-ico"><use href="#i-wa"/></svg>Receber proposta personalizada</button><button type="button" class="btn btn-ghost" data-qreset>Refazer</button></div>' +
+        '<p class="q-hint">Sem compromisso. A DA STUDIO responde com uma proposta pensada para o seu caso.</p></div>';
       var fg = $('[data-gauge]', box), sc = $('[data-score]', box);
-      requestAnimationFrame(function(){ requestAnimationFrame(function(){ fg.style.strokeDashoffset = 439.8 - (439.8 * score / 100); }); });
-      var t0 = null; (function tick(ts){ if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1300); k = 1 - Math.pow(1 - k, 3); sc.textContent = Math.round(score * k); if (k < 1) requestAnimationFrame(tick); })(performance.now());
-      $('[data-qreset]', box).addEventListener('click', function(){ step = 0; ans = []; dir = 'back'; renderQ(); });
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ fg.style.strokeDashoffset = 439.8 - (439.8 * R.score / 100); }); });
+      var t0 = null; (function tick(ts){ if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1300); k = 1 - Math.pow(1 - k, 3); sc.textContent = Math.round(R.score * k); if (k < 1) requestAnimationFrame(tick); })(performance.now());
+      $('[data-qreset]', box).addEventListener('click', reset);
+      $('[data-qform]', box).addEventListener('click', renderForm);
+    }
+    function reset(){ step = 0; ans = []; dir = 'back'; R = null; renderQ(); }
+    function field(id, label, input, opt){
+      return '<div class="f-field" data-f="' + id + '"><label for="f-' + id + '">' + label + (opt ? ' <em>(opcional)</em>' : '') + '</label>' + input + '<span class="msg">Preencha este campo.</span></div>';
+    }
+    function renderForm(){
+      var wants = ['Landing page','Site institucional','Página de links na bio','Google Meu Negócio','Tráfego pago','Ainda não sei, quero orientação'];
+      box.innerHTML = prog(true) + '<div class="q-step"><h3 class="q-title">Falta só o essencial pra DA STUDIO montar sua proposta.</h3><p class="q-sub">Ao enviar, sua mensagem já vai pronta, com o diagnóstico, direto pro WhatsApp do estúdio.</p>' +
+        '<div class="f-summary"><span>' + esc(R.title) + ' · ' + R.score + '/100</span><span>' + esc(R.seg.rec) + '</span></div>' +
+        '<form class="q-form" novalidate data-lead>' +
+          '<div class="f-grid">' +
+            field('nome', 'Seu nome', '<input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Como você se chama?" required>') +
+            field('zap', 'Seu WhatsApp', '<input id="f-zap" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(47) 99999-9999" required>') +
+            field('negocio', 'Nome do negócio', '<input id="f-negocio" name="negocio" type="text" autocomplete="organization" placeholder="Ex.: Clínica Sorriso">') +
+            field('cidade', 'Cidade', '<input id="f-cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Joinville, SC">') +
+          '</div>' +
+          field('link', 'Instagram ou site atual', '<input id="f-link" name="link" type="text" autocomplete="url" placeholder="@seunegocio ou seusite.com.br">', true) +
+          field('quero', 'O que você quer primeiro?', '<select id="f-quero" name="quero">' + wants.map(function(w){ return '<option' + (w === R.seg.want ? ' selected' : '') + '>' + esc(w) + '</option>'; }).join('') + '</select>') +
+          '<div class="cta-row" style="margin-top:8px"><button type="submit" class="btn btn-primary"><svg class="wa-ico"><use href="#i-wa"/></svg>Enviar e receber proposta</button><button type="button" class="btn btn-ghost" data-qback-res>← Ver resultado</button></div>' +
+          '<p class="f-foot">Seus dados vão só para a DA STUDIO, junto com o diagnóstico. Nada de lista, nada de spam.</p>' +
+        '</form></div>';
+      $('[data-qback-res]', box).addEventListener('click', renderResult);
+      var form = $('[data-lead]', box);
+      var zap = $('#f-zap', box);
+      zap.addEventListener('input', function(){
+        var d = zap.value.replace(/\D/g, '').slice(0, 11);
+        zap.value = d.length > 6 ? '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length > 10 ? 7 : 6) + '-' + d.slice(d.length > 10 ? 7 : 6) : d.length > 2 ? '(' + d.slice(0, 2) + ') ' + d.slice(2) : d;
+      });
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        var v = function(id){ return ($('#f-' + id, box).value || '').trim(); };
+        var ok = true;
+        [['nome', v('nome').length >= 2], ['zap', v('zap').replace(/\D/g, '').length >= 10]].forEach(function(c){ var f = $('[data-f="' + c[0] + '"]', box); f.classList.toggle('err', !c[1]); if (!c[1]) ok = false; });
+        if (!ok){ $('.f-field.err input', box).focus(); return; }
+        var lead = { nome: v('nome'), whatsapp: v('zap'), negocio: v('negocio'), cidade: v('cidade'), link: v('link'), quero: v('quero') };
+        var linhas = [
+          'Olá, DA STUDIO! Fiz o diagnóstico no site e quero uma proposta.', '',
+          'Nome: ' + lead.nome,
+          'WhatsApp: ' + lead.whatsapp,
+          'Negócio: ' + (lead.negocio || '-') + (lead.cidade ? ' (' + lead.cidade + ')' : ''),
+          'Instagram/site atual: ' + (lead.link || '-'),
+          'Quero primeiro: ' + lead.quero, '',
+          'Diagnóstico: ' + R.title + ' (' + R.score + '/100)',
+          '- Tipo de negócio: ' + QUIZ[0].opts[ans[0]].t,
+          '- Onde o cliente chega hoje: ' + QUIZ[1].opts[ans[1]].t,
+          '- No Google aparece: ' + QUIZ[2].opts[ans[2]].t,
+          '- Google Meu Negócio: ' + QUIZ[3].opts[ans[3]].t,
+          '- Clientes vêm de: ' + QUIZ[4].opts[ans[4]].t,
+          'Indicado: ' + R.seg.rec,
+          'Prioridades: ' + R.gaps.map(function(g){ return g.t; }).join(', ')
+        ];
+        var msg = linhas.join('\n'), url = waLink(msg);
+        // backup por e-mail (não bloqueia o WhatsApp; se falhar, segue em silêncio)
+        if (FORM_ENDPOINT && window.fetch) try {
+          fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ _subject: 'Novo lead pelo site: ' + lead.nome + ' (' + R.title + ')', _template: 'table', nome: lead.nome, whatsapp: lead.whatsapp, negocio: lead.negocio, cidade: lead.cidade, link: lead.link, quer_primeiro: lead.quero, diagnostico: R.title + ' ' + R.score + '/100', indicado: R.seg.rec, prioridades: R.gaps.map(function(g){ return g.t; }).join(', '), respostas: linhas.slice(9, 14).join(' | ') }) }).catch(function(){});
+        } catch(_){}
+        var win = window.open(url, '_blank', 'noopener');
+        box.innerHTML = prog(true) + '<div class="q-step q-sent"><div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>' +
+          '<h3 class="q-title" style="text-align:center">Pronto, ' + esc(lead.nome.split(' ')[0]) + '. Seu diagnóstico já está a caminho.</h3>' +
+          '<p class="q-sub" style="text-align:center">' + (win ? 'O WhatsApp abriu em outra aba com a mensagem pronta. É só tocar em enviar.' : 'Toque no botão abaixo para abrir o WhatsApp com a mensagem pronta.') + ' A DA STUDIO responde com uma proposta pensada para o seu caso.</p>' +
+          '<div class="cta-row" style="justify-content:center"><a class="btn btn-primary" href="' + url + '" target="_blank" rel="noopener"><svg class="wa-ico"><use href="#i-wa"/></svg>' + (win ? 'Abrir o WhatsApp de novo' : 'Abrir o WhatsApp') + '</a><button type="button" class="btn btn-ghost" data-qreset>Refazer diagnóstico</button></div></div>';
+        $('[data-qreset]', box).addEventListener('click', reset);
+      });
     }
     renderQ();
   })();
@@ -1275,7 +1605,7 @@
 
   // ===================== CARDS: tilt 3D + spotlight que segue o mouse =====================
   if (fine && !reduced) $$('.card').forEach(function(c){
-    if (c.classList.contains('stats') || c.classList.contains('quiz') || c.classList.contains('cmp') || c.classList.contains('pain-meter') || c.classList.contains('about-badge') || c.classList.contains('j-panel') || c.tagName === 'DETAILS') {
+    if (c.classList.contains('stats') || c.classList.contains('quiz') || c.classList.contains('serp') || c.classList.contains('band') || c.classList.contains('cmp') || c.classList.contains('pain-meter') || c.classList.contains('about-badge') || c.classList.contains('j-panel') || c.tagName === 'DETAILS') {
       c.addEventListener('pointermove', function(e){ var r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
       return;
     }
@@ -1342,7 +1672,7 @@
   (function(){
     // direcoes estrategicas: pares chegam pelos lados e se juntam; listas alternam
     $$('.pain').forEach(function(e, i){ e.setAttribute('data-rv', ['left','up','right'][i % 3]); });
-    $$('.svc').forEach(function(e, i){ e.setAttribute('data-rv', i === 4 ? 'zoom' : (i % 2 ? 'right' : 'left')); });
+    $$('.svc').forEach(function(e, i){ e.setAttribute('data-rv', i % 2 ? 'right' : 'left'); });
     $$('.faq details').forEach(function(e, i){ e.setAttribute('data-rv', i % 2 ? 'right' : 'left'); });
     var set = function(sel, v){ var e = $(sel); if (e) e.setAttribute('data-rv', v); };
     set('[data-pain-meter]', 'zoom'); set('.journey', 'zoom'); set('[data-quiz]', 'zoom'); set('.about-photo', 'left'); set('.about-txt', 'right'); set('#contato .reveal', 'zoom');
