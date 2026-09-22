@@ -316,8 +316,11 @@
   .fc.show{animation:fillSweep .55s ease-out both;animation-delay:calc(var(--i,0) * 16ms);color:var(--fill-final)}
   .sec-light .fc.show{text-shadow:none}
   .fill-title .fc{color:var(--fill-dim)}
-  .sec-fill{position:relative;height:230vh;background:var(--bg)}
-  .sec-fill-in{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  /* sem scroll-jacking: a secao acompanha o fluxo normal da pagina (sem sticky/pin) e
+     o preenchimento das letras e calculado pela posicao dela na tela conforme o scroll
+     passa por ela — enche indo pra baixo, esvazia (como voltar no tempo) indo pra cima */
+  .sec-fill{position:relative;background:var(--bg)}
+  .sec-fill-in{position:relative;min-height:100svh;padding:clamp(64px,8vw,96px) 0;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .sec-fill-glow{position:absolute;left:50%;top:50%;width:min(70vh,900px);height:min(70vh,900px);transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
     background:radial-gradient(circle,rgba(126,232,255,.16),rgba(2,69,242,.10) 45%,transparent 72%);filter:blur(6px)}
   .sec-fill-tag{position:absolute;font-family:var(--font-d);font-weight:600;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted2)}
@@ -332,8 +335,7 @@
   .sec-fill-text{font-family:var(--font-d);font-weight:700;letter-spacing:-.02em;line-height:1.28;font-size:clamp(26px,4.3vw,54px);color:var(--fill-final)}
   @media (max-width:700px){ .sec-fill-tag{display:none} }
   @media (prefers-reduced-motion:reduce){
-    .sec-fill{height:auto;padding:clamp(64px,10vw,96px) 0}
-    .sec-fill-in{position:static;height:auto}
+    .sec-fill-in{min-height:0}
     .sec-fill-hint{display:none}
     .fc{color:var(--fill-final)}
   }
@@ -1957,8 +1959,11 @@
     var chars = $$('.fc', textEl), n = chars.length, ticking = false;
     if (reduced || !n){ chars.forEach(function(c){ c.classList.add('show'); }); if (hint) hint.style.display = 'none'; return; }
     function on(){
-      var r = sec.getBoundingClientRect(), vh = window.innerHeight, span = r.height - vh;
-      var prog = span > 0 ? Math.max(0, Math.min(1, -r.top / span)) : (r.top < vh ? 1 : 0);
+      // progresso de 0 a 1 conforme a secao atravessa a tela inteira: 0 quando o topo
+      // dela encosta na base da viewport (comecando a entrar), 1 quando ela ja saiu
+      // por cima — sem prender o scroll, so acompanhando a posicao normal da pagina
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      var prog = Math.max(0, Math.min(1, (vh - r.top) / (r.height + vh)));
       var reveal = Math.round(prog * n);
       chars.forEach(function(c, i){ c.classList.toggle('show', i < reveal); });
       sec.classList.toggle('scrolled', prog > .04);
