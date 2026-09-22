@@ -96,16 +96,20 @@
      data-rv: up (padrao) | left | right | zoom
      html.scroll-up: ao subir a pagina, o que ainda esta oculto volta entrando por cima (so afeta o estado oculto).
      O estado oculto muda sem transicao (o elemento esta fora da tela); a transicao existe so na entrada. */
-  :root{--rv-t:.9s;--rv-tt:1.05s;--rv-x:56px;--rv-y:34px}
-  .reveal{opacity:0;transform:translateY(var(--rv-y));will-change:opacity,transform}
+  :root{--rv-t:1.1s;--rv-tt:1.35s;--rv-x:56px;--rv-y:34px;--rv-ease:cubic-bezier(.16,.8,.24,1)}
+  /* desfoque leve que vai ficando nitido junto com o fade+deslocamento: da aquela
+     sensacao de "entrando em foco", mais fluida e lenta que um fade seco */
+  .reveal{opacity:0;filter:blur(9px);transform:translateY(var(--rv-y));will-change:opacity,transform,filter}
   .reveal[data-rv="up"]{transform:translateY(var(--rv-y))}
   .reveal[data-rv="left"]{transform:translateX(calc(-1 * var(--rv-x)))}
   .reveal[data-rv="right"]{transform:translateX(var(--rv-x))}
   .reveal[data-rv="zoom"]{transform:scale(.94) translateY(18px)}
   html.scroll-up .reveal:not(.in):not([data-rv]),html.scroll-up .reveal:not(.in)[data-rv="up"]{transform:translateY(calc(-1 * var(--rv-y)))}
   html.scroll-up .reveal:not(.in)[data-rv="zoom"]{transform:scale(.94) translateY(-18px)}
-  .reveal.in,.reveal.in[data-rv]{opacity:1;transform:none;transition:opacity var(--rv-t) var(--ease),transform var(--rv-tt) var(--ease);transition-delay:var(--d,0s)}
+  .reveal.in,.reveal.in[data-rv]{opacity:1;filter:blur(0);transform:none;
+    transition:opacity var(--rv-t) var(--rv-ease),transform var(--rv-tt) var(--rv-ease),filter var(--rv-t) var(--rv-ease);transition-delay:var(--d,0s)}
   .reveal:not(.in){transition:none}
+  @media (prefers-reduced-motion:reduce){ .reveal{filter:none} }
 
   /* =========================================================
      BOTÕES 3D HOLOGRÁFICOS (cantos 14px como antes, agora com
