@@ -663,8 +663,6 @@
      pedestal/brilho */
   .about-photo img.cutout{object-fit:contain}
   .about-cta{margin:16px auto 0;max-width:420px;width:100%;display:flex}
-  .about-photo .ring{position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent,rgba(61,107,255,.5),transparent 35%);animation:spin 10s linear infinite;pointer-events:none;opacity:.45}
-  @keyframes spin{to{transform:rotate(360deg)}}
   @media (hover:hover){ .about-photo:hover{border-color:transparent;box-shadow:none} }
   /* selo com o nome: fora da foto, em fluxo normal, pra nao cobrir a imagem */
   .about-badge{position:relative;margin:14px auto 0;max-width:420px;border-radius:16px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;background:linear-gradient(160deg,rgba(8,11,22,.9),rgba(8,11,22,.78))!important;border-color:rgba(255,255,255,.14)}
@@ -1238,7 +1236,6 @@
     <div class="about">
       <div>
         <div class="about-photo card reveal">
-          <span class="ring" aria-hidden="true"></span>
           <img class="cutout" alt="Devikison Aguiar, fundador da DA STUDIO" src="gallery/portrait-2.webp" loading="lazy" width="1656" height="1413">
         </div>
         <div class="about-badge card"><div><b>Devikison Aguiar</b><small>Fundador e designer da DA STUDIO</small></div><span class="yrs">7+ anos</span></div>
