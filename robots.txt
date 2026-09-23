@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Evita que o Google gaste tempo processando arquivos internos de imagens
+Disallow: /assets/
+Disallow: /gallery/
+
+# Aponta o caminho oficial do seu mapa do site
+Sitemap: https://github.io
