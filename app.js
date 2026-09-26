@@ -217,6 +217,10 @@
   })();
 
   // ===================== ÂNCORAS (compensa as folhas sobrepostas) =====================
+  // atualizar a página sempre recomeça do topo: o navegador não restaura a rolagem
+  // e o endereço não guarda a seção (#projetos etc.)
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  function cleanHash(){ if (location.hash && history.replaceState) history.replaceState(null, '', location.pathname + location.search); }
   function anchorTop(el){
     if (el.id === 'top') return 0;
     var y = docTop(el), next = el.nextElementSibling;
@@ -229,11 +233,17 @@
     var t = $(id); if (!t) return;
     e.preventDefault();
     window.scrollTo({ top: anchorTop(t), behavior: reduced ? 'auto' : 'smooth' });
-    if (history.replaceState) history.replaceState(null, '', id);
+    cleanHash();
     var f = t.nextElementSibling || t;
     if (f.tagName === 'SECTION'){ if (!f.hasAttribute('tabindex')) f.setAttribute('tabindex', '-1'); try { f.focus({ preventScroll: true }); } catch(_){} }
   });
-  if (location.hash && $(location.hash)) window.addEventListener('load', function(){ setTimeout(function(){ window.scrollTo(0, anchorTop($(location.hash))); }, 80); });
+  // link de fora com #seção (ex.: compartilhado): vai até ela e limpa o endereço
+  (function(){
+    var h = location.hash, t = null; if (!h) return;
+    try { t = $(h); } catch(_){}
+    if (!t){ cleanHash(); return; }
+    window.addEventListener('load', function(){ setTimeout(function(){ window.scrollTo(0, anchorTop(t)); cleanHash(); }, 80); });
+  })();
 
   // ===================== PROFUNDIDADE: a seção afunda e a próxima passa por cima =====================
   (function(){
