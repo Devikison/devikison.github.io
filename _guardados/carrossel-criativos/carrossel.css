@@ -1,0 +1,20 @@
+/* =====================================================================
+   CARROSSEL DE CRIATIVOS (faixa infinita arrastável)
+   Onde colar: no fim do styles.css. Usa as variáveis do site
+   (--line, --ink-2, --text-3, --ease-out), que continuam existindo.
+   ===================================================================== */
+.arts{position:relative;z-index:2;margin-top:clamp(40px,5vw,72px)}
+.arts-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}
+.arts-head .mono{color:var(--text-3)}
+.arts-wrap{position:relative;z-index:2;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.arts-wrap.dragging{cursor:grabbing}
+.arts-track{display:flex;gap:14px;width:max-content;padding:8px 0 18px;will-change:transform}
+.art{position:relative;flex:none;width:clamp(170px,22vw,240px);aspect-ratio:3/4;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--ink-2);transition:transform .6s var(--ease-out),box-shadow .6s,border-color .4s}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform 1s var(--ease-out)}
+@media (hover:hover){.art:hover{transform:translateY(-8px) rotate(-1deg);border-color:rgba(98,230,255,.45);box-shadow:0 30px 60px -26px rgba(2,69,242,.7)}.art:hover img{transform:scale(1.06)}}
+@supports not (aspect-ratio:1/1){.art{height:0;padding-top:133.3%}}
+@media (max-width:640px){
+  .arts-head{justify-content:center}
+  .arts-head .mono:last-child{display:none}
+}
