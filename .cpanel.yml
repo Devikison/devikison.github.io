@@ -6,6 +6,9 @@ deployment:
     - /bin/mkdir -p $DEPLOYPATH
     # Somente arquivos públicos da raiz
     - /bin/cp -f index.html $DEPLOYPATH
+    # SEO: robots, sitemap e verificação do Google Search Console
+    - /bin/cp -f robots.txt sitemap.xml $DEPLOYPATH
+    - if ls google*.html >/dev/null 2>&1; then /bin/cp -f google*.html $DEPLOYPATH; fi
     - if ls *.css   >/dev/null 2>&1; then /bin/cp -f  *.css   $DEPLOYPATH; fi
     - if ls *.js    >/dev/null 2>&1; then /bin/cp -f  *.js    $DEPLOYPATH; fi
     # Pastas de assets públicos (este projeto usa gallery/; assets/ é copiada se existir)

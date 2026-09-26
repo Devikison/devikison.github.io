@@ -4,6 +4,9 @@ Allow: /
 # Evita que o Google gaste tempo processando arquivos internos de imagens
 Disallow: /assets/
 Disallow: /gallery/
+# ...mas libera o que aparece no Google e nos links compartilhados (ícone e capa)
+Allow: /assets/favicon.svg
+Allow: /gallery/og-cover.jpg
 
-# Aponta o caminho oficial do seu mapa do site
-Sitemap: https://github.io
+# Aponta o caminho oficial do mapa do site
+Sitemap: https://www.descomplicasite.com.br/sitemap.xml
