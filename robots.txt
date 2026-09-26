@@ -9,4 +9,4 @@ Allow: /assets/favicon.svg
 Allow: /gallery/og-cover.jpg
 
 # Aponta o caminho oficial do mapa do site
-Sitemap: https://www.descomplicasite.com.br/sitemap.xml
+Sitemap: https://devikison.github.io/sitemap.xml
