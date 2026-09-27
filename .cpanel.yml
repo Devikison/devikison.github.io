@@ -14,6 +14,9 @@ deployment:
     # Pastas de assets públicos (este projeto usa gallery/; assets/ é copiada se existir)
     - if [ -d gallery ]; then /bin/cp -Rf gallery $DEPLOYPATH; fi
     - if [ -d assets  ]; then /bin/cp -Rf assets  $DEPLOYPATH; fi
+    # Páginas internas (uma pasta por página, com index.html) e arquivo para buscas com IA
+    - for d in criacao-de-landing-page criacao-de-site-institucional google-meu-negocio pagina-link-na-bio trafego-pago site-para-profissionais-da-saude landing-page-para-eventos-e-imersoes; do if [ -d "$d" ]; then /bin/cp -Rf "$d" $DEPLOYPATH; fi; done
+    - if [ -f llms.txt ]; then /bin/cp -f llms.txt $DEPLOYPATH; fi
     # .htaccess apenas se existir
     - if [ -f .htaccess ]; then /bin/cp -f .htaccess $DEPLOYPATH; fi
     # NUNCA copiamos: node_modules, src, components, lib, .git, .cpanel.yml, .gitignore, chaves

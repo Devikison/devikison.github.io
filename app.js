@@ -45,16 +45,6 @@
     { k: 'Anúncio', no: 'Clique caro caindo no perfil', yes: 'Clique caindo numa página que converte', i: 'i-mega' },
     { k: 'Resultado', no: 'Depende de indicação e sorte', yes: 'Cliente novo chegando pelo Google', i: 'i-chart' }
   ];
-  var FAQ = [
-    ['Landing page ou site: qual eu preciso?', '**Landing page** é uma página com um objetivo só: ideal para anúncio, link da bio e ofertas. **Site institucional** tem várias páginas e é a casa do seu negócio no Google. Na primeira conversa indicamos **o melhor para o seu momento.**'],
-    ['Já tenho Instagram. Preciso mesmo de um site?', 'Precisa. **O Instagram não aparece** quando alguém pesquisa “seu serviço + sua cidade”. Site e Google Meu Negócio aparecem. O site não substitui o Instagram: **recebe quem chega e transforma em contato.**'],
-    ['Preciso entender de tecnologia?', 'Não. É exatamente isso que a Descomplica resolve. **Você fala do seu negócio**; texto, design, domínio, Google e WhatsApp ficam com a gente. **Você só aprova.**'],
-    ['Quanto custa e quanto tempo leva?', 'Depende do escopo: uma página de links é diferente de um site com dez páginas. Por isso o primeiro passo é uma **conversa grátis**, e você recebe **valor e prazo fechados.** Sem surpresa no meio do caminho.'],
-    ['O que é SEO e GEO?', '**SEO** faz seu site aparecer no Google. **GEO** faz seu negócio ser citado por IAs como ChatGPT e Gemini, que cada vez mais gente usa para escolher onde comprar. **Todo projeto sai pronto para os dois.**'],
-    ['Vocês fazem o Google Meu Negócio?', 'Sim. **Criamos ou otimizamos o perfil** com categorias, fotos e descrição com palavras-chave, e conectamos ao seu site. É o que coloca você **no Google Maps.**'],
-    ['E domínio, hospedagem e manutenção?', 'Registramos o domínio (ou usamos o seu), publicamos a página e configuramos o HTTPS. Depois da entrega você tem **suporte**, e pode contratar manutenção para atualizações.'],
-    ['Atendem qualquer cidade?', 'Sim. **Tudo é online**: conversa pelo WhatsApp, prévias por link e entrega em nuvem. **Atendemos o Brasil inteiro.**']
-  ];
 
   // ===================== RENDER =====================
   (function(){
@@ -77,10 +67,6 @@
         $$('.vs-col', vs).forEach(function(c){ c.classList.add('in'); });
       }); });
     }
-    var fq = $('[data-faq]');
-    if (fq) fq.innerHTML = FAQ.map(function(f, i){
-      return '<details class="card spot rv" style="--d:' + (i * .05) + 's"><span class="rim"></span><summary>' + esc(f[0]) + '<span class="pl" aria-hidden="true"></span></summary><div class="a"><p>' + fmt(f[1]) + '</p></div></details>';
-    }).join('');
     // Ripple: anéis pulsando (computador); no celular anéis parados + uma onda só (bem mais leve)
     var rp = $('[data-ripple]');
     if (rp){

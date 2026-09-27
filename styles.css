@@ -986,6 +986,7 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 .faq details[open] summary .pl::after{transform:rotate(0deg)}
 .faq .a{padding:0 24px 24px;font-size:16.5px;line-height:1.7;color:var(--text-2);max-width:64ch}
 .faq .a strong{color:#0a1330}
+.faq .a a{color:var(--blue-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 @media (hover:hover){.faq summary:hover{color:var(--blue-ink)}}
 
 /* =====================================================================

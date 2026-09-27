@@ -1,0 +1,88 @@
+/* =====================================================================
+   DESCOMPLICA SITE — páginas internas (serviços e segmentos)
+   Usa os tokens e componentes do styles.css (botões, cards, FAQ, rodapé).
+   Aqui só entra o que é exclusivo dessas páginas. Tudo aparece sem JavaScript.
+   ===================================================================== */
+body.pg{background:var(--ink-0)}
+
+/* barra superior: logo + links + botão de orçamento */
+.pg .nav{position:fixed}
+.pg-nav-cta{flex:none;margin-left:8px}
+.pg-nav-cta .lg{display:inline}
+@media (max-width:1100px){.pg-nav-cta{margin-left:auto}}
+@media (max-width:420px){.pg-nav-cta .lg{display:none}.logo-word{font-size:14px}}
+
+/* abertura */
+.pg-hero{position:relative;overflow:clip;padding:calc(var(--nav-h) + clamp(56px,8vw,96px)) 0 clamp(64px,8vw,104px);background:var(--ink-0)}
+.pg-hero-bg{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(60% 55% at 88% 0%,rgba(142,107,255,.3),transparent 65%),radial-gradient(70% 60% at 0% 100%,rgba(2,69,242,.36),transparent 62%),
+    radial-gradient(rgba(185,202,255,.16) 1px,transparent 1.3px) 0 0/30px 30px}
+.pg-hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,var(--ink-0))}
+.crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-bottom:30px;font:500 12px/1.4 var(--f-m);letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
+.crumbs a{color:var(--blue-4);transition:color .2s}
+.crumbs a:hover{color:#fff}
+.crumbs [aria-current]{color:#fff}
+.pg-hero h1{max-width:23ch;margin-bottom:0;font-size:clamp(33px,5vw,62px);font-stretch:118%;font-weight:800;line-height:1.02;letter-spacing:-.03em}
+.pg-answer{max-width:66ch;margin-top:26px;font-size:clamp(17.5px,1.55vw,20px);line-height:1.68;color:var(--text-2)}
+.pg-answer strong{color:#fff}
+.pg-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.pg-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.pg-facts li{padding:9px 15px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,.04);
+  font:600 11px/1 var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--blue-4)}
+@media (max-width:640px){.pg-cta-row .btn{width:100%}}
+
+/* seções */
+.pg-sec{position:relative;padding:clamp(60px,7.5vw,104px) 0;background:var(--ink-1)}
+.pg-sec.light{background:var(--paper)}
+.pg-sec+.pg-sec{border-top:1px solid var(--line)}
+.pg-head{max-width:760px;margin-bottom:clamp(30px,4vw,48px)}
+.pg-kicker{display:block;margin-bottom:14px;font:600 11px/1 var(--f-m);letter-spacing:.14em;text-transform:uppercase;color:var(--blue-3)}
+.light .pg-kicker{color:var(--blue-ink)}
+.pg-h2{font-size:clamp(28px,3.8vw,46px);line-height:1.06;letter-spacing:-.025em}
+.pg-head p{margin-top:16px;max-width:62ch;font-size:17px;color:var(--text-2)}
+.pg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}
+.pg-card{padding:26px 26px 28px}
+.pg-card h3{margin-bottom:10px;font-size:clamp(19px,1.6vw,22px);line-height:1.15;letter-spacing:-.015em}
+.pg-card p{font-size:16px;line-height:1.62;color:var(--text-2)}
+.pg-card a{color:var(--blue-3);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.light .pg-card a{color:var(--blue-ink)}
+.pg-note{max-width:78ch;margin-top:28px;padding:18px 22px;border-radius:18px;border:1px solid var(--line-2);background:rgba(2,69,242,.07);font-size:16px;line-height:1.65;color:var(--text-2)}
+.light .pg-note{background:#fff}
+.pg-note strong{color:var(--text)}
+
+/* lista de entregas */
+.pg-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 44px}
+.pg-checks li{display:flex;gap:13px;align-items:flex-start;font-size:16.5px;line-height:1.5;color:var(--text)}
+.pg-checks svg{flex:none;width:22px;height:22px;margin-top:1px;padding:4px;border-radius:50%;color:#070d24;background:var(--volt);stroke-width:3}
+.light .pg-checks svg{background:var(--blue-2);color:#fff}
+@media (max-width:760px){.pg-checks{grid-template-columns:1fr}}
+
+/* etapas */
+.pg-steps{display:grid;gap:12px;max-width:860px}
+.pg-steps li{display:grid;grid-template-columns:46px minmax(0,1fr);gap:18px;align-items:start;padding:20px 22px}
+.pg-n{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:800 15px/1 var(--f-b);font-stretch:125%;color:#070d24;
+  background:radial-gradient(circle at 34% 28%,#fff 0,var(--volt) 46%,#9fcc00 130%);box-shadow:inset 0 -2px 4px rgba(0,0,0,.25),0 4px 12px -4px rgba(212,255,61,.6)}
+.pg-steps h3{margin-bottom:6px;font-size:20px;line-height:1.15;letter-spacing:-.015em}
+.pg-steps p{font-size:16px;line-height:1.6;color:var(--text-2)}
+
+/* projetos */
+.pg-work{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px}
+.pg-work figure{overflow:hidden}
+.pg-work img{width:100%;height:auto;aspect-ratio:1200/628;object-fit:cover;background:var(--ink-2)}
+.pg-work figcaption{display:grid;gap:4px;padding:16px 20px 20px}
+.pg-work figcaption b{font:700 17px/1.2 var(--f-d);font-stretch:108%}
+.pg-work figcaption small{font:500 11.5px/1.4 var(--f-m);letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
+
+/* dúvidas */
+.pg-faq{max-width:860px}
+
+/* chamada final e serviços relacionados */
+.pg-cta{padding:clamp(48px,6vw,80px) 0 0;background:var(--ink-1)}
+.pg-related{padding:clamp(48px,6vw,80px) 0 0;background:var(--ink-1)}
+.pg-related .pg-h2{margin-bottom:26px}
+.pg-link{display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:6px 14px;align-items:center;padding:22px 24px;transition:border-color .25s,transform .35s var(--ease-out)}
+.pg-link b{font:700 19px/1.2 var(--f-d);font-stretch:108%;color:#fff}
+.pg-link span{grid-column:1;font-size:15px;line-height:1.5;color:var(--text-3)}
+.pg-link svg{grid-column:2;grid-row:1/3;width:22px;height:22px;color:var(--volt);transition:transform .35s var(--ease-out)}
+@media (hover:hover){.pg-link:hover{border-color:var(--line-2);transform:translateY(-2px)}.pg-link:hover svg{transform:translateX(4px)}}
+.pg .foot{margin-top:clamp(56px,7vw,96px)}
