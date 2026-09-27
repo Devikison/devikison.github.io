@@ -366,29 +366,15 @@
     });
   })();
 
-  // ===================== RÉGUA: feixe de LED anda de divisória em divisória =====================
-  // SEG é a distância entre as marcas maiores da régua (styles.css, .seam::before): o feixe
-  // começa e termina sempre em cima de uma marca. Vai e volta; só roda com a régua na tela.
+  // ===================== RÉGUA: feixe de LED atravessa de ponta a ponta =====================
+  // A animação é toda em CSS (.seam-beam, @keyframes seamSweep); aqui só cria o feixe e
+  // pausa quando a régua sai da tela.
   (function(){
     var seams = $$('.seam'); if (!seams.length || reduced) return;
-    var SEG = 96;
     seams.forEach(function(sm){
       var b = document.createElement('i'); b.className = 'seam-beam'; sm.appendChild(b);
-      var k = 0, dir = 1, vis = false, timer = null, span = 1, slots = 1;
-      function place(){
-        var M = Math.floor((sm.clientWidth - 1) / SEG); span = M >= 8 ? 2 : 1; slots = Math.max(1, Math.floor(M / span));
-        b.style.width = (span * SEG + 1) + 'px';
-        if (k > slots - 1){ k = slots - 1; dir = -1; }
-        b.style.transform = 'translate3d(' + (k * span * SEG) + 'px,0,0)';
-      }
-      // anda um bloco inteiro por vez e para em cima das marcas
-      function step(){
-        timer = null; if (!vis) return;
-        if (slots > 1){ if (k + dir > slots - 1 || k + dir < 0) dir = -dir; k += dir; place(); }
-        timer = setTimeout(step, 1050);
-      }
-      onMeasure(place);
-      if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ vis = en[0].isIntersecting; if (vis && !timer){ b.classList.add('on'); timer = setTimeout(step, 400); } }).observe(sm);
+      if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ b.classList.toggle('on', en[0].isIntersecting); }).observe(sm);
+      else b.classList.add('on');
     });
   })();
 

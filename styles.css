@@ -614,13 +614,24 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
   background:repeating-linear-gradient(90deg,rgba(168,190,255,.3) 0 1px,transparent 1px 12px) 0 100%/100% 6px no-repeat,repeating-linear-gradient(90deg,rgba(168,190,255,.55) 0 1px,transparent 1px 96px) 0 100%/100% 14px no-repeat,
     linear-gradient(90deg,transparent,rgba(168,190,255,.25) 15%,rgba(168,190,255,.25) 85%,transparent) 0 100%/100% 1px no-repeat}
 .seam::before{z-index:0}
-/* feixe de LED: ocupa exatamente o espaço entre marcas maiores e desliza de uma para outra (app.js) */
-.seam-beam{position:absolute;left:0;bottom:0;z-index:1;height:16px;opacity:0;pointer-events:none;transition:transform .42s cubic-bezier(.65,0,.25,1),opacity .6s}
-.seam-beam.on{opacity:1}
-.seam-beam::before{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;border-radius:2px;
-  background:linear-gradient(90deg,var(--cyan),#fff 50%,var(--volt));box-shadow:0 0 12px 1px rgba(98,230,255,.75),0 0 24px 2px rgba(98,230,255,.3)}
-.seam-beam::after{content:"";position:absolute;inset:0;border-left:1px solid #9ff0ff;border-right:1px solid #eaff9a;
-  background:linear-gradient(180deg,transparent,rgba(98,230,255,.12));filter:drop-shadow(0 0 4px rgba(98,230,255,.8))}
+/* feixe de LED: um risco de luz com rastro que atravessa a régua de ponta a ponta,
+   some no fim e volta a passar depois de 1.5s (3.1s por ciclo). Largura em % = mesma
+   viagem completa no mobile e no desktop. */
+.seam-beam{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.seam-beam::before,.seam-beam::after{content:"";position:absolute;left:0;bottom:0;width:28%;min-width:120px;
+  transform:translate3d(-100%,0,0);animation:seamSweep 3.1s cubic-bezier(.45,0,.2,1) infinite paused;will-change:transform}
+.seam-beam::before{height:3px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,rgba(98,230,255,.25) 35%,var(--cyan) 75%,#fff 94%,var(--volt));
+  box-shadow:0 0 12px 1px rgba(98,230,255,.55),0 0 26px 2px rgba(98,230,255,.25)}
+.seam-beam::after{height:16px;background:linear-gradient(90deg,transparent 30%,rgba(98,230,255,.14) 92%,transparent);
+  -webkit-mask:linear-gradient(0deg,#000,transparent);mask:linear-gradient(0deg,#000,transparent)}
+.seam-beam.on::before,.seam-beam.on::after{animation-play-state:running}
+@keyframes seamSweep{
+  0%{transform:translate3d(-100%,0,0);opacity:0}
+  6%{opacity:1}
+  46%{opacity:1}
+  52%,100%{transform:translate3d(calc(100vw + 100%),0,0);opacity:0}
+}
 
 /* =====================================================================
    COMO FUNCIONA
