@@ -1,12 +1,12 @@
+# Descomplica Site
+# Tudo liberado para buscadores (Google, Bing) e para os robôs das buscas com IA
+# (ChatGPT, Gemini, Claude, Perplexity): eles precisam ler o site para poder citá-lo.
 User-agent: *
 Allow: /
 
-# Evita que o Google gaste tempo processando arquivos internos de imagens
+# Arquivos de apoio do layout (não são páginas)
 Disallow: /assets/
-Disallow: /gallery/
-# ...mas libera o que aparece no Google e nos links compartilhados (ícone e capa)
 Allow: /assets/favicon.svg
-Allow: /gallery/og-cover.jpg
 
-# Aponta o caminho oficial do mapa do site
+# Mapa oficial do site
 Sitemap: https://www.descomplicasite.com.br/sitemap.xml
