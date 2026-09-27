@@ -22,8 +22,10 @@ body.pg{background:var(--ink-0)}
 .crumbs a{color:var(--blue-4);transition:color .2s}
 .crumbs a:hover{color:#fff}
 .crumbs [aria-current]{color:#fff}
-.pg-hero h1{max-width:23ch;margin-bottom:0;font-size:clamp(33px,5vw,62px);font-stretch:118%;font-weight:800;line-height:1.02;letter-spacing:-.03em}
-.pg-answer{max-width:66ch;margin-top:26px;font-size:clamp(17.5px,1.55vw,20px);line-height:1.68;color:var(--text-2)}
+/* larguras do topo em px/em (antes em ch): o ch muda quando a fonte carrega e mexia o layout (CLS) */
+.pg-hero h1{max-width:18.18em;margin-bottom:0;font-size:clamp(33px,5vw,62px);font-stretch:118%;font-weight:800;line-height:1.02;letter-spacing:-.03em}
+.pg-answer{max-width:726px;margin-top:26px;font-size:clamp(17.5px,1.55vw,20px);line-height:1.68;color:var(--text-2)}
+@media (min-width:1206px){.pg-answer{max-width:792px}}
 .pg-answer strong{color:#fff}
 .pg-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
 .pg-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}

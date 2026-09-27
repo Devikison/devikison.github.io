@@ -67,7 +67,7 @@
         $$('.vs-col', vs).forEach(function(c){ c.classList.add('in'); });
       }); });
     }
-    // Ripple: anéis pulsando (computador); no celular anéis parados + uma onda só (bem mais leve)
+    // Ripple: anéis pulsando (no celular, menos anéis e menores; o mesmo pulsar do computador)
     var rp = $('[data-ripple]');
     if (rp){
       var small = window.innerWidth <= 640, html = '', n = small ? 4 : 6;
@@ -75,7 +75,6 @@
         var sz = (small ? 250 : 320) + k * (small ? 95 : 140);
         html += '<i style="--sz:' + sz + 'px;--op:' + Math.max(.012, .085 - k * .013).toFixed(3) + ';--bo:' + Math.max(.06, .3 - k * .045).toFixed(3) + ';--dl:' + (k * .08).toFixed(2) + 's"></i>';
       }
-      if (small) html += '<b class="pulse"></b>';
       rp.innerHTML = html;
     }
   })();
@@ -477,8 +476,10 @@
       var io = new IntersectionObserver(function(en){ en.forEach(function(e){
         if (!e.isIntersecting) return; io.unobserve(e.target);
         var b = e.target, to = +b.getAttribute('data-count'), t0 = null;
+        // trava a largura do número final enquanto conta: o "+", "h" e "%" ao lado não andam (CLS)
+        b.style.display = 'inline-block'; b.style.minWidth = b.getBoundingClientRect().width + 'px';
         b.textContent = '0';
-        (function tick(ts){ if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1500); k = 1 - Math.pow(1 - k, 4); b.textContent = Math.round(to * k); if (k < 1) requestAnimationFrame(tick); })(performance.now());
+        (function tick(ts){ if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1500); k = 1 - Math.pow(1 - k, 4); b.textContent = Math.round(to * k); if (k < 1) requestAnimationFrame(tick); else { b.style.display = ''; b.style.minWidth = ''; } })(performance.now());
       }); }, { threshold: .6 });
       nums.forEach(function(b){ io.observe(b); });
     }
@@ -558,11 +559,13 @@
     onMeasure(function(){ size(); draw(); });
     if (reduced) return;
     if (fine) window.addEventListener('pointermove', function(e){ tpx = e.clientX / VW - .5; }, { passive: true });
+    // gira sozinho em velocidade constante (uma volta a cada ~28s); o mouse só inclina um pouco
     function loop(now){
       if (!visible){ running = false; return; }
       requestAnimationFrame(loop);
       if (now - last < 33) return;
-      last = now; px += (tpx - px) * .05; rot += .0035 + px * .01; draw();
+      var dt = last ? Math.min(now - last, 100) : 33; last = now;
+      px += (tpx - px) * .05; rot += dt * .000225; draw();
     }
     if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; if (visible && !running){ running = true; requestAnimationFrame(loop); } }, { rootMargin: '10% 0px' }).observe(cv.parentNode);
   })();
