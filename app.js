@@ -217,8 +217,8 @@
   })();
 
   // ===================== ÂNCORAS (compensa as folhas sobrepostas) =====================
-  // atualizar a página sempre recomeça do topo: o navegador não restaura a rolagem
-  // e o endereço não guarda a seção (#projetos etc.)
+  // a rolagem é restaurada por nós (abaixo), não pelo navegador: com as folhas fixas e as
+  // medidas feitas depois das fontes, a posição dele cai no lugar errado
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   function cleanHash(){ if (location.hash && history.replaceState) history.replaceState(null, '', location.pathname + location.search); }
   function anchorTop(el){
@@ -243,6 +243,44 @@
     try { t = $(h); } catch(_){}
     if (!t){ cleanHash(); return; }
     window.addEventListener('load', function(){ setTimeout(function(){ window.scrollTo(0, anchorTop(t)); cleanHash(); }, 80); });
+  })();
+
+  // ===================== ATUALIZAR A PÁGINA: continua de onde parou =====================
+  // Só quando a página é recarregada (F5 / puxar pra atualizar). Abrir de novo (aba nova,
+  // link, digitar o endereço) começa na hero. Guarda a seção + a distância dentro dela, que
+  // continua certa mesmo se as fontes ou as medidas mudarem a altura de algo acima.
+  (function(){
+    var KEY = 'ds-scroll', secs = $$('main > section');
+    function navType(){
+      try { var n = performance.getEntriesByType('navigation')[0]; if (n) return n.type; } catch(_){}
+      return performance.navigation && performance.navigation.type === 1 ? 'reload' : '';
+    }
+    // posições reais, sem o sticky e sem o transform das folhas
+    function tops(){ root.classList.add('measuring'); var t = secs.map(docTop); root.classList.remove('measuring'); return t; }
+    function save(){
+      var y = window.scrollY, t = tops(), i = 0;
+      for (var k = 0; k < t.length; k++) if (t[k] <= y + 1) i = k;
+      try { sessionStorage.setItem(KEY, JSON.stringify({ i: i, o: Math.round(y - (t[i] || 0)), y: Math.round(y) })); } catch(_){}
+    }
+    window.addEventListener('pagehide', save);
+    document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') save(); });
+
+    var s = null;
+    if (navType() === 'reload' && !location.hash){ try { s = JSON.parse(sessionStorage.getItem(KEY)); } catch(_){} }
+    try { sessionStorage.removeItem(KEY); } catch(_){}
+    if (!s || !(s.y > 0)) return;
+    // reaplica enquanto a página termina de montar; para assim que a pessoa mexer
+    var done = false, stop = function(){ done = true; };
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function(ev){ window.addEventListener(ev, stop, { passive: true, once: true }); });
+    function go(){
+      if (done) return;
+      var t = secs[s.i] ? tops()[s.i] : null, y = t != null ? t + s.o : s.y;
+      y = clamp(Math.round(y), 0, Math.max(0, root.scrollHeight - window.innerHeight));
+      if (Math.abs(window.scrollY - y) > 1) window.scrollTo(0, y);
+    }
+    go(); requestAnimationFrame(go);
+    window.addEventListener('load', function(){ go(); setTimeout(go, 150); setTimeout(function(){ go(); done = true; }, 700); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
   })();
 
   // ===================== PROFUNDIDADE: a seção afunda e a próxima passa por cima =====================
