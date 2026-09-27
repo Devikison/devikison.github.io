@@ -17,6 +17,8 @@ deployment:
     # Páginas internas (uma pasta por página, com index.html) e arquivo para buscas com IA
     - for d in criacao-de-landing-page criacao-de-site-institucional google-meu-negocio pagina-link-na-bio trafego-pago site-para-profissionais-da-saude landing-page-para-eventos-e-imersoes; do if [ -d "$d" ]; then /bin/cp -Rf "$d" $DEPLOYPATH; fi; done
     - if [ -f llms.txt ]; then /bin/cp -f llms.txt $DEPLOYPATH; fi
+    # Ícones do site (favicon, PNGs e ícone do iPhone)
+    - if ls favicon* apple-touch-icon.png >/dev/null 2>&1; then /bin/cp -f favicon* apple-touch-icon.png $DEPLOYPATH; fi
     # .htaccess apenas se existir
     - if [ -f .htaccess ]; then /bin/cp -f .htaccess $DEPLOYPATH; fi
     # NUNCA copiamos: node_modules, src, components, lib, .git, .cpanel.yml, .gitignore, chaves
