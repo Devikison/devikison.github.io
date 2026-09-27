@@ -159,14 +159,14 @@
   $$('main > section').forEach(function(s, i){ s.style.zIndex = i + 1; });
 
   // ===================== TEXTO EM DEGRADÊ: um degradê por frase (não por palavra) =====================
+  // posições de layout (offset* do .w de cada palavra): não mudam enquanto as palavras sobem na entrada
   onMeasure(function(){
     $$('.aurora').forEach(function(g){
-      if (g.closest('.hero')) return;
       var ws = $$('.au', g); if (!ws.length) return;
       // um degradê contínuo por linha: palavras da mesma linha dividem a mesma faixa de cor
-      var rs = ws.map(function(w){ return w.getBoundingClientRect(); }), lines = [];
-      rs.forEach(function(r, i){ var ln = lines.filter(function(L){ return Math.abs(L.top - r.top) < r.height / 2; })[0]; if (!ln){ ln = { top: r.top, l: r.left, r: r.right, ids: [] }; lines.push(ln); } ln.l = Math.min(ln.l, r.left); ln.r = Math.max(ln.r, r.right); ln.ids.push(i); });
-      lines.forEach(function(L){ L.ids.forEach(function(i){ ws[i].style.setProperty('--aw', Math.round(L.r - L.l) + 'px'); ws[i].style.setProperty('--ax', Math.round(L.l - rs[i].left) + 'px'); }); });
+      var rs = ws.map(function(w){ var b = w.parentNode.classList.contains('w') ? w.parentNode : w; return { l: b.offsetLeft, t: b.offsetTop, r: b.offsetLeft + b.offsetWidth, h: b.offsetHeight || 1 }; }), lines = [];
+      rs.forEach(function(r, i){ var ln = lines.filter(function(L){ return Math.abs(L.t - r.t) < r.h / 2; })[0]; if (!ln){ ln = { t: r.t, l: r.l, r: r.r, ids: [] }; lines.push(ln); } ln.l = Math.min(ln.l, r.l); ln.r = Math.max(ln.r, r.r); ln.ids.push(i); });
+      lines.forEach(function(L){ L.ids.forEach(function(i){ ws[i].style.setProperty('--aw', Math.max(1, Math.round(L.r - L.l)) + 'px'); ws[i].style.setProperty('--ax', Math.round(L.l - rs[i].l) + 'px'); }); });
     });
   });
 
@@ -361,7 +361,34 @@
         if (key === g.last) continue; g.last = key;
         cards[i].style.transform = p > 0 ? 'scale(' + (1 - p * .08).toFixed(4) + ')' : '';
         cards[i].style.setProperty('--dim', (p * .62).toFixed(3));
+        cards[i].classList.toggle('covered', p > .3); // escondido atrás do próximo: a borda para de girar
       }
+    });
+  })();
+
+  // ===================== RÉGUA: feixe de LED anda de divisória em divisória =====================
+  // SEG é a distância entre as marcas maiores da régua (styles.css, .seam::before): o feixe
+  // começa e termina sempre em cima de uma marca. Vai e volta; só roda com a régua na tela.
+  (function(){
+    var seams = $$('.seam'); if (!seams.length || reduced) return;
+    var SEG = 96;
+    seams.forEach(function(sm){
+      var b = document.createElement('i'); b.className = 'seam-beam'; sm.appendChild(b);
+      var k = 0, dir = 1, vis = false, timer = null, span = 1, slots = 1;
+      function place(){
+        var M = Math.floor((sm.clientWidth - 1) / SEG); span = M >= 8 ? 2 : 1; slots = Math.max(1, Math.floor(M / span));
+        b.style.width = (span * SEG + 1) + 'px';
+        if (k > slots - 1){ k = slots - 1; dir = -1; }
+        b.style.transform = 'translate3d(' + (k * span * SEG) + 'px,0,0)';
+      }
+      // anda um bloco inteiro por vez e para em cima das marcas
+      function step(){
+        timer = null; if (!vis) return;
+        if (slots > 1){ if (k + dir > slots - 1 || k + dir < 0) dir = -dir; k += dir; place(); }
+        timer = setTimeout(step, 1050);
+      }
+      onMeasure(place);
+      if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ vis = en[0].isIntersecting; if (vis && !timer){ b.classList.add('on'); timer = setTimeout(step, 400); } }).observe(sm);
     });
   })();
 
@@ -490,26 +517,44 @@
     onMeasure(draw);
   })();
 
-  // ===================== TUDO INCLUSO: globo de pontos (só computador, desenhado uma vez) =====================
+  // ===================== TUDO INCLUSO: globo de pontos girando (canvas) =====================
+  // só roda com a seção na tela, a 30 quadros/s; pontos pré-calculados e sem criar texto por ponto
   (function(){
     var cv = $('[data-globe]'); if (!cv) return;
     var ctx = cv.getContext('2d'); if (!ctx) return;
-    var drawnW = 0;
-    onMeasure(function(){
-      if (VW <= 960) return;
-      var W = cv.clientWidth; if (!W || W === drawnW) return; drawnW = W;
-      var dpr = Math.min(window.devicePixelRatio || 1, 1.5); cv.width = cv.height = Math.round(W * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var N = 900, ga = Math.PI * (3 - Math.sqrt(5)), R = W * .42, cx = W / 2, cy = W / 2, tilt = .38, rot = .8, ct = Math.cos(tilt), st = Math.sin(tilt), cr = Math.cos(rot), sr = Math.sin(rot);
-      var g = ctx.createRadialGradient(cx, cy, R * .2, cx, cy, R * 1.25); g.addColorStop(0, 'rgba(45,99,255,.14)'); g.addColorStop(1, 'rgba(45,99,255,0)');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, W);
-      for (var i = 0; i < N; i++){
-        var yy = 1 - (i / (N - 1)) * 2, rr = Math.sqrt(1 - yy * yy), th = ga * i, px = Math.cos(th) * rr, pz = Math.sin(th) * rr;
-        var x = px * cr - pz * sr, z = px * sr + pz * cr, y = yy * ct - z * st; z = yy * st + z * ct;
-        var f = (z + 1) / 2, a = .05 + f * f * .7, s = .6 + f * 1.5;
-        ctx.fillStyle = f > .72 ? 'rgba(160,236,255,' + a + ')' : 'rgba(111,147,255,' + a + ')';
-        ctx.fillRect(cx + x * R - s / 2, cy + y * R - s / 2, s, s);
+    var small = window.innerWidth <= 760, N = small ? 460 : 900, P = new Float32Array(N * 3), ga = Math.PI * (3 - Math.sqrt(5));
+    for (var i = 0; i < N; i++){ var yy = 1 - (i / (N - 1)) * 2, rr = Math.sqrt(1 - yy * yy), th = ga * i; P[i * 3] = Math.cos(th) * rr; P[i * 3 + 1] = yy; P[i * 3 + 2] = Math.sin(th) * rr; }
+    var W = 0, grad = null, rot = .8, px = 0, tpx = 0, visible = false, last = 0, running = false;
+    function size(){
+      var w = cv.clientWidth; if (!w || w === W) return; W = w;
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.5); cv.width = cv.height = Math.round(w * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var R = W * .42; grad = ctx.createRadialGradient(W / 2, W / 2, R * .2, W / 2, W / 2, R * 1.25); grad.addColorStop(0, 'rgba(45,99,255,.14)'); grad.addColorStop(1, 'rgba(45,99,255,0)');
+    }
+    function draw(){
+      if (!W) return;
+      var R = W * .42, cx = W / 2, cy = W / 2, tilt = .38 + px * .15, ct = Math.cos(tilt), st = Math.sin(tilt), cr = Math.cos(rot), sr = Math.sin(rot);
+      ctx.globalAlpha = 1; ctx.clearRect(0, 0, W, W); ctx.fillStyle = grad; ctx.fillRect(0, 0, W, W);
+      for (var pass = 0; pass < 2; pass++){
+        ctx.fillStyle = pass ? '#a0ecff' : '#6f93ff';
+        for (var i = 0; i < N; i++){
+          var x0 = P[i * 3], y0 = P[i * 3 + 1], z0 = P[i * 3 + 2], x = x0 * cr - z0 * sr, z = x0 * sr + z0 * cr, y = y0 * ct - z * st; z = y0 * st + z * ct;
+          var f = (z + 1) / 2; if ((f > .72) !== !!pass) continue;
+          var sz = .6 + f * 1.5; ctx.globalAlpha = .05 + f * f * .72;
+          ctx.fillRect(cx + x * R - sz / 2, cy + y * R - sz / 2, sz, sz);
+        }
       }
-    });
+      ctx.globalAlpha = 1;
+    }
+    onMeasure(function(){ size(); draw(); });
+    if (reduced) return;
+    if (fine) window.addEventListener('pointermove', function(e){ tpx = e.clientX / VW - .5; }, { passive: true });
+    function loop(now){
+      if (!visible){ running = false; return; }
+      requestAnimationFrame(loop);
+      if (now - last < 33) return;
+      last = now; px += (tpx - px) * .05; rot += .0035 + px * .01; draw();
+    }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ visible = en[0].isIntersecting; if (visible && !running){ running = true; requestAnimationFrame(loop); } }, { rootMargin: '10% 0px' }).observe(cv.parentNode);
   })();
 
   // ===================== BUSCA DIGITANDO SOZINHA =====================
