@@ -19,6 +19,21 @@
   var root = document.documentElement;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // ===================== ROLAGEM SUAVE (Lenis, so desktop com mouse) =====================
+  var lenis = null;
+  if (fine && !reduced && window.Lenis){
+    lenis = new Lenis({
+      duration: 1.35,
+      easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true,
+      wheelMultiplier: .9,
+      prevent: function(){ return document.body.style.overflow === 'hidden'; }
+    });
+    var lenisRaf = function(t){ lenis.raf(t); requestAnimationFrame(lenisRaf); };
+    requestAnimationFrame(lenisRaf);
+  }
+  function smoothTo(y, dur){ if (lenis) lenis.scrollTo(y, { duration: dur || 1.6 }); else window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' }); }
   var waLink = function(msg){ return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg); };
   var docTop = function(el){ return el.getBoundingClientRect().top + window.scrollY; };
 
@@ -217,7 +232,7 @@
     var id = a.getAttribute('href'); if (id.length < 2) return;
     var t = $(id); if (!t) return;
     e.preventDefault();
-    window.scrollTo({ top: anchorTop(t), behavior: reduced ? 'auto' : 'smooth' });
+    smoothTo(anchorTop(t));
     cleanHash();
     var f = t.nextElementSibling || t;
     if (f.tagName === 'SECTION'){ if (!f.hasAttribute('tabindex')) f.setAttribute('tabindex', '-1'); try { f.focus({ preventScroll: true }); } catch(_){} }
@@ -799,7 +814,7 @@
     function reset(){
       step = 0; ans = []; dir = 'back'; R = null; badCount = 0; renderQ(); setXP(0);
       say('Bora de novo! <b>Qual é o seu tipo de negócio?</b>'); mood('hello', 'analyzing', 1600);
-      window.scrollTo({ top: Math.max(0, docTop(box) - 110), behavior: reduced ? 'auto' : 'smooth' });
+      smoothTo(Math.max(0, docTop(box) - 110), 1.2);
     }
     function field(id, label, input, opt){ return '<div class="f-field" data-f="' + id + '"><label for="f-' + id + '">' + label + (opt ? ' <em>(opcional)</em>' : '') + '</label>' + input + '<span class="msg">Preencha este campo.</span></div>'; }
     function renderForm(){

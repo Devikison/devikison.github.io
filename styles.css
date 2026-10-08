@@ -1241,3 +1241,5 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
   .state-text .sw{color:#fff}
   .state-text .sw.hl{color:var(--volt)}
 }
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto !important}
