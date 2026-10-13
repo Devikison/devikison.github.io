@@ -7,6 +7,8 @@
    ===================================================================== */
 (function(){
   'use strict';
+  // Não deixa o site ser aberto dentro de outro site (proteção contra golpe de clique)
+  if (window.top !== window.self) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch(_) {} }
   var WA = '5547992476541';
   var FORM_ENDPOINT = 'https://formsubmit.co/ajax/devikisonads@gmail.com'; // backup do lead por e-mail ('' desliga)
   var $ = function(s, r){ return (r || document).querySelector(s); };
