@@ -149,8 +149,8 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
   min-height:var(--h);padding:6px var(--pad);border-radius:999px;font:640 15.5px/1.15 var(--f-d);font-stretch:108%;letter-spacing:.005em;text-align:center;
   user-select:none;-webkit-user-select:none;transform:translate3d(var(--bx,0px),calc(var(--by,0px) + var(--lift,0px)),0) scale(var(--sc,1));
   transition:transform .45s var(--spring),box-shadow .35s var(--ease),filter .3s}
-.btn:has(>.knob){display:inline-grid;grid-template-columns:var(--k) minmax(0,1fr) var(--k);gap:10px;padding:calc((var(--h) - var(--k)) / 2)}
-.btn .bt{padding:0 2px;text-wrap:balance}
+.btn:has(>.knob){display:inline-grid;grid-template-columns:var(--k) minmax(0,1fr);gap:12px;padding:calc((var(--h) - var(--k)) / 2);padding-right:calc(var(--pad) * .8)}
+.btn .bt{padding:0 2px;text-align:center;text-wrap:balance;line-height:1.2}
 .btn .knob{width:var(--k);height:var(--k);border-radius:50%;display:grid;place-items:center;color:#0b1400;
   background:radial-gradient(circle at 34% 26%,#f7ffd6 0%,#dcff55 36%,#b7ea0e 72%,#8fbd00 100%);
   box-shadow:inset 0 -3px 5px rgba(70,100,0,.45),inset 0 1.5px 1px rgba(255,255,255,.95),0 6px 14px -4px rgba(170,220,0,.55);transition:transform .55s var(--spring)}
@@ -745,8 +745,8 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 .ai-q span b{display:inline;font:inherit;color:var(--volt);font-weight:700}
 .band{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:22px;padding:clamp(24px,3vw,36px) clamp(24px,3.4vw,44px);border-radius:28px;
   background:radial-gradient(80% 140% at 100% 50%,rgba(212,255,61,.14),transparent 60%),radial-gradient(60% 120% at 0% 0%,rgba(45,99,255,.35),transparent 60%),linear-gradient(165deg,#111b42,#070b1a)}
-.band b{display:block;font-family:var(--f-d);font-stretch:118%;font-size:clamp(22px,2.4vw,32px);font-weight:760;letter-spacing:-.02em;line-height:1.1}
-.band span{display:block;margin-top:8px;color:var(--text-2);font-size:16px}
+.band>div>b{display:block;font-family:var(--f-d);font-stretch:118%;font-size:clamp(22px,2.4vw,32px);font-weight:760;letter-spacing:-.02em;line-height:1.1}
+.band>div>span{display:block;margin-top:8px;color:var(--text-2);font-size:16px}
 
 /* =====================================================================
    RÉGUA DE LUZ — divisor de ponta a ponta com feixe de LED passando
@@ -792,7 +792,7 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 .plan-list li{display:flex;gap:10px;align-items:flex-start}
 .plan-list svg{width:20px;height:20px;flex:none;padding:3px;border-radius:50%;stroke-width:3.2;color:#fff;background:#13b05a}
 .plan-foot{margin-top:auto;padding-top:10px;display:grid;gap:12px}
-.plan-foot .btn{font-size:17px;grid-template-columns:var(--k) minmax(0,1fr) 14px;white-space:nowrap}
+.plan-foot .btn{font-size:17px;white-space:nowrap}
 .plan-more{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14.5px;font-weight:650;color:var(--blue-ink)}
 .plan-more svg{width:16px;height:16px;stroke-width:2.4;transition:transform .3s var(--ease-out)}
 @media (hover:hover){.plan-more:hover svg{transform:translateX(4px)}}
@@ -1320,7 +1320,8 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
   .cta-row .btn{width:100%}
   .btn-lg{--h:60px;--k:46px;font-size:16.5px}
   /* celular: coluna da direita menor, pra frase caber numa linha só */
-  .btn:has(>.knob){grid-template-columns:var(--k) minmax(0,1fr) 12px}
+  .btn:has(>.knob){gap:10px;padding-right:20px}
+  .btn-lg{font-size:16px}
   .stats-in{grid-template-columns:repeat(2,1fr);gap:16px 0;padding:18px 6px}
   .stat:nth-child(3){border-left:0}
   .sec-head{margin-bottom:40px}
@@ -1344,6 +1345,7 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
   .feat,.feat.wide{grid-column:auto;min-height:0;flex-direction:row;align-items:flex-start;padding:20px 18px;gap:16px}
   .feat .chat,.feat .ai-q{display:none}
   .band .btn{width:100%}
+  .band{padding:22px 18px}
   .quiz{padding:20px 16px;border-radius:26px;min-height:0}
   .q-steps .s{width:30px;height:30px;border-radius:10px}
   .q-opt{min-height:56px;padding:12px 14px 12px 12px;font-size:16px}
@@ -1367,6 +1369,7 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 @media (max-width:440px){
   .hs-pin{height:min(100svh,640px);top:max(0px,(100svh - 640px) / 2)}
 }
+@media (max-width:380px){.btn-lg{--k:42px;font-size:clamp(13.5px,3.9vw,15px)}.btn:has(>.knob){gap:8px;padding-right:16px}}
 @media (max-width:350px){
   .logo-word{font-size:14px}
 }
