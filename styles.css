@@ -1378,7 +1378,7 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto !important}
 
 /* =====================================================================
-   CURSOR DESCOMPLICA: seta "dardo" própria + anel HUD que segue (cursor.js)
+   CURSOR DESCOMPLICA: seta "dardo" própria (normal e sobre links/botões)
    Só em computador com mouse. Campos de texto mantêm o cursor de digitação.
    ===================================================================== */
 @media (hover:hover) and (pointer:fine){
@@ -1386,15 +1386,3 @@ html.lenis,html.lenis body{height:auto}
   a,button,summary,label,select,[role="button"],[data-lp],.q-opt,.faq summary,.ft-more summary,.f-field select,.pcard-cta{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20d%3D%22M4%203%2027%2014.2%2016.4%2016.6%2011.6%2027.4Z%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%223.6%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M4%203%2027%2014.2%2016.4%2016.6%2011.6%2027.4Z%22%20fill%3D%22%23d4ff3d%22%20stroke%3D%22%23050814%22%20stroke-width%3D%221.6%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M6.8%206.8%2022%2014l-7%201.6%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-opacity%3D%22.75%22%20stroke-width%3D%221.1%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2214.6%22%20cy%3D%2215.4%22%20r%3D%221.9%22%20fill%3D%22%23050814%22%2F%3E%3C%2Fsvg%3E") 4 3,pointer}
   input,textarea{cursor:text}
 }
-.cur-ring{position:fixed;left:0;top:0;z-index:2147483646;width:40px;height:40px;margin:-20px 0 0 -20px;pointer-events:none;color:#5b8cff;opacity:0;
-  transition:opacity .25s,width .35s var(--spring),height .35s var(--spring),margin .35s var(--spring),color .25s;filter:drop-shadow(0 0 6px rgba(77,125,255,.55))}
-.cur-ring.on{opacity:1}
-.cur-ring svg{width:100%;height:100%;overflow:visible;animation:cur-spin 7s linear infinite}
-.cur-ring .seg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:20 6.7}
-.cur-ring .core{fill:currentColor;opacity:0}
-.cur-ring.hot{width:58px;height:58px;margin:-29px 0 0 -29px;color:#c6f531;filter:drop-shadow(0 0 8px rgba(212,255,61,.6))}
-.cur-ring.hot svg{animation-duration:2.4s}
-.cur-ring.txt{opacity:0}
-.cur-ring.down svg{transform:scale(.72);transition:transform .12s}
-@keyframes cur-spin{to{rotate:360deg}}
-@media (prefers-reduced-motion:reduce){.cur-ring{display:none}}
