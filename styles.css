@@ -761,9 +761,9 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
   background:linear-gradient(180deg,#121b40,#0a1130);border:1px solid #27335f;color:#fff;
   box-shadow:0 2px 4px rgba(5,10,30,.25),0 26px 50px -26px rgba(5,10,30,.75);
   transition:border-color .3s var(--ease-out),box-shadow .3s var(--ease-out)}
-@media (hover:hover){.plan:hover{border-color:#3d4d8c}}
-.plan-hot{border:2px solid #d4ff3d;box-shadow:0 2px 4px rgba(5,10,30,.25),0 30px 60px -26px rgba(5,10,30,.8),0 0 0 6px rgba(212,255,61,.12)}
-@media (hover:hover){.plan-hot:hover{border-color:#e4ff7a}}
+/* Ao passar o mouse: todos os cartões sobem um pouco, a borda clareia e a sombra aumenta */
+.plans .plan.rv.in{transition:transform .35s var(--ease-out),border-color .3s var(--ease-out),box-shadow .35s var(--ease-out),opacity .9s var(--ease-out);transition-delay:0s}
+@media (hover:hover){.plans .plan.rv.in:hover{transform:translateY(-8px);border-color:#5a6cb0;box-shadow:0 2px 4px rgba(5,10,30,.25),0 40px 70px -28px rgba(5,10,30,.85)}}
 .plan-head{display:flex;flex-direction:column;padding-bottom:20px}
 .plan-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
 .plan-ico{width:58px;height:58px;flex:none;border-radius:17px;display:grid;place-items:center}
