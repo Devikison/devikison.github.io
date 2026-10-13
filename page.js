@@ -2,6 +2,8 @@
    rolagem suave (Lenis), com a mesma sensação da página inicial. */
 (function(){
   'use strict';
+  // Não deixa o site ser aberto dentro de outro site (proteção contra golpe de clique)
+  if (window.top !== window.self) { document.documentElement.style.display = 'none'; try { window.top.location = window.self.location.href; } catch(_) {} }
   var y = document.querySelector('[data-year]');
   if (y) y.textContent = new Date().getFullYear();
 
