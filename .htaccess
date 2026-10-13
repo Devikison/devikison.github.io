@@ -1,0 +1,71 @@
+# =====================================================================
+# Descomplica Site: segurança, endereço único e velocidade (Apache/cPanel)
+# =====================================================================
+
+# Sem listagem de pastas e sem assinatura do servidor
+Options -Indexes
+ServerSignature Off
+
+# Página de erro amigável
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Bloqueia arquivos ocultos (.git, .env, .htaccess...), exceto a pasta .well-known
+  RewriteRule "(^|/)\.(?!well-known/)" - [F,L]
+
+  # Um endereço só: sempre HTTPS e sempre com www (evita conteúdo duplicado no Google)
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\. [NC]
+  RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
+  RewriteRule ^ https://www.%1%{REQUEST_URI} [R=301,L,NE]
+
+  # /index.html vira / (endereço limpo)
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+</IfModule>
+
+# Arquivos que nunca devem ser servidos
+<FilesMatch "(^\.|\.(bak|old|orig|swp|log|sql|sh|yml|yaml|ini|env|md|lock)$)">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  # Navegador só usa HTTPS neste domínio por 1 ano
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # Não deixa o navegador "adivinhar" o tipo do arquivo
+  Header always set X-Content-Type-Options "nosniff"
+  # Ninguém pode colocar o site dentro de outro site (golpe de clique)
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Envia só o domínio de origem para outros sites
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Desliga recursos do aparelho que o site não usa
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  # Só carrega código e arquivos do próprio site; o formulário só envia para o e-mail de backup
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formsubmit.co; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests"
+  Header unset X-Powered-By
+
+  # Cache: arquivos com versão (?v=) e imagens ficam guardados; HTML sempre atualizado
+  <FilesMatch "\.(css|js|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(svg|png|jpg|jpeg|webp|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# Compressão (site mais rápido)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Tipos corretos
+AddType font/woff2 .woff2
+AddType image/webp .webp
+AddType text/plain .txt
+AddDefaultCharset utf-8

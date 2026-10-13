@@ -4,9 +4,36 @@
 User-agent: *
 Allow: /
 
-# Arquivos de apoio do layout (não são páginas)
-Disallow: /assets/
-Allow: /assets/favicon.svg
+User-agent: Googlebot
+Allow: /
 
-# Mapa oficial do site
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Mapa oficial do site e resumo para IAs
 Sitemap: https://www.descomplicasite.com.br/sitemap.xml
+# Resumo para IAs: https://www.descomplicasite.com.br/llms.txt

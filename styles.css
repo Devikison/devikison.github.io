@@ -852,6 +852,7 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 .plan-help .plan-who{color:var(--text-2)}
 .plan-help .plan-more{color:var(--cyan)}
 .pricing .dom,.pricing .plan-help,.plans-note{max-width:1240px;margin-left:auto;margin-right:auto}
+.f-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 .plans-note{display:flex;align-items:flex-start;justify-content:center;gap:10px;margin:28px auto 0;max-width:760px;text-align:center;font-size:15.5px;color:var(--text-2)}
 .plans-note svg{width:20px;height:20px;flex:none;margin-top:2px;color:var(--blue-ink);stroke-width:2.2}
 @media (max-width:1100px){.plans{grid-template-columns:repeat(2,minmax(0,1fr))}.plan-hot{order:-1}}
