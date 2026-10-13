@@ -714,8 +714,8 @@
         { t: 'Indicação e boca a boca', s: 0 }, { t: 'Redes sociais, no orgânico', s: 6 }, { t: 'Impulsiono posts de vez em quando', s: 10 }, { t: 'Campanhas de anúncio estruturadas', s: 20 } ] }
     ];
     var SEG = {
-      local:   { n: 'negócio local', rec: 'Site Completo + Perfil no Google Maps', want: 'Site Completo', hi: 'Negócio local? O <b>Google Maps</b> vai ser seu melhor amigo.', why: 'Negócio local vive da busca “perto de mim”. Um site feito para o Google e o perfil no Google Maps colocam você na frente de quem está perto e pronto para comprar.' },
-      servico: { n: 'prestador de serviço', rec: 'Página de Vendas + Perfil no Google Maps', want: 'Página de Vendas', hi: 'Serviço se vende por <b>confiança</b>. Anotado!', why: 'Quem contrata serviço pesquisa, compara e chama quem parece mais profissional. Uma página de vendas com depoimentos e botão de WhatsApp fecha esse ciclo.' },
+      local:   { n: 'negócio local', rec: 'Site Completo + Perfil Google Meu Negócio', want: 'Site Completo', hi: 'Negócio local? O <b>Google Maps</b> vai ser seu melhor amigo.', why: 'Negócio local vive da busca “perto de mim”. Um site feito para o Google e o perfil no Google Maps colocam você na frente de quem está perto e pronto para comprar.' },
+      servico: { n: 'prestador de serviço', rec: 'Página de Vendas + Perfil Google Meu Negócio', want: 'Página de Vendas', hi: 'Serviço se vende por <b>confiança</b>. Anotado!', why: 'Quem contrata serviço pesquisa, compara e chama quem parece mais profissional. Uma página de vendas com depoimentos e botão de WhatsApp fecha esse ciclo.' },
       loja:    { n: 'loja ou produto', rec: 'Página de Vendas + Tráfego pago', want: 'Página de Vendas', hi: 'Produto bom precisa de <b>vitrine boa</b>. Bora!', why: 'Produto vende com uma página de oferta clara e anúncio bem direcionado. A página recebe o clique e o anúncio traz mais gente.' },
       info:    { n: 'infoproduto ou mentoria', rec: 'Página de Vendas + Tráfego pago', want: 'Página de Vendas', hi: 'Infoproduto vive de <b>página que convence</b>. Guardei!', why: 'Infoproduto depende de uma página que convence em segundos: texto que convence, depoimentos e o botão certo, com anúncios levando o público até ela.' }
     };
@@ -821,7 +821,7 @@
     function field(id, label, input, opt){ return '<div class="f-field" data-f="' + id + '"><label for="f-' + id + '">' + label + (opt ? ' <em>(opcional)</em>' : '') + '</label>' + input + '<span class="msg">Preencha este campo.</span></div>'; }
     function renderForm(){
       say('Quase lá! <b>Para quem eu mando o plano?</b>'); mood('happy', 'analyzing', 1300);
-      var wants = ['Página de Vendas', 'Site Completo', 'Link na Bio', 'Perfil no Google Maps', 'Tráfego pago', 'Ainda não sei, quero orientação'];
+      var wants = ['Página de Vendas', 'Site Completo', 'Link na Bio', 'Perfil Google Meu Negócio', 'Tráfego pago', 'Ainda não sei, quero orientação'];
       box.innerHTML = stepsBar(true) + '<div class="q-step"><span class="q-k mono">Último passo</span><h3 class="q-title">Para onde enviamos o seu plano?</h3><p class="q-sub">Ao enviar, sua mensagem vai pronta, com o diagnóstico, direto para o nosso WhatsApp.</p>' +
         '<div class="f-sum"><span>' + esc(R.T.title) + ' · ' + R.score + '/100</span><span>' + esc(R.seg.rec) + '</span></div>' +
         '<form class="q-form" novalidate data-lead><div class="f-grid">' +
