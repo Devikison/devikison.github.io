@@ -703,7 +703,7 @@
       { q: 'Qual é o seu tipo de negócio?', sub: 'Para personalizar a sua análise.', icon: 'i-tag', max: 0, opts: [
         { t: 'Negócio local (loja, clínica, restaurante, salão...)', seg: 'local' }, { t: 'Prestador de serviço ou profissional liberal', seg: 'servico' }, { t: 'Loja online ou venda de produto', seg: 'loja' }, { t: 'Infoproduto, curso ou mentoria', seg: 'info' } ] },
       { q: 'Quando alguém quer conhecer seu negócio, onde chega hoje?', sub: 'O destino de quem te procura.', icon: 'i-layout', max: 30, opts: [
-        { t: 'No meu Instagram ou direto no WhatsApp', s: 0 }, { t: 'Num link na bio genérico (tipo Linktree)', s: 8 }, { t: 'Num site antigo, que não traz cliente', s: 15 }, { t: 'Numa página profissional que converte', s: 30 } ] },
+        { t: 'No meu Instagram ou direto no WhatsApp', s: 0 }, { t: 'Num link na bio genérico (tipo Linktree)', s: 8 }, { t: 'Num site antigo, que não traz cliente', s: 15 }, { t: 'Numa página profissional que traz clientes', s: 30 } ] },
       { q: 'Se alguém pesquisar o seu serviço no Google agora, o que aparece?', sub: 'Seja sincero: é isso que o cliente vê.', icon: 'i-search', max: 30, opts: [
         { t: 'Nada meu. Só concorrente', s: 0 }, { t: 'Só o meu Instagram', s: 8 }, { t: 'Meu site, mas lá embaixo', s: 18 }, { t: 'Meu site entre os primeiros', s: 30 } ] },
       { q: 'Seu negócio aparece no Google Maps?', sub: 'O bloco com mapa, estrelas e horário (Google Meu Negócio).', icon: 'i-pin', max: 20, opts: [
@@ -712,10 +712,10 @@
         { t: 'Indicação e boca a boca', s: 0 }, { t: 'Redes sociais, no orgânico', s: 6 }, { t: 'Impulsiono posts de vez em quando', s: 10 }, { t: 'Campanhas de anúncio estruturadas', s: 20 } ] }
     ];
     var SEG = {
-      local:   { n: 'negócio local', rec: 'Site institucional + Google Meu Negócio', want: 'Site institucional', hi: 'Negócio local? O <b>Google Maps</b> vai ser seu melhor amigo.', why: 'Negócio local vive da busca “perto de mim”. Site com SEO local e perfil no Google Maps colocam você na frente de quem está perto e pronto para comprar.' },
-      servico: { n: 'prestador de serviço', rec: 'Landing page + Google Meu Negócio', want: 'Landing page', hi: 'Serviço se vende por <b>confiança</b>. Anotado!', why: 'Quem contrata serviço pesquisa, compara e chama quem parece mais profissional. Landing page com prova e WhatsApp em um toque fecha esse ciclo.' },
-      loja:    { n: 'loja ou produto', rec: 'Landing page de oferta + Tráfego pago', want: 'Landing page', hi: 'Produto bom precisa de <b>vitrine boa</b>. Bora!', why: 'Produto vende com página de oferta clara e anúncio bem direcionado. A landing page recebe o clique e o tráfego pago traz volume.' },
-      info:    { n: 'infoproduto ou mentoria', rec: 'Landing page de conversão + Tráfego pago', want: 'Landing page', hi: 'Infoproduto vive de <b>página que convence</b>. Guardei!', why: 'Infoproduto depende de uma página que convence em segundos: copy forte, prova social e o botão certo, com campanhas levando o público até ela.' }
+      local:   { n: 'negócio local', rec: 'Site institucional + Google Meu Negócio', want: 'Site institucional', hi: 'Negócio local? O <b>Google Maps</b> vai ser seu melhor amigo.', why: 'Negócio local vive da busca “perto de mim”. Um site feito para o Google e o perfil no Google Maps colocam você na frente de quem está perto e pronto para comprar.' },
+      servico: { n: 'prestador de serviço', rec: 'Landing page + Google Meu Negócio', want: 'Landing page', hi: 'Serviço se vende por <b>confiança</b>. Anotado!', why: 'Quem contrata serviço pesquisa, compara e chama quem parece mais profissional. Uma página de vendas com depoimentos e botão de WhatsApp fecha esse ciclo.' },
+      loja:    { n: 'loja ou produto', rec: 'Landing page de oferta + Tráfego pago', want: 'Landing page', hi: 'Produto bom precisa de <b>vitrine boa</b>. Bora!', why: 'Produto vende com uma página de oferta clara e anúncio bem direcionado. A página recebe o clique e o anúncio traz mais gente.' },
+      info:    { n: 'infoproduto ou mentoria', rec: 'Landing page de conversão + Tráfego pago', want: 'Landing page', hi: 'Infoproduto vive de <b>página que convence</b>. Guardei!', why: 'Infoproduto depende de uma página que convence em segundos: texto que convence, depoimentos e o botão certo, com anúncios levando o público até ela.' }
     };
     var LINES = {
       bad: ['Eita... aqui está <b>escapando cliente.</b>', 'Hmm, isso <b>pesa no resultado.</b>', 'Ai. Esse é um <b>ponto crítico.</b>'],
@@ -777,11 +777,11 @@
       var p = QUIZ[1].opts[ans[1]].s, gq = QUIZ[2].opts[ans[2]].s, gm = QUIZ[3].opts[ans[3]].s, t = QUIZ[4].opts[ans[4]].s;
       var score = p + gq + gm + t, gaps = [];
       if (p < 30) gaps.push({ k: p, t: p === 0 ? (seg.want === 'Site institucional' ? 'Site profissional' : 'Landing page profissional') : p === 8 ? 'Página própria no lugar do link genérico' : 'Reestruturar o site atual',
-        d: p === 0 ? 'Hoje o clique morre no Instagram. Uma página com a sua marca recebe quem procura e leva direto para o WhatsApp.' : p === 8 ? 'Trocar o link igual ao de todo mundo por uma página sua, com prova e direcionamento para a venda.' : 'Copy de venda, SEO, velocidade e WhatsApp em um toque. O site que você tem vira o site que traz cliente.' });
-      if (gq < 30) gaps.push({ k: gq + 1, t: 'SEO + GEO', d: gq <= 8 ? 'Estruturar a página para aparecer na busca e nas respostas de IA quando pesquisam o que você vende.' : 'Subir posições com conteúdo, estrutura técnica e sinais locais.' });
-      if (gm < 20) gaps.push({ k: gm + 2, t: 'Google Meu Negócio', d: gm === 0 ? 'Criar o perfil para aparecer no Google Maps e no bloco local, com avaliações e botão de contato.' : 'Completar o perfil: categorias, fotos, descrição com palavras-chave e conexão com o site.' });
-      if (t < 20) gaps.push({ k: t + 40, t: 'Tráfego pago (com a página no ar)', d: 'Campanhas no Meta e no Google Ads levando o público certo até a página, com verba controlada.' });
-      if (!gaps.length) gaps.push({ k: 0, t: 'Escala', d: 'Base sólida. Próximo passo: mais páginas por serviço, mais tráfego e testes contínuos.' });
+        d: p === 0 ? 'Hoje o clique morre no Instagram. Uma página com a sua marca recebe quem procura e leva direto para o WhatsApp.' : p === 8 ? 'Trocar o link igual ao de todo mundo por uma página sua, com prova e direcionamento para a venda.' : 'Texto que vende, feito para o Google, rápido e com WhatsApp em um toque. O site que você tem vira o site que traz cliente.' });
+      if (gq < 30) gaps.push({ k: gq + 1, t: 'Aparecer no Google', d: gq <= 8 ? 'Preparar sua página para aparecer quando pesquisam o que você vende, no Google e no ChatGPT.' : 'Subir na busca com os textos certos e as informações da sua região.' });
+      if (gm < 20) gaps.push({ k: gm + 2, t: 'Google Meu Negócio', d: gm === 0 ? 'Criar o perfil para aparecer no Google Maps e no bloco local, com avaliações e botão de contato.' : 'Completar o perfil: categoria certa, fotos, descrição com as palavras que seu cliente pesquisa e ligação com o site.' });
+      if (t < 20) gaps.push({ k: t + 40, t: 'Tráfego pago (com a página no ar)', d: 'Anúncios no Instagram, Facebook e Google levando o público certo até a página, com valor controlado.' });
+      if (!gaps.length) gaps.push({ k: 0, t: 'Escala', d: 'Base sólida. Próximo passo: uma página para cada serviço e mais anúncios.' });
       gaps.sort(function(a, b){ return a.k - b.k; });
       var tier = score < 35 ? 'low' : score < 70 ? 'mid' : 'high';
       var T = {
