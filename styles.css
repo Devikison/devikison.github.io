@@ -316,6 +316,10 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 .hero-sub{max-width:calc(33.33em - 33.3px);margin:0 auto;font-size:clamp(17.5px,1.6vw,20.5px);line-height:1.6;color:var(--text-2)}
 .hero-sub strong{color:#fff;font-weight:680}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:36px}
+.cta-from{margin-left:2px;padding:4px 10px;border-radius:999px;font-size:.8em;font-weight:700;color:#0b1400;background:var(--volt)}
+.cta-proof{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;margin-top:22px;font-size:14.5px;font-weight:560;color:var(--text-2)}
+.cta-proof li{display:inline-flex;align-items:center;gap:7px}
+.cta-proof svg{width:16px;height:16px;stroke-width:2.8;color:var(--volt)}
 .stats{position:relative;z-index:2;width:100%;max-width:980px;margin:clamp(44px,6vw,72px) auto 0;padding:0 var(--gut)}
 .stats-in{display:grid;grid-template-columns:repeat(4,1fr);border-radius:26px;padding:22px 10px;
   background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02)),rgba(6,10,26,.72);border:1px solid rgba(168,190,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px -30px rgba(0,0,0,.9)}
