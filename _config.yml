@@ -1,0 +1,9 @@
+# GitHub Pages: o site é HTML puro, sem processamento.
+# Arquivos de configuração do servidor (cPanel/Apache) ficam no repositório,
+# mas não são publicados para o público.
+exclude:
+  - .htaccess
+  - .cpanel.yml
+  - .gitignore
+  - _guardados
+  - "*.md"
