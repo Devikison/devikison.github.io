@@ -887,7 +887,9 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 .step .node::after{content:"";width:8px;height:8px;border-radius:50%;background:rgba(168,190,255,.45);transition:background .5s}
 .step.lit .node{border-color:var(--volt);background:#1a2400;box-shadow:0 0 0 6px rgba(212,255,61,.12),0 0 18px rgba(212,255,61,.45)}
 .step.lit .node::after{background:var(--volt)}
-.step .sbadge{align-self:flex-start;transition:border-color .5s,box-shadow .5s}
+.step .sbadge{align-self:flex-start;max-width:100%;gap:8px;padding:4px 12px 4px 4px;font-size:10px;letter-spacing:.06em;transition:border-color .5s,box-shadow .5s}
+.step .sbadge .n{width:28px;height:28px;flex:none;font-size:12px}
+@media (min-width:1101px) and (max-width:1180px){.step .sbadge{font-size:9px;letter-spacing:.03em;gap:6px;padding-right:9px}.step .sbadge .n{width:24px;height:24px;font-size:11px}}
 .step:not(.lit) .sbadge{--ac:#7f8fbf}
 .step h3{font-size:20px;font-stretch:114%;font-weight:740}
 .step p{font-size:15px;line-height:1.55;color:var(--text-2)}
