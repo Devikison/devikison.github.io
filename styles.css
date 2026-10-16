@@ -243,8 +243,8 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 .nav.hide .nav-in::before{animation-play-state:paused}
 .nav-prog{position:absolute;left:24px;right:24px;bottom:-1px;height:2px;border-radius:2px;overflow:hidden;pointer-events:none}
 .nav-prog i{display:block;height:100%;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--cyan),var(--blue-2),var(--violet),var(--volt))}
-.logo{display:inline-flex;align-items:center;gap:10px;padding:4px 12px 4px 3px;border-radius:999px;flex:none}
-.logo-mark{width:36px;height:36px;flex:none}
+.logo{display:inline-flex;align-items:center;gap:10px;padding:4px 12px 4px 12px;border-radius:999px;flex:none}
+.logo-mark{width:30px;height:30px;flex:none}
 .logo-word{font-family:var(--f-d);font-stretch:118%;font-weight:760;font-size:15.5px;letter-spacing:-.02em;color:#fff;line-height:1;white-space:nowrap}
 .logo-word b{font-weight:430;color:var(--blue-4);margin-left:3px}
 .nav-links{position:relative;display:flex;align-items:center;gap:2px;margin-left:auto}
