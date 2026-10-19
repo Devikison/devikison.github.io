@@ -9,3 +9,9 @@ Gera as imagens 1200x630 de cada página com o visual do site.
    O nome novo faz o WhatsApp e o Instagram buscarem a prévia atualizada.
 
 Esta pasta não vai para o site publicado.
+
+## Black Friday
+- `data-blackfriday.json` gera as prévias `-bf.jpg` (mesmo comando, trocando o arquivo de dados).
+- As prévias normais (`-v4.jpg`) continuam em `gallery/`. **Depois de 30/11**, troque `-bf.jpg` de volta
+  para `-v4.jpg` em todas as páginas e volte o og:title/og:description da página inicial
+  (o WhatsApp não roda o código do site, então essa troca não é automática).
