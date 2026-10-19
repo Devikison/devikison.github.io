@@ -1,0 +1,146 @@
+{
+ "items": [
+  {
+   "file": "og-cover",
+   "bf": "Black Friday · tempo limitado",
+   "h1": "Até 36% OFF<br><span>no seu site.</span>",
+   "price": "197",
+   "old": "249",
+   "pct": "21",
+   "cta": "Ver ofertas",
+   "chips": [
+    [
+     "c2",
+     "gift",
+     "Domínio e hospedagem grátis 1 ano"
+    ],
+    [
+     "c1",
+     "zap",
+     "Pronto em 72h"
+    ]
+   ],
+   "fs": 70,
+   "from": true
+  },
+  {
+   "file": "criacao-de-landing-page",
+   "bf": "Black Friday · tempo limitado",
+   "h1": "Página de Vendas<br><span>pronta em 72h.</span>",
+   "price": "647",
+   "old": "887",
+   "pct": "27",
+   "cta": "Quero a minha",
+   "chips": [
+    [
+     "c2",
+     "gift",
+     "Domínio e hospedagem grátis 1 ano"
+    ]
+   ],
+   "fs": 62
+  },
+  {
+   "file": "criacao-de-site-institucional",
+   "bf": "Black Friday · tempo limitado",
+   "h1": "Site Completo<br><span>pronto em 72h.</span>",
+   "price": "1.147",
+   "old": "1.494",
+   "pct": "23",
+   "pfs": 64,
+   "cta": "Quero o meu",
+   "chips": [
+    [
+     "c2",
+     "gift",
+     "Domínio e hospedagem grátis 1 ano"
+    ]
+   ],
+   "fs": 64
+  },
+  {
+   "file": "google-meu-negocio",
+   "bf": "Black Friday · tempo limitado",
+   "h1": "Seu negócio<br><span>no Google Maps.</span>",
+   "price": "197",
+   "old": "249",
+   "pct": "21",
+   "cta": "Quero aparecer",
+   "chips": [
+    [
+     "c1",
+     "zap",
+     "Pronto em até 72h"
+    ]
+   ],
+   "fs": 64
+  },
+  {
+   "file": "pagina-link-na-bio",
+   "bf": "Black Friday · tempo limitado",
+   "h1": "Link na Bio<br><span>com a sua marca.</span>",
+   "price": "247",
+   "old": "387",
+   "pct": "36",
+   "cta": "Quero o meu",
+   "chips": [
+    [
+     "c2",
+     "gift",
+     "Domínio e hospedagem grátis 1 ano"
+    ]
+   ],
+   "fs": 64
+  },
+  {
+   "file": "landing-page-para-eventos-e-imersoes",
+   "bf": "Black Friday · tempo limitado",
+   "h1": "Página de vendas<br><span>para o seu evento.</span>",
+   "price": "647",
+   "old": "887",
+   "pct": "27",
+   "cta": "Quero a minha",
+   "chips": [
+    [
+     "c2",
+     "gift",
+     "Domínio e hospedagem grátis 1 ano"
+    ]
+   ],
+   "fs": 58
+  },
+  {
+   "file": "site-para-profissionais-da-saude",
+   "bf": "Black Friday · tempo limitado",
+   "h1": "Site para<br><span>a área da saúde.</span>",
+   "price": "647",
+   "old": "887",
+   "pct": "27",
+   "cta": "Quero o meu",
+   "chips": [
+    [
+     "c2",
+     "gift",
+     "Domínio e hospedagem grátis 1 ano"
+    ]
+   ],
+   "fs": 64
+  },
+  {
+   "file": "trafego-pago",
+   "bf": "Black Friday · tempo limitado",
+   "h1": "Anúncios que fazem<br><span>o WhatsApp tocar.</span>",
+   "cardk": "Black Friday",
+   "cardt": "Até 36% OFF na sua página de vendas antes de anunciar.",
+   "cta": "Fale com a gente",
+   "chips": [
+    [
+     "c1",
+     "ck",
+     "Relatório em linguagem simples"
+    ]
+   ],
+   "fs": 58
+  }
+ ]
+}
