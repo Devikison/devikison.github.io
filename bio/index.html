@@ -122,13 +122,11 @@ html:not(.bf-ended) .bf-off-only{display:none!important}
 
 /* ---------- pilha de links (cartões levemente girados que endireitam no toque) ---------- */
 .stack{padding:26px 16px 0;display:grid;gap:14px}
-.card{--rot:0deg;position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:16px 16px 16px 14px;border-radius:var(--r);
+.card{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:16px 16px 16px 14px;border-radius:var(--r);
   background:linear-gradient(180deg,#1c285c,#0d1430);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 1px var(--line),0 22px 40px -22px rgba(0,4,30,.95);
-  transform:rotate(var(--rot)) translateZ(0);transition:transform .55s var(--spring),box-shadow .35s var(--ease)}
-.card:nth-child(odd){--rot:-1.1deg}
-.card:nth-child(even){--rot:.9deg}
-@media (hover:hover){.card:hover{transform:rotate(0) translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 0 0 1px var(--line-2),0 30px 50px -22px rgba(2,30,160,.7)}}
-.card:active{transform:rotate(0) scale(.975);transition-duration:.15s}
+  transition:transform .55s var(--spring),box-shadow .35s var(--ease)}
+@media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 0 0 1px var(--line-2),0 30px 50px -22px rgba(2,30,160,.7)}}
+.card:active{transform:scale(.985);transition-duration:.15s}
 .tile{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;color:#fff;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -6px 12px rgba(0,0,0,.18),0 10px 20px -10px rgba(0,0,0,.6)}
 .tile svg{width:28px;height:28px}
 .t-wa{background:linear-gradient(180deg,#5af38c,#1fb855 60%,#139a43)}
@@ -142,7 +140,7 @@ html:not(.bf-ended) .bf-off-only{display:none!important}
 @media (hover:hover){.card:hover .go{transform:translateX(3px)}}
 
 /* card 1: o site (maior, com aro animado e miniatura do navegador) */
-.hero-card{--rot:-1.4deg!important;display:block;padding:0;border-radius:26px;isolation:isolate;overflow:hidden;
+.hero-card{display:block;padding:0;border-radius:26px;isolation:isolate;overflow:hidden;
   background:linear-gradient(180deg,#14214f,#0a1028)}
 .hero-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;z-index:3;pointer-events:none;
   background:conic-gradient(from var(--ra,0deg),var(--cyan),var(--blue-2),var(--violet),var(--volt),var(--cyan));animation:ring 5s linear infinite;
@@ -179,26 +177,6 @@ html:not(.bf-ended) .bf-off-only{display:none!important}
 
 /* card de contato (abre o formulário) */
 .card.callme{width:100%;text-align:left;font:inherit}
-
-/* ---------- oferta (Black Friday: único destaque volt do bloco) ---------- */
-.promo{position:relative;margin:22px 16px 0;padding:18px;border-radius:var(--r);overflow:hidden;isolation:isolate;display:block;
-  background:linear-gradient(180deg,#141f45,#0a1028);box-shadow:inset 0 0 0 1.5px rgba(212,255,61,.55),0 0 34px -10px rgba(212,255,61,.35),0 22px 40px -22px rgba(0,4,30,.95);
-  transition:transform .5s var(--spring)}
-.promo:active{transform:scale(.98)}
-.promo::after{content:"";position:absolute;left:-40px;bottom:-90px;width:240px;height:200px;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(212,255,61,.16),rgba(212,255,61,0) 70%)}
-.pr-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.pill{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;font:600 10.5px/1 var(--f-m);letter-spacing:.12em;text-transform:uppercase;color:#0b1400;background:var(--volt)}
-.pill i{width:6px;height:6px;border-radius:50%;background:#e0262f}
-.off{font-family:var(--f-d);font-weight:820;font-size:14px;color:#fff;background:#ff3b4e;padding:6px 10px;border-radius:10px;transform:rotate(4deg)}
-.pr-title{margin-top:12px;font-family:var(--f-d);font-stretch:114%;font-weight:830;font-size:26px;letter-spacing:-.03em;line-height:1.05}
-.pr-title b{color:var(--volt);font-weight:inherit}
-.pr-sub{margin-top:6px;color:var(--text-3);font-size:14px}
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.count div{padding:9px 0 8px;border-radius:14px;text-align:center;background:rgba(2,4,10,.5);box-shadow:inset 0 0 0 1px var(--line)}
-.count b{display:block;font-family:var(--f-d);font-weight:800;font-size:22px;line-height:1;font-variant-numeric:tabular-nums}
-.count small{display:block;margin-top:4px;font:500 9.5px/1 var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
-.pr-cta{margin-top:14px;display:flex;align-items:center;justify-content:space-between;font-family:var(--f-d);font-weight:700;font-size:15px;color:var(--volt)}
-.pr-cta .i{font-size:18px}
 
 /* ---------- serviços ---------- */
 .sec{padding:34px 16px 0}
@@ -297,8 +275,6 @@ body.lock{overflow:hidden}
 /* ---------- entrada em cascata ---------- */
 .rise{animation:rise .8s var(--ease-out) both;animation-delay:calc(var(--d,0) * 70ms + 120ms)}
 @keyframes rise{from{opacity:0;translate:0 22px}}
-.stack .card.rise{animation-name:riseTilt}
-@keyframes riseTilt{from{opacity:0;translate:0 26px;rotate:calc(var(--rot) * -3)}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -392,26 +368,6 @@ body.lock{overflow:hidden}
       <span class="go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span>
     </a>
   </nav>
-
-  <!-- ===================== OFERTA (troca sozinha quando a Black Friday acaba) ===================== -->
-  <a class="promo bf-only rise" style="--d:9" href="/?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=black_friday#precos" data-ev="black_friday">
-    <span class="pr-top"><span class="pill"><i></i>Black Friday</span><span class="off">-36%</span></span>
-    <span class="pr-title" style="display:block">Até <b>36% OFF</b> no seu site.</span>
-    <span class="pr-sub" style="display:block">Preço de lançamento por tempo limitado. Termina em:</span>
-    <span class="count" data-bf-countdown>
-      <div><b data-d>00</b><small>dias</small></div>
-      <div><b data-h>00</b><small>horas</small></div>
-      <div><b data-m>00</b><small>min</small></div>
-      <div><b data-s>00</b><small>seg</small></div>
-    </span>
-    <span class="pr-cta">Ver as ofertas<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-  </a>
-  <a class="promo bf-off-only rise" style="--d:9" href="/?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=diagnostico#diagnostico" data-ev="diagnostico">
-    <span class="pr-top"><span class="pill"><i></i>Grátis</span></span>
-    <span class="pr-title" style="display:block">Seu negócio aparece <b>no Google?</b></span>
-    <span class="pr-sub" style="display:block">Responda 5 perguntas rápidas e receba o plano do que fazer primeiro.</span>
-    <span class="pr-cta">Fazer o diagnóstico<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-  </a>
 
   <!-- ===================== SERVIÇOS ===================== -->
   <section class="sec" aria-labelledby="t-svc">
