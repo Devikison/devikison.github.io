@@ -187,11 +187,13 @@ html.bf-ended .bf-only{display:none!important}
 .sec-h h2{font-family:var(--f-d);font-stretch:112%;font-weight:780;font-size:21px;letter-spacing:-.02em}
 .sec-h a,.sec-h span{font:500 11px/1 var(--f-m);color:var(--blue-3);letter-spacing:.04em;white-space:nowrap}
 
-/* ---------- projetos (faixa que corre sozinha; arrasta com o dedo) ---------- */
+/* ---------- projetos: faixa em loop que corre sozinha e arrasta 1:1 com dedo ou mouse (bio.js) ---------- */
 .proj{position:relative;margin:0 -16px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.proj-track{display:flex;gap:12px;width:max-content;padding:4px 16px 8px;animation:run 46s linear infinite}
-.proj:hover .proj-track,.proj.hold .proj-track{animation-play-state:paused}
-@keyframes run{to{transform:translateX(-50%)}}
+.proj{touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.proj.dragging{cursor:grabbing}
+.proj-track{display:flex;gap:12px;width:max-content;padding:4px 16px 8px;will-change:transform;transform:translate3d(0,0,0)}
+.pj img{pointer-events:none;-webkit-user-drag:none}
+.proj.dragging .pj{pointer-events:none}
 .pj{width:224px;flex:none}
 .pj-img{border-radius:16px;overflow:hidden;background:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line),0 16px 30px -18px rgba(0,0,0,.9);aspect-ratio:1200/628}
 .pj-img img{width:100%;height:100%;object-fit:cover}
@@ -266,7 +268,6 @@ body.lock{overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-  .proj{overflow-x:auto}
 }
 @media (max-width:360px){.cover-word{font-size:29px}.card{gap:11px}.tile{width:46px;height:46px}}
 </style>
@@ -354,13 +355,13 @@ body.lock{overflow:hidden}
     <div class="sec-h"><h2 id="t-proj">Projetos entregues</h2><a href="/?utm_source=instagram&amp;utm_medium=bio#projetos" data-ev="projetos">ver todos</a></div>
     <div class="proj" data-proj>
       <div class="proj-track">
-        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-01.webp" alt="Landing page da ARCA Sorocaba" width="1200" height="628" loading="lazy"></span><b>ARCA Sorocaba</b><small>ONG, acolhimento e inclusão</small></a>
-        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-02.webp" alt="Landing page da Prime Cortinas" width="1200" height="628" loading="lazy"></span><b>Prime Cortinas</b><small>Lavanderia, higienização</small></a>
-        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-03.webp" alt="Landing page de Katsuo Arakaki" width="1200" height="628" loading="lazy"></span><b>Katsuo Arakaki</b><small>Saúde, terapia breve</small></a>
-        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-04.webp" alt="Landing page da nutricionista Kamilla Fertonani" width="1200" height="628" loading="lazy"></span><b>Kamilla Fertonani</b><small>Nutrição, consultas online</small></a>
-        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-05.webp" alt="Site da Dra. Tamira Terao Arakaki" width="1200" height="628" loading="lazy"></span><b>Dra. Tamira Arakaki</b><small>Medicina, perícia médica</small></a>
-        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-06.webp" alt="Landing page da Imersão Estrutura 5A" width="1200" height="628" loading="lazy"></span><b>Imersão Estrutura 5A</b><small>Evento, venda de ingressos</small></a>
-        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-07.webp" alt="Landing page da Imersão Vida Memorável" width="1200" height="628" loading="lazy"></span><b>Imersão Vida Memorável</b><small>Evento internacional</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-01.webp" alt="Landing page da ARCA Sorocaba" width="1200" height="628" loading="lazy" draggable="false"></span><b>ARCA Sorocaba</b><small>ONG, acolhimento e inclusão</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-02.webp" alt="Landing page da Prime Cortinas" width="1200" height="628" loading="lazy" draggable="false"></span><b>Prime Cortinas</b><small>Lavanderia, higienização</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-03.webp" alt="Landing page de Katsuo Arakaki" width="1200" height="628" loading="lazy" draggable="false"></span><b>Katsuo Arakaki</b><small>Saúde, terapia breve</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-04.webp" alt="Landing page da nutricionista Kamilla Fertonani" width="1200" height="628" loading="lazy" draggable="false"></span><b>Kamilla Fertonani</b><small>Nutrição, consultas online</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-05.webp" alt="Site da Dra. Tamira Terao Arakaki" width="1200" height="628" loading="lazy" draggable="false"></span><b>Dra. Tamira Arakaki</b><small>Medicina, perícia médica</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-06.webp" alt="Landing page da Imersão Estrutura 5A" width="1200" height="628" loading="lazy" draggable="false"></span><b>Imersão Estrutura 5A</b><small>Evento, venda de ingressos</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-07.webp" alt="Landing page da Imersão Vida Memorável" width="1200" height="628" loading="lazy" draggable="false"></span><b>Imersão Vida Memorável</b><small>Evento internacional</small></a>
       </div>
     </div>
   </section>
