@@ -106,19 +106,33 @@
 
     var done = function(){
       $('[data-done-title]', panel).textContent = 'Recebido, ' + lead.nome.split(' ')[0] + '!';
-      $('[data-done-wa]', panel).href = waLink('Olá, Descomplica Site! Acabei de pedir contato pela bio do Instagram.\n\nNome: ' + lead.nome + '\nNegócio: ' + lead.negocio + '\nPreciso de: ' + lead.quero);
+      $('[data-done-wa]', panel).href = waLink(resumo);
       panel.classList.add('sent'); panel.scrollTop = 0;
       track('generate_lead', { origem: 'bio', quero: lead.quero });
     };
+
+    // mensagem pronta com todos os dados: usada no botão de adiantar e como plano B se o e-mail falhar
+    var resumo = 'Olá, Descomplica Site! Quero que vocês me chamem.\n\nNome: ' + lead.nome + '\nWhatsApp: ' + lead.whatsapp +
+      '\nNegócio: ' + lead.negocio + '\nPreciso de: ' + lead.quero + '\nMelhor horário: ' + lead.horario;
+    var errWa = $('a', errBox); if (errWa) errWa.href = waLink(resumo);
 
     // robô preencheu o campo escondido: finge que deu certo e não envia nada
     if ($('#f-site').value){ done(); return; }
 
     sending = true; btn.disabled = true; label.textContent = 'Enviando...'; errBox.classList.remove('on');
-    var fail = function(){ sending = false; btn.disabled = false; label.textContent = 'Tentar de novo'; errBox.classList.add('on'); track('lead_erro', { origem: 'bio' }); };
+    var finished = false;
+    var fail = function(why){
+      if (finished) return; finished = true;
+      sending = false; btn.disabled = false; label.textContent = 'Tentar de novo'; errBox.classList.add('on');
+      track('lead_erro', { origem: 'bio', motivo: String(why || '').slice(0, 90) });
+    };
+    // o serviço de e-mail às vezes demora ou nem responde: depois de 12s desiste e mostra o plano B
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); fail('tempo esgotado'); }, 12000);
     fetch(FORM_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      signal: ctrl ? ctrl.signal : undefined,
       body: JSON.stringify({
         _subject: 'Novo contato pela bio: ' + lead.nome,
         _template: 'table',
@@ -133,8 +147,12 @@
       })
     }).then(function(r){
       return r.json().catch(function(){ return {}; }).then(function(j){
-        if (!r.ok || String(j.success) === 'false') throw new Error('envio');
+        if (!r.ok || String(j.success) === 'false') throw new Error(j.message || ('HTTP ' + r.status));
       });
-    }).then(function(){ sending = false; done(); }).catch(fail);
+    }).then(function(){
+      clearTimeout(timer);
+      if (finished) return; finished = true;
+      sending = false; done();
+    }).catch(function(e){ clearTimeout(timer); fail(e && e.message); });
   });
 })();
