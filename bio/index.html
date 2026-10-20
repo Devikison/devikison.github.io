@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; media-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
+<script src="/seguranca.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YJG6HQJWBZ"></script>
+<script src="/gtag-init.js"></script>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Descomplica Site | Link na bio</title>
+<meta name="description" content="Sites que colocam seu negócio no Google e fazem o seu WhatsApp tocar. Acesse o site, fale no WhatsApp ou peça para a gente te chamar.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#02040a">
+<link rel="canonical" href="https://www.descomplicasite.com.br/bio/">
+<meta property="og:site_name" content="Descomplica Site">
+<meta property="og:title" content="Descomplica Site | Apareça no Google. Venda no WhatsApp.">
+<meta property="og:description" content="Sites, páginas de vendas, link na bio e perfil no Google Maps. Pronto em até 72h, para todo o Brasil.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.descomplicasite.com.br/bio/">
+<meta property="og:image" content="https://www.descomplicasite.com.br/gallery/og/pagina-link-na-bio-v4.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
+<link rel="icon" href="/favicon-192x192.png?v=2" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="preload" href="/assets/fonts/hubot-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* =====================================================================
+   DESCOMPLICA SITE: página de link na bio (/bio)
+   Mesmo sistema visual do site: Hubot Sans (títulos), Mona Sans (texto),
+   Martian Mono (rótulos), azul da marca no escuro + ciano/violeta de luz
+   e o volt (#d4ff3d) só no destaque principal de cada bloco.
+   ===================================================================== */
+@font-face{font-family:'Hubot Sans';src:url(/assets/fonts/hubot-sans-latin.woff2) format('woff2');font-weight:500 900;font-stretch:100% 125%;font-style:normal;font-display:swap}
+@font-face{font-family:'Mona Sans';src:url(/assets/fonts/mona-sans-latin.woff2) format('woff2');font-weight:400 800;font-stretch:100% 125%;font-style:normal;font-display:swap}
+@font-face{font-family:'Martian Mono';src:url(/assets/fonts/martian-mono-latin.woff2) format('woff2');font-weight:400 600;font-stretch:87.5% 100%;font-style:normal;font-display:swap}
+:root{
+  --ink-0:#02040a; --ink-1:#050814; --ink-2:#0a1022; --ink-3:#101838;
+  --blue:#0245f2; --blue-2:#2d63ff; --blue-3:#7b9bff; --blue-4:#c3d2ff;
+  --cyan:#62e6ff; --violet:#8e6bff; --volt:#d4ff3d; --wa:#25d366; --red:#ff5b61;
+  --text:#ffffff; --text-2:#eef2ff; --text-3:#c3cde8;
+  --line:rgba(168,190,255,.14); --line-2:rgba(168,190,255,.26);
+  --f-d:'Hubot Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-b:'Mona Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-m:'Martian Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1); --ease-out:cubic-bezier(.16,1,.3,1); --spring:cubic-bezier(.34,1.56,.64,1);
+  --r:22px; --col:480px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--ink-0)}
+body{min-height:100dvh;background:var(--ink-0);color:var(--text);font-family:var(--f-b);font-size:16px;line-height:1.55;font-weight:430;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;-webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;user-select:none}
+@supports (overflow:clip){html,body{overflow-x:clip}}
+input,textarea{-webkit-user-select:text;user-select:text}
+img,svg{display:block;max-width:100%}
+img{-webkit-user-drag:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;touch-action:manipulation}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:12px}
+.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+html.bf-ended .bf-only{display:none!important}
+html:not(.bf-ended) .bf-off-only{display:none!important}
+
+/* ---------- fundo da página (desktop mostra a coluna no meio da luz) ---------- */
+.amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.amb::before,.amb::after{content:"";position:absolute;border-radius:50%;filter:blur(80px);opacity:.55}
+.amb::before{width:620px;height:620px;left:50%;top:-260px;margin-left:-310px;background:radial-gradient(circle,rgba(45,99,255,.55),rgba(45,99,255,0) 70%)}
+.amb::after{width:520px;height:520px;right:-220px;bottom:-200px;background:radial-gradient(circle,rgba(142,107,255,.32),rgba(142,107,255,0) 70%)}
+.page{position:relative;z-index:1;max-width:var(--col);margin:0 auto;min-height:100dvh;background:var(--ink-1);padding-bottom:calc(36px + env(safe-area-inset-bottom))}
+@media (min-width:560px){
+  body{padding:28px 0}
+  .page{border-radius:34px;overflow:hidden;min-height:calc(100dvh - 56px);box-shadow:0 0 0 1px var(--line),0 60px 120px -40px rgba(2,10,60,.9)}
+}
+
+/* ---------- capa ---------- */
+.cover{position:relative;height:262px;overflow:hidden;isolation:isolate;
+  background:
+    radial-gradient(90% 120% at 85% -10%,rgba(98,230,255,.38),rgba(98,230,255,0) 55%),
+    radial-gradient(80% 110% at 0% 110%,rgba(142,107,255,.45),rgba(142,107,255,0) 60%),
+    linear-gradient(160deg,#2d63ff 0%,#0840e0 45%,#032aa8 100%)}
+.cover::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* símbolo do cursor da logo, grande e vazado, atravessando a capa */
+.cover-mark{position:absolute;right:-46px;top:-30px;width:250px;opacity:.16;transform:rotate(-8deg);z-index:-1}
+.cover-top{position:absolute;left:18px;right:18px;top:calc(16px + env(safe-area-inset-top));display:flex;justify-content:space-between;align-items:center}
+.ico-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:20px;
+  background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 0 0 1px rgba(255,255,255,.18),0 10px 24px -12px rgba(0,10,60,.8);
+  transition:transform .4s var(--spring),background .3s}
+.ico-btn:active{transform:scale(.92)}
+.ico-btn.copied{background:var(--volt);color:#0b1400}
+@media (hover:hover){.ico-btn:hover{transform:translateY(-2px);background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.12))}}
+.cover-word{position:absolute;left:0;right:0;bottom:112px;text-align:center;font-family:var(--f-d);font-stretch:112%;font-weight:840;letter-spacing:-.035em;line-height:.9;
+  font-size:clamp(31px,9.2vw,44px);color:#fff;text-shadow:0 10px 30px rgba(0,10,70,.45);white-space:nowrap}
+.cover-word span{color:var(--blue-4);margin-left:.04em}
+.cover-tag{position:absolute;left:0;right:0;bottom:84px;text-align:center;font:500 10.5px/1 var(--f-m);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:46px;color:var(--ink-1)}
+
+/* ---------- perfil ---------- */
+.prof{position:relative;padding:0 22px;margin-top:-58px;z-index:2}
+.avatar{position:relative;width:104px;height:104px;border-radius:50%;padding:4px;isolation:isolate}
+/* aro em degradê girando, igual aos botões do site */
+.avatar::before{content:"";position:absolute;inset:0;border-radius:50%;z-index:-1;
+  background:conic-gradient(from var(--ra,0deg),var(--cyan),var(--blue-2),var(--violet),var(--volt),var(--cyan));animation:ring 6s linear infinite}
+.avatar::after{content:"";position:absolute;inset:3px;border-radius:50%;z-index:-1;background:var(--ink-1)}
+.avatar .lg{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(120% 120% at 30% 15%,#5b86ff,#0245f2 55%,#3a24b8);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),inset 0 -6px 14px rgba(0,8,70,.45)}
+.avatar img{width:62%;height:auto;filter:drop-shadow(0 4px 8px rgba(0,10,70,.45))}
+@property --ra{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes ring{to{--ra:360deg}}
+.name{margin-top:14px;font-family:var(--f-d);font-stretch:112%;font-weight:800;font-size:29px;letter-spacing:-.025em;line-height:1.05}
+.handle{margin-top:6px;font:500 12px/1 var(--f-m);color:var(--blue-3);letter-spacing:.02em}
+.bio{margin-top:12px;color:var(--text-3);font-size:16px;line-height:1.55;max-width:36ch}
+.bio b{color:#fff;font-weight:650}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:560;color:var(--text-2);
+  background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line)}
+.chip .i{font-size:15px;color:var(--cyan)}
+
+/* ---------- pilha de links (cartões levemente girados que endireitam no toque) ---------- */
+.stack{padding:26px 16px 0;display:grid;gap:14px}
+.card{--rot:0deg;position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:16px 16px 16px 14px;border-radius:var(--r);
+  background:linear-gradient(180deg,#1c285c,#0d1430);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 1px var(--line),0 22px 40px -22px rgba(0,4,30,.95);
+  transform:rotate(var(--rot)) translateZ(0);transition:transform .55s var(--spring),box-shadow .35s var(--ease)}
+.card:nth-child(odd){--rot:-1.1deg}
+.card:nth-child(even){--rot:.9deg}
+@media (hover:hover){.card:hover{transform:rotate(0) translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 0 0 1px var(--line-2),0 30px 50px -22px rgba(2,30,160,.7)}}
+.card:active{transform:rotate(0) scale(.975);transition-duration:.15s}
+.tile{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;color:#fff;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -6px 12px rgba(0,0,0,.18),0 10px 20px -10px rgba(0,0,0,.6)}
+.tile svg{width:28px;height:28px}
+.t-wa{background:linear-gradient(180deg,#5af38c,#1fb855 60%,#139a43)}
+.t-wa svg{fill:#fff}
+.t-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
+.t-call{background:linear-gradient(180deg,#9b85ff,#6a47ff 60%,#4c2fd6)}
+.c-t{font-family:var(--f-d);font-stretch:108%;font-weight:720;font-size:17.5px;letter-spacing:-.01em;line-height:1.2}
+.c-s{margin-top:3px;font-size:13.5px;color:var(--text-3);line-height:1.4}
+.go{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:17px;color:var(--text-2);background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px var(--line);transition:transform .45s var(--spring)}
+.go .i{transform:rotate(-45deg)}
+@media (hover:hover){.card:hover .go{transform:translateX(3px)}}
+
+/* card 1: o site (maior, com aro animado e miniatura do navegador) */
+.hero-card{--rot:-1.4deg!important;display:block;padding:0;border-radius:26px;isolation:isolate;overflow:hidden;
+  background:linear-gradient(180deg,#14214f,#0a1028)}
+.hero-card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;z-index:3;pointer-events:none;
+  background:conic-gradient(from var(--ra,0deg),var(--cyan),var(--blue-2),var(--violet),var(--volt),var(--cyan));animation:ring 5s linear infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.hc-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--line)}
+.dots{display:flex;gap:5px}
+.dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18)}
+.dots i:first-child{background:#ff5f57}.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+.url{flex:1;display:flex;align-items:center;gap:7px;height:30px;padding:0 12px;border-radius:999px;background:rgba(2,4,10,.55);box-shadow:inset 0 0 0 1px var(--line);
+  font:500 12px/1 var(--f-m);color:var(--text-2);overflow:hidden;white-space:nowrap}
+.url .i{font-size:12px;color:var(--mint,#3ddc97);flex:none}
+.url .caret{display:inline-block;width:1.5px;height:13px;background:var(--cyan);margin-left:1px;animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+.hc-body{position:relative;display:block;padding:20px 18px 18px}
+.hc-body::after{content:"";position:absolute;right:-60px;top:-40px;width:220px;height:220px;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(45,99,255,.5),rgba(45,99,255,0) 70%)}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font:500 10.5px/1 var(--f-m);letter-spacing:.14em;text-transform:uppercase;color:var(--blue-4)}
+.eyebrow .i{font-size:13px;color:var(--cyan)}
+.hc-title{margin-top:10px;font-family:var(--f-d);font-stretch:114%;font-weight:830;font-size:clamp(25px,7vw,30px);letter-spacing:-.03em;line-height:1.02}
+.hc-title em{font-style:normal;color:var(--cyan)}
+.hc-sub{margin-top:9px;font-size:14.5px;color:var(--text-3);max-width:32ch}
+.btn{position:relative;isolation:isolate;margin-top:16px;display:grid;grid-template-columns:44px 1fr;align-items:center;gap:12px;width:100%;min-height:58px;padding:7px 18px 7px 7px;border-radius:999px;
+  font:660 16px/1.15 var(--f-d);font-stretch:108%;color:#fff;text-shadow:0 1px 1px rgba(0,16,80,.35);overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.24) 0%,rgba(255,255,255,.04) 46%,rgba(255,255,255,0) 50%),radial-gradient(110% 80% at 50% 125%,rgba(98,230,255,.42),rgba(98,230,255,0) 58%),linear-gradient(180deg,#2d63ff 0%,#0840e0 52%,#032aa8 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -10px 18px -10px rgba(0,8,70,.7),0 16px 32px -14px rgba(2,69,242,.9),0 0 0 1px rgba(123,155,255,.35)}
+.btn::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(110deg,transparent 38%,rgba(255,255,255,.4) 50%,transparent 62%);background-size:260% 100%;background-position:130% 0;animation:sweep 4.5s var(--ease) infinite 1.4s}
+@keyframes sweep{0%,62%{background-position:130% 0}100%{background-position:-40% 0}}
+.btn .bt{text-align:left}
+.knob{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#0b1400;
+  background:radial-gradient(circle at 34% 26%,#f7ffd6 0%,#dcff55 36%,#b7ea0e 72%,#8fbd00 100%);
+  box-shadow:inset 0 -3px 5px rgba(70,100,0,.45),inset 0 1.5px 1px rgba(255,255,255,.95),0 6px 14px -4px rgba(170,220,0,.55);transition:transform .55s var(--spring)}
+.knob .i{font-size:21px;stroke-width:2.6}
+@media (hover:hover){.hero-card:hover .knob{transform:translateX(4px) rotate(-8deg)}}
+
+/* card de contato (abre o formulário) */
+.card.callme{width:100%;text-align:left;font:inherit}
+
+/* ---------- oferta (Black Friday: único destaque volt do bloco) ---------- */
+.promo{position:relative;margin:22px 16px 0;padding:18px;border-radius:var(--r);overflow:hidden;isolation:isolate;display:block;
+  background:linear-gradient(180deg,#141f45,#0a1028);box-shadow:inset 0 0 0 1.5px rgba(212,255,61,.55),0 0 34px -10px rgba(212,255,61,.35),0 22px 40px -22px rgba(0,4,30,.95);
+  transition:transform .5s var(--spring)}
+.promo:active{transform:scale(.98)}
+.promo::after{content:"";position:absolute;left:-40px;bottom:-90px;width:240px;height:200px;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(212,255,61,.16),rgba(212,255,61,0) 70%)}
+.pr-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:999px;font:600 10.5px/1 var(--f-m);letter-spacing:.12em;text-transform:uppercase;color:#0b1400;background:var(--volt)}
+.pill i{width:6px;height:6px;border-radius:50%;background:#e0262f}
+.off{font-family:var(--f-d);font-weight:820;font-size:14px;color:#fff;background:#ff3b4e;padding:6px 10px;border-radius:10px;transform:rotate(4deg)}
+.pr-title{margin-top:12px;font-family:var(--f-d);font-stretch:114%;font-weight:830;font-size:26px;letter-spacing:-.03em;line-height:1.05}
+.pr-title b{color:var(--volt);font-weight:inherit}
+.pr-sub{margin-top:6px;color:var(--text-3);font-size:14px}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.count div{padding:9px 0 8px;border-radius:14px;text-align:center;background:rgba(2,4,10,.5);box-shadow:inset 0 0 0 1px var(--line)}
+.count b{display:block;font-family:var(--f-d);font-weight:800;font-size:22px;line-height:1;font-variant-numeric:tabular-nums}
+.count small{display:block;margin-top:4px;font:500 9.5px/1 var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.pr-cta{margin-top:14px;display:flex;align-items:center;justify-content:space-between;font-family:var(--f-d);font-weight:700;font-size:15px;color:var(--volt)}
+.pr-cta .i{font-size:18px}
+
+/* ---------- serviços ---------- */
+.sec{padding:34px 16px 0}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:0 6px 12px}
+.sec-h h2{font-family:var(--f-d);font-stretch:112%;font-weight:780;font-size:21px;letter-spacing:-.02em}
+.sec-h a,.sec-h span{font:500 11px/1 var(--f-m);color:var(--blue-3);letter-spacing:.04em;white-space:nowrap}
+.svc{border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px var(--line)}
+.svc a{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:13px;padding:14px 14px;transition:background .25s}
+.svc a+a{border-top:1px solid var(--line)}
+.svc a:active{background:rgba(255,255,255,.05)}
+@media (hover:hover){.svc a:hover{background:rgba(255,255,255,.05)}}
+.svc .ic{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(180deg,#2d63ff,#0336c8);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.svc .ic svg{width:26px;height:26px}
+.svc .ic.maps{background:linear-gradient(180deg,#ff6b8b,#c81e55)}
+.svc .ic.bio{background:linear-gradient(180deg,#9b85ff,#5b2bc4)}
+.svc .ic.site{background:linear-gradient(180deg,#3ad0ff,#0a6f99)}
+.svc b{display:block;font-family:var(--f-d);font-stretch:106%;font-weight:700;font-size:15.5px;line-height:1.2}
+.svc small{display:block;margin-top:2px;font-size:12.5px;color:var(--text-3);line-height:1.35}
+.price{text-align:right;font-family:var(--f-d);font-weight:760;font-size:15px;white-space:nowrap;line-height:1.15}
+.price small{font:500 10px/1 var(--f-b);color:var(--text-3);margin:0 0 3px}
+.price s{display:block;font:500 11px/1 var(--f-b);color:var(--text-3);margin-bottom:3px}
+
+/* ---------- projetos (faixa que corre sozinha; arrasta com o dedo) ---------- */
+.proj{position:relative;margin:0 -16px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.proj-track{display:flex;gap:12px;width:max-content;padding:4px 16px 8px;animation:run 46s linear infinite}
+.proj:hover .proj-track,.proj.hold .proj-track{animation-play-state:paused}
+@keyframes run{to{transform:translateX(-50%)}}
+.pj{width:224px;flex:none}
+.pj-img{border-radius:16px;overflow:hidden;background:var(--ink-3);box-shadow:inset 0 0 0 1px var(--line),0 16px 30px -18px rgba(0,0,0,.9);aspect-ratio:1200/628}
+.pj-img img{width:100%;height:100%;object-fit:cover}
+.pj b{display:block;margin-top:9px;font-family:var(--f-d);font-weight:680;font-size:14px;line-height:1.2}
+.pj small{display:block;font-size:12px;color:var(--text-3)}
+
+/* ---------- rodapé ---------- */
+.foot{margin-top:40px;padding:0 22px;text-align:center}
+.foot p{font-size:11.5px;color:#8f9bbf;line-height:1.7;letter-spacing:.01em}
+
+/* ---------- formulário "quero que me chamem" (folha que sobe de baixo) ---------- */
+.sheet{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;visibility:hidden;pointer-events:none}
+.sheet.on{visibility:visible;pointer-events:auto}
+.scrim{position:absolute;inset:0;background:rgba(2,4,10,.72);opacity:0;transition:opacity .35s var(--ease)}
+.sheet.on .scrim{opacity:1}
+.panel{position:relative;width:100%;max-width:var(--col);max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;
+  padding:10px 20px calc(22px + env(safe-area-inset-bottom));border-radius:28px 28px 0 0;
+  background:linear-gradient(180deg,#141f45,#0a1028 40%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 -30px 60px -20px rgba(0,0,0,.8);
+  transform:translateY(100%);transition:transform .5s var(--ease-out)}
+.sheet.on .panel{transform:none}
+@media (min-width:560px){.sheet{align-items:center}.panel{border-radius:28px;transform:translateY(30px) scale(.97);opacity:0;transition:transform .45s var(--ease-out),opacity .3s}.sheet.on .panel{opacity:1}}
+.grab{width:42px;height:5px;border-radius:5px;background:rgba(255,255,255,.22);margin:0 auto 14px}
+.p-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.p-head h2{font-family:var(--f-d);font-stretch:112%;font-weight:800;font-size:24px;letter-spacing:-.025em;line-height:1.08}
+.p-head p{margin-top:6px;color:var(--text-3);font-size:14px}
+.x{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:18px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px var(--line)}
+form{margin-top:18px;display:grid;gap:14px}
+.f label,.f legend{display:block;margin-bottom:7px;font-family:var(--f-d);font-weight:650;font-size:14px;color:var(--text-2)}
+.f label small,.f legend small{font-family:var(--f-b);font-weight:450;color:var(--text-3)}
+.f input{width:100%;height:52px;padding:0 15px;border-radius:15px;border:0;outline:0;font:500 16px var(--f-b);color:#fff;
+  background:rgba(2,4,10,.55);box-shadow:inset 0 0 0 1.5px var(--line-2);transition:box-shadow .2s}
+.f input::placeholder{color:#7f8bb0}
+.f input:focus{box-shadow:inset 0 0 0 2px var(--cyan),0 0 0 4px rgba(98,230,255,.12)}
+.f .err-msg{display:none;margin-top:6px;font-size:13px;color:#ff9aa0}
+.f.err input{box-shadow:inset 0 0 0 2px var(--red)}
+.f.err .err-msg{display:block}
+fieldset{border:0}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.opt span{display:inline-flex;align-items:center;min-height:42px;padding:0 14px;border-radius:999px;font-size:14px;font-weight:560;color:var(--text-2);
+  background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer;transition:background .2s,box-shadow .2s,color .2s,transform .35s var(--spring)}
+.opt input:checked+span{color:#fff;background:linear-gradient(180deg,#2d63ff,#0840e0);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 0 0 1.5px rgba(123,155,255,.6)}
+.opt input:focus-visible+span{outline:2px solid var(--cyan);outline-offset:2px}
+.opt span:active{transform:scale(.95)}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.send{margin-top:4px}
+.send[disabled]{opacity:.7;pointer-events:none}
+.send .knob .i{transform:none}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--text-3);line-height:1.45}
+.note .i{flex:none;font-size:14px;margin-top:2px;color:var(--cyan)}
+.form-err{display:none;padding:12px 14px;border-radius:14px;font-size:13.5px;color:#ffd6d8;background:rgba(255,91,97,.12);box-shadow:inset 0 0 0 1px rgba(255,91,97,.4)}
+.form-err.on{display:block}
+.form-err a{color:#fff;font-weight:650;text-decoration:underline}
+.done{display:none;text-align:center;padding:18px 0 6px}
+.panel.sent form,.panel.sent .p-head p{display:none}
+.panel.sent .done{display:block}
+.ok{width:74px;height:74px;margin:0 auto;border-radius:50%;display:grid;place-items:center;font-size:36px;color:#0b1400;
+  background:radial-gradient(circle at 34% 26%,#f7ffd6 0%,#dcff55 36%,#b7ea0e 72%,#8fbd00 100%);box-shadow:inset 0 -4px 7px rgba(70,100,0,.45),inset 0 2px 1px rgba(255,255,255,.95),0 14px 30px -8px rgba(170,220,0,.5)}
+.ok .i{stroke-width:3}
+.panel.sent .ok{animation:pop .7s var(--spring) both}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+.done h3{margin-top:16px;font-family:var(--f-d);font-stretch:112%;font-weight:800;font-size:24px;letter-spacing:-.02em;line-height:1.1}
+.done p{margin:8px auto 0;max-width:32ch;color:var(--text-3);font-size:14.5px}
+.done .alt{display:inline-flex;align-items:center;gap:8px;margin-top:18px;min-height:48px;padding:0 18px;border-radius:999px;font-weight:600;font-size:14px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px var(--line)}
+.done .alt svg{width:18px;height:18px;fill:var(--wa)}
+body.lock{overflow:hidden}
+
+/* ---------- entrada em cascata ---------- */
+.rise{animation:rise .8s var(--ease-out) both;animation-delay:calc(var(--d,0) * 70ms + 120ms)}
+@keyframes rise{from{opacity:0;translate:0 22px}}
+.stack .card.rise{animation-name:riseTilt}
+@keyframes riseTilt{from{opacity:0;translate:0 26px;rotate:calc(var(--rot) * -3)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .proj{overflow-x:auto}
+}
+@media (max-width:360px){.cover-word{font-size:28px}.cover-tag{font-size:9px}.card{gap:11px}.tile{width:46px;height:46px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path stroke="none" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.1h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.08 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.47-.01a.9.9 0 0 0-.65.31c-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.17 1.71 2.61 4.15 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29Z"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.4" cy="6.6" r=".9"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 0 1-3 2h-3"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></symbol>
+    <symbol id="p-maps" viewBox="0 0 32 32"><ellipse cx="16" cy="28.4" rx="6.5" ry="1.7" fill="#fff" opacity=".35"/><path d="M16 2.8c-5.6 0-9.8 4.2-9.8 9.7 0 6.9 8.3 15.4 9.1 16.2a1 1 0 0 0 1.4 0c.8-.8 9.1-9.3 9.1-16.2 0-5.5-4.2-9.7-9.8-9.7z" fill="#fff"/><circle cx="16" cy="12.4" r="4.3" fill="#c81e55"/><path d="m16 9.9.8 1.6 1.7.2-1.3 1.2.3 1.7-1.5-.8-1.5.8.3-1.7-1.3-1.2 1.7-.2z" fill="#fff"/></symbol>
+    <symbol id="p-bio" viewBox="0 0 32 32"><rect x="8.5" y="2.5" width="15" height="27" rx="4" fill="#fff"/><rect x="10.5" y="5.5" width="11" height="21" rx="2" fill="#5b2bc4"/><circle cx="16" cy="9.6" r="2.1" fill="#fff"/><rect x="12.3" y="13.4" width="7.4" height="2.6" rx="1.3" fill="#d4ff3d"/><rect x="12.3" y="17.5" width="7.4" height="2.6" rx="1.3" fill="#fff" opacity=".9"/><rect x="12.3" y="21.6" width="7.4" height="2.6" rx="1.3" fill="#fff" opacity=".6"/></symbol>
+    <symbol id="p-lp" viewBox="0 0 32 32"><rect x="2.5" y="4.5" width="27" height="21" rx="3.5" fill="#fff"/><rect x="2.5" y="4.5" width="27" height="5" rx="2.5" fill="#fff"/><path d="M2.5 9.5h27" stroke="#0036c8" stroke-width="1.2" opacity=".35"/><circle cx="6" cy="7" r="1" fill="#0036c8"/><circle cx="9" cy="7" r="1" fill="#0036c8" opacity=".6"/><rect x="6" y="12.5" width="13" height="2.4" rx="1.2" fill="#0036c8"/><rect x="6" y="16.3" width="9" height="1.8" rx=".9" fill="#0036c8" opacity=".45"/><rect x="6" y="20" width="10" height="3.2" rx="1.6" fill="#7fb000"/><path d="M19.6 18.2l8.2 3.4-3.6 1.1-1.2 3.6z" fill="#0036c8" stroke="#fff" stroke-width="1.1" stroke-linejoin="round"/></symbol>
+    <symbol id="p-site" viewBox="0 0 32 32"><rect x="9" y="2.5" width="20.5" height="16" rx="3" fill="#fff" opacity=".45"/><rect x="5.8" y="5.8" width="20.5" height="16" rx="3" fill="#fff" opacity=".7"/><rect x="2.5" y="9.5" width="21" height="19" rx="3.2" fill="#fff"/><path d="M2.5 14h21" stroke="#0a6f99" stroke-width="1.2" opacity=".35"/><circle cx="5.6" cy="11.8" r=".9" fill="#0a6f99"/><circle cx="8.3" cy="11.8" r=".9" fill="#0a6f99" opacity=".6"/><rect x="5.5" y="16.8" width="6" height="8.6" rx="1.3" fill="#0a6f99"/><rect x="13.5" y="16.8" width="7" height="2.6" rx="1.3" fill="#0a6f99" opacity=".8"/><rect x="13.5" y="21" width="7" height="2" rx="1" fill="#0a6f99" opacity=".45"/><rect x="13.5" y="24.3" width="5" height="1.6" rx=".8" fill="#0a6f99" opacity=".3"/></symbol>
+  </defs>
+</svg>
+
+<div class="amb" aria-hidden="true"></div>
+
+<main class="page">
+  <!-- ===================== CAPA ===================== -->
+  <header class="cover">
+    <img class="cover-mark" src="/assets/marca/logo-d-branca.png" alt="" aria-hidden="true" width="892" height="888">
+    <div class="cover-top">
+      <button type="button" class="ico-btn" data-share aria-label="Compartilhar esta página"><svg class="i" aria-hidden="true"><use href="#i-share"/></svg></button>
+      <a class="ico-btn" href="https://www.instagram.com/devikison.design/" target="_blank" rel="noopener" aria-label="Instagram da Descomplica Site" data-ev="instagram_topo"><svg class="i" aria-hidden="true"><use href="#i-insta"/></svg></a>
+    </div>
+    <p class="cover-word rise" style="--d:0" aria-hidden="true">Descomplica<span>Site</span></p>
+    <p class="cover-tag rise" style="--d:1" aria-hidden="true">Apareça no Google. Venda no WhatsApp.</p>
+    <svg class="wave" viewBox="0 0 480 46" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 30C70 6 128 4 196 18s124 30 190 18c40-7 70-20 94-28v38H0z"/></svg>
+  </header>
+
+  <!-- ===================== PERFIL ===================== -->
+  <section class="prof">
+    <div class="avatar rise" style="--d:1"><span class="lg"><img src="/assets/marca/logo-d-branca.png" alt="Logo da Descomplica Site" width="892" height="888"></span></div>
+    <h1 class="name rise" style="--d:2">Descomplica Site</h1>
+    <p class="handle rise" style="--d:2">@devikison.design</p>
+    <p class="bio rise" style="--d:3">Sites que colocam seu negócio <b>no Google</b> e fazem o seu <b>WhatsApp tocar</b>. Você conta do seu negócio, a gente faz o resto.</p>
+    <div class="chips rise" style="--d:4">
+      <span class="chip"><svg class="i" aria-hidden="true"><use href="#i-zap"/></svg>Pronto em até 72h</span>
+      <span class="chip"><svg class="i" aria-hidden="true"><use href="#i-tag"/></svg>Pagamento único</span>
+      <span class="chip"><svg class="i" aria-hidden="true"><use href="#i-globe"/></svg>Todo o Brasil</span>
+    </div>
+  </section>
+
+  <!-- ===================== LINKS PRINCIPAIS ===================== -->
+  <nav class="stack" aria-label="Links principais">
+    <!-- 1º: o site -->
+    <a class="card hero-card rise" style="--d:5" href="/?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=link_bio" data-ev="site">
+      <span class="hc-bar" aria-hidden="true">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <span class="url"><svg class="i"><use href="#i-lock"/></svg><span data-type="descomplicasite.com.br">descomplicasite.com.br</span><span class="caret"></span></span>
+      </span>
+      <span class="hc-body">
+        <span class="eyebrow"><svg class="i" aria-hidden="true"><use href="#i-globe"/></svg>Site oficial</span>
+        <span class="hc-title" style="display:block">Apareça no Google. <em>Venda no WhatsApp.</em></span>
+        <span class="hc-sub" style="display:block">Veja os preços, os projetos entregues e faça o diagnóstico grátis do seu negócio.</span>
+        <span class="btn"><span class="knob"><svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span><span class="bt">Acessar o site</span></span>
+      </span>
+    </a>
+
+    <a class="card rise" style="--d:6" href="https://wa.me/5547992476541?text=Ol%C3%A1%2C%20Descomplica%20Site%21%20Vim%20pelo%20Instagram%20e%20quero%20colocar%20meu%20neg%C3%B3cio%20no%20Google." target="_blank" rel="noopener" data-ev="whatsapp">
+      <span class="tile t-wa"><svg aria-hidden="true"><use href="#i-wa"/></svg></span>
+      <span><span class="c-t" style="display:block">Falar no WhatsApp</span><span class="c-s" style="display:block">Orçamento sem compromisso, direto com o Devikison</span></span>
+      <span class="go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span>
+    </a>
+
+    <button type="button" class="card callme rise" style="--d:7" data-open-form data-ev="form_abrir">
+      <span class="tile t-call"><svg class="i" aria-hidden="true" style="width:26px;height:26px"><use href="#i-headset"/></svg></span>
+      <span><span class="c-t" style="display:block">Quero que me chamem</span><span class="c-s" style="display:block">Deixe seu contato em 30 segundos e a gente te procura</span></span>
+      <span class="go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span>
+    </button>
+
+    <a class="card rise" style="--d:8" href="https://www.instagram.com/devikison.design/" target="_blank" rel="noopener" data-ev="instagram">
+      <span class="tile t-ig"><svg class="i" aria-hidden="true" style="width:27px;height:27px"><use href="#i-insta"/></svg></span>
+      <span><span class="c-t" style="display:block">Instagram</span><span class="c-s" style="display:block">Bastidores, dicas e projetos novos</span></span>
+      <span class="go" aria-hidden="true"><svg class="i"><use href="#i-arrow"/></svg></span>
+    </a>
+  </nav>
+
+  <!-- ===================== OFERTA (troca sozinha quando a Black Friday acaba) ===================== -->
+  <a class="promo bf-only rise" style="--d:9" href="/?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=black_friday#precos" data-ev="black_friday">
+    <span class="pr-top"><span class="pill"><i></i>Black Friday</span><span class="off">-36%</span></span>
+    <span class="pr-title" style="display:block">Até <b>36% OFF</b> no seu site.</span>
+    <span class="pr-sub" style="display:block">Preço de lançamento por tempo limitado. Termina em:</span>
+    <span class="count" data-bf-countdown>
+      <div><b data-d>00</b><small>dias</small></div>
+      <div><b data-h>00</b><small>horas</small></div>
+      <div><b data-m>00</b><small>min</small></div>
+      <div><b data-s>00</b><small>seg</small></div>
+    </span>
+    <span class="pr-cta">Ver as ofertas<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+  </a>
+  <a class="promo bf-off-only rise" style="--d:9" href="/?utm_source=instagram&amp;utm_medium=bio&amp;utm_campaign=diagnostico#diagnostico" data-ev="diagnostico">
+    <span class="pr-top"><span class="pill"><i></i>Grátis</span></span>
+    <span class="pr-title" style="display:block">Seu negócio aparece <b>no Google?</b></span>
+    <span class="pr-sub" style="display:block">Responda 5 perguntas rápidas e receba o plano do que fazer primeiro.</span>
+    <span class="pr-cta">Fazer o diagnóstico<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+  </a>
+
+  <!-- ===================== SERVIÇOS ===================== -->
+  <section class="sec" aria-labelledby="t-svc">
+    <div class="sec-h"><h2 id="t-svc">O que a gente faz</h2><span>pagamento único</span></div>
+    <div class="svc">
+      <a href="/google-meu-negocio/?utm_source=instagram&amp;utm_medium=bio" data-ev="svc_gmn">
+        <span class="ic maps"><svg aria-hidden="true"><use href="#p-maps"/></svg></span>
+        <span><b>Perfil no Google Maps</b><small>Seu negócio no mapa, com fotos e horário</small></span>
+        <span class="price"><small>a partir de</small><span class="bf-off-only">R$ 249</span><span class="bf-only"><s>R$ 249</s>R$ 197</span></span>
+      </a>
+      <a href="/pagina-link-na-bio/?utm_source=instagram&amp;utm_medium=bio" data-ev="svc_bio">
+        <span class="ic bio"><svg aria-hidden="true"><use href="#p-bio"/></svg></span>
+        <span><b>Link na Bio</b><small>Uma página como esta, com a sua marca</small></span>
+        <span class="price"><small>a partir de</small><span class="bf-off-only">R$ 387</span><span class="bf-only"><s>R$ 387</s>R$ 247</span></span>
+      </a>
+      <a href="/criacao-de-landing-page/?utm_source=instagram&amp;utm_medium=bio" data-ev="svc_lp">
+        <span class="ic"><svg aria-hidden="true"><use href="#p-lp"/></svg></span>
+        <span><b>Página de Vendas</b><small>Uma página focada em vender um serviço</small></span>
+        <span class="price"><small>a partir de</small><span class="bf-off-only">R$ 887</span><span class="bf-only"><s>R$ 887</s>R$ 647</span></span>
+      </a>
+      <a href="/criacao-de-site-institucional/?utm_source=instagram&amp;utm_medium=bio" data-ev="svc_site">
+        <span class="ic site"><svg aria-hidden="true"><use href="#p-site"/></svg></span>
+        <span><b>Site Completo</b><small>Várias páginas, pronto para ser achado</small></span>
+        <span class="price"><small>a partir de</small><span class="bf-off-only">R$ 1.494</span><span class="bf-only"><s>R$ 1.494</s>R$ 1.147</span></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== PROJETOS ===================== -->
+  <section class="sec" aria-labelledby="t-proj">
+    <div class="sec-h"><h2 id="t-proj">Projetos entregues</h2><a href="/?utm_source=instagram&amp;utm_medium=bio#projetos" data-ev="projetos">ver todos</a></div>
+    <div class="proj" data-proj>
+      <div class="proj-track">
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-01.webp" alt="Landing page da ARCA Sorocaba" width="1200" height="628" loading="lazy"></span><b>ARCA Sorocaba</b><small>ONG, acolhimento e inclusão</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-02.webp" alt="Landing page da Prime Cortinas" width="1200" height="628" loading="lazy"></span><b>Prime Cortinas</b><small>Lavanderia, higienização</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-03.webp" alt="Landing page de Katsuo Arakaki" width="1200" height="628" loading="lazy"></span><b>Katsuo Arakaki</b><small>Saúde, terapia breve</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-04.webp" alt="Landing page da nutricionista Kamilla Fertonani" width="1200" height="628" loading="lazy"></span><b>Kamilla Fertonani</b><small>Nutrição, consultas online</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-05.webp" alt="Site da Dra. Tamira Terao Arakaki" width="1200" height="628" loading="lazy"></span><b>Dra. Tamira Arakaki</b><small>Medicina, perícia médica</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-06.webp" alt="Landing page da Imersão Estrutura 5A" width="1200" height="628" loading="lazy"></span><b>Imersão Estrutura 5A</b><small>Evento, venda de ingressos</small></a>
+        <a class="pj" href="/?utm_source=instagram&amp;utm_medium=bio#projetos"><span class="pj-img" style="display:block"><img src="/gallery/lp/lp-07.webp" alt="Landing page da Imersão Vida Memorável" width="1200" height="628" loading="lazy"></span><b>Imersão Vida Memorável</b><small>Evento internacional</small></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>© 2026 Descomplica Site. Todos os direitos reservados.</p>
+    <p>CNPJ 41.769.801/0001-01</p>
+  </footer>
+</main>
+
+<!-- ===================== FORMULÁRIO: QUERO QUE ME CHAMEM ===================== -->
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="scrim" data-close></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="t-form">
+    <div class="grab" aria-hidden="true"></div>
+    <div class="p-head">
+      <div><h2 id="t-form">A gente te chama</h2><p>Preencha e o Devikison entra em contato pelo seu WhatsApp.</p></div>
+      <button type="button" class="x" data-close aria-label="Fechar"><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button>
+    </div>
+
+    <form id="lead" novalidate>
+      <div class="f" data-f="nome">
+        <label for="f-nome">Seu nome</label>
+        <input id="f-nome" name="nome" type="text" autocomplete="name" maxlength="80" placeholder="Ex.: Ana Souza" required>
+        <p class="err-msg">Escreva seu nome para a gente saber com quem fala.</p>
+      </div>
+      <div class="f" data-f="zap">
+        <label for="f-zap">Seu WhatsApp</label>
+        <input id="f-zap" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="16" placeholder="(11) 91234-5678" required>
+        <p class="err-msg">Confira o número com DDD.</p>
+      </div>
+      <div class="f">
+        <label for="f-neg">Seu negócio e cidade <small>(opcional)</small></label>
+        <input id="f-neg" name="negocio" type="text" maxlength="100" placeholder="Ex.: Clínica de estética, Curitiba">
+      </div>
+      <fieldset class="f">
+        <legend>Do que você precisa? <small>(pode marcar mais de um)</small></legend>
+        <div class="opts">
+          <label class="opt"><input type="checkbox" name="quero" value="Site"><span>Site</span></label>
+          <label class="opt"><input type="checkbox" name="quero" value="Página de Vendas"><span>Página de Vendas</span></label>
+          <label class="opt"><input type="checkbox" name="quero" value="Link na Bio"><span>Link na Bio</span></label>
+          <label class="opt"><input type="checkbox" name="quero" value="Google Maps"><span>Google Maps</span></label>
+          <label class="opt"><input type="checkbox" name="quero" value="Tráfego pago"><span>Tráfego pago</span></label>
+          <label class="opt"><input type="checkbox" name="quero" value="Ainda não sei"><span>Ainda não sei</span></label>
+        </div>
+      </fieldset>
+      <fieldset class="f">
+        <legend>Melhor horário para te chamar</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="horario" value="Manhã"><span>Manhã</span></label>
+          <label class="opt"><input type="radio" name="horario" value="Tarde"><span>Tarde</span></label>
+          <label class="opt"><input type="radio" name="horario" value="Noite"><span>Noite</span></label>
+          <label class="opt"><input type="radio" name="horario" value="Qualquer horário" checked><span>Qualquer um</span></label>
+        </div>
+      </fieldset>
+      <div class="hp" aria-hidden="true"><label for="f-site">Não preencha</label><input id="f-site" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
+      <p class="form-err" role="alert" data-form-err>Não deu para enviar agora. Tente de novo ou <a href="https://wa.me/5547992476541?text=Ol%C3%A1%2C%20Descomplica%20Site%21%20Quero%20que%20voc%C3%AAs%20me%20chamem." target="_blank" rel="noopener">chame direto no WhatsApp</a>.</p>
+      <button type="submit" class="btn send"><span class="knob"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span><span class="bt" data-send-label>Quero que me chamem</span></button>
+      <p class="note"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg>Seus dados vão só para a Descomplica Site e servem apenas para este contato.</p>
+    </form>
+
+    <div class="done" role="status" aria-live="polite">
+      <div class="ok"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></div>
+      <h3 data-done-title>Recebido!</h3>
+      <p>O Devikison vai te chamar no WhatsApp no horário que você escolheu. Se preferir adiantar, é só mandar um oi.</p>
+      <a class="alt" href="https://wa.me/5547992476541" target="_blank" rel="noopener" data-done-wa data-ev="whatsapp_pos_form"><svg aria-hidden="true"><use href="#i-wa"/></svg>Adiantar pelo WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script src="/bf.js"></script>
+<script src="/bio/bio.js"></script>
+</body>
+</html>
