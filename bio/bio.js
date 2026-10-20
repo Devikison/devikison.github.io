@@ -1,5 +1,4 @@
 /* Descomplica Site: página de link na bio (/bio)
-   - Compartilhar a página (menu nativo do celular ou copia o link)
    - Endereço digitando no cartão do site
    - Faixa de projetos em loop (duplica os itens; pausa enquanto o dedo segura)
    - Formulário "Quero que me chamem": manda o contato por e-mail (FormSubmit)
@@ -18,19 +17,6 @@
   // ===================== CLIQUES NOS LINKS =====================
   $$('[data-ev]').forEach(function(el){
     el.addEventListener('click', function(){ track('clique_bio', { link: el.getAttribute('data-ev') }); });
-  });
-
-  // ===================== COMPARTILHAR =====================
-  var share = $('[data-share]');
-  if (share) share.addEventListener('click', function(){
-    var data = { title: 'Descomplica Site', text: 'Sites que colocam seu negócio no Google e fazem o seu WhatsApp tocar.', url: 'https://www.descomplicasite.com.br/bio/' };
-    track('compartilhar_bio');
-    if (navigator.share) { navigator.share(data).catch(function(){}); return; }
-    if (navigator.clipboard) navigator.clipboard.writeText(data.url).then(function(){
-      share.setAttribute('aria-label', 'Link copiado');
-      share.classList.add('copied');
-      setTimeout(function(){ share.setAttribute('aria-label', 'Compartilhar esta página'); share.classList.remove('copied'); }, 1800);
-    }).catch(function(){});
   });
 
   // ===================== ENDEREÇO DIGITANDO =====================
