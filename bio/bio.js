@@ -44,6 +44,19 @@
     }, 900);
   }
 
+  // ===================== BUSCA DA CAPA (digita, apaga e troca o nicho) =====================
+  var q = $('[data-cycle]');
+  if (q && !reduced){
+    var list = q.getAttribute('data-cycle').split('|'), w = 0, c = list[0].length, del = true;
+    setTimeout(function loop(){
+      var word = list[w];
+      if (del){ c--; q.textContent = word.slice(0, c); if (c <= 0){ del = false; w = (w + 1) % list.length; } setTimeout(loop, 32); return; }
+      word = list[w]; c++; q.textContent = word.slice(0, c);
+      if (c >= word.length){ del = true; setTimeout(loop, 2200); return; }
+      setTimeout(loop, 55 + Math.random() * 60);
+    }, 2600);
+  }
+
   // ===================== PROJETOS EM LOOP =====================
   var proj = $('[data-proj]');
   if (proj && !reduced){
