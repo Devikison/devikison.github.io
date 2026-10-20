@@ -660,6 +660,12 @@ body.menu-open { overflow: hidden; }
 .map-placeholder { height: 100%; display: grid; place-items: center; align-content: center; text-align: center; padding: 24px; color: var(--ink-2); gap: 10px; }
 .map-placeholder > svg { width: 44px; height: 44px; color: var(--blue-500); }
 @media (max-width: 700px) { .map-wrap { aspect-ratio: 4 / 3; } }
+/* mapa compacto na coluna de contactos, ao lado do formulário */
+.map-compact { width: 100%; aspect-ratio: 16 / 10; max-height: 300px; margin-top: 10px; border-radius: var(--r-md); }
+.map-compact .map-placeholder { gap: 8px; padding: 18px; font-size: .95rem; }
+.map-compact .map-placeholder > svg { width: 34px; height: 34px; }
+.map-compact .map-placeholder p { max-width: 36ch; }
+@media (max-width: 900px) { .map-compact { aspect-ratio: 16 / 9; max-height: 220px; } }
 
 /* ============================================================
    Camada visual: vidro leve, fundos desfocados, marca de água, pílulas
@@ -869,7 +875,7 @@ body.menu-open { overflow: hidden; }
   .lead, .muted { margin-inline: auto; }
   .checks { justify-items: center; }
   .checks li { text-align: left; }
-  .contact-list { justify-items: center; }
+  .contact-list { justify-items: stretch; }
   .contact-list li { text-align: left; }
   .reviews-head { justify-content: center; }
   .reviews-head .btn, .about .link-arrow { margin-inline: auto; }
