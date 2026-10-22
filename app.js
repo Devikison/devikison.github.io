@@ -111,7 +111,7 @@
             frag.appendChild(w);
           });
           node.replaceChild(frag, ch);
-        } else if (ch.nodeType === 1) walk(ch, inAur || ch.classList.contains('aurora'));
+        } else if (ch.nodeType === 1 && !ch.classList.contains('sr-only')) walk(ch, inAur || ch.classList.contains('aurora'));
       });
     })(el, false);
     el.classList.add('split');
