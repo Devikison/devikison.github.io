@@ -1,6 +1,6 @@
 /* Descomplica Site: página de link na bio (/bio)
    - Endereço digitando no cartão do site
-   - Faixa de projetos em loop (duplica os itens; pausa enquanto o dedo segura)
+   - Faixa de projetos em loop infinito, arrastável com dedo ou mouse (com embalo)
    - Formulário "Quero que me chamem": manda o contato por e-mail (FormSubmit)
      e oferece adiantar a conversa no WhatsApp com a mensagem já pronta
    - Eventos no Google Analytics para saber qual link mais converte */
@@ -43,15 +43,81 @@
     }, 2600);
   }
 
-  // ===================== PROJETOS EM LOOP =====================
+  // ===================== PROJETOS: LOOP INFINITO COM ARRASTO =====================
+  // Uma única linha do tempo em JS: corre sozinha devagar, e o dedo ou o mouse assumem 1:1.
+  // Ao soltar, segue com o embalo do gesto e freia suave; depois de um tempo volta a correr.
+  // Itens duplicados + posição em módulo = a faixa nunca acaba para nenhum dos lados.
+  // touch-action: pan-y no CSS: gesto vertical continua rolando a página normalmente.
   var proj = $('[data-proj]');
-  if (proj && !reduced){
+  if (proj){
     var tr = $('.proj-track', proj);
-    $$('.pj', tr).forEach(function(pj){ var c = pj.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1; tr.appendChild(c); });
-    var hold = function(on){ return function(){ proj.classList.toggle('hold', on); }; };
-    proj.addEventListener('touchstart', hold(true), { passive: true });
-    proj.addEventListener('touchend', hold(false), { passive: true });
-    proj.addEventListener('touchcancel', hold(false), { passive: true });
+    var originals = $$('.pj', tr);
+    originals.forEach(function(pj){ var c = pj.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.tabIndex = -1; tr.appendChild(c); });
+    var SPEED = reduced ? 0 : 0.035;       // px por ms correndo sozinha (para a esquerda)
+    var x = 0, v = 0, half = 1, visible = true, hover = false, resumeAt = 0, last = 0;
+    var down = false, axis = null, sx = 0, sy = 0, lx = 0, lt = 0, moved = 0, pid = null;
+    var measure = function(){ half = (tr.children[originals.length].offsetLeft - originals[0].offsetLeft) || 1; };
+    var wrap = function(n){ n = n % half; return n > 0 ? n - half : n; };
+    var paint = function(){ tr.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)'; };
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('load', measure);
+
+    var tick = function(t){
+      var dt = last ? Math.min(t - last, 50) : 16; last = t;
+      if (!down && visible){
+        if (Math.abs(v) > 0.005){ x += v * dt; v *= Math.pow(0.94, dt / 16); }   // embalo depois de soltar
+        else { v = 0; if (!hover && t > resumeAt) x -= SPEED * dt; }
+      }
+      x = wrap(x); paint();
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(e){ visible = e[0].isIntersecting; }).observe(proj);
+
+    proj.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      down = true; axis = null; pid = e.pointerId; moved = 0; v = 0;
+      sx = lx = e.clientX; sy = e.clientY; lt = performance.now();
+    });
+    proj.addEventListener('pointermove', function(e){
+      if (!down || e.pointerId !== pid) return;
+      if (!axis){
+        var ax = Math.abs(e.clientX - sx), ay = Math.abs(e.clientY - sy);
+        if (ax < 6 && ay < 6) return;
+        axis = ax >= ay ? 'x' : 'y';
+        if (axis === 'y'){ down = false; return; }              // gesto vertical: deixa a página rolar
+        try { proj.setPointerCapture(pid); } catch(_){}
+        proj.classList.add('dragging');
+        lx = sx;                                                // conta desde o primeiro toque: 1:1 com o dedo
+      }
+      var now = performance.now(), dx = e.clientX - lx, dtm = Math.max(now - lt, 1);
+      x = wrap(x + dx);
+      v = v * 0.6 + (dx / dtm) * 0.4;                          // velocidade suavizada para o embalo
+      moved += Math.abs(dx); lx = e.clientX; lt = now;
+      paint();
+      if (e.cancelable) e.preventDefault();
+    });
+    var release = function(e){
+      if (!down || (e && e.pointerId !== pid)) return;
+      down = false;
+      if (axis === 'x'){
+        if (performance.now() - lt > 90) v = 0;                 // segurou parado antes de soltar: sem embalo
+        v = Math.max(-2.5, Math.min(2.5, v));
+        resumeAt = performance.now() + 2200;
+      }
+      setTimeout(function(){ proj.classList.remove('dragging'); }, 0);
+      try { proj.releasePointerCapture(pid); } catch(_){}
+    };
+    proj.addEventListener('pointerup', release);
+    proj.addEventListener('pointercancel', release);
+    // só a captura da própria faixa conta (no toque o link de dentro também perde a captura dele)
+    proj.addEventListener('lostpointercapture', function(e){ if (e.target === proj) release(e); });
+    // depois de arrastar, soltar em cima de um projeto não abre o link
+    proj.addEventListener('click', function(e){ if (moved > 6){ e.preventDefault(); e.stopPropagation(); moved = 0; } }, true);
+    proj.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    proj.addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse') hover = true; });
+    proj.addEventListener('pointerleave', function(e){ if (e.pointerType === 'mouse'){ hover = false; resumeAt = performance.now() + 600; } });
   }
 
   // ===================== FORMULÁRIO =====================
@@ -106,19 +172,33 @@
 
     var done = function(){
       $('[data-done-title]', panel).textContent = 'Recebido, ' + lead.nome.split(' ')[0] + '!';
-      $('[data-done-wa]', panel).href = waLink('Olá, Descomplica Site! Acabei de pedir contato pela bio do Instagram.\n\nNome: ' + lead.nome + '\nNegócio: ' + lead.negocio + '\nPreciso de: ' + lead.quero);
+      $('[data-done-wa]', panel).href = waLink(resumo);
       panel.classList.add('sent'); panel.scrollTop = 0;
       track('generate_lead', { origem: 'bio', quero: lead.quero });
     };
+
+    // mensagem pronta com todos os dados: usada no botão de adiantar e como plano B se o e-mail falhar
+    var resumo = 'Olá, Descomplica Site! Quero que vocês me chamem.\n\nNome: ' + lead.nome + '\nWhatsApp: ' + lead.whatsapp +
+      '\nNegócio: ' + lead.negocio + '\nPreciso de: ' + lead.quero + '\nMelhor horário: ' + lead.horario;
+    var errWa = $('a', errBox); if (errWa) errWa.href = waLink(resumo);
 
     // robô preencheu o campo escondido: finge que deu certo e não envia nada
     if ($('#f-site').value){ done(); return; }
 
     sending = true; btn.disabled = true; label.textContent = 'Enviando...'; errBox.classList.remove('on');
-    var fail = function(){ sending = false; btn.disabled = false; label.textContent = 'Tentar de novo'; errBox.classList.add('on'); track('lead_erro', { origem: 'bio' }); };
+    var finished = false;
+    var fail = function(why){
+      if (finished) return; finished = true;
+      sending = false; btn.disabled = false; label.textContent = 'Tentar de novo'; errBox.classList.add('on');
+      track('lead_erro', { origem: 'bio', motivo: String(why || '').slice(0, 90) });
+    };
+    // o serviço de e-mail às vezes demora ou nem responde: depois de 12s desiste e mostra o plano B
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); fail('tempo esgotado'); }, 12000);
     fetch(FORM_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      signal: ctrl ? ctrl.signal : undefined,
       body: JSON.stringify({
         _subject: 'Novo contato pela bio: ' + lead.nome,
         _template: 'table',
@@ -133,8 +213,12 @@
       })
     }).then(function(r){
       return r.json().catch(function(){ return {}; }).then(function(j){
-        if (!r.ok || String(j.success) === 'false') throw new Error('envio');
+        if (!r.ok || String(j.success) === 'false') throw new Error(j.message || ('HTTP ' + r.status));
       });
-    }).then(function(){ sending = false; done(); }).catch(fail);
+    }).then(function(){
+      clearTimeout(timer);
+      if (finished) return; finished = true;
+      sending = false; done();
+    }).catch(function(e){ clearTimeout(timer); fail(e && e.message); });
   });
 })();
