@@ -315,34 +315,36 @@
     });
   })();
 
-  // ===================== PROJETOS: vitrine contínua em duas faixas =====================
+  // ===================== PROJETOS: faixa de sites e faixa de links da bio =====================
   var Lightbox;
   (function(){
-    var mq = $('[data-mq]'), base = $('[data-mq-base]'), alt = $('[data-mq-alt]'); if (!mq || !base) return;
-    var cards = $$('.pc', base);
-    var ITEMS = cards.map(function(c){ return { src: $('img', c).getAttribute('src'), name: $('b', c).textContent, seg: $('small', c).textContent }; });
-    // segunda faixa: mesmos projetos, começando do meio, no sentido contrário (só visual)
-    if (alt){
-      var h = Math.ceil(cards.length / 2);
-      cards.slice(h).concat(cards.slice(0, h)).forEach(function(c){ var k = c.cloneNode(true); k.tabIndex = -1; alt.appendChild(k); });
-    }
-    var tracks = [base, alt].filter(Boolean);
-    // cópia de cada faixa para o laço não ter emenda (a faixa dá a volta em metade da largura)
+    var mqs = $$('[data-mq]'); if (!mqs.length) return;
+    var tracks = mqs.map(function(m){ return $('.mq-track', m); });
+    // cada grupo abre só as próprias imagens no lightbox (sites com sites, bio com bio)
+    var GROUPS = {};
+    $$('.pc[data-g]').forEach(function(c){
+      var im = $('img', c), g = c.getAttribute('data-g');
+      (GROUPS[g] = GROUPS[g] || [])[+c.getAttribute('data-lp')] = { src: im.getAttribute('src'), name: $('b', c).textContent, seg: $('small', c).textContent,
+        r: (+im.getAttribute('width') || 16) / (+im.getAttribute('height') || 9), label: g === 'bio' ? 'Link na bio' : 'Site' };
+    });
+    // cópias para o laço não ter emenda: repete até metade da faixa cobrir uma tela larga, depois dobra
     if (!reduced) tracks.forEach(function(t){
-      $$('.pc', t).forEach(function(c){ var k = c.cloneNode(true); k.tabIndex = -1; k.setAttribute('aria-hidden', 'true'); t.appendChild(k); });
+      var orig = $$('.pc', t), clone = function(c){ var k = c.cloneNode(true); k.tabIndex = -1; k.setAttribute('aria-hidden', 'true'); t.appendChild(k); };
+      while (t.scrollWidth < Math.max(VW, 1920) * 1.15) orig.forEach(clone);
+      $$('.pc', t).forEach(clone);
     });
     // os cards entram pela lateral: o lazy do navegador deixaria buracos, então carrega tudo quando a seção chega perto
-    var eager = function(){ $$('img', mq).forEach(function(im){ im.loading = 'eager'; }); };
+    var eager = function(){ mqs.forEach(function(m){ $$('img', m).forEach(function(im){ im.loading = 'eager'; }); }); };
     if ('IntersectionObserver' in window){
-      var io = new IntersectionObserver(function(en){ if (en[0].isIntersecting){ eager(); io.disconnect(); } }, { rootMargin: '900px 0px' });
-      io.observe(mq);
+      var io = new IntersectionObserver(function(en){ if (en.some(function(x){ return x.isIntersecting; })){ eager(); io.disconnect(); } }, { rootMargin: '900px 0px' });
+      mqs.forEach(function(m){ io.observe(m); });
     } else eager();
     var dragEnd = 0;
-    mq.addEventListener('click', function(e){
+    mqs.forEach(function(m){ m.addEventListener('click', function(e){
       if (performance.now() - dragEnd < 250) return; // foi arrasto, não clique
       var b = e.target.closest('[data-lp]'); if (!b) return;
-      Lightbox.open(ITEMS, +b.getAttribute('data-lp'), b);
-    });
+      Lightbox.open(GROUPS[b.getAttribute('data-g')], +b.getAttribute('data-lp'), b);
+    }); });
     if (reduced) return;
 
     // ----- motor: anda sozinho, arrasta, desliza com inércia e volta ao ritmo normal -----
@@ -369,7 +371,7 @@
       });
     }
     var run = function(on){ if (on && !raf){ last = 0; raf = requestAnimationFrame(frame); } else if (!on && raf){ cancelAnimationFrame(raf); raf = 0; } };
-    if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ run(en[0].isIntersecting); }, { rootMargin: '200px 0px' }).observe(mq);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ run(en[0].isIntersecting); }, { rootMargin: '200px 0px' }).observe(mqs[0].closest('section') || mqs[0]);
     else run(true);
 
     rows.forEach(function(r){
@@ -677,19 +679,26 @@
   // ===================== LIGHTBOX: troca com desfoque =====================
   Lightbox = (function(){
     var lb = $('[data-lb]'); if (!lb) return { open: function(){} };
-    var front = $('[data-lb-a]', lb), back = $('[data-lb-b]', lb), info = $('.lb-info', lb), nm = $('[data-lb-name]', lb), sg = $('[data-lb-seg]', lb), cnt = $('[data-lb-cnt]', lb);
+    var front = $('[data-lb-a]', lb), back = $('[data-lb-b]', lb), info = $('.lb-info', lb), nm = $('[data-lb-name]', lb), sg = $('[data-lb-seg]', lb);
     var list = [], cur = 0, tx = 0, ty = 0, token = 0, from = null, infoT = null;
-    var btns = $$('button', lb);
+    var btns = $$('button', lb), stage = $('.lb-stage', lb);
+    // a moldura assume o formato da imagem: deitada nos sites, em pé (celular) nos links da bio
+    function fit(){
+      var it = list[cur]; if (!it) return;
+      var r = it.r || 1.91, maxW = Math.min(window.innerWidth * .94, 1200), maxH = window.innerHeight - (window.innerWidth <= 760 ? 210 : 230);
+      var w = Math.min(maxW, maxH * r);
+      stage.style.width = Math.round(w) + 'px'; stage.style.height = Math.round(w / r) + 'px';
+    }
+    window.addEventListener('resize', function(){ if (lb.classList.contains('open')) fit(); });
     function preload(i){ var it = list[(i + list.length) % list.length]; if (it && !it.img){ it.img = new Image(); it.img.src = it.src; } }
     function text(){
       var it = list[cur];
       nm.textContent = it.name; sg.textContent = it.seg;
-      cnt.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0');
     }
     function show(i, dir){
       cur = (i + list.length) % list.length;
       var it = list[cur], t = ++token;
-      preload(cur + 1); preload(cur - 1);
+      preload(cur + 1); preload(cur - 1); fit();
       if (!dir){
         front.src = it.src; front.alt = it.name; front.classList.add('on');
         back.classList.remove('on'); text(); return;
@@ -711,7 +720,8 @@
       if (inn.decode) inn.decode().then(go, go); else go();
     }
     function open(items, i, origin){
-      list = items; from = origin || document.activeElement; show(i, 0);
+      list = items; from = origin || document.activeElement;
+      stage.style.transition = 'none'; show(i, 0); void stage.offsetWidth; stage.style.transition = '';
       lb.classList.add('open'); root.classList.add('lb-open'); document.body.style.overflow = 'hidden';
       setTimeout(function(){ $('[data-lb-next]', lb).focus({ preventScroll: true }); }, 50);
     }
