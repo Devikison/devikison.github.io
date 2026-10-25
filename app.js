@@ -53,7 +53,6 @@
 
   // ===================== CONTEÚDO =====================
   var SERP = ['dentista perto de mim', 'loja de roupas em são paulo', 'advogado trabalhista', 'pizzaria delivery aberta agora', 'clínica de estética', 'contador para mei', 'encanador 24 horas', 'arquiteto residencial'];
-  var LPS = []; for (var l = 1; l <= 7; l++) LPS.push('gallery/lp/lp-0' + l + '.webp');
   var CMP = [
     { k: 'Google', no: 'Não aparece na busca nem no mapa', yes: 'No mapa, na busca e nas respostas de IA', i: 'i-search' },
     { k: 'Primeira impressão', no: 'Link do Instagram, feed bagunçado', yes: 'Página profissional com a sua marca', i: 'i-insta' },
@@ -316,44 +315,97 @@
     });
   })();
 
-  // ===================== PROJETOS: scroll vertical vira movimento lateral =====================
+  // ===================== PROJETOS: vitrine contínua em duas faixas =====================
   var Lightbox;
   (function(){
-    var hs = $('[data-hs]'), track = $('[data-hs-track]'); if (!hs || !track) return;
-    var pin = $('.hs-pin', hs), cards = $$('.pcard', track), bar = $('[data-hs-bar]'), cur = $('[data-hs-cur]'), floor = $('[data-floor]');
-    var dist = 0, span = 0, stick = 0, top0 = 0, pos = [], lastCur = -1, lastP = -1;
-    if (reduced){ hs.classList.add('hs-static'); }
-    onPre(function(){ stick = parseFloat(getComputedStyle(pin).top) || 0; });
-    onMeasure(function(y){
-      if (reduced) return;
-      track.style.transform = '';
-      dist = Math.max(0, track.scrollWidth - VW);
-      span = dist / 1.5; // 1px rolado = 1,5px de vitrine: menos rolagem, mesma viagem
-      hs.style.height = (pin.offsetHeight + span) + 'px';
-      top0 = hs.getBoundingClientRect().top + y;
-      pos = cards.map(function(c){ return { l: c.offsetLeft, w: c.offsetWidth }; });
-      lastP = -1;
+    var mq = $('[data-mq]'), base = $('[data-mq-base]'), alt = $('[data-mq-alt]'); if (!mq || !base) return;
+    var cards = $$('.pc', base);
+    var ITEMS = cards.map(function(c){ return { src: $('img', c).getAttribute('src'), name: $('b', c).textContent, seg: $('small', c).textContent }; });
+    // segunda faixa: mesmos projetos, começando do meio, no sentido contrário (só visual)
+    if (alt){
+      var h = Math.ceil(cards.length / 2);
+      cards.slice(h).concat(cards.slice(0, h)).forEach(function(c){ var k = c.cloneNode(true); k.tabIndex = -1; alt.appendChild(k); });
+    }
+    var tracks = [base, alt].filter(Boolean);
+    // cópia de cada faixa para o laço não ter emenda (a faixa dá a volta em metade da largura)
+    if (!reduced) tracks.forEach(function(t){
+      $$('.pc', t).forEach(function(c){ var k = c.cloneNode(true); k.tabIndex = -1; k.setAttribute('aria-hidden', 'true'); t.appendChild(k); });
     });
-    if (!reduced) onScroll(function(y){
-      var rt = top0 - y; if (rt > VH + 50 || rt + span + VH < -50) return;
-      var p = span ? clamp((stick - rt) / span, 0, 1) : 0; if (p === lastP) return; lastP = p;
-      var x = -p * dist, mid = VW / 2, best = 0, bd = 1e9;
-      track.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
-      if (bar) bar.style.setProperty('--p', p.toFixed(4));
-      if (floor) floor.style.setProperty('--gx', (x * .35).toFixed(1) + 'px');
-      for (var i = 0; i < cards.length; i++){
-        var c = pos[i]; if (!c) continue;
-        var d = (c.l + c.w / 2 + x - mid) / VW, ad = Math.min(Math.abs(d), 1.2);
-        cards[i].style.setProperty('--ry', (-d * 18).toFixed(2) + 'deg');
-        cards[i].style.setProperty('--s', (1 - ad * .1).toFixed(4));
-        cards[i].style.setProperty('--dim', (ad * .6).toFixed(3));
-        if (Math.abs(d) < bd && i < LPS.length){ bd = Math.abs(d); best = i; }
-      }
-      if (cur && best !== lastCur){ lastCur = best; cur.textContent = '0' + (best + 1); }
-    });
-    track.addEventListener('click', function(e){
+    // os cards entram pela lateral: o lazy do navegador deixaria buracos, então carrega tudo quando a seção chega perto
+    var eager = function(){ $$('img', mq).forEach(function(im){ im.loading = 'eager'; }); };
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(en){ if (en[0].isIntersecting){ eager(); io.disconnect(); } }, { rootMargin: '900px 0px' });
+      io.observe(mq);
+    } else eager();
+    var dragEnd = 0;
+    mq.addEventListener('click', function(e){
+      if (performance.now() - dragEnd < 250) return; // foi arrasto, não clique
       var b = e.target.closest('[data-lp]'); if (!b) return;
-      Lightbox.open(LPS, +b.getAttribute('data-lp'), 'Landing page');
+      Lightbox.open(ITEMS, +b.getAttribute('data-lp'), b);
+    });
+    if (reduced) return;
+
+    // ----- motor: anda sozinho, arrasta, desliza com inércia e volta ao ritmo normal -----
+    var rows = tracks.map(function(t){ return { el: t.parentNode, t: t, dir: +t.parentNode.getAttribute('data-mq-row') || 1, x: 0, v: 0, w: 0, d: null }; });
+    var cruise = function(r){ return -r.dir * (VW <= 760 ? 34 : 46); }; // px/s; faixa 1 para a esquerda, faixa 2 para a direita
+    var wrap = function(x, w){ if (!w) return x; x %= w; return x > 0 ? x - w : x; };
+    function measure(){ rows.forEach(function(r){ r.w = r.t.scrollWidth / 2; r.x = wrap(r.x, r.w); }); }
+    rows.forEach(function(r){ r.v = cruise(r); });
+    measure(); onMeasure(measure);
+
+    var raf = 0, last = 0;
+    function frame(t){
+      raf = requestAnimationFrame(frame);
+      var dt = Math.min(.1, (t - (last || t)) / 1000); last = t; // aguenta celular lento sem andar em câmera lenta
+      if (root.classList.contains('lb-open')) return;
+      rows.forEach(function(r){
+        if (!r.d){
+          // a velocidade do arremesso decai suavemente até o ritmo de cruzeiro
+          r.v += (cruise(r) - r.v) * (1 - Math.exp(-dt * 1.7));
+          r.x += r.v * dt;
+        }
+        r.x = wrap(r.x, r.w);
+        r.t.style.transform = 'translate3d(' + r.x.toFixed(2) + 'px,0,0)';
+      });
+    }
+    var run = function(on){ if (on && !raf){ last = 0; raf = requestAnimationFrame(frame); } else if (!on && raf){ cancelAnimationFrame(raf); raf = 0; } };
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(en){ run(en[0].isIntersecting); }, { rootMargin: '200px 0px' }).observe(mq);
+    else run(true);
+
+    rows.forEach(function(r){
+      var el = r.el;
+      el.addEventListener('pointerdown', function(e){
+        if (e.button || r.d) return;
+        r.d = { id: e.pointerId, x0: e.clientX, lx: e.clientX, lt: performance.now(), vs: 0, moved: false };
+      });
+      el.addEventListener('pointermove', function(e){
+        var d = r.d; if (!d || e.pointerId !== d.id) return;
+        var now = performance.now(), dx = e.clientX - d.lx;
+        if (!d.moved && Math.abs(e.clientX - d.x0) > 6){ d.moved = true; el.classList.add('is-drag'); try { el.setPointerCapture(e.pointerId); } catch(_){} }
+        if (d.moved){
+          r.x += dx;
+          var inst = dx / (Math.max(8, now - d.lt) / 1000);
+          d.vs = d.vs * .55 + inst * .45; // velocidade suavizada para o arremesso
+        }
+        d.lx = e.clientX; d.lt = now;
+      });
+      var end = function(e){
+        var d = r.d; if (!d || e.pointerId !== d.id) return;
+        if (d.moved){
+          dragEnd = performance.now();
+          if (dragEnd - d.lt > 90) d.vs = 0; // segurou parado antes de soltar: sem arremesso
+          r.v = clamp(d.vs, -4200, 4200);
+        }
+        r.d = null; el.classList.remove('is-drag');
+      };
+      el.addEventListener('pointerup', end);
+      el.addEventListener('pointercancel', end);
+      el.addEventListener('lostpointercapture', end);
+      // rolagem lateral do trackpad também empurra a faixa
+      el.addEventListener('wheel', function(e){
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        e.preventDefault(); r.x -= e.deltaX; r.v = cruise(r) - e.deltaX * 6;
+      }, { passive: false });
     });
   })();
 
@@ -622,21 +674,71 @@
     $$('main > section').forEach(function(s){ ioOff.observe(s); });
   }
 
-  // ===================== LIGHTBOX =====================
+  // ===================== LIGHTBOX: troca com desfoque =====================
   Lightbox = (function(){
     var lb = $('[data-lb]'); if (!lb) return { open: function(){} };
-    var img = $('[data-lb-img]', lb), cnt = $('[data-lb-cnt]', lb), list = [], cur = 0, alt = '', tx = 0;
-    function render(){ img.src = list[cur]; img.alt = alt + ' ' + (cur + 1); cnt.textContent = (cur + 1) + ' / ' + list.length; }
-    function open(images, i, a){ list = images; alt = a; cur = (i + list.length) % list.length; render(); lb.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function close(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
-    function nav(d){ cur = (cur + d + list.length) % list.length; render(); }
+    var front = $('[data-lb-a]', lb), back = $('[data-lb-b]', lb), info = $('.lb-info', lb), nm = $('[data-lb-name]', lb), sg = $('[data-lb-seg]', lb), cnt = $('[data-lb-cnt]', lb);
+    var list = [], cur = 0, tx = 0, ty = 0, token = 0, from = null, infoT = null;
+    var btns = $$('button', lb);
+    function preload(i){ var it = list[(i + list.length) % list.length]; if (it && !it.img){ it.img = new Image(); it.img.src = it.src; } }
+    function text(){
+      var it = list[cur];
+      nm.textContent = it.name; sg.textContent = it.seg;
+      cnt.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0');
+    }
+    function show(i, dir){
+      cur = (i + list.length) % list.length;
+      var it = list[cur], t = ++token;
+      preload(cur + 1); preload(cur - 1);
+      if (!dir){
+        front.src = it.src; front.alt = it.name; front.classList.add('on');
+        back.classList.remove('on'); text(); return;
+      }
+      clearTimeout(infoT); info.classList.add('sw');
+      infoT = setTimeout(function(){ text(); info.classList.remove('sw'); }, 260);
+      var inn = back, out = front;
+      // a nova entra do lado de onde veio, ainda desfocada
+      inn.style.transition = 'none'; inn.classList.remove('on');
+      inn.style.setProperty('--tx', (dir * 6) + '%');
+      inn.src = it.src; inn.alt = it.name;
+      var go = function(){
+        if (t !== token) return;
+        void inn.offsetWidth; inn.style.transition = '';
+        out.style.setProperty('--tx', (-dir * 6) + '%');
+        out.classList.remove('on'); inn.classList.add('on');
+        front = inn; back = out;
+      };
+      if (inn.decode) inn.decode().then(go, go); else go();
+    }
+    function open(items, i, origin){
+      list = items; from = origin || document.activeElement; show(i, 0);
+      lb.classList.add('open'); root.classList.add('lb-open'); document.body.style.overflow = 'hidden';
+      setTimeout(function(){ $('[data-lb-next]', lb).focus({ preventScroll: true }); }, 50);
+    }
+    function close(){
+      lb.classList.remove('open'); root.classList.remove('lb-open'); document.body.style.overflow = '';
+      if (from && from.focus) from.focus({ preventScroll: true });
+    }
+    function nav(d){ show(cur + d, d); }
     $('[data-lb-close]', lb).addEventListener('click', close);
     $('[data-lb-prev]', lb).addEventListener('click', function(){ nav(-1); });
     $('[data-lb-next]', lb).addEventListener('click', function(){ nav(1); });
-    lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
-    document.addEventListener('keydown', function(e){ if (!lb.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') nav(-1); if (e.key === 'ArrowRight') nav(1); });
-    lb.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener('touchend', function(e){ var d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) nav(d < 0 ? 1 : -1); }, { passive: true });
+    lb.addEventListener('click', function(e){ if (e.target === lb || e.target.classList.contains('lb-body')) close(); });
+    document.addEventListener('keydown', function(e){
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') nav(-1);
+      else if (e.key === 'ArrowRight') nav(1);
+      else if (e.key === 'Tab'){ // foco preso nos botões do lightbox
+        var k = btns.indexOf(document.activeElement), n = (k + (e.shiftKey ? -1 : 1) + btns.length) % btns.length;
+        e.preventDefault(); btns[n].focus();
+      }
+    });
+    lb.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+    lb.addEventListener('touchend', function(e){
+      var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) nav(dx < 0 ? 1 : -1);
+    }, { passive: true });
     return { open: open };
   })();
 
