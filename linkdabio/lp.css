@@ -80,15 +80,15 @@ html.measuring .lcard{position:relative!important;top:auto!important;transform:n
   background:linear-gradient(180deg,var(--ac) 10%,color-mix(in srgb,var(--ac) 18%,transparent) 92%);-webkit-background-clip:text;background-clip:text;
   filter:drop-shadow(0 0 40px color-mix(in srgb,var(--ac) 30%,transparent))}
 
-/* dúvidas rápidas (no fundo escuro: o styles.css pensa o FAQ no claro) */
-.lp-faq{max-width:820px;margin:clamp(56px,7vw,96px) auto 0}
+/* dúvidas rápidas, logo abaixo da oferta (no fundo escuro: o styles.css pensa o FAQ no claro) */
+.lp-faq{max-width:720px;margin:clamp(56px,7vw,88px) auto 0;text-align:left}
 .lp-faq-t{margin-bottom:22px;text-align:center;font-size:clamp(24px,2.6vw,34px)}
-.lp-proc .faq summary{color:#fff}
-.lp-proc .faq summary .pl{background:rgba(123,155,255,.12);border-color:rgba(123,155,255,.35)}
-.lp-proc .faq summary .pl::before,.lp-proc .faq summary .pl::after{background:var(--blue-4)}
-.lp-proc .faq details[open] summary{color:var(--cyan)}
-.lp-proc .faq .a strong{color:#fff}
-@media (hover:hover){.lp-proc .faq summary:hover{color:var(--cyan)}}
+.lp-faq .faq summary{color:#fff}
+.lp-faq .faq summary .pl{background:rgba(123,155,255,.12);border-color:rgba(123,155,255,.35)}
+.lp-faq .faq summary .pl::before,.lp-faq .faq summary .pl::after{background:var(--blue-4)}
+.lp-faq .faq details[open] summary{color:var(--cyan)}
+.lp-faq .faq .a strong{color:#fff}
+@media (hover:hover){.lp-faq .faq summary:hover{color:var(--cyan)}}
 
 /* título final mais contido: a oferta precisa aparecer logo abaixo */
 .lp .final .h2{font-size:clamp(34px,4.8vw,66px)}
