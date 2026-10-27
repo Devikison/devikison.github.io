@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://tlixawxfsuwmgjjlcapw.supabase.co https://formsubmit.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; media-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
+<script src="/seguranca.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YJG6HQJWBZ"></script>
+<script src="/gtag-init.js"></script>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Briefing do seu projeto | Descomplica Site</title>
+<meta name="description" content="Envie as informações, arquivos e links do seu projeto para a Descomplica Site.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#02040a">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/hubot-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/formulario/formulario.css">
+</head>
+<body>
+
+<header class="top">
+  <a class="top__logo" href="/" aria-label="Descomplica Site">
+    <img src="/assets/marca/logo-d-branca.png" alt="" width="32" height="32">
+    <span>Descomplica Site</span>
+  </a>
+  <span class="top__tag">Briefing do projeto</span>
+</header>
+
+<main class="wrap" id="app">
+
+  <section class="intro" aria-labelledby="t-intro">
+    <p class="kicker">Checklist do cliente</p>
+    <h1 id="t-intro">Tudo do seu projeto em <em>um só lugar</em></h1>
+    <p class="lead">Preencha o que tiver em mãos e anexe arquivos ou links. O que você ainda não tiver, deixe em branco: a gente resolve junto.</p>
+    <ul class="intro__notes">
+      <li>Leva uns 10 minutos</li>
+      <li>Salva sozinho neste aparelho enquanto você preenche</li>
+      <li>Aceita PDF, fotos, vídeos e documentos até 50 MB cada</li>
+    </ul>
+  </section>
+
+  <div class="grid">
+
+    <aside class="side" aria-label="Progresso do briefing">
+      <div class="side__card">
+        <p class="side__title">Seu checklist</p>
+        <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Itens preenchidos" data-meter>
+          <span class="meter__bar"></span>
+        </div>
+        <p class="side__count"><b data-count>0</b> de <span data-total>0</span> itens preenchidos</p>
+        <ol class="steps" data-steps></ol>
+      </div>
+    </aside>
+
+    <form class="form" id="briefing" novalidate autocomplete="on">
+
+      <!-- 1 -->
+      <fieldset class="block" id="sec-contato" data-step="Seus dados">
+        <legend><span class="block__n">1</span> Seus dados</legend>
+        <p class="block__hint">Para eu saber com quem estou falando e como te responder.</p>
+        <div class="row">
+          <div class="field">
+            <label for="nome">Seu nome <abbr title="obrigatório">*</abbr></label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required data-check>
+            <p class="err" id="nome-err"></p>
+          </div>
+          <div class="field">
+            <label for="empresa">Nome da empresa ou marca <abbr title="obrigatório">*</abbr></label>
+            <input id="empresa" name="empresa" type="text" autocomplete="organization" required data-check>
+            <p class="err" id="empresa-err"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="whatsapp">WhatsApp <abbr title="obrigatório">*</abbr></label>
+            <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 98888-7777" required data-check>
+            <p class="err" id="whatsapp-err"></p>
+          </div>
+          <div class="field">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" data-check>
+            <p class="err" id="email-err"></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="cidade">Cidade e estado</label>
+            <input id="cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Sorocaba, SP" data-check>
+          </div>
+          <div class="field">
+            <label for="instagram">Instagram</label>
+            <input id="instagram" name="instagram" type="text" placeholder="@suamarca" data-check>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- 2 -->
+      <fieldset class="block" id="sec-projeto" data-step="O projeto">
+        <legend><span class="block__n">2</span> O projeto</legend>
+        <p class="block__hint">O que vamos criar e o que ele precisa resolver.</p>
+        <div class="field">
+          <span class="label" id="servico-l">O que você contratou ou quer criar?</span>
+          <div class="chips" role="group" aria-labelledby="servico-l" data-check-group="servico">
+            <label class="chip"><input type="checkbox" name="servico" value="Página de vendas (landing page)"><span>Página de vendas</span></label>
+            <label class="chip"><input type="checkbox" name="servico" value="Site institucional"><span>Site institucional</span></label>
+            <label class="chip"><input type="checkbox" name="servico" value="Link na bio"><span>Link na bio</span></label>
+            <label class="chip"><input type="checkbox" name="servico" value="Google Meu Negócio"><span>Google Meu Negócio</span></label>
+            <label class="chip"><input type="checkbox" name="servico" value="Tráfego pago"><span>Tráfego pago</span></label>
+            <label class="chip"><input type="checkbox" name="servico" value="Outro"><span>Outro</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="negocio">Conte sobre o seu negócio</label>
+          <textarea id="negocio" name="negocio" rows="4" placeholder="O que você faz, há quanto tempo, como atende" data-check></textarea>
+        </div>
+        <div class="field">
+          <label for="ofertas">Principais serviços ou produtos</label>
+          <textarea id="ofertas" name="ofertas" rows="3" placeholder="Um por linha, do mais importante para o menos" data-check></textarea>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="publico">Quem é o seu cliente ideal?</label>
+            <textarea id="publico" name="publico" rows="3" placeholder="Idade, região, o que procura, o que o incomoda" data-check></textarea>
+          </div>
+          <div class="field">
+            <label for="diferenciais">Por que escolhem você?</label>
+            <textarea id="diferenciais" name="diferenciais" rows="3" placeholder="Seus diferenciais, prêmios, tempo de mercado" data-check></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="acao">O que o visitante deve fazer na página?</label>
+            <select id="acao" name="acao" data-check>
+              <option value="">Escolha uma opção</option>
+              <option>Chamar no WhatsApp</option>
+              <option>Agendar horário</option>
+              <option>Preencher um formulário</option>
+              <option>Comprar online</option>
+              <option>Ligar</option>
+              <option>Visitar o endereço</option>
+              <option>Ainda não sei</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="dominio">Já tem domínio (endereço do site)?</label>
+            <input id="dominio" name="dominio" type="text" placeholder="Ex.: suamarca.com.br, ou deixe em branco" data-check>
+          </div>
+        </div>
+        <div class="field">
+          <label for="prazo">Tem alguma data importante?</label>
+          <input id="prazo" name="prazo" type="text" placeholder="Ex.: lançamento dia 15, evento, campanha" data-check>
+        </div>
+      </fieldset>
+
+      <!-- 3 -->
+      <fieldset class="block" id="sec-visual" data-step="Identidade visual">
+        <legend><span class="block__n">3</span> Identidade visual</legend>
+        <p class="block__hint">Logo, cores e o estilo que combina com você.</p>
+        <div class="field">
+          <span class="label" id="logo-l">Você tem logo?</span>
+          <div class="chips" role="radiogroup" aria-labelledby="logo-l" data-check-group="logo">
+            <label class="chip"><input type="radio" name="logo" value="Sim, vou anexar"><span>Sim, vou anexar</span></label>
+            <label class="chip"><input type="radio" name="logo" value="Tenho, mas preciso achar o arquivo"><span>Tenho, preciso achar</span></label>
+            <label class="chip"><input type="radio" name="logo" value="Não tenho"><span>Não tenho</span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="cores">Cores da marca</label>
+            <input id="cores" name="cores" type="text" placeholder="Ex.: verde escuro e bege, ou códigos #" data-check>
+          </div>
+          <div class="field">
+            <label for="evitar">Algo que você não quer de jeito nenhum?</label>
+            <input id="evitar" name="evitar" type="text" placeholder="Cores, estilos, palavras" data-check>
+          </div>
+        </div>
+        <div class="field">
+          <label for="referencias">Sites ou perfis que você admira</label>
+          <textarea id="referencias" name="referencias" rows="3" placeholder="Cole os links e diga o que gostou em cada um" data-check></textarea>
+        </div>
+      </fieldset>
+
+      <!-- 4 -->
+      <fieldset class="block" id="sec-conteudo" data-step="Conteúdo">
+        <legend><span class="block__n">4</span> Conteúdo da página</legend>
+        <p class="block__hint">Informações que aparecem para o seu cliente.</p>
+        <div class="row">
+          <div class="field">
+            <label for="wa_botao">WhatsApp que vai nos botões</label>
+            <input id="wa_botao" name="wa_botao" type="tel" inputmode="tel" placeholder="Se for diferente do seu" data-check>
+          </div>
+          <div class="field">
+            <label for="horario">Horário de atendimento</label>
+            <input id="horario" name="horario" type="text" placeholder="Ex.: seg a sex, 9h às 18h" data-check>
+          </div>
+        </div>
+        <div class="field">
+          <label for="endereco">Endereço (se atende no local)</label>
+          <input id="endereco" name="endereco" type="text" autocomplete="street-address" data-check>
+        </div>
+        <div class="field">
+          <label for="redes">Outras redes e links</label>
+          <textarea id="redes" name="redes" rows="2" placeholder="Facebook, TikTok, YouTube, Google, cardápio, loja" data-check></textarea>
+        </div>
+        <div class="field">
+          <label for="depoimentos">Depoimentos de clientes reais</label>
+          <textarea id="depoimentos" name="depoimentos" rows="3" placeholder="Cole aqui ou anexe prints das avaliações" data-check></textarea>
+        </div>
+        <div class="field">
+          <label for="textos">Textos que você já tem</label>
+          <textarea id="textos" name="textos" rows="4" placeholder="Sobre você, bio, apresentação, perguntas frequentes" data-check></textarea>
+        </div>
+      </fieldset>
+
+      <!-- 5 -->
+      <fieldset class="block" id="sec-arquivos" data-step="Arquivos e links">
+        <legend><span class="block__n">5</span> Arquivos e links</legend>
+        <p class="block__hint">Logo, fotos, vídeos, PDFs, apresentações, cardápio. Mande tudo que tiver.</p>
+
+        <div class="drop" data-drop>
+          <input id="arquivos" type="file" multiple class="drop__input" aria-describedby="drop-help">
+          <label for="arquivos" class="drop__area">
+            <svg class="ico" viewBox="0 0 256 256" aria-hidden="true"><path d="M240 136v64a16 16 0 0 1-16 16H32a16 16 0 0 1-16-16v-64a16 16 0 0 1 16-16h48a8 8 0 0 1 0 16H32v64h192v-64h-48a8 8 0 0 1 0-16h48a16 16 0 0 1 16 16ZM85.66 77.66 120 43.31V128a8 8 0 0 0 16 0V43.31l34.34 34.35a8 8 0 0 0 11.32-11.32l-48-48a8 8 0 0 0-11.32 0l-48 48a8 8 0 0 0 11.32 11.32Z"/></svg>
+            <span class="drop__title">Toque para escolher os arquivos</span>
+            <span class="drop__sub" id="drop-help">ou arraste para cá. Até 50 MB por arquivo.</span>
+          </label>
+        </div>
+        <ul class="files" data-files aria-live="polite"></ul>
+
+        <div class="field links">
+          <label for="link-novo">Links de pastas e arquivos grandes</label>
+          <p class="field__help">Google Drive, WeTransfer, Dropbox, Canva. Confira se o link está liberado para quem tiver o link.</p>
+          <div class="links__add">
+            <input id="link-novo" type="url" inputmode="url" placeholder="https://">
+            <button type="button" class="btn btn--ghost" data-link-add>Adicionar</button>
+          </div>
+          <p class="err" id="link-err"></p>
+          <ul class="files" data-links aria-live="polite"></ul>
+        </div>
+      </fieldset>
+
+      <!-- 6 -->
+      <fieldset class="block" id="sec-final" data-step="Finalizar">
+        <legend><span class="block__n">6</span> Finalizar</legend>
+        <div class="field">
+          <label for="obs">Algo mais que eu precise saber?</label>
+          <textarea id="obs" name="obs" rows="4" placeholder="Dúvidas, ideias, o que vier à cabeça" data-check></textarea>
+        </div>
+        <label class="consent">
+          <input type="checkbox" name="consentimento" id="consentimento" required>
+          <span>Autorizo o uso destas informações e arquivos para criar o meu projeto.</span>
+        </label>
+        <p class="err" id="consentimento-err"></p>
+
+        <div class="send">
+          <button type="submit" class="btn btn--main" data-submit>Enviar briefing</button>
+          <p class="send__status" data-status role="status" aria-live="polite"></p>
+        </div>
+      </fieldset>
+
+    </form>
+  </div>
+</main>
+
+<section class="done" data-done hidden tabindex="-1" aria-labelledby="t-done">
+  <div class="done__card">
+    <svg class="done__ico" viewBox="0 0 256 256" aria-hidden="true"><path d="M229.66 77.66l-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z"/></svg>
+    <h2 id="t-done">Recebi tudo, obrigado!</h2>
+    <p>Seu protocolo é <b data-protocolo></b>. Vou revisar o material e te chamo no WhatsApp com os próximos passos.</p>
+    <a class="btn btn--main" data-wa href="#" target="_blank" rel="noopener">Avisar no WhatsApp</a>
+  </div>
+</section>
+
+<script src="/formulario/formulario.js" defer></script>
+</body>
+</html>
