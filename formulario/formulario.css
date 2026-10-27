@@ -171,3 +171,10 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);ba
 .more[open]{padding-bottom:4px}
 .opt{font-weight:430;color:var(--text-3)}
 .drop{margin-top:4px}
+.link-list{display:grid;gap:10px}
+.link-row{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:6px}
+.link-row .file__x{grid-row:auto;grid-column:auto;width:44px;height:44px}
+.link-row .err{grid-column:1 / -1;margin-top:0}
+.link-more{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:8px;padding:0 4px;color:var(--blue-3);font-size:14px;font-weight:620;background:none;border:0;cursor:pointer}
+.link-more:hover{color:var(--text)}
+.link-more svg{width:18px;height:18px;fill:currentColor}

@@ -52,7 +52,7 @@
 
   // ===================== RASCUNHO =====================
   function saveDraft(){
-    var data = { links: links, campos: {} };
+    var data = { links: $$('input', linkList).map(function(i){ return i.value; }), campos: {} };
     $$('input, select, textarea', form).forEach(function(el){
       if (!el.name || el.type === 'file') return;
       if (el.type === 'checkbox' || el.type === 'radio'){
@@ -72,7 +72,9 @@
         else el.value = v;
       });
     });
-    (data.links || []).forEach(addLink);
+    (data.links || []).forEach(function(v){ if (v) addLinkRow(v); });
+    syncLinks();
+    if (links.length) $('.more').open = true;
   }
 
   // ===================== TELEFONE =====================
@@ -132,37 +134,56 @@
   drop.addEventListener('drop', function(e){ if (e.dataTransfer) addFiles(e.dataTransfer.files); });
 
   // ===================== LINKS =====================
+  // Um campo por link; "Adicionar outro link" cria mais um e o X apaga o que sobrou.
   var linkList = $('[data-links]');
-  var linkInput = $('#link-novo');
-  function addLink(url){
-    links.push(url);
+  function normLink(v){
+    v = v.trim();
+    if (!v) return '';
+    if (!/^https?:\/\//i.test(v)) v = 'https://' + v;
+    try { return new URL(v).hostname.indexOf('.') > 0 ? v : null; } catch(_){ return null; }
+  }
+  function syncLinks(){
+    links = [];
+    $$('input', linkList).forEach(function(inp){
+      var v = normLink(inp.value);
+      if (v && links.indexOf(v) === -1) links.push(v);
+    });
+  }
+  function addLinkRow(value, focus){
+    var n = linkList.children.length + 1;
     var li = document.createElement('li');
-    li.className = 'file';
-    li.innerHTML = '<span class="file__name"></span><span class="file__meta">link</span>' +
-      '<button type="button" class="file__x" aria-label="Remover link">' + X_ICON + '</button>';
-    $('.file__name', li).textContent = url;
+    li.className = 'link-row';
+    li.innerHTML = '<input type="url" inputmode="url" placeholder="https://" aria-label="Link ' + n + '">' +
+      '<button type="button" class="file__x" aria-label="Apagar este link">' + X_ICON + '</button>' +
+      '<p class="err"></p>';
+    var inp = $('input', li);
+    inp.value = value || '';
     $('.file__x', li).addEventListener('click', function(){
-      links.splice(links.indexOf(url), 1);
-      li.remove(); refresh(); saveDraft();
+      li.remove();
+      if (!linkList.children.length) addLinkRow('');
+      syncLinks(); refresh(); saveDraft();
     });
     linkList.appendChild(li);
+    if (focus) inp.focus();
   }
-  function tryAddLink(){
-    var v = linkInput.value.trim();
-    var err = $('#link-err');
-    if (!v) return true;
-    if (!/^https?:\/\//i.test(v)) v = 'https://' + v;
-    var ok = false;
-    try { ok = !!new URL(v).hostname.match(/\./); } catch(_){}
-    if (!ok){ err.textContent = 'Esse link parece incompleto. Copie e cole o endereço inteiro.'; linkInput.classList.add('is-invalid'); return false; }
-    err.textContent = ''; linkInput.classList.remove('is-invalid');
-    if (links.indexOf(v) === -1) addLink(v);
-    linkInput.value = '';
-    refresh(); saveDraft();
-    return true;
+  $('[data-link-add]').addEventListener('click', function(){ addLinkRow('', true); });
+  linkList.addEventListener('input', function(e){
+    var row = e.target.closest('.link-row');
+    if (row){ $('.err', row).textContent = ''; e.target.classList.remove('is-invalid'); }
+    syncLinks(); refresh();
+  });
+  function checkLinks(){
+    var bad = null;
+    $$('.link-row', linkList).forEach(function(row){
+      var inp = $('input', row);
+      var ok = normLink(inp.value) !== null;
+      $('.err', row).textContent = ok ? '' : 'Esse link parece incompleto. Copie e cole o endereço inteiro.';
+      inp.classList.toggle('is-invalid', !ok);
+      if (!ok && !bad) bad = inp;
+    });
+    syncLinks();
+    return bad;
   }
-  $('[data-link-add]').addEventListener('click', tryAddLink);
-  linkInput.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); tryAddLink(); } });
 
   // ===================== VALIDAÇÃO =====================
   function setErr(id, msg){
@@ -177,7 +198,8 @@
     function check(id, ok, msg){ setErr(id, ok ? '' : msg); if (!ok && !first) first = $('#' + id); }
     check('nome', filled($('#nome')), 'Escreva o seu nome.');
     check('whatsapp', $('#whatsapp').value.replace(/\D/g, '').length >= 10, 'Coloque o WhatsApp com DDD.');
-    if (!tryAddLink() && !first) first = linkInput;
+    var badLink = checkLinks();
+    if (badLink){ $('.more').open = true; if (!first) first = badLink; }
     check('arquivos', files.length + links.length > 0, 'Escolha pelo menos um arquivo ou cole um link.');
     if (first){ first.focus(); first.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
     return !first;
@@ -309,6 +331,7 @@
 
   // ===================== INÍCIO =====================
   loadDraft();
+  if (!linkList.children.length) addLinkRow('');
   form.addEventListener('input', function(){ refresh(); saveDraft(); });
   form.addEventListener('change', function(){ refresh(); saveDraft(); });
   refresh();
