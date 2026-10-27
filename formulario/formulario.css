@@ -36,7 +36,7 @@ abbr{text-decoration:none;color:var(--volt)}
 .top__logo img{width:32px;height:32px}
 .top__tag{font-family:var(--f-m);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3)}
 
-.wrap{max-width:1180px;margin:0 auto;padding:clamp(36px,6vw,72px) var(--gut) 96px}
+.wrap{max-width:640px;margin:0 auto;padding:clamp(36px,6vw,72px) var(--gut) 96px}
 
 /* abertura */
 .intro{max-width:720px;margin-bottom:clamp(32px,5vw,56px)}
@@ -165,3 +165,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);ba
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 #sec-final legend{margin-bottom:18px}
+.form{gap:0}
+.more{margin:4px 0 18px;border:1px solid var(--line);border-radius:14px;padding:0 16px}
+.more summary{cursor:pointer;min-height:50px;display:flex;align-items:center;font-size:14px;font-weight:600;color:var(--blue-3)}
+.more[open]{padding-bottom:4px}
+.opt{font-weight:430;color:var(--text-3)}
+.drop{margin-top:4px}

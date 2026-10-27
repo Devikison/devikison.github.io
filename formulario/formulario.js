@@ -1,5 +1,5 @@
-/* Descomplica Site: formulário de briefing do cliente (/formulario)
-   - Checklist ao lado mostra o que já foi preenchido
+/* Descomplica Site: envio de materiais do cliente (/formulario)
+   - Só nome, WhatsApp, arquivos, links e um recado opcional
    - Rascunho salvo neste aparelho (localStorage) para o cliente não perder nada
    - Arquivos sobem direto para o Supabase (bucket privado briefings-descomplica, pasta = id do envio)
    - A função briefing-receber grava tudo na tabela descomplica_briefings e devolve links dos arquivos
@@ -21,8 +21,7 @@
   var track = function(name, extra){ try { if (window.gtag) window.gtag('event', name, extra || {}); } catch(_){} };
 
   var form = $('#briefing');
-  var blocks = $$('fieldset[data-step]', form);
-  var files = [];   // { file, path, state: 'wait' | 'up' | 'ok' | 'fail', el }
+    var files = [];   // { file, path, state: 'wait' | 'up' | 'ok' | 'fail', el }
   var links = [];
   var envioId = null;
   var sending = false;
@@ -46,42 +45,9 @@
     return (i + 1) + '-' + (clean || 'arquivo').slice(-80);
   }
 
-  // ===================== CHECKLIST =====================
-  var stepsEl = $('[data-steps]');
-  blocks.forEach(function(b, i){
-    var li = document.createElement('li');
-    li.innerHTML = '<a href="#' + b.id + '"><i><span>' + (i + 1) + '</span></i>' + esc(b.getAttribute('data-step')) + '</a>';
-    stepsEl.appendChild(li);
-  });
-  var stepLinks = $$('a', stepsEl);
-
   function filled(el){ return el.value.trim() !== ''; }
-  function groupFilled(name){ return $$('input[name="' + name + '"]', form).some(function(i){ return i.checked; }); }
-
-  function items(){
-    var list = [];
-    $$('[data-check]', form).forEach(function(el){ list.push({ block: el.closest('fieldset'), ok: filled(el) }); });
-    $$('[data-check-group]', form).forEach(function(g){ list.push({ block: g.closest('fieldset'), ok: groupFilled(g.getAttribute('data-check-group')) }); });
-    list.push({ block: $('#sec-arquivos'), ok: files.length + links.length > 0 });
-    return list;
-  }
-
   function refresh(){
-    var all = items();
-    var done = all.filter(function(x){ return x.ok; }).length;
-    $('[data-count]').textContent = done;
-    $('[data-total]').textContent = all.length;
-    var pct = Math.round(done / all.length * 100);
-    $('.meter__bar').style.transform = 'scaleX(' + (done / all.length) + ')';
-    $('[data-meter]').setAttribute('aria-valuenow', pct);
-    blocks.forEach(function(b, i){
-      var mine = all.filter(function(x){ return x.block === b; });
-      var ok = b.id === 'sec-contato'
-        ? ['nome', 'empresa', 'whatsapp'].every(function(id){ return filled($('#' + id)); })
-        : b.id === 'sec-final' ? $('#consentimento').checked
-        : mine.some(function(x){ return x.ok; });
-      stepLinks[i].classList.toggle('is-done', ok);
-    });
+    if (files.length + links.length) setErr('arquivos', '');
   }
 
   // ===================== RASCUNHO =====================
@@ -210,17 +176,14 @@
     var first = null;
     function check(id, ok, msg){ setErr(id, ok ? '' : msg); if (!ok && !first) first = $('#' + id); }
     check('nome', filled($('#nome')), 'Escreva o seu nome.');
-    check('empresa', filled($('#empresa')), 'Escreva o nome da empresa ou marca.');
     check('whatsapp', $('#whatsapp').value.replace(/\D/g, '').length >= 10, 'Coloque o WhatsApp com DDD.');
-    var em = $('#email').value.trim();
-    check('email', !em || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em), 'Confira o e-mail.');
-    check('consentimento', $('#consentimento').checked, 'Marque a autorização para enviar.');
     if (!tryAddLink() && !first) first = linkInput;
+    check('arquivos', files.length + links.length > 0, 'Escolha pelo menos um arquivo ou cole um link.');
     if (first){ first.focus(); first.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
     return !first;
   }
-  ['nome', 'empresa', 'whatsapp', 'email', 'consentimento'].forEach(function(id){
-    $('#' + id).addEventListener('change', function(){ if ($('#' + id + '-err').textContent) validate(); });
+  ['nome', 'whatsapp'].forEach(function(id){
+    $('#' + id).addEventListener('input', function(){ if ($('#' + id + '-err').textContent) setErr(id, ''); });
   });
 
   // ===================== ENVIO =====================
@@ -262,16 +225,7 @@
 
   function collect(){
     var get = function(n){ var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
-    var checks = function(n){ return $$('input[name="' + n + '"]:checked', form).map(function(i){ return i.value; }).join(', '); };
-    return {
-      nome: get('nome'), empresa: get('empresa'), whatsapp: get('whatsapp'), email: get('email'),
-      cidade: get('cidade'), instagram: get('instagram'),
-      servico: checks('servico'), negocio: get('negocio'), ofertas: get('ofertas'), publico: get('publico'),
-      diferenciais: get('diferenciais'), acao: get('acao'), dominio: get('dominio'), prazo: get('prazo'),
-      logo: checks('logo'), cores: get('cores'), evitar: get('evitar'), referencias: get('referencias'),
-      wa_botao: get('wa_botao'), horario: get('horario'), endereco: get('endereco'), redes: get('redes'),
-      depoimentos: get('depoimentos'), textos: get('textos'), obs: get('obs')
-    };
+    return { nome: get('nome'), whatsapp: get('whatsapp'), obs: get('obs') };
   }
 
   function saveRecord(dados){
@@ -286,15 +240,9 @@
   }
 
   function sendEmail(dados, protocolo, fileLinks){
-    var L = {
-      nome: 'Nome', empresa: 'Empresa / marca', whatsapp: 'WhatsApp', email: 'E-mail', cidade: 'Cidade', instagram: 'Instagram',
-      servico: 'Serviço', negocio: 'Sobre o negócio', ofertas: 'Serviços / produtos', publico: 'Cliente ideal', diferenciais: 'Diferenciais',
-      acao: 'Ação principal', dominio: 'Domínio', prazo: 'Data importante', logo: 'Logo', cores: 'Cores', evitar: 'Evitar',
-      referencias: 'Referências', wa_botao: 'WhatsApp dos botões', horario: 'Horário', endereco: 'Endereço', redes: 'Redes e links',
-      depoimentos: 'Depoimentos', textos: 'Textos prontos', obs: 'Observações'
-    };
+    var L = { nome: 'Nome', whatsapp: 'WhatsApp', obs: 'Recado' };
     var body = {
-      _subject: 'Briefing ' + protocolo + ': ' + (dados.empresa || dados.nome),
+      _subject: 'Materiais ' + protocolo + ': ' + dados.nome,
       _template: 'table', _captcha: 'false',
       Protocolo: protocolo
     };
@@ -303,7 +251,6 @@
       ? files.map(function(f, i){ var l = fileLinks && fileLinks[i]; return f.file.name + ' (' + kb(f.file.size) + ')' + (l ? ': ' + l : ''); }).join('\n')
       : '-';
     body['Links enviados'] = links.length ? links.join('\n') : '-';
-    if (dados.email) body._replyto = dados.email;
     return fetch(EMAIL_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -349,12 +296,12 @@
 
   function finish(dados, protocolo){
     try { localStorage.removeItem(DRAFT_KEY); } catch(_){}
-    track('briefing_enviado', { arquivos: files.length, links: links.length });
+    track('materiais_enviados', { arquivos: files.length, links: links.length });
     $('#app').hidden = true;
     var done = $('[data-done]');
     $('[data-protocolo]', done).textContent = protocolo;
     $('[data-wa]', done).href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(
-      'Oi! Acabei de enviar o briefing da ' + (dados.empresa || dados.nome) + ' pelo formulário. Protocolo ' + protocolo + '.');
+      'Oi! Sou ' + dados.nome + ' e acabei de enviar os arquivos pelo formulário. Protocolo ' + protocolo + '.');
     done.hidden = false;
     window.scrollTo(0, 0);
     done.focus();
