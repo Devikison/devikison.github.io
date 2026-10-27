@@ -1,18 +1,16 @@
 /* Descomplica Site: envio de materiais do cliente (/formulario)
    - Só nome, WhatsApp, arquivos, links e um recado opcional
    - Rascunho salvo neste aparelho (localStorage) para o cliente não perder nada
-   - Arquivos sobem direto para o Supabase (bucket privado briefings-descomplica, pasta = id do envio)
-   - A função briefing-receber grava tudo na tabela descomplica_briefings e devolve links dos arquivos
-   - Cópia organizada vai por e-mail (FormSubmit) com os links para baixar
-   - Se uma etapa falhar, o envio pode ser repetido sem subir de novo o que já subiu */
+   - Arquivos vão para o Google Drive do Devikison (script em _google/formulario-drive.gs):
+     uma pasta por cliente e uma subpasta por envio, planilha de controle e e-mail de aviso
+   - Arquivo sobe em pedaços de 8 MB (upload retomável): se a internet cair, continua de onde parou */
 (function(){
   'use strict';
   var WA = '5547992476541';
-  var EMAIL_ENDPOINT = 'https://formsubmit.co/ajax/devikisonads@gmail.com';
-  var SB_URL = 'https://tlixawxfsuwmgjjlcapw.supabase.co';
-  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRsaXhhd3hmc3V3bWdqamxjYXB3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc5NTM0NTIsImV4cCI6MjEwMzUyOTQ1Mn0.iPYmSoR2nCGrpCw52UUiZbE-dnTQ-9BeBoCI9-L-WLY';
-  var BUCKET = 'briefings-descomplica';
-  var MAX_BYTES = 50 * 1024 * 1024;
+  // URL do app da Web do Google Apps Script (_google/formulario-drive.gs)
+  var DRIVE_API = '[URL_DO_APPS_SCRIPT]';
+  var CHUNK = 8 * 1024 * 1024; // múltiplo de 256 KB, exigência do upload retomável do Drive
+  var MAX_BYTES = 300 * 1024 * 1024;
   var MAX_FILES = 40;
   var DRAFT_KEY = 'ds-briefing-rascunho-v1';
 
@@ -23,27 +21,18 @@
   var form = $('#briefing');
     var files = [];   // { file, path, state: 'wait' | 'up' | 'ok' | 'fail', el }
   var links = [];
-  var envioId = null;
+  var pastaId = null;
+  var protocolo = '';
   var sending = false;
 
   var X_ICON = '<svg width="18" height="18" viewBox="0 0 256 256" aria-hidden="true"><path d="M205.66 194.34a8 8 0 0 1-11.32 11.32L128 139.31l-66.34 66.35a8 8 0 0 1-11.32-11.32L116.69 128 50.34 61.66a8 8 0 0 1 11.32-11.32L128 116.69l66.34-66.35a8 8 0 0 1 11.32 11.32L139.31 128Z"/></svg>';
 
-  function uuid(){
-    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
-    var b = crypto.getRandomValues(new Uint8Array(16));
-    b[6] = (b[6] & 15) | 64; b[8] = (b[8] & 63) | 128;
-    var h = Array.prototype.map.call(b, function(x){ return ('0' + x.toString(16)).slice(-2); }).join('');
-    return h.slice(0,8) + '-' + h.slice(8,12) + '-' + h.slice(12,16) + '-' + h.slice(16,20) + '-' + h.slice(20);
-  }
   function kb(n){
     if (n < 1024 * 1024) return Math.max(1, Math.round(n / 1024)) + ' KB';
     return (n / 1024 / 1024).toFixed(1).replace('.', ',') + ' MB';
   }
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
-  function safeName(name, i){
-    var clean = name.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-zA-Z0-9._-]+/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
-    return (i + 1) + '-' + (clean || 'arquivo').slice(-80);
-  }
+
 
   function filled(el){ return el.value.trim() !== ''; }
   function refresh(){
@@ -99,7 +88,7 @@
     var skipped = [];
     Array.prototype.forEach.call(list, function(f){
       if (files.length >= MAX_FILES){ skipped.push(f.name + ' (limite de ' + MAX_FILES + ' arquivos)'); return; }
-      if (f.size > MAX_BYTES){ skipped.push(f.name + ' (maior que 50 MB, mande por link)'); return; }
+      if (f.size > MAX_BYTES){ skipped.push(f.name + ' (maior que 300 MB, mande por link)'); return; }
       if (!f.size){ skipped.push(f.name + ' (arquivo vazio)'); return; }
       var dup = files.some(function(x){ return x.file.name === f.name && x.file.size === f.size; });
       if (dup) return;
@@ -213,35 +202,63 @@
   var btn = $('[data-submit]');
   function setStatus(msg, isErr){ statusEl.textContent = msg; statusEl.classList.toggle('is-err', !!isErr); }
 
-  function upload(item, i){
+  // Fala com o script do Google (texto simples evita a checagem prévia de CORS)
+  function api(body){
+    return fetch(DRIVE_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) })
+      .then(function(r){ if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      .then(function(res){ if (!res.ok) throw new Error(res.erro || 'erro'); return res; });
+  }
+  function tentar(fn, vezes){
+    return fn().catch(function(err){
+      if (vezes <= 1) throw err;
+      return new Promise(function(ok){ setTimeout(ok, 1500); }).then(function(){ return tentar(fn, vezes - 1); });
+    });
+  }
+  function base64(blob){
     return new Promise(function(resolve, reject){
-      item.path = item.path || envioId + '/' + safeName(item.file.name, i);
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', SB_URL + '/storage/v1/object/' + BUCKET + '/' + item.path.split('/').map(encodeURIComponent).join('/'));
-      xhr.setRequestHeader('Authorization', 'Bearer ' + SB_KEY);
-      xhr.setRequestHeader('apikey', SB_KEY);
-      xhr.setRequestHeader('x-upsert', 'false');
-      xhr.setRequestHeader('Content-Type', item.file.type || 'application/octet-stream');
-      var bar = $('.file__bar span', item.el), meta = $('.file__meta', item.el);
-      item.el.classList.remove('is-fail'); item.el.classList.add('is-up');
-      xhr.upload.onprogress = function(e){ if (e.lengthComputable) bar.style.transform = 'scaleX(' + (e.loaded / e.total) + ')'; };
-      xhr.onload = function(){
-        item.el.classList.remove('is-up');
-        // 409: já estava lá (envio repetido depois de uma falha)
-        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 409){
-          item.state = 'ok'; item.el.classList.add('is-ok'); meta.textContent = kb(item.file.size) + ' · enviado';
-          resolve();
-        } else {
-          item.state = 'fail'; item.el.classList.add('is-fail'); meta.textContent = 'Falhou, tente enviar de novo';
-          reject(new Error('upload ' + xhr.status));
-        }
-      };
-      xhr.onerror = function(){
-        item.el.classList.remove('is-up'); item.state = 'fail'; item.el.classList.add('is-fail');
-        meta.textContent = 'Sem conexão, tente enviar de novo';
-        reject(new Error('rede'));
-      };
-      xhr.send(item.file);
+      var fr = new FileReader();
+      fr.onload = function(){ resolve(String(fr.result).split(',')[1] || ''); };
+      fr.onerror = reject;
+      fr.readAsDataURL(blob);
+    });
+  }
+
+  // Sobe um arquivo em pedaços de 8 MB para a sessão retomável do Drive
+  function upload(item){
+    var f = item.file, total = f.size;
+    var bar = $('.file__bar span', item.el), meta = $('.file__meta', item.el);
+    item.el.classList.remove('is-fail'); item.el.classList.add('is-up');
+    var abrir = item.sessao ? Promise.resolve() : tentar(function(){
+      return api({ acao: 'sessao', pasta: pastaId, nome: f.name, tipo: f.type, tamanho: total })
+        .then(function(res){ item.sessao = res.sessao; item.enviado = 0; });
+    }, 3);
+    function proximo(){
+      if (item.enviado >= total) return Promise.resolve();
+      var ini = item.enviado, fim = Math.min(ini + CHUNK, total);
+      return base64(f.slice(ini, fim)).then(function(b64){
+        return tentar(function(){
+          return api({ acao: 'parte', sessao: item.sessao, inicio: ini, total: total, dados: b64 })
+            .catch(function(err){
+              // a parte pode ter chegado mesmo com erro de rede: pergunta ao Drive onde parou
+              return api({ acao: 'estado', sessao: item.sessao, total: total }).then(function(st){
+                if (st.fim || st.proximo > ini) return st;
+                throw err;
+              });
+            });
+        }, 4);
+      }).then(function(res){
+        item.enviado = res.fim ? total : res.proximo;
+        bar.style.transform = 'scaleX(' + (item.enviado / total) + ')';
+        return proximo();
+      });
+    }
+    return abrir.then(proximo).then(function(){
+      item.state = 'ok'; item.el.classList.remove('is-up'); item.el.classList.add('is-ok');
+      meta.textContent = kb(total) + ' · enviado';
+    }, function(err){
+      item.state = 'fail'; item.el.classList.remove('is-up'); item.el.classList.add('is-fail');
+      meta.textContent = 'Falhou, toque em Enviar de novo';
+      throw err;
     });
   }
 
@@ -250,69 +267,36 @@
     return { nome: get('nome'), whatsapp: get('whatsapp'), obs: get('obs') };
   }
 
-  function saveRecord(dados){
-    return fetch(SB_URL + '/functions/v1/briefing-receber', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY },
-      body: JSON.stringify({
-        id: envioId, dados: dados, links: links,
-        arquivos: files.map(function(f){ return { path: f.path, nome: f.file.name, tamanho: f.file.size, tipo: f.file.type }; })
-      })
-    }).then(function(r){ if (!r.ok) throw new Error('registro ' + r.status); return r.json(); });
-  }
-
-  function sendEmail(dados, protocolo, fileLinks){
-    var L = { nome: 'Nome', whatsapp: 'WhatsApp', obs: 'Recado' };
-    var body = {
-      _subject: 'Materiais ' + protocolo + ': ' + dados.nome,
-      _template: 'table', _captcha: 'false',
-      Protocolo: protocolo
-    };
-    Object.keys(L).forEach(function(k){ body[L[k]] = dados[k] || '-'; });
-    body['Arquivos (' + files.length + ')'] = files.length
-      ? files.map(function(f, i){ var l = fileLinks && fileLinks[i]; return f.file.name + ' (' + kb(f.file.size) + ')' + (l ? ': ' + l : ''); }).join('\n')
-      : '-';
-    body['Links enviados'] = links.length ? links.join('\n') : '-';
-    return fetch(EMAIL_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(body)
-    }).then(function(r){ if (!r.ok) throw new Error('email ' + r.status); return r.json(); });
-  }
-
   form.addEventListener('submit', function(e){
     e.preventDefault();
     if (sending || !validate()) return;
     sending = true; btn.disabled = true;
-    envioId = envioId || uuid();
-    var protocolo = envioId.slice(0, 8).toUpperCase();
     var dados = collect();
     var pend = files.filter(function(f){ return f.state !== 'ok'; });
 
-    var chain = Promise.resolve();
+    setStatus('Preparando o envio...');
+    var chain = pastaId ? Promise.resolve() : tentar(function(){
+      return api({ acao: 'iniciar', nome: dados.nome, whatsapp: dados.whatsapp })
+        .then(function(res){ pastaId = res.pasta; protocolo = res.protocolo; });
+    }, 3);
     pend.forEach(function(item, n){
       chain = chain.then(function(){
         setStatus('Enviando arquivo ' + (n + 1) + ' de ' + pend.length + '...');
-        return upload(item, files.indexOf(item));
+        return upload(item);
       });
     });
 
     chain.then(function(){
-      setStatus('Salvando suas respostas...');
-      var fileLinks = null;
-      return saveRecord(dados).then(function(res){
-        fileLinks = (res.arquivos || []).map(function(a){ return a.url; });
-        return true;
-      }, function(){ return false; }).then(function(saved){
-        return sendEmail(dados, protocolo, fileLinks).then(function(){ return true; }, function(){ return false; }).then(function(mailed){
-          if (!saved && !mailed) throw new Error('nada salvo');
-          finish(dados, protocolo);
-        });
-      });
+      setStatus('Finalizando...');
+      return tentar(function(){
+        return api({ acao: 'finalizar', pasta: pastaId, nome: dados.nome, whatsapp: dados.whatsapp, recado: dados.obs, links: links });
+      }, 3);
+    }).then(function(){
+      finish(dados, protocolo);
     }).catch(function(){
       sending = false; btn.disabled = false;
       setStatus('Não consegui enviar tudo. Confira a internet e toque em Enviar de novo: o que já subiu não será perdido.', true);
-      track('briefing_erro');
+      track('materiais_erro');
     });
   });
 

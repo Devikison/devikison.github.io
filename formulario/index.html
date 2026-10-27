@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://tlixawxfsuwmgjjlcapw.supabase.co https://formsubmit.co https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; media-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; media-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
 <script src="/seguranca.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJG6HQJWBZ"></script>
 <script src="/gtag-init.js"></script>
@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/hubot-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/formulario/formulario.css?v=4">
+<link rel="stylesheet" href="/formulario/formulario.css?v=5">
 </head>
 <body>
 
@@ -55,7 +55,7 @@
         <label for="arquivos" class="drop__area">
           <svg class="ico" width="28" height="28" viewBox="0 0 256 256" aria-hidden="true"><path d="M240 136v64a16 16 0 0 1-16 16H32a16 16 0 0 1-16-16v-64a16 16 0 0 1 16-16h48a8 8 0 0 1 0 16H32v64h192v-64h-48a8 8 0 0 1 0-16h48a16 16 0 0 1 16 16ZM85.66 77.66 120 43.31V128a8 8 0 0 0 16 0V43.31l34.34 34.35a8 8 0 0 0 11.32-11.32l-48-48a8 8 0 0 0-11.32 0l-48 48a8 8 0 0 0 11.32 11.32Z"/></svg>
           <span class="drop__title">Toque para escolher os arquivos</span>
-          <span class="drop__sub" id="drop-help">Pode escolher vários de uma vez. Até 50 MB cada.</span>
+          <span class="drop__sub" id="drop-help">Pode escolher vários de uma vez. Até 300 MB cada.</span>
         </label>
       </div>
       <ul class="files" data-files aria-live="polite"></ul>
@@ -95,6 +95,6 @@
   </div>
 </section>
 
-<script src="/formulario/formulario.js?v=4" defer></script>
+<script src="/formulario/formulario.js?v=5" defer></script>
 </body>
 </html>
