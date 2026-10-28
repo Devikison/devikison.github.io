@@ -89,3 +89,12 @@ body.pg{background:var(--ink-0)}
 @media (hover:hover){.pg-link:hover{border-color:var(--line-2);transform:translateY(-2px)}.pg-link:hover svg{transform:translateX(4px)}}
 .pg .foot{margin-top:clamp(56px,7vw,96px)}
 .pg-note a{color:var(--blue-ink);font-weight:650;text-decoration:underline;text-underline-offset:3px}
+
+/* Botão Início na barra: quem chega do Google numa página interna volta para a home */
+.pg-nav-home{flex:none;display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 14px 0 12px;border-radius:999px;font-size:14px;font-weight:560;color:var(--text-2);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);transition:color .25s,background .25s,border-color .25s}
+.pg-nav-home svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linejoin:round}
+@media (hover:hover){.pg-nav-home:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22)}}
+.pg-nav-home:focus-visible{outline:2px solid var(--volt);outline-offset:2px}
+@media (max-width:420px){.pg-nav-home{width:36px;height:36px;padding:0;justify-content:center}.pg-nav-home span{display:none}.nav:has(.pg-nav-home) .nav-in{gap:6px}.nav:has(.pg-nav-home) .logo{padding:4px 4px 4px 8px;gap:7px}.nav:has(.pg-nav-home) .logo-word{font-size:13.5px}.nav:has(.pg-nav-home) .pg-nav-cta{margin-left:auto}}
+/* Telas bem estreitas: o botão flutuante do WhatsApp já faz o papel do "orçamento" da barra */
+@media (max-width:360px){.nav:has(.pg-nav-home) .pg-nav-cta{display:none}.nav:has(.pg-nav-home) .pg-nav-home{margin-left:auto}}
