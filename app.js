@@ -855,7 +855,7 @@
       box.innerHTML = xpInline() + stepsBar(false) + '<div class="q-step' + (dir === 'back' ? ' back' : '') + '">' +
         '<span class="q-k mono">Pergunta 0' + (step + 1) + ' de 05</span><h3 class="q-title">' + esc(q.q) + '</h3><p class="q-sub">' + esc(q.sub) + '</p>' +
         '<div class="q-opts" role="group" aria-label="Opções">' + q.opts.map(function(o, i){ return '<button type="button" class="q-opt' + (ans[step] === i ? ' sel' : '') + '" data-opt="' + i + '"><span class="k">' + String.fromCharCode(65 + i) + '</span><span>' + esc(o.t) + '</span></button>'; }).join('') + '</div>' +
-        '<div class="q-nav">' + (step > 0 ? '<button type="button" class="q-back" data-qback>← Voltar</button>' : '<span></span>') + '<span class="q-hint">Toque numa opção ou use <kbd>A</kbd>–<kbd>' + String.fromCharCode(64 + q.opts.length) + '</kbd></span></div></div>';
+        '<div class="q-nav">' + (step > 0 ? '<button type="button" class="q-back" data-qback>← Voltar</button>' : '<span></span>') + '<span class="q-hint">Toque numa opção ou use <kbd>A</kbd> a <kbd>' + String.fromCharCode(64 + q.opts.length) + '</kbd></span></div></div>';
       setXP(xpNow());
       var opts = $('.q-opts', box);
       $$('[data-opt]', box).forEach(function(b){ b.addEventListener('click', function(){ pick(+b.getAttribute('data-opt'), b); }); });

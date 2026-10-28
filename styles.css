@@ -1448,3 +1448,74 @@ html:not(.bf-ended) .plans .plan{padding-top:36px}
 .bf-pill b{background:none}
 .bf-pill .bf-flame{flex:none}
 @media (max-width:400px){.bf-pill{font-size:12.5px;padding:8px 13px 8px 11px;gap:8px}}
+
+/* ============ Cartões de preço v2: vidro fosco (inspiração Apple) ============
+   Cartão = moldura de vidro + painel interno no topo (nome e descrição).
+   O mais pedido é o único claro, para o olho bater nele primeiro. */
+.plans{position:relative;isolation:isolate}
+.plans::before{content:"";position:absolute;z-index:-1;inset:-40px -2% 20% -2%;pointer-events:none;
+  background:radial-gradient(38% 46% at 22% 38%,rgba(45,99,255,.38),transparent 70%),radial-gradient(30% 40% at 58% 30%,rgba(142,107,255,.30),transparent 70%),radial-gradient(34% 44% at 86% 52%,rgba(98,230,255,.30),transparent 70%);
+  filter:blur(28px)}
+.plan{padding:8px 8px 20px;border-radius:30px;
+  background:linear-gradient(180deg,rgba(17,24,56,.93),rgba(7,11,30,.95));
+  border:1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 2px 6px rgba(10,19,48,.12),0 34px 60px -34px rgba(10,19,48,.7)}
+.plan-head{margin-bottom:6px;padding:20px 18px 20px;border-radius:23px;
+  background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.plan-top{margin-bottom:16px}
+.plan-ico{width:50px;height:50px;border-radius:15px}
+.plan-ico svg{width:31px;height:31px}
+.plan-price,.plan-cta,.plan-inc,.plan-more{margin-inline:16px}
+.plan-price{border-top:0;padding:22px 0 18px}
+.plan-price b{font-size:52px;font-weight:760;letter-spacing:-.04em}
+.plan-cta{padding-bottom:22px}
+.plan-inc{padding-top:20px;border-top:1px dashed rgba(255,255,255,.2)}
+.plan-label{font-family:var(--f-m);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#9fb0dc}
+.plan-list{gap:11px;margin-top:14px;font-size:14.5px}
+.plan-list .ic{width:20px;height:20px;color:#dfe6fa;background:rgba(255,255,255,.1)}
+.plan-list li{grid-template-columns:20px minmax(0,1fr)}
+.plan-list .ic svg{width:11px;height:11px}
+.plan-list .is-gift .ic{color:#0b1400;background:var(--volt)}
+/* botão dos cartões escuros: pílula grafite, a bolinha verde do WhatsApp continua */
+.plan:not(.plan-hot) .btn-primary{text-shadow:none;animation:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.02)) padding-box,linear-gradient(#060a1d,#060a1d) padding-box,linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.06)) border-box;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 14px 26px -16px rgba(0,0,0,.9)}
+.plan:not(.plan-hot) .btn-primary::before{display:none}
+@media (hover:hover){.plans .plan.rv.in:hover{border-color:rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 2px 6px rgba(10,19,48,.12),0 44px 70px -34px rgba(10,19,48,.8)}}
+
+/* o mais pedido: vidro claro */
+.plan-hot{--text:#0a1330;--text-2:#26324f;--text-3:#4a5675;color:#0a1330;
+  background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(244,247,255,.66));
+  border:1px solid rgba(255,255,255,.95);
+  box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(45,99,255,.12),0 40px 80px -34px rgba(2,69,242,.55),0 2px 8px rgba(10,19,48,.08)}
+.plan-hot .plan-head{background:#fff;border-color:rgba(10,19,48,.06);box-shadow:0 1px 2px rgba(10,19,48,.06),0 12px 26px -16px rgba(10,19,48,.25)}
+.plan-hot h3{color:#0a1330}
+.plan-hot .plan-aka{color:#4a5675}
+.plan-hot .plan-who,.plan-hot .plan-list,.plan-hot .plan-price .meta{color:#26324f}
+.plan-hot .plan-price .lbl,.plan-hot .plan-price .was{color:#4a5675}
+.plan-hot .plan-price .was s{color:#4a5675}
+.plan-hot .plan-price .val,.plan-hot .plan-price b{color:#0a1330}
+.plan-hot .plan-price .cur{color:var(--blue-ink)}
+.plan-hot .plan-price .save{color:#0a7a45}
+.plan-hot .plan-price .meta svg{color:#0a7a45}
+.plan-hot .plan-inc{border-top-color:rgba(10,19,48,.18)}
+.plan-hot .plan-label{color:#4a5675}
+.plan-hot .plan-list .ic{color:#26324f;background:rgba(10,19,48,.07)}
+.plan-hot .plan-list .is-gift,.plan-hot .plan-list .is-gift strong{color:#0a1330}
+.plan-hot .plan-list .is-gift .ic{color:#fff;background:var(--blue-2)}
+.plan-hot .plan-more{color:var(--blue-ink)}
+@media (hover:hover){.plan-hot .plan-more:hover{color:#0a1330}.plans .plan-hot.rv.in:hover{border-color:#fff;box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(45,99,255,.2),0 50px 90px -34px rgba(2,69,242,.6),0 2px 8px rgba(10,19,48,.08)}}
+@media (min-width:1181px){.plans .plan-hot{margin-top:-14px;margin-bottom:-14px}}
+
+/* "Não sabe qual escolher?" e domínio no mesmo vidro escuro */
+.plan-help,.pricing .dom{border-radius:30px;background:linear-gradient(180deg,rgba(20,28,62,.86),rgba(9,14,36,.9));border:1px solid rgba(255,255,255,.1);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 30px 56px -34px rgba(10,19,48,.65)}
+@media (max-width:640px){
+  .plan{padding:7px 7px 18px;border-radius:26px}
+  .plan-head{border-radius:20px;padding:18px 16px}
+  .plan-price,.plan-cta,.plan-inc,.plan-more{margin-inline:13px}
+  .plan-price b{font-size:46px}
+}
+@media (prefers-reduced-transparency:reduce){.plan,.plan-help,.pricing .dom{-webkit-backdrop-filter:none;backdrop-filter:none}}
