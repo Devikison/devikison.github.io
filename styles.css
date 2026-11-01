@@ -1501,3 +1501,10 @@ html:not(.bf-ended) .plans .plan{padding-top:36px}
   .plan-price b{font-size:46px}
 }
 @media (prefers-reduced-transparency:reduce){.plan,.plan-help,.pricing .dom{-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* ===================== CELULAR: rolagem leve =====================
+   Vidro fosco em cima do carrossel e brilhos em loop custam um redesenho por quadro;
+   no toque a lupa ganha fundo sólido e os brilhos pausam enquanto a página rola (.rolando, app.js). */
+@media (hover:none),(pointer:coarse){
+  .pc-zoom{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(2,4,10,.72)}
+  .rolando .aurora,.rolando .btn-primary,.rolando .bf-flame,.rolando .bf-live i,.rolando .pg-bf .bf-dot,.rolando .fab-ring{animation-play-state:paused!important}
+}

@@ -146,6 +146,14 @@
   var mT = null, lastW = VW, lastH = VH, lastDocH = 0;
   function remeasure(delay){ clearTimeout(mT); mT = setTimeout(function(){ requestAnimationFrame(measureAll); }, delay || 0); }
   window.addEventListener('scroll', request, { passive: true });
+  // celular: os brilhos em loop (botões, texto em degradê) pausam enquanto a página rola e voltam quando para
+  if (!fine){
+    var rolT = null, rolando = false;
+    window.addEventListener('scroll', function(){
+      if (!rolando){ rolando = true; root.classList.add('rolando'); }
+      clearTimeout(rolT); rolT = setTimeout(function(){ rolando = false; root.classList.remove('rolando'); }, 180);
+    }, { passive: true });
+  }
   window.addEventListener('resize', function(){
     // zoom de pinça (no iPhone muda innerWidth/innerHeight): não remede nada até voltar ao normal
     if (window.visualViewport && window.visualViewport.scale > 1.01) return;
@@ -294,7 +302,7 @@
       D.forEach(function(d){
         d.h = d.sec.offsetHeight; d.N = d.next.getBoundingClientRect().top + y;
         d.T = d.sec.getBoundingClientRect().top + y; d.st = Math.min(0, VH - d.h);
-        d.scale = d.h <= VH * 1.35;
+        d.scale = fine && d.h <= VH * 1.35; // celular: só escurece, sem encolher (redesenhar a seção inteira a cada quadro trava)
         d.sec.style.setProperty('--st', d.st + 'px');
         d.sec.style.transformOrigin = '50% ' + Math.round(Math.max(d.h - VH / 2, d.h / 2)) + 'px';
         d.last = '';
@@ -455,7 +463,7 @@
         var g = G[i], vt = vis(g, y), nt = vis(G[i + 1], y);
         var p = clamp((vt + g.h - nt) / g.h, 0, 1), key = p.toFixed(3);
         if (key === g.last) continue; g.last = key;
-        cards[i].style.transform = p > 0 ? 'scale(' + (1 - p * .08).toFixed(4) + ')' : '';
+        cards[i].style.transform = fine && p > 0 ? 'scale(' + (1 - p * .08).toFixed(4) + ')' : '';
         cards[i].style.setProperty('--dim', (p * .62).toFixed(3));
         cards[i].classList.toggle('covered', p > .3); // escondido atrás do próximo: a borda para de girar
       }

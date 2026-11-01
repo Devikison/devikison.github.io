@@ -99,7 +99,6 @@
       raf = requestAnimationFrame(loop);
       if (coarse && ms - last < 30) return;   // celular: ~33 quadros por segundo bastam
       last = ms;
-      resize();
       frame(now());
     }
     function wake(){ if (!reduced && !raf && visible && !document.hidden) raf = requestAnimationFrame(loop); }
@@ -122,7 +121,8 @@
     resize();
     frame(reduced ? 3 : 0);
     new IntersectionObserver(function(en){ visible = en[0].isIntersecting; wake(); }).observe(host);
-    new ResizeObserver(function(){ if (reduced){ resize(); frame(3); } }).observe(host);
+    // medir só quando o tamanho muda: ler clientWidth a cada quadro forçava o layout da página inteira
+    new ResizeObserver(function(){ resize(); if (reduced) frame(3); }).observe(host);
     document.addEventListener('visibilitychange', wake);
     if (!reduced){
       wake();
