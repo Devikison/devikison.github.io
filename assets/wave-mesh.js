@@ -39,7 +39,7 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       var narrow = W < 700;
       f = Math.max(W, H * 1.2) * (narrow ? 0.5 : 0.55);   // distância focal
-      hz = H * (narrow ? 0.46 : 0.38);                       // horizonte: o campo nasce abaixo do título
+      hz = H * (narrow ? 0.4 : 0.3);                       // horizonte: o campo nasce abaixo do título
       cols = Math.round(Math.min(150, Math.max(46, W / (narrow ? 8 : 9))));
       rows = Math.round(Math.min(84, Math.max(40, H / (narrow ? 13 : 10))));
     }
