@@ -285,12 +285,12 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 @keyframes a1{to{transform:translate3d(14vw,12vh,0) scale(1.1)}}
 @keyframes a2{to{transform:translate3d(-12vw,16vh,0) scale(.9)}}
 @keyframes a3{to{transform:translate3d(-10vw,-10vh,0) scale(1.08)}}
-.hero-dots{inset:0;background-image:radial-gradient(rgba(185,202,255,.2) 1px,transparent 1.3px);background-size:30px 30px;
-  -webkit-mask-image:radial-gradient(70% 60% at 50% 45%,transparent 30%,#000 75%);mask-image:radial-gradient(70% 60% at 50% 45%,transparent 30%,#000 75%)}
+/* mar de pontos (assets/wave-mesh.js): nasce no horizonte e some na base, sob as estatísticas */
+.hero-wave{inset:0;-webkit-mask-image:linear-gradient(180deg,transparent 34%,#000 54%,#000 88%,transparent 100%);mask-image:linear-gradient(180deg,transparent 34%,#000 54%,#000 88%,transparent 100%)}
 .hero-glow{left:0;top:0;width:640px;height:640px;margin:-320px 0 0 -320px;border-radius:50%;opacity:0;
   background:radial-gradient(closest-side,rgba(98,230,255,.14),transparent);transform:translate3d(var(--gx,50vw),var(--gy,40vh),0);transition:transform .7s var(--ease-out),opacity .6s}
 .hero:hover .hero-glow{opacity:1}
-.hero-veil{inset:0;background:radial-gradient(62% 50% at 50% 46%,rgba(2,4,10,.62),transparent 78%),linear-gradient(180deg,transparent 68%,var(--ink-0))}
+.hero-veil{inset:0;background:radial-gradient(62% 50% at 50% 46%,rgba(2,4,10,.62),transparent 78%),linear-gradient(180deg,transparent 84%,var(--ink-0))}
 .hero-in{text-align:center}
 /* larguras em em (antes em ch): o ch muda quando a fonte carrega e mexia o layout (CLS) */
 .hero h1{margin:26px auto 24px;max-width:12.06em;font-size:clamp(44px,min(7vw,11.5vh),100px);font-stretch:122%;font-weight:800;line-height:.96;letter-spacing:-.035em}
@@ -1300,7 +1300,7 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
   .hero-sub{font-size:17.5px}
   .aur .a1{width:62vmax;height:62vmax}
   .aur .a2,.aur .a3{animation:none}
-  .hero-dots{display:none}
+  .hero-wave{-webkit-mask-image:linear-gradient(180deg,transparent 46%,#000 62%,#000 86%,transparent 99%);mask-image:linear-gradient(180deg,transparent 46%,#000 62%,#000 86%,transparent 99%)}
   .cta-row{flex-direction:column;align-items:stretch}
   .cta-row .btn{width:100%}
   .btn-lg{--h:60px;--k:46px;font-size:16.5px}
