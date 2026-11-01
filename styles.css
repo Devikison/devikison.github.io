@@ -299,6 +299,8 @@ html.measuring section.depth,html.measuring .scard{transform:none!important}
 .hero-in{text-align:center}
 /* larguras em em (antes em ch): o ch muda quando a fonte carrega e mexia o layout (CLS) */
 .hero h1{margin:26px auto 24px;max-width:12.06em;font-size:clamp(44px,min(7vw,11.5vh),100px);font-stretch:122%;font-weight:800;line-height:.96;letter-spacing:-.035em}
+/* desktop: "e venda no WhatsApp" (12,06em) fica inteira na 2ª linha, sem quebrar */
+@media (min-width:641px){.hero h1:not(.lp-h1){max-width:12.8em}.hero h1:not(.lp-h1) .aurora{white-space:nowrap}}
 .hero-sub{max-width:calc(33.33em - 33.3px);margin:0 auto;font-size:clamp(17.5px,1.6vw,20.5px);line-height:1.6;color:var(--text-2)}
 .hero-sub strong{color:#fff;font-weight:680}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:36px}
