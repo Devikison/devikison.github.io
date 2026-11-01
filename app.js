@@ -402,7 +402,9 @@
       };
       el.addEventListener('pointerup', end);
       el.addEventListener('pointercancel', end);
-      el.addEventListener('lostpointercapture', end);
+      // no toque o dedo nasce preso ao card; ao passar a captura para a faixa, o card solta um
+      // lostpointercapture que sobe até aqui e encerrava o arraste logo no começo: só vale o da própria faixa
+      el.addEventListener('lostpointercapture', function(e){ if (e.target === el) end(e); });
       // rolagem lateral do trackpad também empurra a faixa
       el.addEventListener('wheel', function(e){
         if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
